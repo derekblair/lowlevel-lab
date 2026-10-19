@@ -50,7 +50,7 @@ can diff your counts against mine.
 | C01 | stale-fetch A64 I-cache emulator | **N2** | **RESHAPE → ifetch-sanitizer** | goliajp/aarch64-study v0.22 *models stale I-cache w/o IC IVAU, passing tests*; cyyself/jit-coherence-test runs it on HW |
 | C02 | SMC/XMC cartography on hybrid x86 | **N3** | **SHORTLIST #1** | SMaCk (L1i *attack*, not benign cost-map, not hybrid/XMC/distance); SelfModTamper (tamper-proofing) |
 | C03 | version-correct PT decode of SMC | **N3** | **SHORTLIST #2** | simple-pt ("Tracing JITed code is not supported"); libipt live-image only; JPortal (JVM side-band) |
-| C04 | P-core vs E-core differential scanner | **N3** | **SHORTLIST #3** | yufengzjj/hybrid-x86-oracle (diffs *model backends*, NOT the two core types of one die); sandsifter/vmsifter (one core) |
+| C04 | P-core vs E-core differential scanner | **N2** | **SHORTLIST #3** | **Intel 12th-Gen GameDev Guide + Wikipedia document P/E undefined-OF divergence** (caps the bare claim); yufengzjj/hybrid-x86-oracle diffs *model backends* not core types; sandsifter/vmsifter (one core) |
 | C05 | native Core War on real cores | N2 | alternate (safety) | r2wars (ESIL VM, multi-arch, *emulated*); pMARS/corewar.io (VM). Native-on-cores unseen but sandbox burden high |
 | C06 | reversible ISA, bidirectional native JIT | **N2** | cut (for C01) | kostyk348/phase-vm *emits phase_fwd/phase_rev C, cc -O2 -shared + dlopen* = reverse native codegen already |
 | C07 | in-process x86↔A64 hop | N2 | cut | systems-nuts/unifico, ssrg-vt/popcorn-* (research, cross-machine); core idea exists |
@@ -217,7 +217,7 @@ build of the five; the gdb probe de-risks the *claim* even if the from-scratch
 decoder is reduced in scope. **C22 (TNT-bit barcode) rides this capture as a
 visualization bonus.**
 
-## C04 — P-core vs E-core differential scanner → **SHORTLIST #3** (N3)
+## C04 — P-core vs E-core differential scanner → **SHORTLIST #3** (N2)
 
 **Pitch:** run identical instruction candidates pinned to a P-core and an
 E-core and diff every observable — legality, length, result, *architecturally
@@ -230,6 +230,26 @@ undefined OF flag differs between core types** — P-cores (Cougar Cove)
 compute OF by a "first-step" rule, E-cores (Darkmont) by a "last-step" rule;
 `SAR` agrees, results agree. So the concept's payoff ("do the two core types
 disagree on undefined behaviour?") is **demonstrated**, not hoped-for.
+
+**Non-GitHub prior art I must disclose (caps the bare claim to N2).** The
+*fact* that P and E cores differ on the undefined OF flag is already public:
+- **Intel's "Game Dev Guide for 12th Gen Intel Core Processor"** (web search,
+  extended) states the x86 ISA defines OF only for multiplies and 1-bit
+  shifts, and that the undefined shift OF "can vary between Performance-cores
+  and Efficient-cores." (Original `alder-lake-developer-guide.html` now
+  301→404s; live copy titled "12th-gen-intel-core-processor-gamedev-guide".)
+- **Wikipedia, "Alder Lake"**: "minor differences between the behavior of the
+  two cores with regard to an undefined overflow flag in certain bitwise
+  operations" (cites a source I could not open from search).
+
+So "P and E differ on undefined OF" is **documented, not discovered** → the
+bare claim is N2, and the README will say so. **What is still unpublished**
+and what P3 builds: (a) a *systematic scanner* (no public tool does this —
+sandsifter/vmsifter scan one core; yufengzjj diffs model backends), (b) the
+*specific rule* each core follows (first-step vs last-step, per instruction
+and count — my probe characterises it; the Intel/Wikipedia prose does not),
+and (c) a migration-visible demonstration. That trio is a genuine N2
+contribution; it is not N3. Honest level, disclosed up front.
 
 **Closest threats (read as data):**
 - **yufengzjj/hybrid-x86-oracle** (★0, 2026-09-29, read README +
@@ -249,9 +269,11 @@ disagree on undefined behaviour?") is **demonstrated**, not hoped-for.
 - `topic:cpu-fuzzing` → 0; `p-core e-core created:>2026-04-01` → benchmarking
   /power-toggle repos, none differential-ISA (records C04-*.json).
 
-**N3, KEEP strong.** Novel observable already captured; the build turns the
-probe into a systematic scanner with the yufengzjj oracle as a tie-breaker
-for "which core (if either) matches the SDM/formal model".
+**N2, KEEP.** Novel observable already captured; the build turns the probe
+into a systematic scanner with the yufengzjj oracle as a tie-breaker for
+"which core (if either) matches the SDM/formal model". The bare "they differ"
+fact is documented (Intel/Wikipedia, above) — the scanner, the specific rule
+characterisation and the migration demo are the contribution.
 
 ## C10 — program single-steps & renders itself → **SHORTLIST #5** (N3)
 

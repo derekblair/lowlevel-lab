@@ -11,6 +11,13 @@ ARM64 — P4. x86/hybrid silicon — P1,P2,P3. Self-modifying code — P1,P2,P4,
 Visualization of how machines work — P5 (and the maps P1/P3 emit). Every
 prototype builds and runs on nibbles with present tools only.
 
+**Honest novelty levels (after disclosing non-GitHub prior art):** P1 N3,
+P2 N3, P3 **N2** (Intel/Wikipedia document the bare P/E undefined-OF fact; the
+scanner + specific rule + migration demo are the contribution), P4 **N2**
+(reshaped — I-cache stale-fetch demo exists; the coherence matrix + per-step
+diagnosis is the contribution), P5 N3. Three N3 + two disclosed-N2 — I'd
+rather ship that honestly than inflate.
+
 **Machine facts that make these reachable** (verified, REVIEW-00 §0 concurs):
 Intel Panther Lake, family 6 model 0xCC — 4 Cougar Cove P-cores (CPUs 0–3,
 `cpu_core`), 12 Darkmont E-cores (CPUs 4–15, `cpu_atom`); unprivileged Intel
@@ -93,13 +100,19 @@ as data; the misdecode is already demonstrated in
   decode a captured-to-file trace" — stated in README, not hidden.
   (c) PTWRITE must be enabled (`fup_on_ptw`); verified cap `ptwrite=1`.
 
-## P3 — hybrid-diff (was C04) · x86 hybrid · **N3**
+## P3 — hybrid-diff (was C04) · x86 hybrid · **N2**
 
 **Gap.** Instruction fuzzers (sandsifter, vmsifter, baresifter) scan one core;
 the one differential x86 framework found (yufengzjj/hybrid-x86-oracle) diffs
 *reference backends* (Sail/Bochs/KVM) against each other, **not the two core
-types of one hybrid die**. Nobody pins identical instructions to a P-core and
-an E-core and diffs legality/length/result/**undefined flags**/CPUID. (Evidence:
+types of one hybrid die**. No public *tool* pins identical instructions to a
+P-core and an E-core and diffs legality/length/result/**undefined flags**/CPUID.
+**Disclosed prior art (caps to N2):** Intel's 12th-Gen Game Dev Guide and
+Wikipedia's Alder Lake article both state the two core types differ on the
+*undefined* shift/bitwise OF flag — so the bare "they differ" fact is public.
+The N2 contribution is (a) the systematic scanner, (b) the *specific* per-core
+rule (first-step vs last-step, by instruction and count — my probe found it;
+the prose doesn't give it), and (c) a migration-visible demo. (Evidence:
 NOVELTY-LOG C04; oracle repo read as data to confirm "hybrid" = backends.)
 
 **A divergence is already in hand.** `research/probes/hybrid-undefined-flags/`:
