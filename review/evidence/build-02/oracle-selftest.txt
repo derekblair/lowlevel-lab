@@ -1,0 +1,12 @@
+# gdb_singlestep.py self-test on research/probes/pt-smc-misdecode/smc.c (START=main END=marker), 2026-10-19 07:41:05 PDT
+# ground truth: 1st call executes v1 (mov $0x1; jmp; ret) — the bytes gdb's PT decode showed as v2
+49 0x7ffff7fba000 b801000000 mov    $0x1,%eax
+50 0x7ffff7fba005 eb02 jmp    0x7ffff7fba009
+51 0x7ffff7fba009 c3 ret
+58 0x7ffff7fba000 b802000000 mov    $0x2,%eax
+59 0x7ffff7fba005 90 nop
+60 0x7ffff7fba006 90 nop
+61 0x7ffff7fba007 90 nop
+62 0x7ffff7fba008 90 nop
+63 0x7ffff7fba009 c3 ret
+# steps=67
