@@ -1,0 +1,13 @@
+{
+ "repo": "dabernado/iris",
+ "description": "Isomorphic, r-IM complete ISA and virtual machine for reversible computation",
+ "stars": 5,
+ "created_at": "2021-08-01T00:34:07Z",
+ "pushed_at": "2023-01-12T00:58:09Z",
+ "default_branch": "main",
+ "head_sha": "879e8a5551ea3ef3901ea14b314c6415fd4fbf56",
+ "fetched_at_utc": "2026-10-19T09:28:50Z",
+ "files": [
+  "README.md"
+ ]
+}

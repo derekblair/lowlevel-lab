@@ -1,0 +1,144 @@
+{
+ "candidate": "C22",
+ "kind": "repos",
+ "query": "processor trace visualization",
+ "executed_at": "2026-10-19T02:24:06-0700",
+ "api_call": "gh api -X GET search/repositories -f q='processor trace visualization' -f per_page=10",
+ "replay": "gh search repos 'processor trace visualization' --limit 10",
+ "total_count": 87,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "bsc-performance-tools/paraver-kernel",
+   "url": "https://github.com/bsc-performance-tools/paraver-kernel",
+   "description": "wxParaver is a trace-based visualization and analysis tool designed to study quantitative detailed metrics and obtain qualitative knowledge of the performance of applications, libraries, processors and whole architectures.",
+   "stars": 17,
+   "language": "C++",
+   "created_at": "2016-09-28T14:10:27Z",
+   "pushed_at": "2026-02-10T10:45:16Z",
+   "topics": [
+    "cuda",
+    "hardware-counters",
+    "hpc",
+    "mpi",
+    "openmp",
+    "performance-analysis"
+   ]
+  },
+  {
+   "full_name": "bsc-performance-tools/wxparaver",
+   "url": "https://github.com/bsc-performance-tools/wxparaver",
+   "description": "wxParaver is a trace-based visualization and analysis tool designed to study quantitative detailed metrics and obtain qualitative knowledge of the performance of applications, libraries, processors and whole architectures.",
+   "stars": 31,
+   "language": "C++",
+   "created_at": "2016-09-28T14:30:48Z",
+   "pushed_at": "2026-02-10T10:45:25Z",
+   "topics": [
+    "cuda",
+    "hardware-counters",
+    "hpc",
+    "mpi",
+    "openmp",
+    "performance-analysis"
+   ]
+  },
+  {
+   "full_name": "std-microblock/etw-process-trace",
+   "url": "https://github.com/std-microblock/etw-process-trace",
+   "description": "A Windows ETW-based process monitoring tool that tracks and visualizes process creation and termination in real-time.",
+   "stars": 3,
+   "language": "C++",
+   "created_at": "2025-10-20T15:07:46Z",
+   "pushed_at": "2025-10-20T15:56:30Z",
+   "topics": []
+  },
+  {
+   "full_name": "karandesai2005/TraceProbe",
+   "url": "https://github.com/karandesai2005/TraceProbe",
+   "description": "This project is a real-time data pipeline designed to ingest, process, and analyze massive volumes of IPDR (Internet Protocol Detail Record) logs. It helps law enforcement investigators identify and visualize communication patterns, mapping connections between parties of interest.",
+   "stars": 1,
+   "language": "Python",
+   "created_at": "2025-08-24T21:52:40Z",
+   "pushed_at": "2025-09-02T19:06:28Z",
+   "topics": [
+    "apache",
+    "cybersecurity",
+    "devops",
+    "flink",
+    "ipdr",
+    "kafka",
+    "networking"
+   ]
+  },
+  {
+   "full_name": "amrrdev/distributed-log-tracing",
+   "url": "https://github.com/amrrdev/distributed-log-tracing",
+   "description": "A high-performance distributed logging system built with NestJS, Kafka and gRPC. Captures, processes, and correlates logs across microservices with DAG-based trace visualization.",
+   "stars": 5,
+   "language": "TypeScript",
+   "created_at": "2025-04-14T19:08:28Z",
+   "pushed_at": "2025-04-17T08:33:25Z",
+   "topics": []
+  },
+  {
+   "full_name": "kateinoigakukun/tracemake",
+   "url": "https://github.com/kateinoigakukun/tracemake",
+   "description": "A tool to trace make command execution and convert it to Chrome Tracing format for visualizing build processes",
+   "stars": 5,
+   "language": "Ruby",
+   "created_at": "2025-04-15T23:43:21Z",
+   "pushed_at": "2025-04-16T01:07:56Z",
+   "topics": []
+  },
+  {
+   "full_name": "jaiashwinisatish/TraceGraph",
+   "url": "https://github.com/jaiashwinisatish/TraceGraph",
+   "description": "Trace the Target \u2013 Full Digital Footprint Mapping Problem Statement: Given only a phone no and email build an OSINT tool or process that maps the target\u2019s digital presence across social media, forums, breaches, job portals, and more. Visualize it like a mind map or graph. Create on a Intractive Dashboard to show data",
+   "stars": 4,
+   "language": "TypeScript",
+   "created_at": "2025-08-04T21:07:52Z",
+   "pushed_at": "2025-08-04T21:18:15Z",
+   "topics": []
+  },
+  {
+   "full_name": "Francesco-Sch/trace_processing",
+   "url": "https://github.com/Francesco-Sch/trace_processing",
+   "description": "A running visualization app build with Processing & Processing for Android.",
+   "stars": 1,
+   "language": "Processing",
+   "created_at": "2020-12-05T21:52:50Z",
+   "pushed_at": "2020-12-22T10:37:52Z",
+   "topics": [
+    "android",
+    "processing"
+   ]
+  },
+  {
+   "full_name": "esumit/trace-fruits",
+   "url": "https://github.com/esumit/trace-fruits",
+   "description": "TraceFruits is a conceptual demonstration designed to visualize fruit supply chain events stored in an immutable ledger. Leveraging Splunk for data analysis, the project utilizes Hyperledger Fabric's blockchain ledgers to create an informative and transparent overview of the fruit supply chain process.",
+   "stars": 4,
+   "language": "Go",
+   "created_at": "2021-06-27T10:30:38Z",
+   "pushed_at": "2026-02-12T15:40:34Z",
+   "topics": [
+    "blockchain",
+    "chaincode",
+    "hyperledger",
+    "hyperledger-fabric",
+    "smart-contracts",
+    "splunk-application"
+   ]
+  },
+  {
+   "full_name": "007Style/traceAnalyzer",
+   "url": "https://github.com/007Style/traceAnalyzer",
+   "description": "IBM PowerPC processor trace file analyzer \u2014 converts .TRACER simulator output to color-coded HTML pipeline visualization (Java, 2002)",
+   "stars": 0,
+   "language": "Scilab",
+   "created_at": "2026-08-06T23:07:12Z",
+   "pushed_at": "2026-08-06T23:07:17Z",
+   "topics": []
+  }
+ ]
+}

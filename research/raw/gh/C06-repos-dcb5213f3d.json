@@ -1,0 +1,22 @@
+{
+ "candidate": "C06",
+ "kind": "repos",
+ "query": "reversible isa created:>2026-04-01",
+ "executed_at": "2026-10-19T02:28:35-0700",
+ "api_call": "gh api -X GET search/repositories -f q='reversible isa created:>2026-04-01' -f per_page=10",
+ "replay": "gh search repos 'reversible isa created:>2026-04-01' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "SNAPKITTYWEST/sovereign-tensor-quantum",
+   "url": "https://github.com/SNAPKITTYWEST/sovereign-tensor-quantum",
+   "description": "Recursive Tensor-to-Quantum Architecture: ISA, microcode, QIR, reversible transforms, complexity analysis",
+   "stars": 1,
+   "language": "Python",
+   "created_at": "2026-09-03T14:10:33Z",
+   "pushed_at": "2026-09-07T21:40:30Z",
+   "topics": []
+  }
+ ]
+}

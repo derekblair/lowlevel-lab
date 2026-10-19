@@ -1,0 +1,117 @@
+{
+ "candidate": "C03",
+ "kind": "repos",
+ "query": "intel pt created:>2026-04-01",
+ "executed_at": "2026-10-19T02:27:21-0700",
+ "api_call": "gh api -X GET search/repositories -f q='intel pt created:>2026-04-01' -f per_page=10",
+ "replay": "gh search repos 'intel pt created:>2026-04-01' --limit 10",
+ "total_count": 55,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "JinJinovo/Pcileech-INTEL1000PT",
+   "url": "https://github.com/JinJinovo/Pcileech-INTEL1000PT",
+   "description": "Discord: @JinJinovo",
+   "stars": 5,
+   "language": "Verilog",
+   "created_at": "2026-08-02T13:13:40Z",
+   "pushed_at": "2026-09-28T16:29:20Z",
+   "topics": []
+  },
+  {
+   "full_name": "OctopusTakopi/trace-mcp",
+   "url": "https://github.com/OctopusTakopi/trace-mcp",
+   "description": "Intel PT tracer your agent drives over MCP.",
+   "stars": 5,
+   "language": "Rust",
+   "created_at": "2026-09-08T05:17:01Z",
+   "pushed_at": "2026-09-26T11:17:05Z",
+   "topics": [
+    "agent",
+    "intel-pt",
+    "mcp",
+    "optimizer"
+   ]
+  },
+  {
+   "full_name": "kernelorg-mirror/linux_kernel_git_ash_linux",
+   "url": "https://github.com/kernelorg-mirror/linux_kernel_git_ash_linux",
+   "description": "perf, intel_pt, etc",
+   "stars": 0,
+   "language": "C",
+   "created_at": "2026-06-04T12:50:49Z",
+   "pushed_at": "2026-09-10T11:58:06Z",
+   "topics": []
+  },
+  {
+   "full_name": "huaqiangwang/ptgraph2",
+   "url": "https://github.com/huaqiangwang/ptgraph2",
+   "description": "Call-graph generator with Intel PT.",
+   "stars": 0,
+   "language": "C++",
+   "created_at": "2026-10-05T12:56:49Z",
+   "pushed_at": "2026-10-16T07:51:27Z",
+   "topics": []
+  },
+  {
+   "full_name": "senzxc/agent-inteligence",
+   "url": "https://github.com/senzxc/agent-inteligence",
+   "description": "Agent Tracker for PT AJSB.",
+   "stars": 0,
+   "language": "Dart",
+   "created_at": "2026-10-02T02:45:52Z",
+   "pushed_at": "2026-10-19T08:52:37Z",
+   "topics": []
+  },
+  {
+   "full_name": "241505/ptaas-platform",
+   "url": "https://github.com/241505/ptaas-platform",
+   "description": "Open-source Penetration Testing as a Service platform \u2014  live DNS recon, port scanning, OWASP header audit,  threat intel, and PDF reporting. Built with FastAPI + Python.",
+   "stars": 2,
+   "language": "Python",
+   "created_at": "2026-06-27T18:15:23Z",
+   "pushed_at": "2026-06-27T18:16:22Z",
+   "topics": []
+  },
+  {
+   "full_name": "bxtrspit/Provision-IntelPTT",
+   "url": "https://github.com/bxtrspit/Provision-IntelPTT",
+   "description": null,
+   "stars": 0,
+   "language": "PowerShell",
+   "created_at": "2026-09-10T23:47:11Z",
+   "pushed_at": "2026-09-11T00:05:13Z",
+   "topics": []
+  },
+  {
+   "full_name": "ceemarcum/PT-IntelliCare",
+   "url": "https://github.com/ceemarcum/PT-IntelliCare",
+   "description": null,
+   "stars": 0,
+   "language": "Jupyter Notebook",
+   "created_at": "2026-10-09T00:40:45Z",
+   "pushed_at": "2026-10-09T01:12:10Z",
+   "topics": []
+  },
+  {
+   "full_name": "alsendior/career-intelligence",
+   "url": "https://github.com/alsendior/career-intelligence",
+   "description": "Career Intelligence Platform for PT Kereta Api Indonesia",
+   "stars": 0,
+   "language": "HTML",
+   "created_at": "2026-07-27T10:04:42Z",
+   "pushed_at": "2026-07-29T03:39:06Z",
+   "topics": []
+  },
+  {
+   "full_name": "slop-dotcom/Provision-IntelPTT",
+   "url": "https://github.com/slop-dotcom/Provision-IntelPTT",
+   "description": "Provision-IntelPTT.ps1",
+   "stars": 0,
+   "language": null,
+   "created_at": "2026-09-10T23:21:35Z",
+   "pushed_at": "2026-09-10T23:21:36Z",
+   "topics": []
+  }
+ ]
+}

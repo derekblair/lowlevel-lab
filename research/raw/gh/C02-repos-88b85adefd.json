@@ -1,0 +1,11 @@
+{
+ "candidate": "C02",
+ "kind": "repos",
+ "query": "self-modifying code side channel",
+ "executed_at": "2026-10-19T02:22:14-0700",
+ "api_call": "gh api -X GET search/repositories -f q='self-modifying code side channel' -f per_page=10",
+ "replay": "gh search repos 'self-modifying code side channel' --limit 10",
+ "total_count": 0,
+ "incomplete_results": false,
+ "items": []
+}

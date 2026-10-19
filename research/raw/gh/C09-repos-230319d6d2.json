@@ -1,0 +1,22 @@
+{
+ "candidate": "C09",
+ "kind": "repos",
+ "query": "instruction overlap visualization",
+ "executed_at": "2026-10-18T22:23:10-0700",
+ "api_call": "gh api -X GET search/repositories -f q='instruction overlap visualization' -f per_page=10",
+ "replay": "gh search repos 'instruction overlap visualization' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "armaanngupta/riscv-extension-analyzer",
+   "url": "https://github.com/armaanngupta/riscv-extension-analyzer",
+   "description": "A JavaScript tool to analyze the RISC-V extension landscape. Features include instruction dictionary parsing, ISA manual cross-referencing (AsciiDoc), and Graphviz-based visualization of extension overlap.",
+   "stars": 0,
+   "language": "TeX",
+   "created_at": "2026-04-22T05:15:04Z",
+   "pushed_at": "2026-04-22T05:15:46Z",
+   "topics": []
+  }
+ ]
+}

@@ -1,0 +1,72 @@
+{
+ "candidate": "C17",
+ "kind": "code",
+ "query": "\"ARCH_SET_CPUID\"",
+ "executed_at": "2026-10-18T22:24:52-0700",
+ "api_call": "gh api -X GET search/code -f q='\"ARCH_SET_CPUID\"' -f per_page=10",
+ "replay": "gh search code '\"ARCH_SET_CPUID\"' --limit 10",
+ "total_count": 2976,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "GrieferAtWork/KOSmk4",
+   "path": "kos/src/kernel/core/arch/i386/misc/arch_prctl.c",
+   "url": "https://github.com/GrieferAtWork/KOSmk4/blob/2ec470169e5df4a9f0b28fd4ff0c105a4f731852/kos/src/kernel/core/arch/i386/misc/arch_prctl.c",
+   "description": "KOS (Kay-OS) Operating System 400"
+  },
+  {
+   "full_name": "XLsn0w/Cydiapps",
+   "path": "iSH/tools/ptutil.c",
+   "url": "https://github.com/XLsn0w/Cydiapps/blob/397cfc6548f763970ebb920f6669d5cc20ceb130/iSH/tools/ptutil.c",
+   "description": "\ud83d\udd25\ud83d\udd25\ud83d\udd25\u5fae\u4fe1\u516c\u4f17\u53f7:Cydiapps\ud83d\udd25\ud83d\udd25\ud83d\udd25            => Cydia\u63d2\u4ef6 Logos\u8bed\u8a00 \u5f00\u53d1Tweak.xm Cydia Substrate \u6ce8\u5165dylib iOS\u9006\u5411\u5de5\u7a0b\u5f00\u53d1 \u8d8a\u72f1Jailbreak deb\u63d2\u4ef6 - fishhook / Frida / iOSOpenDev / Cycript / MachOView /  IDA / Hopper Disassembler / MonkeyDev / Class-dump / Theos / Reveal / Dumpdecryptd / FLEX / \u6c47\u7f16Assembly / CaptainHook / lldb/LLVM/XNU/Darwin/iOS Reverse"
+  },
+  {
+   "full_name": "cea-sec/miasm",
+   "path": "miasm/os_dep/linux/syscall.py",
+   "url": "https://github.com/cea-sec/miasm/blob/3671fc24d6e625c2d75f3311724eb6b0c97664f8/miasm/os_dep/linux/syscall.py",
+   "description": "Reverse engineering framework in Python"
+  },
+  {
+   "full_name": "EOS-team/EOS",
+   "path": "src/RROS/arch/x86/include/uapi/asm/prctl.h",
+   "url": "https://github.com/EOS-team/EOS/blob/40c8096ed6603bf0a2e256d4d594a56048765c4c/src/RROS/arch/x86/include/uapi/asm/prctl.h",
+   "description": "EOS is a dual-core operating system designed specifically for embodied intelligence, suitable for robots, drones, satellites or other scenarios requiring real-time and general capabilities."
+  },
+  {
+   "full_name": "EOS-team/EOS",
+   "path": "src/RROS/tools/arch/x86/include/uapi/asm/prctl.h",
+   "url": "https://github.com/EOS-team/EOS/blob/40c8096ed6603bf0a2e256d4d594a56048765c4c/src/RROS/tools/arch/x86/include/uapi/asm/prctl.h",
+   "description": "EOS is a dual-core operating system designed specifically for embodied intelligence, suitable for robots, drones, satellites or other scenarios requiring real-time and general capabilities."
+  },
+  {
+   "full_name": "shadow/shadow",
+   "path": "src/lib/shim/shim_insn_emu.c",
+   "url": "https://github.com/shadow/shadow/blob/5cabc950388a5311b0d267294cabc96325d45b76/src/lib/shim/shim_insn_emu.c",
+   "description": "Shadow is a discrete-event network simulator that directly executes real application code, enabling you to simulate distributed systems with thousands of network-connected processes in realistic and scalable private network experiments using your laptop, desktop, or server running Linux."
+  },
+  {
+   "full_name": "shadow/shadow",
+   "path": "src/lib/linux-api/src/prctl.rs",
+   "url": "https://github.com/shadow/shadow/blob/5cabc950388a5311b0d267294cabc96325d45b76/src/lib/linux-api/src/prctl.rs",
+   "description": "Shadow is a discrete-event network simulator that directly executes real application code, enabling you to simulate distributed systems with thousands of network-connected processes in realistic and scalable private network experiments using your laptop, desktop, or server running Linux."
+  },
+  {
+   "full_name": "shadow/shadow",
+   "path": "src/main/host/syscall/handler/prctl.rs",
+   "url": "https://github.com/shadow/shadow/blob/5cabc950388a5311b0d267294cabc96325d45b76/src/main/host/syscall/handler/prctl.rs",
+   "description": "Shadow is a discrete-event network simulator that directly executes real application code, enabling you to simulate distributed systems with thousands of network-connected processes in realistic and scalable private network experiments using your laptop, desktop, or server running Linux."
+  },
+  {
+   "full_name": "shadow/shadow",
+   "path": "src/lib/shim/src/lib.rs",
+   "url": "https://github.com/shadow/shadow/blob/5cabc950388a5311b0d267294cabc96325d45b76/src/lib/shim/src/lib.rs",
+   "description": "Shadow is a discrete-event network simulator that directly executes real application code, enabling you to simulate distributed systems with thousands of network-connected processes in realistic and scalable private network experiments using your laptop, desktop, or server running Linux."
+  },
+  {
+   "full_name": "kernelslacker/trinity",
+   "path": "syscalls/x86/x86_64/arch_prctl.c",
+   "url": "https://github.com/kernelslacker/trinity/blob/d4c26f234eebdda051a0d5642aca916ecf501194/syscalls/x86/x86_64/arch_prctl.c",
+   "description": "Linux system call fuzzer"
+  }
+ ]
+}

@@ -1,0 +1,102 @@
+{
+ "candidate": "C19",
+ "kind": "repos",
+ "query": "artificial life machine code",
+ "executed_at": "2026-10-18T22:25:11-0700",
+ "api_call": "gh api -X GET search/repositories -f q='artificial life machine code' -f per_page=10",
+ "replay": "gh search repos 'artificial life machine code' --limit 10",
+ "total_count": 9,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "nasa/AI4LS",
+   "url": "https://github.com/nasa/AI4LS",
+   "description": "The Artificial Intelligence for Life in Space (AI4LS) team at NASA Ames uses artificial intelligence and machine learning to support and advance space exploration. This repository contains code for ongoing and completed projects.  SRA#ARC-18915-1",
+   "stars": 34,
+   "language": "Jupyter Notebook",
+   "created_at": "2023-10-16T18:08:50Z",
+   "pushed_at": "2026-10-14T21:09:25Z",
+   "topics": []
+  },
+  {
+   "full_name": "emmailliam/Artificial-intelligence-AI-",
+   "url": "https://github.com/emmailliam/Artificial-intelligence-AI-",
+   "description": " There arise some major changes in the health care industry. In a patient\u2019s care, there are nearly endless opportunities to leverage technology. Artificial intelligence (ai) performs the tasks that are usually done by humans, but in less time and at a fraction of the cost. It makes the life of patients, doctors, and hospital administrators smooth and simpler. Using AI efficiently for diagnoses helps to reduce the chances of error in any means. They are used to find new links between genetic codes or to drive surgeries, assisting robots, etc. AI can predict, comprehend, learn and act that is they are reinventing modern healthcare through machines. One of the most exciting healthcare applications of AI is that it promises in improving the diagnostic processes. AI can predict and diagnose the disease at a faster rate than most medical professionals so that large caseloads and incomplete medical histories causing deadly human errors can be reduced. Learning algorithms allows humans to gain unprecedented insights into diagnostics, care processes, treatment variability, and patient outcomes.",
+   "stars": 0,
+   "language": null,
+   "created_at": "2021-05-24T05:58:57Z",
+   "pushed_at": "2021-05-24T05:58:58Z",
+   "topics": []
+  },
+  {
+   "full_name": "CodeThinkingMachine/Machine-Learning",
+   "url": "https://github.com/CodeThinkingMachine/Machine-Learning",
+   "description": "This repository contains sample codes that are coded and test by me using Python 3 and python 4. This repository hold foundational data explaining about the things and about's it's existence and why it really matter in machine learning before actually moving into Artificial intelligence or Machine Learning field.  Understanding Why, How, Who, When, Where, What about things is necessary before getting to start working right away in any field.  Here mostly i teach myself by relating math related stuff to real life. Math is main ground for ML.    Aditya Gurav  Together we learn and grow as time passes by...",
+   "stars": 0,
+   "language": null,
+   "created_at": "2020-01-13T14:08:27Z",
+   "pushed_at": "2020-02-03T08:05:38Z",
+   "topics": []
+  },
+  {
+   "full_name": "Cole-Slusarenko/Sluce93",
+   "url": "https://github.com/Cole-Slusarenko/Sluce93",
+   "description": "Truth = Artificial intelligence is going to expand into all areas of our life, I don't want to be completely useless in another decade. so I'm going to save myself be learning how to code machines.",
+   "stars": 0,
+   "language": null,
+   "created_at": "2020-03-06T20:40:15Z",
+   "pushed_at": "2020-03-06T20:40:16Z",
+   "topics": []
+  },
+  {
+   "full_name": "satsin06/EPL-Analysis",
+   "url": "https://github.com/satsin06/EPL-Analysis",
+   "description": "Machine Learning is basically an application of Artificial Intelligence (AI) that provides a computer system, the ability to automatically learn and improve from its experience, without any human intervention or explicit coding. Machine Learning is being used these days in many walks of our daily life such as: Facebook face recognition, Motion Sensing in Video Games, VR headsets, Text to speech and vice versa, Space Technology, Recommendations on Amazon, etc.",
+   "stars": 2,
+   "language": "Python",
+   "created_at": "2020-04-10T20:59:09Z",
+   "pushed_at": "2023-03-29T04:58:51Z",
+   "topics": []
+  },
+  {
+   "full_name": "theapuhasan/emergent-ecosystem",
+   "url": "https://github.com/theapuhasan/emergent-ecosystem",
+   "description": "A 2D artificial-life simulation where autonomous prey and predator NPCs live in a continuous world with renewable resources \u2014 and where each agent's decision policy can be an **evolved neural network**, a hand-coded utility selector, or a finite-state machine, compared like-for-like.",
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2026-07-06T11:24:56Z",
+   "pushed_at": "2026-08-23T22:38:08Z",
+   "topics": []
+  },
+  {
+   "full_name": "Thanuja274/ConversaBot",
+   "url": "https://github.com/Thanuja274/ConversaBot",
+   "description": "I'm incredibly excited to share my very first AI bot project with the GitHub community! This repository marks my thrilling entry into the world of Artificial Intelligence and conversational agents. Dive in to explore the fundamental code that brings this interactive bot to life, showcasing how a machine can engage in basic dialogue.",
+   "stars": 0,
+   "language": "Jupyter Notebook",
+   "created_at": "2025-05-21T12:55:02Z",
+   "pushed_at": "2025-05-30T09:09:49Z",
+   "topics": []
+  },
+  {
+   "full_name": "sanusanth/javascript-basic-program",
+   "url": "https://github.com/sanusanth/javascript-basic-program",
+   "description": "What is JavaScript and what does it do?   Before you start learning something new, it\u2019s important to understand exactly what it is and what it does. This is especially useful when it comes to mastering a new programming language.  In simple terms, JavaScript is a programming language used to make websites interactive. If you think about the basic makeup of a website, you have HTML, which describes and defines the basic content and structure of the website, then you have CSS, which tells the browser how this HTML content should be displayed\u2014determining things like color and font. With just HTML and CSS, you have a website that looks good but doesn\u2019t actually do much. JavaScript brings the website to life by adding functionality. JavaScript is responsible for elements that the user can interact with, such as drop-down menus, modal windows, and contact forms. It is also used to create things like animations, video players, and interactive maps.  Nowadays, JavaScript is an all-purpose programming language\u2014meaning it runs across the entire software stack. The most popular application of JavaScript is on the client side (aka frontend), but since Node.js came on the scene, many people run JavaScript on the server side (aka backend) as well. When used on the client side, JavaScript code is read, interpreted, and executed in the user\u2019s web browser. When used on the server side, it is run on a remote computer. You can learn more about the difference between frontend and backend programming here.  JavaScript isn\u2019t only used to create websites. It can also be used to build browser-based games and, with the help of certain frameworks, mobile apps for different operating systems. The creation of new libraries and frameworks is also making it possible to build backend programs with JavaScript, such as web apps and server apps.   Is it still worth learning JavaScript in 2021? The world of web development is constantly moving. With so many new tools popping up all the time, it can be extremely difficult to know where you should focus your efforts. As an aspiring developer, you\u2019ll want to make sure that what you\u2019re learning is still relevant in today\u2019s industry.  If you\u2019re having doubts about JavaScript, it\u2019s important to know that, since its creation in 1995, JavaScript is pretty much everywhere on the web\u2014and that\u2019s not likely to change any time soon. According to the 2020 StackOverflow developer survey, JavaScript is the most commonly used programming language for the eighth year in a row. It is currently used by 94.5% of all websites and, despite originally being designed as a client-side language, JavaScript has now made its way to the server-side of websites (thanks to Node.js), mobile devices (thanks to React Native and Ionic) and desktop (courtesy of Electron).  As long as people are interacting with the web, you can assume that JavaScript is highly relevant\u2014there\u2019s no doubt that this is a language worth knowing! With that in mind, let\u2019s look at some of the key benefits of becoming a JavaScript expert.   Why learn JavaScript? The most obvious reason for learning JavaScript is if you have hopes of becoming a web developer. Even if you haven\u2019t got your heart set on a tech career, being proficient in JavaScript will enable you to build websites from scratch\u2014a pretty useful skill to have in today\u2019s job market!  If you do want to become a web developer, here are some of the main reasons why you should learn JavaScript:   JavaScript experts are versatile  JavaScript is an extremely versatile language. Once you\u2019ve mastered it, the possibilities are endless: you can code on the client-side (frontend) using Angular and on the server-side (backend) using Node.js. You can also develop web, mobile, and desktop apps using React, React Native, and Electron, and you can even get involved in machine learning.  If you want to become a frontend developer, JavaScript is a prerequisite. However, that\u2019s not the only career path open to you as a JavaScript expert. Mastering this key programming language could see you go on to work in full-stack development, games development, information security software engineering, machine learning, and artificial intelligence\u2014to name just a few!  Ultimately, if you want any kind of development or engineering career, proficiency in JavaScript is a must.  JavaScript experts are in-demand (and well-paid) JavaScript is the most popular programming language in the world, so it\u2019s no wonder that JavaScript is one of the most sought-after skills in the web development industry today.  According to the Devskiller IT Skills and Hiring Report 2020, 72% of companies are looking to hire JavaScript experts. Enter the search term \u201cJavaScript\u201d on job site Indeed and you\u2019ll find over 40,000 jobs requiring this skill (in the US). Run the same search on LinkedIn and the results are in excess of 125,000.   At the same time, the global demand for JavaScript seems to outweigh the expertise available on the market. According to this 2018 HackerRank report, 48% of employers worldwide need developers with JavaScript skills, while only 42% of student developers claim to be proficient in JavaScript. And, in their most recent report for 2020, HackerRank once again reports that JavaScript is the most popular language that hiring mangers look for in a web developer candidate.  Not only are JavaScript experts in demand\u2014they are also well-paid. In the United States, JavaScript developers earn an average yearly salary of $111,953 per year. We\u2019ve covered this topic in more detail in our JavaScript salary guide, but as you can see, learning JavaScript can really boost your earning potential as a developer.   JavaScript is beginner-friendly Compared to many other programming languages, JavaScript offers one of the more beginner-friendly entry points into the world of coding. The great thing about JavaScript is that it comes installed on every modern web browser\u2014there\u2019s no need to set up any kind of development environment, which means you can start coding with JavaScript right away!  Another advantage of learning JavaScript as your first programming language is that you get instant feedback; with a minimal amount of JavaScript code, you\u2019ll immediately see visible results. There\u2019s also a huge JavaScript community on sites like Stack Overflow, so you\u2019ll find plenty of support as you learn.  Not only is JavaScript beginner-friendly; it will also set you up with some extremely valuable transferable skills. JavaScript supports object-oriented, functional, and imperative styles of programming\u2014skills which can be transferred to any new language you might learn later on, such as Python, Java, or C++. JavaScript provides a crucial introduction to key principles and practices that you\u2019ll take with you throughout your career as a developer.   Should you learn plain JavaScript first or can you skip to frameworks and libraries?  When deciding whether or not to learn JavaScript, what you\u2019re really asking is whether or not you should learn \u201cvanilla\u201d JavaScript. Vanilla JavaScript just means plain JavaScript without any libraries or frameworks. Let\u2019s explore what this means in more detail now.  What is meant by vanilla JavaScript, libraries, and frameworks?  If you research the term \u201cvanilla JavaScript\u201d, you might run into some confusion; however, all you need to know is that vanilla JavaScript is used to refer to native, standards-based, non-extended JavaScript. There is no difference between vanilla JavaScript and JavaScript\u2014it\u2019s just there to emphasize the usage of plain JavaScript without the use of libraries and frameworks.  So what are libraries and frameworks? JavaScript libraries and frameworks both contain sets of prewritten, ready-to-use JavaScript code\u2014but they\u2019re not the same thing. You can think of a framework as your blueprint for building a website: it gives you a structure to work from, and contains ready-made components and tools that help you to build certain elements much quicker than if you were to code them from scratch. Some popular JavaScript frameworks include Angular, React, Vue, and Node.js.  Frameworks also contain libraries. Libraries are smaller than frameworks, and tend to be used for more specific cases. A JavaScript library contains sets of JavaScript code which can be called upon to implement certain functions and features. Let\u2019s imagine you want to code a particular element into your website. You could write, say, ten lines of JavaScript from scratch\u2014or you could take the condensed, ready-made version from your chosen JavaScript library. Some examples of JavaScript libraries include jQuery, Lodash, and Underscore.  The easiest way to understand how frameworks and libraries work together is to imagine you are building a house. The framework provides the foundation and the structure, while the library enables you to add in ready-made components (like furniture) rather than building your own from scratch.  You can learn more about the relationship between languages and libraries in this post explaining the main differences between JavaScript and jQuery. For now, let\u2019s go back to our original question: How important is it to learn vanilla JavaScript?  Should you learn vanilla JavaScript first? When it comes to learning JavaScript, it can be tempting to skip ahead to those time-saving frameworks and libraries we just talked about\u2014and many developers do. However, there are many compelling arguments for learning plain JavaScript first.  While JavaScript frameworks may help you get the job done quicker, there\u2019s only so far you can go if you don\u2019t understand the core concepts behind these frameworks. Frontend developer Abhishek Nagekar describes how not learning vanilla JavaScript came back to bite him when he started learning the JavaScript frameworks Node and Express:  \u201cAs I went to write more and more code in Node and Express, I began to get stuck at even the tiniest problems. Suddenly, I was surrounded with words like callbacks, closures, event loop and prototype. It felt like I got a reintroduction to JavaScript, but this time, it was not a toddler playing in its cradle, it was something of a mysterious monster, challenging me on every other step for not having taken it seriously.\u201d   The above Tweet references a long-running joke within the developer community, and although it dates way back to 2015, it\u2019s still highly relevant today. If you want to become a developer who can innovate, not just execute, you need to understand the underlying principles of the web\u2014not just the shortcuts. This means learning vanilla JavaScript before you move on to frameworks. In fact, understanding plain JavaScript will help you later on when it comes to deciding whether to use a framework for a certain project, and if so, which framework to use.     Why Study JavaScript?  JavaScript is one of the 3 languages all web developers must learn:     1. HTML to define the content of web pages     2. CSS to specify the layout of web pages     3. JavaScript to program the behavior of web pages   Learning Speed  In this tutorial, the learning speed is your choice.  Everything is up to you.  If you are struggling, take a break, or re-read the material.  Always make sure you understand all the \"Try-it-Yourself\" examples.  The only way to become a clever programmer is to: Practice. Practice. Practice. Code. Code. Code !  Commonly Asked Questions  How do I get JavaScript?  Where can I download JavaScript?  Is JavaScript Free?  You don't have to get or download JavaScript.  JavaScript is already running in your browser on your computer, on your tablet, and on your smart-phone.  JavaScript is free to use for everyone.",
+   "stars": 67,
+   "language": null,
+   "created_at": "2021-01-03T00:17:37Z",
+   "pushed_at": "2021-01-10T07:49:14Z",
+   "topics": []
+  },
+  {
+   "full_name": "anazeneli/IAmAI",
+   "url": "https://github.com/anazeneli/IAmAI",
+   "description": "The i in AI is an interactive and participatory multimedia project that seeks to illuminate the critical role that Artificial Intelligence (AI) and Augmented Reality (AR) have assumed in our lives, as we progressively rely on intelligent machines to guide and mediate our senses. The project will include a physical and trackable installation consisting of two pedestals, adorned with 3D-printed miniature furniture and other trackable objects. Using AR headsets and smartphones, the audience will see these installations come to life with two AI-enabled miniature avatars. The project rethinks the separability of machines and their creators by deciphering, mimicking, and creating two sets of moral codes that define our sense of self in relation to the (augmented and mediated) spaces we occupy and the bodies we inhabit. The project intends to unsettle the presumptive purity of computer code, serving as a reminder of the very human presence, the creators, responsible for the coded texts.",
+   "stars": 1,
+   "language": null,
+   "created_at": "2018-05-21T18:41:14Z",
+   "pushed_at": "2018-05-25T19:12:35Z",
+   "topics": []
+  }
+ ]
+}

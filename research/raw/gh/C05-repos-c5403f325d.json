@@ -1,0 +1,183 @@
+{
+ "candidate": "C05",
+ "kind": "repos",
+ "query": "topic:corewar",
+ "executed_at": "2026-10-19T02:28:55-0700",
+ "api_call": "gh api -X GET search/repositories -f q='topic:corewar' -f per_page=10",
+ "replay": "gh search repos 'topic:corewar' --limit 10",
+ "total_count": 113,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "emilwallner/Corewar",
+   "url": "https://github.com/emilwallner/Corewar",
+   "description": "A reproduction of the Core War game. Assembly compiler, Virtual Machine and GUI.",
+   "stars": 224,
+   "language": "C",
+   "created_at": "2017-03-14T13:45:29Z",
+   "pushed_at": "2017-05-30T18:53:29Z",
+   "topics": [
+    "asm",
+    "compiler",
+    "corewar",
+    "ncurses",
+    "virtual-machine"
+   ]
+  },
+  {
+   "full_name": "VBrazhnik/Corewar",
+   "url": "https://github.com/VBrazhnik/Corewar",
+   "description": "School 42 project // Implementation of programming game \u201cCore War\u201d [Champions + Assembler + Disassembler + Virtual Machine + Visualizer]",
+   "stars": 92,
+   "language": "C",
+   "created_at": "2018-10-23T11:06:03Z",
+   "pushed_at": "2019-01-03T06:47:30Z",
+   "topics": [
+    "42",
+    "42projects",
+    "42school",
+    "assembler",
+    "born2code",
+    "c",
+    "corewar",
+    "corewars",
+    "disassembler",
+    "gui",
+    "ncurses",
+    "unitfactory",
+    "virtual-machine",
+    "visualization",
+    "visualizer"
+   ]
+  },
+  {
+   "full_name": "corewar/corewar.io",
+   "url": "https://github.com/corewar/corewar.io",
+   "description": "Corewar.io monorepo",
+   "stars": 59,
+   "language": "TypeScript",
+   "created_at": "2020-02-22T11:26:10Z",
+   "pushed_at": "2026-02-28T11:04:01Z",
+   "topics": [
+    "corewar"
+   ]
+  },
+  {
+   "full_name": "corewar/corewar",
+   "url": "https://github.com/corewar/corewar",
+   "description": "Typescript implementation of red code parser and core simulator for the classic game Corewar",
+   "stars": 46,
+   "language": "TypeScript",
+   "created_at": "2017-11-07T18:40:22Z",
+   "pushed_at": "2023-01-01T03:45:17Z",
+   "topics": [
+    "chai",
+    "corewar",
+    "corewars",
+    "game",
+    "jest",
+    "redcode",
+    "sinon",
+    "typescript"
+   ]
+  },
+  {
+   "full_name": "rodrigosetti/corewar",
+   "url": "https://github.com/rodrigosetti/corewar",
+   "description": "Core War's MARS implementation in Python",
+   "stars": 42,
+   "language": "Red",
+   "created_at": "2013-01-24T17:50:34Z",
+   "pushed_at": "2014-09-13T01:49:49Z",
+   "topics": [
+    "corewar"
+   ]
+  },
+  {
+   "full_name": "mvallenet/Corewar",
+   "url": "https://github.com/mvallenet/Corewar",
+   "description": "Epitech Corewar - R\u00e9alisation d'un compilateur de RedCode (Assembleur) et d'une Virtual Machine qui interpr\u00e8te les fichiers '\".cor\" et les ex\u00e9cutes.",
+   "stars": 15,
+   "language": "C",
+   "created_at": "2021-07-05T15:38:54Z",
+   "pushed_at": "2021-10-20T20:56:42Z",
+   "topics": [
+    "42",
+    "42school",
+    "asm",
+    "corewar",
+    "corewar-asm",
+    "epitech",
+    "epitech-project"
+   ]
+  },
+  {
+   "full_name": "k-off/Corewar",
+   "url": "https://github.com/k-off/Corewar",
+   "description": "An Algo Project at Codam (42) - Core War game",
+   "stars": 14,
+   "language": "C",
+   "created_at": "2019-09-02T09:51:49Z",
+   "pushed_at": "2019-09-26T14:55:29Z",
+   "topics": [
+    "42",
+    "assembly",
+    "c",
+    "core-war",
+    "corewar",
+    "disassembler"
+   ]
+  },
+  {
+   "full_name": "corewar/corewar-ui",
+   "url": "https://github.com/corewar/corewar-ui",
+   "description": "HTML5 & javascript implementation of the classic game Corewar",
+   "stars": 13,
+   "language": "JavaScript",
+   "created_at": "2017-11-17T10:57:38Z",
+   "pushed_at": "2021-03-12T00:42:15Z",
+   "topics": [
+    "corewar",
+    "game",
+    "javascript",
+    "react"
+   ]
+  },
+  {
+   "full_name": "rizky/corewar",
+   "url": "https://github.com/rizky/corewar",
+   "description": "\ud83e\udd16  Corewar, a programming game in which two or more battle programs compete for control of a virtual computer. These battle programs are written in an abstract assembly language.",
+   "stars": 12,
+   "language": "C",
+   "created_at": "2018-03-20T06:07:09Z",
+   "pushed_at": "2018-06-16T22:51:36Z",
+   "topics": [
+    "42",
+    "assembler",
+    "assembly-language",
+    "battle-programs",
+    "corewar",
+    "game",
+    "ncurses",
+    "printf",
+    "virtual-machine",
+    "visualizer"
+   ]
+  },
+  {
+   "full_name": "42-AI/champions_for_corewar",
+   "url": "https://github.com/42-AI/champions_for_corewar",
+   "description": "A collection of 42 students' Core War Champions for AI training purposes",
+   "stars": 10,
+   "language": "Assembly",
+   "created_at": "2017-12-23T04:21:24Z",
+   "pushed_at": "2020-03-20T19:41:15Z",
+   "topics": [
+    "ai",
+    "ai-training",
+    "corewar",
+    "corewar-asm"
+   ]
+  }
+ ]
+}

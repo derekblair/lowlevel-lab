@@ -1,0 +1,123 @@
+{
+ "candidate": "C12",
+ "kind": "repos",
+ "query": "binary quine",
+ "executed_at": "2026-10-18T22:23:49-0700",
+ "api_call": "gh api -X GET search/repositories -f q='binary quine' -f per_page=10",
+ "replay": "gh search repos 'binary quine' --limit 10",
+ "total_count": 12,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "benrayfield/quineforge",
+   "url": "https://github.com/benrayfield/quineforge",
+   "description": "A quine is a software which outputs its own source code. Quineforge is a very experimental data format for the lossless compression of quines and for translating all possible non-quines (such as pictures of cats, videos, games, GPU matrix multiply algorithms, or nearly anything) into quine form. It uses the (wikipedia page) Chain_rule_for_Kolmogorov_complexity and a 5-way gametree (like a chess or go gametree) to navigate the space of all possible lambda functions. Its security level is planned to be, eventually after the bugs are worked out, enough for the operation of industrial machines and low lag enough to satisfy hardcore gamers. TODO I should copy some of the \"fntape\" (5 way tree) theory from occamsfuncer readme and various parts of kolmogorov theory. Basically, for example, if we are using sha3_256 (with some pre and post processing of a merkle forest node (or its faster lazy merkle form), then at some few points in a sequence of bits will occur those 256 bits, and the 256 bit ids of other functions, sparsely, and between those are 1 bit at a time opcodes (or 3 or 4 bit opcodes, or something like that), with some opcodes being to say that what follows is a variable size number of 1 bits followed by a 0 bit, then a powOf2 number of bits is a complete binary tree of bits (cbt) which is a lambda function of Lx.Ly.Lz.zxy aka the church encoding of the pair function whose \"leafs\" are Lx.Ly.x (true) and Lx.L.y.y (false), which goes into the \"register\" of \"fntape\" which is basically a lambda datastruct of 2 linkedlists with 5 possible actions from each possible state: move turingtape left (whose cell contents are each a function), move it right, copy register to center of tape, copy center of tape to register, or (heres the only turing complete part) call register on whats at center of turing tape and replace register with what that returns (and using various statistical methods if there is an infinite loop or other nonhalting lambda call it will be given up on quickly before that happens, within some approx specified low lag limits, but compressed forms are expected not to have nonhalters or overly expensive operations etc else they are not shared in the network as often as cheaper faster more useful data structures). So basically theres a bunch of functions, in the space of all possible lambda functions sparsely explored among many computers and people (some of which may be cat memes, minigames, compressed random bitstrings, or whatever) and fntape kind of opcodes aka small bitstrings from one id256 to another id256 such as to say its left child (a few bits of fntape) or its right child etc, or various combinator on eachother, leads to what else. Its a space where, as the name quineforge implies, the distance of bitstring from any function, or from any small set of functions, to any other function, has bigO that is certainly within the distance predicted by kolmogorov complexity theory and which in practice may be able to compete with zip files, 7z files, wavelet sound compression, neuralnet video compression, AIXI compression, andOr any other imaginable kind of compression, and trading compression efficiency for low lag and scalability etc, you might build low lag high voxel count massively multiplayer games with it, or various experiments somewhere within that.",
+   "stars": 5,
+   "language": "Java",
+   "created_at": "2020-12-27T01:21:39Z",
+   "pushed_at": "2020-12-27T19:40:19Z",
+   "topics": []
+  },
+  {
+   "full_name": "michaellandi/binarysimplification",
+   "url": "https://github.com/michaellandi/binarysimplification",
+   "description": "CLI tool that minimizes Boolean functions using the Quine\u2013McCluskey algorithm. Outputs a minimal sum-of-products expression. C#/.NET.",
+   "stars": 2,
+   "language": "C#",
+   "created_at": "2012-01-02T10:53:55Z",
+   "pushed_at": "2026-03-29T06:42:25Z",
+   "topics": [
+    "boolean-algebra",
+    "computer-science",
+    "csharp",
+    "dotnet",
+    "logic",
+    "quine-mccluskey"
+   ]
+  },
+  {
+   "full_name": "panzi/binary-quine",
+   "url": "https://github.com/panzi/binary-quine",
+   "description": null,
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2023-01-02T04:01:19Z",
+   "pushed_at": "2023-01-02T04:07:26Z",
+   "topics": []
+  },
+  {
+   "full_name": "KROIA/Quine-und-McCluskey",
+   "url": "https://github.com/KROIA/Quine-und-McCluskey",
+   "description": "Simplification algorithm for binary functions",
+   "stars": 0,
+   "language": "C++",
+   "created_at": "2018-07-10T14:05:42Z",
+   "pushed_at": "2018-07-10T14:05:48Z",
+   "topics": []
+  },
+  {
+   "full_name": "mahendergoli/Major_project_01",
+   "url": "https://github.com/mahendergoli/Major_project_01",
+   "description": "Adancement in Heart Disease forcasting: Quine Mccluskey Binary Classifier_01",
+   "stars": 0,
+   "language": "Jupyter Notebook",
+   "created_at": "2025-07-26T13:15:51Z",
+   "pushed_at": "2025-07-26T13:20:51Z",
+   "topics": []
+  },
+  {
+   "full_name": "Oliver2213/autoquine-rs",
+   "url": "https://github.com/Oliver2213/autoquine-rs",
+   "description": "imbed a compressed and optionally encrypted copy of your source in the built binary, with runtime support to verify and extract - make any rust program a quine",
+   "stars": 0,
+   "language": "Rust",
+   "created_at": "2026-07-02T07:06:44Z",
+   "pushed_at": "2026-07-02T07:10:43Z",
+   "topics": [
+    "quine",
+    "self-quine",
+    "self-replicating-program"
+   ]
+  },
+  {
+   "full_name": "narayan123git/Quine-McCluskey-Programme-Python-",
+   "url": "https://github.com/narayan123git/Quine-McCluskey-Programme-Python-",
+   "description": "Quine-McCluskey Algorithm: A Python implementation for minimizing Boolean functions. This project simplifies logic expressions by converting minterms to binary, grouping them, generating Prime Implicants, and applying dominance rules. Ideal for optimizing digital circuits by reducing complexity and improving performance.",
+   "stars": 1,
+   "language": "Python",
+   "created_at": "2024-09-03T14:15:24Z",
+   "pushed_at": "2024-09-03T14:23:12Z",
+   "topics": []
+  },
+  {
+   "full_name": "NishthaLath/Quine-McCluskey-Boolean-Minimization-With-Petricks-Method",
+   "url": "https://github.com/NishthaLath/Quine-McCluskey-Boolean-Minimization-With-Petricks-Method",
+   "description": "C++ implementation of the Quine-McCluskey algorithm and Petrick's Method for Boolean function minimization, featuring efficient binary manipulation, prime implicant generation, and optimal solution identification using Petrick's Method.",
+   "stars": 0,
+   "language": "C++",
+   "created_at": "2024-10-07T12:33:11Z",
+   "pushed_at": "2024-10-07T13:07:05Z",
+   "topics": []
+  },
+  {
+   "full_name": "arunv-vlsi/Quine-McCluskey-Minimization-Technique",
+   "url": "https://github.com/arunv-vlsi/Quine-McCluskey-Minimization-Technique",
+   "description": "The Quine\u2013McCluskey algorithm (QMC), also known as the method of prime implicants or tabulation method, is a method used for minimization of Boolean functions for large numbers of variables. There is no limit to number of input variables to the algorithm but higher number of input variables will require more time and processing to solve. The highest number of variable I have tested this code is 13 variables. That means the bianry was 8192 bit or 1K byte. It took several minutes for code to process on my intel i5, 7th generation processor. You can either give input in binary string like [0 0 0 1]  or just [3] as minterm, both will give AND gate as result (A0.A1). To do that comment the either one of the first two section with %{ ... %}.  Make sure one and only one of them should be commented at a time. Commenting first section and using second section will mean mean the program will ask for minterms and commenting second section and using first section will mean program will ask for bianry string input.",
+   "stars": 1,
+   "language": "MATLAB",
+   "created_at": "2020-06-10T10:40:16Z",
+   "pushed_at": "2024-02-28T17:02:26Z",
+   "topics": []
+  },
+  {
+   "full_name": "vivankushal55/Heart-Disease-Prediction-Using-QMBC",
+   "url": "https://github.com/vivankushal55/Heart-Disease-Prediction-Using-QMBC",
+   "description": "Heart Disease Prediction using a Novel Quine McCluskey Binary Classifier (QMBC), an ensemble machine learning approach combining multiple models with feature selection and PCA to improve prediction accuracy and efficiency.   heart_disease_synopsis",
+   "stars": 0,
+   "language": "CSS",
+   "created_at": "2026-02-07T03:44:32Z",
+   "pushed_at": "2026-02-07T03:53:33Z",
+   "topics": []
+  }
+ ]
+}

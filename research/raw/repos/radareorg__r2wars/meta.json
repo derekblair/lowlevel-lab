@@ -1,0 +1,13 @@
+{
+ "repo": "radareorg/r2wars",
+ "description": "Corewars but within r2",
+ "stars": 64,
+ "created_at": "2018-07-13T12:30:43Z",
+ "pushed_at": "2026-09-05T08:46:05Z",
+ "default_branch": "master",
+ "head_sha": "16f21b44ae5fbb10ac25fb4a3944f2a26efb0b2d",
+ "fetched_at_utc": "2026-10-19T09:32:31Z",
+ "files": [
+  "README.md"
+ ]
+}

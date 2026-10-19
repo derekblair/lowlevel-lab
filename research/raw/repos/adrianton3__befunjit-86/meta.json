@@ -1,0 +1,14 @@
+{
+ "repo": "adrianton3/befunjit-86",
+ "description": "Befunge-93 JIT compiler for x86-64",
+ "stars": 2,
+ "created_at": "2025-06-07T08:48:39Z",
+ "pushed_at": "2025-11-03T08:26:03Z",
+ "default_branch": "main",
+ "head_sha": "2dda68e12a7eaa69f66f82755fbdd9a102deec2f",
+ "fetched_at_utc": "2026-10-19T09:26:49Z",
+ "files": [
+  "README.md",
+  "src/core/Field.cpp"
+ ]
+}

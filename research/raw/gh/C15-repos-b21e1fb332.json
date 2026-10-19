@@ -1,0 +1,22 @@
+{
+ "candidate": "C15",
+ "kind": "repos",
+ "query": "rep movsb interrupt",
+ "executed_at": "2026-10-18T22:24:27-0700",
+ "api_call": "gh api -X GET search/repositories -f q='rep movsb interrupt' -f per_page=10",
+ "replay": "gh search repos 'rep movsb interrupt' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "ishmam09/MorseCodeTranslator",
+   "url": "https://github.com/ishmam09/MorseCodeTranslator",
+   "description": "16-bit MASM application for DOS featuring bidirectional Morse translation via vector look-up tables. Implements real-time audio beep synthesis using hardware interrupts, an adjustable speed configuration driven by dynamic INT 15H delays, and a rolling memory history cache powered by low-level REP MOVSB string primitives.",
+   "stars": 0,
+   "language": "Assembly",
+   "created_at": "2026-07-02T16:21:43Z",
+   "pushed_at": "2026-07-02T16:23:38Z",
+   "topics": []
+  }
+ ]
+}

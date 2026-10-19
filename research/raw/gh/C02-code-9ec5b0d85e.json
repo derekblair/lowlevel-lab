@@ -1,0 +1,72 @@
+{
+ "candidate": "C02",
+ "kind": "code",
+ "query": "\"machine_clears.smc\"",
+ "executed_at": "2026-10-19T02:22:37-0700",
+ "api_call": "gh api -X GET search/code -f q='\"machine_clears.smc\"' -f per_page=10",
+ "replay": "gh search code '\"machine_clears.smc\"' --limit 10",
+ "total_count": 16128,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "Maratyszcza/NNPACK",
+   "path": "bench/perf_counter.c",
+   "url": "https://github.com/Maratyszcza/NNPACK/blob/70a77f485e8b934224f3a79efd8edcd84cd377b8/bench/perf_counter.c",
+   "description": "Acceleration package for neural networks on multi-core CPUs"
+  },
+  {
+   "full_name": "gamozolabs/falkervisor_grilled_cheese",
+   "path": "srcs/perf/perf.c",
+   "url": "https://github.com/gamozolabs/falkervisor_grilled_cheese/blob/9d7ef8e17c44c0f8ed8a5c6ee47d875fb6de4449/srcs/perf/perf.c",
+   "description": null
+  },
+  {
+   "full_name": "NVIDIA/cuda-gdb",
+   "path": "gprofng/src/hwc_intel_icelake.h",
+   "url": "https://github.com/NVIDIA/cuda-gdb/blob/7690d76395b374432c6750928b0f9db7a88d57e7/gprofng/src/hwc_intel_icelake.h",
+   "description": "CUDA GDB"
+  },
+  {
+   "full_name": "MoatLab/Pond",
+   "path": "clx-2s-events.txt",
+   "url": "https://github.com/MoatLab/Pond/blob/5ac0e66b3624b9324cc9042abcd930127005d4bc/clx-2s-events.txt",
+   "description": "Pond: CXL-Based Memory Pooling Systems for Cloud Platforms (ASPLOS'23)"
+  },
+  {
+   "full_name": "MoatLab/Pond",
+   "path": "cpu2017/clx-2s-events.txt",
+   "url": "https://github.com/MoatLab/Pond/blob/5ac0e66b3624b9324cc9042abcd930127005d4bc/cpu2017/clx-2s-events.txt",
+   "description": "Pond: CXL-Based Memory Pooling Systems for Cloud Platforms (ASPLOS'23)"
+  },
+  {
+   "full_name": "sslab-gatech/Sense",
+   "path": "perf",
+   "url": "https://github.com/sslab-gatech/Sense/blob/15ff2aae86109793ba934bae1893cdf642487a46/perf",
+   "description": "Code for Sense (NDSS'24)"
+  },
+  {
+   "full_name": "TACC/perfexpert",
+   "path": "modules/vtune/vtune_event.h",
+   "url": "https://github.com/TACC/perfexpert/blob/a03b13db9ac83e992e1c5cc3b6e45e52c266fe30/modules/vtune/vtune_event.h",
+   "description": "An easy-to-use automatic performance diagnosis and optimization tool for HPC applications"
+  },
+  {
+   "full_name": "STMicroelectronics/gnu-tools-for-stm32",
+   "path": "src/gdb/gprofng/common/core_pcbe.c",
+   "url": "https://github.com/STMicroelectronics/gnu-tools-for-stm32/blob/b8cdff71b827478c8510c70b3a15d2b50c759255/src/gdb/gprofng/common/core_pcbe.c",
+   "description": "GNU Tools for STM32 toolchain sources"
+  },
+  {
+   "full_name": "jasonblog/note",
+   "path": "linux_system/src/\u7f85\u7fd2\u4e94/ch12/perflist.txt",
+   "url": "https://github.com/jasonblog/note/blob/4471f95736c60969a718d854cab929f06726280a/linux_system/src/\u7f85\u7fd2\u4e94/ch12/perflist.txt",
+   "description": null
+  },
+  {
+   "full_name": "MegEngine/mperf",
+   "path": "eca/tma/arch_ratios/adl_grt_ratios.cpp",
+   "url": "https://github.com/MegEngine/mperf/blob/72fb2c355514fcb39ed015886db199ec5409efef/eca/tma/arch_ratios/adl_grt_ratios.cpp",
+   "description": "mperf\u662f\u4e00\u4e2a\u9762\u5411\u79fb\u52a8/\u5d4c\u5165\u5f0f\u5e73\u53f0\u7684\u7b97\u5b50\u6027\u80fd\u8c03\u4f18\u5de5\u5177\u7bb1"
+  }
+ ]
+}

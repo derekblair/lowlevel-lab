@@ -1,0 +1,117 @@
+{
+ "candidate": "C18",
+ "kind": "repos",
+ "query": "dynamic linker visualization",
+ "executed_at": "2026-10-18T22:24:56-0700",
+ "api_call": "gh api -X GET search/repositories -f q='dynamic linker visualization' -f per_page=10",
+ "replay": "gh search repos 'dynamic linker visualization' --limit 10",
+ "total_count": 127,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "arbelzinger/kibana-API",
+   "url": "https://github.com/arbelzinger/kibana-API",
+   "description": "Kibana-API is an extension to Kibana (version ) that lets you tap in to the dashboard management board (link to picture) from your app and changing the visualizations dynamically",
+   "stars": 0,
+   "language": null,
+   "created_at": "2017-04-09T10:09:55Z",
+   "pushed_at": "2017-04-09T10:20:09Z",
+   "topics": []
+  },
+  {
+   "full_name": "krismz/Delv",
+   "url": "https://github.com/krismz/Delv",
+   "description": "A multi-language framework for Dynamic Linked Visualizations.",
+   "stars": 5,
+   "language": "JavaScript",
+   "created_at": "2013-10-07T13:01:25Z",
+   "pushed_at": "2016-01-19T21:48:32Z",
+   "topics": []
+  },
+  {
+   "full_name": "jboulon/influent",
+   "url": "https://github.com/jboulon/influent",
+   "description": "Influent is an HTML5 tool for visually and interactively following transaction flow, rapidly revealing actors and behaviors of potential concern that might otherwise go unnoticed. Summary visualization of transactional patterns and actor characteristics, interactive link expansion and dynamic entity clustering enable Influent to operate effectively at scale with big data sources, in any modern web browser. Influent has been used to explore data sets with millions of entities and hundreds of millions of transactions.",
+   "stars": 0,
+   "language": "JavaScript",
+   "created_at": "2014-02-10T04:37:05Z",
+   "pushed_at": "2024-03-29T07:40:30Z",
+   "topics": []
+  },
+  {
+   "full_name": "aizaz-qureshi/Dynamic",
+   "url": "https://github.com/aizaz-qureshi/Dynamic",
+   "description": "Dynamic link switching and visualization in mininet environment ",
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2024-08-13T17:00:48Z",
+   "pushed_at": "2024-08-13T23:32:07Z",
+   "topics": []
+  },
+  {
+   "full_name": "FabrizioMusacchio/DEVONthink_Note_Graphs",
+   "url": "https://github.com/FabrizioMusacchio/DEVONthink_Note_Graphs",
+   "description": "Create and visualize dynamic link graphs of your Markdown notes in DEVONthink 3",
+   "stars": 4,
+   "language": "Python",
+   "created_at": "2025-07-01T21:07:10Z",
+   "pushed_at": "2025-07-02T21:04:28Z",
+   "topics": [
+    "devonthink",
+    "graphs",
+    "personal-knowledge-management",
+    "pkm"
+   ]
+  },
+  {
+   "full_name": "idaholab/EMRALD",
+   "url": "https://github.com/idaholab/EMRALD",
+   "description": "Event Modeling Risk Assessment using Linked Diagrams (EMRALD) is a software tool developed at INL for researching the capabilities of dynamic PRA (Probabilistic Risk Assessment). In order to promote the effective use of dynamic PRA by the general community, EMRALD focuses on the following key aspects: Simplifying the modeling process by providing a structure that corresponds to traditional PRA modeling methods Providing a user interface (UI) that makes it easy for the user to model and visualize complex interactions Allowing the user to couple with other analysis applications such as physics based simulations. This includes one-way communication for most applications and two-way loose coupling for customizable applications Providing the sequence and timing of events that lead to the specified outcomes when calculating results Traditional aspects of components with basic events, fault trees, and event trees are all captured in a dynamic framework of state diagrams, which are displayed ",
+   "stars": 36,
+   "language": "TypeScript",
+   "created_at": "2021-03-10T17:06:39Z",
+   "pushed_at": "2026-10-12T17:30:58Z",
+   "topics": []
+  },
+  {
+   "full_name": "danush189/Dynamic-Data-Visualization",
+   "url": "https://github.com/danush189/Dynamic-Data-Visualization",
+   "description": "This project is made to dynamically visuallize datasets present on IEEE Dataport just by using the AWS Access Link.",
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2025-04-04T14:46:16Z",
+   "pushed_at": "2025-06-12T01:38:13Z",
+   "topics": []
+  },
+  {
+   "full_name": "xTye/Dynamic-Data-Visualization",
+   "url": "https://github.com/xTye/Dynamic-Data-Visualization",
+   "description": "This project is made to dynamically visuallize datasets present on IEEE Dataport just by using the AWS Access Link.",
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2025-06-12T00:38:15Z",
+   "pushed_at": "2025-06-12T00:39:59Z",
+   "topics": []
+  },
+  {
+   "full_name": "alicesf2/DataCanvas",
+   "url": "https://github.com/alicesf2/DataCanvas",
+   "description": "a web app using Javascript and HTML which functions as an educational tool for programmers; will dynamically generate visualizations of data structures (e.g. linked lists) as users create and populate them ",
+   "stars": 3,
+   "language": "JavaScript",
+   "created_at": "2018-01-31T23:27:10Z",
+   "pushed_at": "2018-03-08T22:55:32Z",
+   "topics": []
+  },
+  {
+   "full_name": "BenRydal/transcript-explorer",
+   "url": "https://github.com/BenRydal/transcript-explorer",
+   "description": "Dynamically visualize transcripts linked to video",
+   "stars": 0,
+   "language": "TypeScript",
+   "created_at": "2025-01-25T14:03:16Z",
+   "pushed_at": "2026-09-20T19:44:23Z",
+   "topics": []
+  }
+ ]
+}

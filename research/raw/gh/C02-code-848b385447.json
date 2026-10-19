@@ -1,0 +1,72 @@
+{
+ "candidate": "C02",
+ "kind": "code",
+ "query": "\"cross-modifying code\" serialize",
+ "executed_at": "2026-10-18T22:20:40-0700",
+ "api_call": "gh api -X GET search/code -f q='\"cross-modifying code\" serialize' -f per_page=10",
+ "replay": "gh search code '\"cross-modifying code\" serialize' --limit 10",
+ "total_count": 75,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "DynamoRIO/dynamorio",
+   "path": "core/arch/atomic_exports.h",
+   "url": "https://github.com/DynamoRIO/dynamorio/blob/6d2165aa485ca91bf10faa64440cfadce850b0bc/core/arch/atomic_exports.h",
+   "description": "Dynamic Instrumentation Tool Platform"
+  },
+  {
+   "full_name": "freelancer-leon/notes",
+   "path": "arch/intel/MP_management.md",
+   "url": "https://github.com/freelancer-leon/notes/blob/706f909ec951b7253ac25ba32d5361ad26c4a51e/arch/intel/MP_management.md",
+   "description": null
+  },
+  {
+   "full_name": "DynamoRIO/drk",
+   "path": "core/x86/arch_exports.h",
+   "url": "https://github.com/DynamoRIO/drk/blob/f183953b53788ad22bc3deb2911eddd12a38aafc/core/x86/arch_exports.h",
+   "description": "Dynamic instrumentation of the Linux kernel"
+  },
+  {
+   "full_name": "xem/minix86",
+   "path": "manual/intel-x86-and-64-manual-vol3/o_fe12b1e2a880e0ce-260.html",
+   "url": "https://github.com/xem/minix86/blob/9a192e6b456008ddd328ef0e9eeecfa4e6988ef0/manual/intel-x86-and-64-manual-vol3/o_fe12b1e2a880e0ce-260.html",
+   "description": "x86 (MS-DOS) documentation, disassembler and emulator - WIP"
+  },
+  {
+   "full_name": "cyberark/rdpfuzz",
+   "path": "rdpfuzz-dynamorio/core/arch/arch_exports.h",
+   "url": "https://github.com/cyberark/rdpfuzz/blob/c054aec1950ab0e824eb054b44d9f700df198fc1/rdpfuzz-dynamorio/core/arch/arch_exports.h",
+   "description": "Tools for fuzzing RDP"
+  },
+  {
+   "full_name": "vgrichina/berrry-wine",
+   "path": "docs/uop-tier-design.md",
+   "url": "https://github.com/vgrichina/berrry-wine/blob/d81746b95c51e8f81d7a744ede25b2d2effb6b61/docs/uop-tier-design.md",
+   "description": "Run real Windows 98 apps and games in your browser. An x86 emulator and Win32 layer written directly in WebAssembly Text, no OS image, no source ports."
+  },
+  {
+   "full_name": "blancolioni/aqua_vm",
+   "path": "docs/dynamic-linking-x86.md",
+   "url": "https://github.com/blancolioni/aqua_vm/blob/ce4b34721c880c0ee5ef38fc0427dbc91dca75e0/docs/dynamic-linking-x86.md",
+   "description": "Aqua virtual machine"
+  },
+  {
+   "full_name": "ratel-enclave/ratel",
+   "path": "Drrun/core/arch/arch_exports.h",
+   "url": "https://github.com/ratel-enclave/ratel/blob/4228d0ff60c53934ff3b47a449f658b1a806622e/Drrun/core/arch/arch_exports.h",
+   "description": "Ratel - a new framework for instruction-level interposition on enclaved applications"
+  },
+  {
+   "full_name": "zig-utils/zig-js",
+   "path": "reference/webkit-249/docs/CVE-AUDIT.md",
+   "url": "https://github.com/zig-utils/zig-js/blob/76ea1d1bfd197a503de2240a5692c5e13e89e55d/reference/webkit-249/docs/CVE-AUDIT.md",
+   "description": "A JavaScript engine in pure Zig."
+  },
+  {
+   "full_name": "ratel-enclave/ratel",
+   "path": "Enclave/core/arch/arch_exports.h",
+   "url": "https://github.com/ratel-enclave/ratel/blob/4228d0ff60c53934ff3b47a449f658b1a806622e/Enclave/core/arch/arch_exports.h",
+   "description": "Ratel - a new framework for instruction-level interposition on enclaved applications"
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+{
+ "candidate": "C05",
+ "kind": "repos",
+ "query": "core war assembly native",
+ "executed_at": "2026-10-19T02:23:22-0700",
+ "api_call": "gh api -X GET search/repositories -f q='core war assembly native' -f per_page=10",
+ "replay": "gh search repos 'core war assembly native' --limit 10",
+ "total_count": 0,
+ "incomplete_results": false,
+ "items": []
+}

@@ -1,0 +1,22 @@
+{
+ "candidate": "C05",
+ "kind": "repos",
+ "query": "corewar threads",
+ "executed_at": "2026-10-19T02:23:16-0700",
+ "api_call": "gh api -X GET search/repositories -f q='corewar threads' -f per_page=10",
+ "replay": "gh search repos 'corewar threads' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "base0x10/0xhaust",
+   "url": "https://github.com/base0x10/0xhaust",
+   "description": "Fork of exhaust-ma with thread safety, modern optimization, and more tests.  This is a MARS (Memory Array Redcode Simulator) for the corewar assembly programming contest",
+   "stars": 1,
+   "language": "Red",
+   "created_at": "2020-05-29T04:52:03Z",
+   "pushed_at": "2022-01-04T16:46:00Z",
+   "topics": []
+  }
+ ]
+}

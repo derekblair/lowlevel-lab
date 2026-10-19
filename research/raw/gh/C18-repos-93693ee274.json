@@ -1,0 +1,22 @@
+{
+ "candidate": "C18",
+ "kind": "repos",
+ "query": "lazy binding visualization",
+ "executed_at": "2026-10-18T22:25:05-0700",
+ "api_call": "gh api -X GET search/repositories -f q='lazy binding visualization' -f per_page=10",
+ "replay": "gh search repos 'lazy binding visualization' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "exsitu-projects/timesplines",
+   "url": "https://github.com/exsitu-projects/timesplines",
+   "description": "TimeSplines, a visualization authoring tool that allows people to sketch multiple free-form temporal axes and populate them with heterogeneous time-oriented data via incremental and lazy data binding.",
+   "stars": 9,
+   "language": "JavaScript",
+   "created_at": "2023-03-26T07:47:56Z",
+   "pushed_at": "2024-08-04T21:58:23Z",
+   "topics": []
+  }
+ ]
+}

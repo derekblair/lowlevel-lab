@@ -1,0 +1,22 @@
+{
+ "candidate": "C05",
+ "kind": "repos",
+ "query": "core war multicore",
+ "executed_at": "2026-10-18T22:22:07-0700",
+ "api_call": "gh api -X GET search/repositories -f q='core war multicore' -f per_page=10",
+ "replay": "gh search repos 'core war multicore' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "chinmaymalkar/MultiCore-CourseWare",
+   "url": "https://github.com/chinmaymalkar/MultiCore-CourseWare",
+   "description": null,
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2024-11-07T08:03:36Z",
+   "pushed_at": "2024-11-07T08:07:34Z",
+   "topics": []
+  }
+ ]
+}

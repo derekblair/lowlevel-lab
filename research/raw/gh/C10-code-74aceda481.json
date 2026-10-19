@@ -1,0 +1,72 @@
+{
+ "candidate": "C10",
+ "kind": "code",
+ "query": "\"REG_EFL\" 0x100 SIGTRAP",
+ "executed_at": "2026-10-18T22:23:33-0700",
+ "api_call": "gh api -X GET search/code -f q='\"REG_EFL\" 0x100 SIGTRAP' -f per_page=10",
+ "replay": "gh search code '\"REG_EFL\" 0x100 SIGTRAP' --limit 10",
+ "total_count": 2372,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "emscripten-core/emscripten",
+   "path": "system/lib/libc/musl/arch/emscripten/bits/signal.h",
+   "url": "https://github.com/emscripten-core/emscripten/blob/5f63ff2e370da7e6fffd8f54379860bdd18118f9/system/lib/libc/musl/arch/emscripten/bits/signal.h",
+   "description": "Emscripten: An LLVM-to-WebAssembly Compiler"
+  },
+  {
+   "full_name": "jovanbulck/sgx-step",
+   "path": "app/tracer/main.c",
+   "url": "https://github.com/jovanbulck/sgx-step/blob/19943aa5fb9dc3a7e3773a90dc614d2bba11d939/app/tracer/main.c",
+   "description": "A practical attack framework for precise enclave execution control"
+  },
+  {
+   "full_name": "RPCS3/rpcs3",
+   "path": "Utilities/Thread.cpp",
+   "url": "https://github.com/RPCS3/rpcs3/blob/bd179ffd2329f70de6949247aadfc2e7c9f621e1/Utilities/Thread.cpp",
+   "description": "PlayStation 3 emulator and debugger"
+  },
+  {
+   "full_name": "jovanbulck/sgx-step",
+   "path": "app/memcmp/main.c",
+   "url": "https://github.com/jovanbulck/sgx-step/blob/19943aa5fb9dc3a7e3773a90dc614d2bba11d939/app/memcmp/main.c",
+   "description": "A practical attack framework for precise enclave execution control"
+  },
+  {
+   "full_name": "xoreaxeaxeax/rosenbridge",
+   "path": "fuzz/wrap/fuzz_wrapper.c",
+   "url": "https://github.com/xoreaxeaxeax/rosenbridge/blob/d90069da69de99af4528d537655de6dd7b594119/fuzz/wrap/fuzz_wrapper.c",
+   "description": "Hardware backdoors in x86 CPUs"
+  },
+  {
+   "full_name": "std-microblock/chromatic",
+   "path": "src/core/bindings/native_exception_handler.cc",
+   "url": "https://github.com/std-microblock/chromatic/blob/91cd9c32d7c732d2fca204d6a05f5422443b6a34/src/core/bindings/native_exception_handler.cc",
+   "description": "Universal modifier for Chromium/V8 | \u5e7f\u8c31\u6ce8\u5165 Chromium/V8 \u7684\u901a\u7528\u4fee\u6539\u5668"
+  },
+  {
+   "full_name": "endrazine/wcc",
+   "path": "src/wsh/wsh.c",
+   "url": "https://github.com/endrazine/wcc/blob/0db1624a96e4b838bf2b0206f0b54d60c545eb7d/src/wsh/wsh.c",
+   "description": "The Witchcraft Compiler Collection"
+  },
+  {
+   "full_name": "droogie/bbhost",
+   "path": "src/main.cpp",
+   "url": "https://github.com/droogie/bbhost/blob/566184a74f071166299bb656c4af479e5bbe2771/src/main.cpp",
+   "description": "Definitive Bloodborne PC Experience"
+  },
+  {
+   "full_name": "EEEEhex/RevokeHook",
+   "path": "Linux/injector_so/sigbp.c",
+   "url": "https://github.com/EEEEhex/RevokeHook/blob/ffb6a899b50ee3e11b4dfbae93d7fde4058f7014/Linux/injector_so/sigbp.c",
+   "description": "\u5fae\u4fe14.0\u9632\u64a4\u56dehook + \u5b57\u7b26\u4e32\u89e3\u5bc6\u811a\u672c"
+  },
+  {
+   "full_name": "InsomniacGames/ig-cachesim",
+   "path": "CacheSim/CacheSimLinux.cpp",
+   "url": "https://github.com/InsomniacGames/ig-cachesim/blob/d26b4e91cfb1475c16e65a3f770d672d926a7ac4/CacheSim/CacheSimLinux.cpp",
+   "description": null
+  }
+ ]
+}

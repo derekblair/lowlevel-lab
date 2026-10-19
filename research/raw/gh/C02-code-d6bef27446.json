@@ -1,0 +1,72 @@
+{
+ "candidate": "C02",
+ "kind": "code",
+ "query": "\"MACHINE_CLEARS.SMC\" perf_event_open",
+ "executed_at": "2026-10-18T22:20:25-0700",
+ "api_call": "gh api -X GET search/code -f q='\"MACHINE_CLEARS.SMC\" perf_event_open' -f per_page=10",
+ "replay": "gh search code '\"MACHINE_CLEARS.SMC\" perf_event_open' --limit 10",
+ "total_count": 177,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "Maratyszcza/NNPACK",
+   "path": "bench/perf_counter.c",
+   "url": "https://github.com/Maratyszcza/NNPACK/blob/70a77f485e8b934224f3a79efd8edcd84cd377b8/bench/perf_counter.c",
+   "description": "Acceleration package for neural networks on multi-core CPUs"
+  },
+  {
+   "full_name": "cattius/opcodetester",
+   "path": "version2/x86/opcodeTester/experimentSpecpoline.c",
+   "url": "https://github.com/cattius/opcodetester/blob/decbb2aa0beab9131d058af5f817194efe53b871/version2/x86/opcodeTester/experimentSpecpoline.c",
+   "description": "Tool for automated testing and analysis of Intel x86-64 undocumented instructions in user mode and in the kernel"
+  },
+  {
+   "full_name": "SEAL-IIT-KGP/shesha",
+   "path": "speculation_pocs/simd_vector/perfmon.c",
+   "url": "https://github.com/SEAL-IIT-KGP/shesha/blob/a8b0ad324ff9c754a5629784f9e3894369ef7691/speculation_pocs/simd_vector/perfmon.c",
+   "description": "Shesha: Multi-head Microarchitectural Leakage Discovery in new-generation Intel Processors"
+  },
+  {
+   "full_name": "SEAL-IIT-KGP/shesha",
+   "path": "speculation_pocs/precision_mixing/perfmon.c",
+   "url": "https://github.com/SEAL-IIT-KGP/shesha/blob/a8b0ad324ff9c754a5629784f9e3894369ef7691/speculation_pocs/precision_mixing/perfmon.c",
+   "description": "Shesha: Multi-head Microarchitectural Leakage Discovery in new-generation Intel Processors"
+  },
+  {
+   "full_name": "AlexRaybosh/DarknetEasy",
+   "path": "NNPACK-darknet/bench/perf_counter.c",
+   "url": "https://github.com/AlexRaybosh/DarknetEasy/blob/a3196f3bfaf84b1180963477466695d1e9ef1da8/NNPACK-darknet/bench/perf_counter.c",
+   "description": "compileable version of darkent and nnpack"
+  },
+  {
+   "full_name": "autc04/Retro68",
+   "path": "binutils/gprofng/common/core_pcbe.c",
+   "url": "https://github.com/autc04/Retro68/blob/afedcdcb53d40f25d7c68db9a63a3bb1b021d77b/binutils/gprofng/common/core_pcbe.c",
+   "description": "a gcc-based cross-compiler for classic 68K and PPC Macintoshes"
+  },
+  {
+   "full_name": "NVIDIA/cuda-gdb",
+   "path": "gprofng/common/core_pcbe.c",
+   "url": "https://github.com/NVIDIA/cuda-gdb/blob/7690d76395b374432c6750928b0f9db7a88d57e7/gprofng/common/core_pcbe.c",
+   "description": "CUDA GDB"
+  },
+  {
+   "full_name": "GregoryMorse/SelfModTamper",
+   "path": "README.md",
+   "url": "https://github.com/GregoryMorse/SelfModTamper/blob/ae5d3f621e8e8e9d6d696c49d09c97337b93bf03/README.md",
+   "description": "Tamper-Proofing with Polymorphic self-modifying code (SMC) as a runtime integrity mechanism on x86-64"
+  },
+  {
+   "full_name": "ROCm/ROCgdb",
+   "path": "gprofng/common/core_pcbe.c",
+   "url": "https://github.com/ROCm/ROCgdb/blob/03480bed6814034c4934dd14a712a78efa7cd6d3/gprofng/common/core_pcbe.c",
+   "description": "This is ROCgdb, the ROCm source-level debugger for Linux, based on GDB, the GNU source-level debugger."
+  },
+  {
+   "full_name": "STMicroelectronics/gnu-tools-for-stm32",
+   "path": "src/gdb/gprofng/common/core_pcbe.c",
+   "url": "https://github.com/STMicroelectronics/gnu-tools-for-stm32/blob/b8cdff71b827478c8510c70b3a15d2b50c759255/src/gdb/gprofng/common/core_pcbe.c",
+   "description": "GNU Tools for STM32 toolchain sources"
+  }
+ ]
+}

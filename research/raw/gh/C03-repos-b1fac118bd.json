@@ -1,0 +1,22 @@
+{
+ "candidate": "C03",
+ "kind": "repos",
+ "query": "processor trace jit",
+ "executed_at": "2026-10-18T22:20:46-0700",
+ "api_call": "gh api -X GET search/repositories -f q='processor trace jit' -f per_page=10",
+ "replay": "gh search repos 'processor trace jit' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "MariaInesRibeiro98/JITAI-mining",
+   "url": "https://github.com/MariaInesRibeiro98/JITAI-mining",
+   "description": "Process-aware analysis of digital trace data to design just-in-time adaptive interventions. ",
+   "stars": 1,
+   "language": "Jupyter Notebook",
+   "created_at": "2026-03-17T09:58:53Z",
+   "pushed_at": "2026-05-29T08:58:14Z",
+   "topics": []
+  }
+ ]
+}

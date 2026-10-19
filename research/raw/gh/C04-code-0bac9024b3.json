@@ -1,0 +1,72 @@
+{
+ "candidate": "C04",
+ "kind": "code",
+ "query": "\"OF is undefined\" shl",
+ "executed_at": "2026-10-19T02:28:08-0700",
+ "api_call": "gh api -X GET search/code -f q='\"OF is undefined\" shl' -f per_page=10",
+ "replay": "gh search code '\"OF is undefined\" shl' --limit 10",
+ "total_count": 190,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "crempp/js86emu",
+   "path": "src/emu/cpu/Operations.js",
+   "url": "https://github.com/crempp/js86emu/blob/adb88fd49fb46309051c1adc4d702c8c4d1173dc/src/emu/cpu/Operations.js",
+   "description": "x86 Emulator written in 100% javascript."
+  },
+  {
+   "full_name": "isacomp-project/isacomp",
+   "path": "isa/i486/shl_al_cl.isa",
+   "url": "https://github.com/isacomp-project/isacomp/blob/aa477176c3fcba26b87ae3f67633760904044048/isa/i486/shl_al_cl.isa",
+   "description": null
+  },
+  {
+   "full_name": "isacomp-project/isacomp",
+   "path": "isa/8086/shl_al_cl.isa",
+   "url": "https://github.com/isacomp-project/isacomp/blob/aa477176c3fcba26b87ae3f67633760904044048/isa/8086/shl_al_cl.isa",
+   "description": null
+  },
+  {
+   "full_name": "apriorit/diana-dasm",
+   "path": "spec/html/shl.htm",
+   "url": "https://github.com/apriorit/diana-dasm/blob/09309963ef388424a3b402e050955d3ac34d879d/spec/html/shl.htm",
+   "description": "original sources https://svn.code.sf.net/p/diana-dasm/code/"
+  },
+  {
+   "full_name": "TheOSDevLab/Bare-Metal-Assembly",
+   "path": "notes/03_assembly_instructions/shl.md",
+   "url": "https://github.com/TheOSDevLab/Bare-Metal-Assembly/blob/e07d81cd281277ce09d6b4f3ccdcc4c45ae61bde/notes/03_assembly_instructions/shl.md",
+   "description": "Great, beginner friendly notes on Assembly for OS development."
+  },
+  {
+   "full_name": "a-darwish/cuteOS-references",
+   "path": "Architecture/0:  x86/01 - i386/Opcodes/SAL-SAR-SHL-SHR.html",
+   "url": "https://github.com/a-darwish/cuteOS-references/blob/aef60bda08e02dad8559f635c44caab1fdb96d17/Architecture/0:  x86/01 - i386/Opcodes/SAL-SAR-SHL-SHR.html",
+   "description": "Documentation, references, and collected academic research for the cuteOS Kernel."
+  },
+  {
+   "full_name": "rizinorg/rizin",
+   "path": "librz/arch/isa/x86/il_ops.inc",
+   "url": "https://github.com/rizinorg/rizin/blob/f380387375ce9929656c8c9cf50e0d8033757a95/librz/arch/isa/x86/il_ops.inc",
+   "description": "UNIX-like reverse engineering framework and command-line toolset."
+  },
+  {
+   "full_name": "StanfordPL/stoke",
+   "path": "src/validator/handlers/shift_handler.cc",
+   "url": "https://github.com/StanfordPL/stoke/blob/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/src/validator/handlers/shift_handler.cc",
+   "description": "STOKE: A stochastic superoptimizer and program synthesizer"
+  },
+  {
+   "full_name": "XLsn0w/Cydiapps",
+   "path": "iSH/tools/undefined-flags.c",
+   "url": "https://github.com/XLsn0w/Cydiapps/blob/397cfc6548f763970ebb920f6669d5cc20ceb130/iSH/tools/undefined-flags.c",
+   "description": "\ud83d\udd25\ud83d\udd25\ud83d\udd25\u5fae\u4fe1\u516c\u4f17\u53f7:Cydiapps\ud83d\udd25\ud83d\udd25\ud83d\udd25            => Cydia\u63d2\u4ef6 Logos\u8bed\u8a00 \u5f00\u53d1Tweak.xm Cydia Substrate \u6ce8\u5165dylib iOS\u9006\u5411\u5de5\u7a0b\u5f00\u53d1 \u8d8a\u72f1Jailbreak deb\u63d2\u4ef6 - fishhook / Frida / iOSOpenDev / Cycript / MachOView /  IDA / Hopper Disassembler / MonkeyDev / Class-dump / Theos / Reveal / Dumpdecryptd / FLEX / \u6c47\u7f16Assembly / CaptainHook / lldb/LLVM/XNU/Darwin/iOS Reverse"
+  },
+  {
+   "full_name": "TomHarte/CLK",
+   "path": "InstructionSets/x86/Implementation/ShiftRoll.hpp",
+   "url": "https://github.com/TomHarte/CLK/blob/8ff5129704105bbbc066b23701a1154999901be3/InstructionSets/x86/Implementation/ShiftRoll.hpp",
+   "description": "A latency-hating emulator of: the Acorn Electron, BBC Micro and Archimedes, Amstrad CPC, Apple II/II+/IIe and early Macintosh, Atari 2600 and ST, ColecoVision, Enterprise 64/128, Commodore Vic-20 and Amiga, MSX 1/2, Oric 1/Atmos, early PC compatibles, Sega Master System, Sinclair ZX80/81 and ZX Spectrum, Tandy CoCo and Thomson MO5/6."
+  }
+ ]
+}

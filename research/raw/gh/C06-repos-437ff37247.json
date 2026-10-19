@@ -1,0 +1,136 @@
+{
+ "candidate": "C06",
+ "kind": "repos",
+ "query": "reversible jit in:readme",
+ "executed_at": "2026-10-19T02:28:29-0700",
+ "api_call": "gh api -X GET search/repositories -f q='reversible jit in:readme' -f per_page=10",
+ "replay": "gh search repos 'reversible jit in:readme' --limit 10",
+ "total_count": 643,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "skeeto/hash-prospector",
+   "url": "https://github.com/skeeto/hash-prospector",
+   "description": "Automated integer hash function discovery",
+   "stars": 789,
+   "language": "C",
+   "created_at": "2018-07-26T02:58:36Z",
+   "pushed_at": "2024-03-01T17:54:01Z",
+   "topics": []
+  },
+  {
+   "full_name": "NotPrab/.NET-Deobfuscator",
+   "url": "https://github.com/NotPrab/.NET-Deobfuscator",
+   "description": "Lists of .NET Deobfuscator and Unpacker (Open Source)",
+   "stars": 1525,
+   "language": null,
+   "created_at": "2020-04-28T11:31:00Z",
+   "pushed_at": "2025-02-01T10:33:16Z",
+   "topics": [
+    "deobfuscator",
+    "dnlib",
+    "dotnet",
+    "reverse-engineering",
+    "unpacker"
+   ]
+  },
+  {
+   "full_name": "mwlik/v8-resources",
+   "url": "https://github.com/mwlik/v8-resources",
+   "description": "A bunch of V8 resources (with a security focus)",
+   "stars": 147,
+   "language": null,
+   "created_at": "2025-01-06T17:14:43Z",
+   "pushed_at": "2026-09-12T13:58:26Z",
+   "topics": [
+    "browser-exploitation",
+    "v8"
+   ]
+  },
+  {
+   "full_name": "swoole/typephp",
+   "url": "https://github.com/swoole/typephp",
+   "description": "Compile PHP to Native Binaries",
+   "stars": 1448,
+   "language": "PHP",
+   "created_at": "2026-05-11T05:35:46Z",
+   "pushed_at": "2026-10-19T09:21:24Z",
+   "topics": []
+  },
+  {
+   "full_name": "Dicklesworthstone/model_guided_research",
+   "url": "https://github.com/Dicklesworthstone/model_guided_research",
+   "description": "Systematic investigation of 11 exotic math frameworks (Lie groups, tropical algebra, p-adic numbers, etc.) applied to deep learning, with dual JAX and PyTorch implementations",
+   "stars": 117,
+   "language": "Python",
+   "created_at": "2025-08-17T21:25:28Z",
+   "pushed_at": "2026-10-16T04:45:02Z",
+   "topics": [
+    "ai",
+    "deep-learning",
+    "machine-learning",
+    "mathematics",
+    "python",
+    "research"
+   ]
+  },
+  {
+   "full_name": "qinwf/awesome-R",
+   "url": "https://github.com/qinwf/awesome-R",
+   "description": "A curated list of awesome R packages, frameworks and software.",
+   "stars": 6525,
+   "language": "R",
+   "created_at": "2014-07-19T06:02:47Z",
+   "pushed_at": "2025-09-18T16:46:19Z",
+   "topics": [
+    "awesome",
+    "awesome-list",
+    "data-analysis",
+    "data-science",
+    "list",
+    "r",
+    "rstats"
+   ]
+  },
+  {
+   "full_name": "1013503897/Vector",
+   "url": "https://github.com/1013503897/Vector",
+   "description": "Zygisk ART hooking framework with a KPM traceless backend (stealth-core) and Dobby fallback",
+   "stars": 24,
+   "language": "Java",
+   "created_at": "2026-06-03T12:14:48Z",
+   "pushed_at": "2026-09-20T03:05:01Z",
+   "topics": []
+  },
+  {
+   "full_name": "ysrdevs/nightcity-console-mac",
+   "url": "https://github.com/ysrdevs/nightcity-console-mac",
+   "description": "Cyber Engine Tweaks style in-game console for Cyberpunk 2077 on macOS (Apple Silicon). Spawn items, money, perks, level, teleport, debug and more, from a one-click installer app.",
+   "stars": 42,
+   "language": "JavaScript",
+   "created_at": "2026-06-18T17:59:39Z",
+   "pushed_at": "2026-10-08T07:06:32Z",
+   "topics": []
+  },
+  {
+   "full_name": "Void-Compute/AMD-Ghost-Enviroment",
+   "url": "https://github.com/Void-Compute/AMD-Ghost-Enviroment",
+   "description": "Advanced interoperability middleware for GPGPU acceleration. Facilitates cross vendor hardware abstraction and API translation for parallel computing frameworks. Engineered for research into heterogeneous compute environments and backend agnostic workload execution.",
+   "stars": 103,
+   "language": "Rust",
+   "created_at": "2026-04-03T19:51:25Z",
+   "pushed_at": "2026-09-08T12:10:22Z",
+   "topics": []
+  },
+  {
+   "full_name": "MiaAI-Lab/DeepSeek-v4-Flash-One-DGX-Spark",
+   "url": "https://github.com/MiaAI-Lab/DeepSeek-v4-Flash-One-DGX-Spark",
+   "description": "DeepSeek v4 Flash EXL3 on one DGX Spark",
+   "stars": 347,
+   "language": "Python",
+   "created_at": "2026-08-20T21:13:53Z",
+   "pushed_at": "2026-08-24T16:45:26Z",
+   "topics": []
+  }
+ ]
+}

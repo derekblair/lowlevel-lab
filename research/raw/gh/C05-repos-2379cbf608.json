@@ -1,0 +1,130 @@
+{
+ "candidate": "C05",
+ "kind": "repos",
+ "query": "\"core war\" native in:readme",
+ "executed_at": "2026-10-19T02:28:59-0700",
+ "api_call": "gh api -X GET search/repositories -f q='\"core war\" native in:readme' -f per_page=10",
+ "replay": "gh search repos '\"core war\" native in:readme' --limit 10",
+ "total_count": 46,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "radareorg/r2wars",
+   "url": "https://github.com/radareorg/r2wars",
+   "description": "Corewars but within r2",
+   "stars": 64,
+   "language": "C#",
+   "created_at": "2018-07-13T12:30:43Z",
+   "pushed_at": "2026-09-05T08:46:05Z",
+   "topics": [
+    "competition",
+    "corewars",
+    "r2con",
+    "radare2"
+   ]
+  },
+  {
+   "full_name": "mbarbon/pMARS",
+   "url": "https://github.com/mbarbon/pMARS",
+   "description": "Portable corewar system with ICWS'94 extensions",
+   "stars": 16,
+   "language": "C",
+   "created_at": "2018-03-20T19:26:22Z",
+   "pushed_at": "2018-03-21T11:17:49Z",
+   "topics": []
+  },
+  {
+   "full_name": "Silverpeas/Silverpeas-Core",
+   "url": "https://github.com/Silverpeas/Silverpeas-Core",
+   "description": "Core API for Silverpeas",
+   "stars": 56,
+   "language": "Java",
+   "created_at": "2011-01-31T15:32:42Z",
+   "pushed_at": "2026-10-19T08:29:46Z",
+   "topics": []
+  },
+  {
+   "full_name": "readyready15728/awesome-programming-games",
+   "url": "https://github.com/readyready15728/awesome-programming-games",
+   "description": "An ultra mega giga curated list of programming games",
+   "stars": 679,
+   "language": null,
+   "created_at": "2020-04-16T08:33:29Z",
+   "pushed_at": "2026-09-28T22:00:28Z",
+   "topics": []
+  },
+  {
+   "full_name": "pmars-org/pmars",
+   "url": "https://github.com/pmars-org/pmars",
+   "description": "pMARS - Portable Memory Array Redcode Simulator",
+   "stars": 2,
+   "language": "C",
+   "created_at": "2026-10-13T18:11:29Z",
+   "pushed_at": "2026-10-14T09:32:50Z",
+   "topics": []
+  },
+  {
+   "full_name": "akosela/pmars",
+   "url": "https://github.com/akosela/pmars",
+   "description": "Portable Core War simulator",
+   "stars": 8,
+   "language": "C",
+   "created_at": "2019-02-08T21:01:05Z",
+   "pushed_at": "2019-02-18T19:10:41Z",
+   "topics": []
+  },
+  {
+   "full_name": "BaseMax/AwesomeCompiler",
+   "url": "https://github.com/BaseMax/AwesomeCompiler",
+   "description": "The Big list of the github, open-source compilers.",
+   "stars": 112,
+   "language": null,
+   "created_at": "2019-04-09T09:19:27Z",
+   "pushed_at": "2019-06-21T09:18:01Z",
+   "topics": [
+    "compiler",
+    "compiler-design",
+    "compiler-designs",
+    "compiler-plugin",
+    "compiler-tool",
+    "compilers",
+    "github",
+    "github-bot",
+    "github-list",
+    "github-repository",
+    "github-repository-automation",
+    "github-repository-search"
+   ]
+  },
+  {
+   "full_name": "CodeClash-ai/CoreWar",
+   "url": "https://github.com/CodeClash-ai/CoreWar",
+   "description": null,
+   "stars": 2,
+   "language": "C",
+   "created_at": "2025-08-08T05:27:22Z",
+   "pushed_at": "2026-07-16T20:51:10Z",
+   "topics": []
+  },
+  {
+   "full_name": "pj4533/ModelWarClient",
+   "url": "https://github.com/pj4533/ModelWarClient",
+   "description": "A agent client for modelwar.ai",
+   "stars": 0,
+   "language": "Swift",
+   "created_at": "2026-02-28T03:31:54Z",
+   "pushed_at": "2026-03-01T18:53:09Z",
+   "topics": []
+  },
+  {
+   "full_name": "Coltosaur/Core-War-Reimagined",
+   "url": "https://github.com/Coltosaur/Core-War-Reimagined",
+   "description": "The 1984 game Core War with a modern, system agnostic model and Redcode editor",
+   "stars": 0,
+   "language": "Rust",
+   "created_at": "2026-04-08T23:50:48Z",
+   "pushed_at": "2026-10-17T15:33:37Z",
+   "topics": []
+  }
+ ]
+}

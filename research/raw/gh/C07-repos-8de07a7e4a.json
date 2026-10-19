@@ -1,0 +1,11 @@
+{
+ "candidate": "C07",
+ "kind": "repos",
+ "query": "cross-isa execution emulator native",
+ "executed_at": "2026-10-18T22:22:47-0700",
+ "api_call": "gh api -X GET search/repositories -f q='cross-isa execution emulator native' -f per_page=10",
+ "replay": "gh search repos 'cross-isa execution emulator native' --limit 10",
+ "total_count": 0,
+ "incomplete_results": false,
+ "items": []
+}

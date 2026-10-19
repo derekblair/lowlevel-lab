@@ -1,0 +1,11 @@
+{
+ "candidate": "C08",
+ "kind": "repos",
+ "query": "hilbert curve instruction encoding",
+ "executed_at": "2026-10-18T22:22:59-0700",
+ "api_call": "gh api -X GET search/repositories -f q='hilbert curve instruction encoding' -f per_page=10",
+ "replay": "gh search repos 'hilbert curve instruction encoding' --limit 10",
+ "total_count": 0,
+ "incomplete_results": false,
+ "items": []
+}

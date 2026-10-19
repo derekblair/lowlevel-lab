@@ -1,0 +1,148 @@
+{
+ "candidate": "C07",
+ "kind": "repos",
+ "query": "popcorn linux",
+ "executed_at": "2026-10-18T22:22:38-0700",
+ "api_call": "gh api -X GET search/repositories -f q='popcorn linux' -f per_page=10",
+ "replay": "gh search repos 'popcorn linux' --limit 10",
+ "total_count": 40,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "popcorntime/popcorntime",
+   "url": "https://github.com/popcorntime/popcorntime",
+   "description": "Popcorn Time\u2122 puts everything in one place. Your favorite platforms, your shows, your movies-ready when you are.",
+   "stars": 10694,
+   "language": "TypeScript",
+   "created_at": "2016-02-16T11:07:20Z",
+   "pushed_at": "2026-09-04T03:18:38Z",
+   "topics": [
+    "android",
+    "desktop",
+    "ios",
+    "linux",
+    "macos",
+    "popcorn",
+    "popcorn-time",
+    "popcorntime",
+    "streaming",
+    "windows"
+   ]
+  },
+  {
+   "full_name": "ssrg-vt/popcorn-compiler",
+   "url": "https://github.com/ssrg-vt/popcorn-compiler",
+   "description": "Popcorn Linux compiler toolchain for heterogeneous-ISA execution ",
+   "stars": 49,
+   "language": "C",
+   "created_at": "2017-07-08T04:57:02Z",
+   "pushed_at": "2024-04-05T20:23:34Z",
+   "topics": [
+    "popcorn"
+   ]
+  },
+  {
+   "full_name": "ssrg-vt/popcorn-kernel",
+   "url": "https://github.com/ssrg-vt/popcorn-kernel",
+   "description": "Popcorn Linux kernel for distributed thread execution",
+   "stars": 178,
+   "language": "C",
+   "created_at": "2017-07-08T01:24:21Z",
+   "pushed_at": "2023-07-16T19:18:36Z",
+   "topics": [
+    "kernel",
+    "popcorn"
+   ]
+  },
+  {
+   "full_name": "ssrg-vt/mklinux",
+   "url": "https://github.com/ssrg-vt/mklinux",
+   "description": "Old Popcorn Linux kernel",
+   "stars": 2,
+   "language": "C",
+   "created_at": "2017-08-01T19:03:26Z",
+   "pushed_at": "2017-11-06T19:41:59Z",
+   "topics": [
+    "legacy",
+    "popcorn"
+   ]
+  },
+  {
+   "full_name": "keshavbhatt/series-ninja",
+   "url": "https://github.com/keshavbhatt/series-ninja",
+   "description": "Stream and Download your favourite TV series/Movies on Ubuntu/Linux & Windows Desktop",
+   "stars": 35,
+   "language": null,
+   "created_at": "2017-05-20T22:04:35Z",
+   "pushed_at": "2020-04-25T18:07:12Z",
+   "topics": [
+    "boxtv",
+    "crackle",
+    "fandor",
+    "hoopla",
+    "hulu",
+    "linux",
+    "mylifetime",
+    "netflix",
+    "popcorn",
+    "popcorntime",
+    "retrovision",
+    "sling",
+    "stremio",
+    "veho",
+    "viewster",
+    "vudu"
+   ]
+  },
+  {
+   "full_name": "rtfpessoa/bashflix",
+   "url": "https://github.com/rtfpessoa/bashflix",
+   "description": "Linux/Mac OS X bash script to watch movies and series with subtitles, instantaneously. Just give the name, quickly grab your popcorn and start watching!",
+   "stars": 0,
+   "language": "Shell",
+   "created_at": "2016-11-05T18:33:45Z",
+   "pushed_at": "2016-11-06T22:21:04Z",
+   "topics": []
+  },
+  {
+   "full_name": "morganwang010/popcorn-desktop-vn",
+   "url": "https://github.com/morganwang010/popcorn-desktop-vn",
+   "description": "Popcorn Time is a multi-platform, free software BitTorrent client that includes an integrated media player. Desktop ( Windows / Mac / Linux ) a Butter-Project Fork ",
+   "stars": 1,
+   "language": null,
+   "created_at": "2019-12-16T12:44:33Z",
+   "pushed_at": "2019-11-04T13:17:30Z",
+   "topics": []
+  },
+  {
+   "full_name": "ssrg-vt/popcorn-benchmark",
+   "url": "https://github.com/ssrg-vt/popcorn-benchmark",
+   "description": "Application collection for popcorn linux (include both homogeneous and heterogeneous setting)",
+   "stars": 0,
+   "language": "C",
+   "created_at": "2020-02-17T16:14:54Z",
+   "pushed_at": "2022-11-08T16:20:36Z",
+   "topics": []
+  },
+  {
+   "full_name": "ssrg-vt/popcorn-chameleon",
+   "url": "https://github.com/ssrg-vt/popcorn-chameleon",
+   "description": "Secure Popcorn Linux runtime state transformation framework",
+   "stars": 4,
+   "language": "C++",
+   "created_at": "2018-10-11T13:38:14Z",
+   "pushed_at": "2020-11-11T16:06:37Z",
+   "topics": []
+  },
+  {
+   "full_name": "ssrg-vt/popcorn-openmp",
+   "url": "https://github.com/ssrg-vt/popcorn-openmp",
+   "description": "A collection of OpenMP applications ported from other benchmark suites for use with Popcorn Linux",
+   "stars": 3,
+   "language": "C",
+   "created_at": "2018-09-11T17:58:40Z",
+   "pushed_at": "2018-09-17T21:09:08Z",
+   "topics": []
+  }
+ ]
+}

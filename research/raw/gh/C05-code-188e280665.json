@@ -1,0 +1,18 @@
+{
+ "candidate": "C05",
+ "kind": "code",
+ "query": "\"PROT_EXEC\" warrior arena",
+ "executed_at": "2026-10-19T02:29:22-0700",
+ "api_call": "gh api -X GET search/code -f q='\"PROT_EXEC\" warrior arena' -f per_page=10",
+ "replay": "gh search code '\"PROT_EXEC\" warrior arena' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "ShenChen1/strace-go",
+   "path": "pkg/meta/xlat_auto.go",
+   "url": "https://github.com/ShenChen1/strace-go/blob/8da294bc297792ec0a663673d08c8bf2e1e4d611/pkg/meta/xlat_auto.go",
+   "description": null
+  }
+ ]
+}

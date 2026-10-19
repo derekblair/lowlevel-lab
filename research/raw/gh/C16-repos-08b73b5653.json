@@ -1,0 +1,26 @@
+{
+ "candidate": "C16",
+ "kind": "repos",
+ "query": "befunge x86 jit",
+ "executed_at": "2026-10-18T22:24:33-0700",
+ "api_call": "gh api -X GET search/repositories -f q='befunge x86 jit' -f per_page=10",
+ "replay": "gh search repos 'befunge x86 jit' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "adrianton3/befunjit-86",
+   "url": "https://github.com/adrianton3/befunjit-86",
+   "description": "Befunge-93 JIT compiler for x86-64",
+   "stars": 2,
+   "language": "C++",
+   "created_at": "2025-06-07T08:48:39Z",
+   "pushed_at": "2025-11-03T08:26:03Z",
+   "topics": [
+    "befunge",
+    "compiler",
+    "jit"
+   ]
+  }
+ ]
+}

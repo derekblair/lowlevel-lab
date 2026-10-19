@@ -1,0 +1,72 @@
+{
+ "candidate": "C03",
+ "kind": "code",
+ "query": "\"pt_image_set_callback\"",
+ "executed_at": "2026-10-18T22:21:15-0700",
+ "api_call": "gh api -X GET search/code -f q='\"pt_image_set_callback\"' -f per_page=10",
+ "replay": "gh search code '\"pt_image_set_callback\"' --limit 10",
+ "total_count": 370,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "HyperDbg/HyperDbg",
+   "path": "hyperdbg/dependencies/libipt/intel-pt.h",
+   "url": "https://github.com/HyperDbg/HyperDbg/blob/ff3ba351a1059ce558967aa45a2c70ed25620aa4/hyperdbg/dependencies/libipt/intel-pt.h",
+   "description": "State-of-the-art native debugging tools"
+  },
+  {
+   "full_name": "intel/libipt",
+   "path": "libipt/src/pt_image.c",
+   "url": "https://github.com/intel/libipt/blob/907b908a50090bd90a5aa0d3e5291435b5a4bdcc/libipt/src/pt_image.c",
+   "description": "libipt - an Intel(R) Processor Trace decoder library"
+  },
+  {
+   "full_name": "intel/libipt",
+   "path": "libipt/include/intel-pt.h.in",
+   "url": "https://github.com/intel/libipt/blob/907b908a50090bd90a5aa0d3e5291435b5a4bdcc/libipt/include/intel-pt.h.in",
+   "description": "libipt - an Intel(R) Processor Trace decoder library"
+  },
+  {
+   "full_name": "intel/libipt",
+   "path": "doc/man/pt_image_set_callback.3.md",
+   "url": "https://github.com/intel/libipt/blob/907b908a50090bd90a5aa0d3e5291435b5a4bdcc/doc/man/pt_image_set_callback.3.md",
+   "description": "libipt - an Intel(R) Processor Trace decoder library"
+  },
+  {
+   "full_name": "sslab-gatech/winnie",
+   "path": "intel-libipt/include/intel-pt.h",
+   "url": "https://github.com/sslab-gatech/winnie/blob/117cab9d77952bfa6c565e794c6fbd1f7dc50abc/intel-libipt/include/intel-pt.h",
+   "description": "Winnie makes fuzzing Windows applications easy"
+  },
+  {
+   "full_name": "intelpt/WindowsIntelPT",
+   "path": "PtControlApp/decoder/intel-pt.h",
+   "url": "https://github.com/intelpt/WindowsIntelPT/blob/ea17c86cbcb4eb77534af57c63c86bc225b61679/PtControlApp/decoder/intel-pt.h",
+   "description": "This driver implements the Intel Processor Trace functionality in Intel Skylake architecture for Microsoft Windows"
+  },
+  {
+   "full_name": "HardenedBSD/hardenedBSD-stable",
+   "path": "contrib/processor-trace/libipt/src/pt_image.c",
+   "url": "https://github.com/HardenedBSD/hardenedBSD-stable/blob/06cdabe1df9605942301fe5d6b8723265baa74ec/contrib/processor-trace/libipt/src/pt_image.c",
+   "description": "HardenedBSD stable repo. Installer images built from this repo: http://installer.hardenedbsd.org/"
+  },
+  {
+   "full_name": "HardenedBSD/hardenedBSD-stable",
+   "path": "contrib/processor-trace/libipt/include/intel-pt.h",
+   "url": "https://github.com/HardenedBSD/hardenedBSD-stable/blob/06cdabe1df9605942301fe5d6b8723265baa74ec/contrib/processor-trace/libipt/include/intel-pt.h",
+   "description": "HardenedBSD stable repo. Installer images built from this repo: http://installer.hardenedbsd.org/"
+  },
+  {
+   "full_name": "HardenedBSD/hardenedBSD-stable",
+   "path": "contrib/processor-trace/libipt/include/intel-pt.h.in",
+   "url": "https://github.com/HardenedBSD/hardenedBSD-stable/blob/06cdabe1df9605942301fe5d6b8723265baa74ec/contrib/processor-trace/libipt/include/intel-pt.h.in",
+   "description": "HardenedBSD stable repo. Installer images built from this repo: http://installer.hardenedbsd.org/"
+  },
+  {
+   "full_name": "carter-yagemann/ARCUS",
+   "path": "tools/pt/libipt/libipt/src/pt_image.c",
+   "url": "https://github.com/carter-yagemann/ARCUS/blob/a7ff78cdf44ee2dc6aa5e114fb37fd5235924d40/tools/pt/libipt/libipt/src/pt_image.c",
+   "description": "Symbolic Execution Over Processor Traces"
+  }
+ ]
+}

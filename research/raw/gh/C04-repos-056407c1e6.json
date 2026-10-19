@@ -1,0 +1,148 @@
+{
+ "candidate": "C04",
+ "kind": "repos",
+ "query": "\"E-core\" \"P-core\" undefined in:readme",
+ "executed_at": "2026-10-19T02:27:50-0700",
+ "api_call": "gh api -X GET search/repositories -f q='\"E-core\" \"P-core\" undefined in:readme' -f per_page=10",
+ "replay": "gh search repos '\"E-core\" \"P-core\" undefined in:readme' --limit 10",
+ "total_count": 58,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "kennss/SiliconScope",
+   "url": "https://github.com/kennss/SiliconScope",
+   "description": "Sudoless Apple Silicon system monitor (native SwiftUI GUI) with ANE / Media Engine / memory-bandwidth tracking",
+   "stars": 999,
+   "language": "Swift",
+   "created_at": "2026-06-08T17:19:50Z",
+   "pushed_at": "2026-10-16T09:08:07Z",
+   "topics": [
+    "apple-silicon",
+    "gpu",
+    "llama-cpp",
+    "llm",
+    "lm-studio",
+    "local-llm",
+    "macos",
+    "menubar",
+    "mlx",
+    "neural-engine",
+    "ollama",
+    "on-device-ai",
+    "performance-monitoring",
+    "swiftui",
+    "system-monitor"
+   ]
+  },
+  {
+   "full_name": "ZeroCho/ts-all-in-one",
+   "url": "https://github.com/ZeroCho/ts-all-in-one",
+   "description": null,
+   "stars": 297,
+   "language": "TypeScript",
+   "created_at": "2022-06-20T04:08:00Z",
+   "pushed_at": "2023-12-02T18:47:37Z",
+   "topics": []
+  },
+  {
+   "full_name": "microsoft/STL",
+   "url": "https://github.com/microsoft/STL",
+   "description": "MSVC's implementation of the C++ Standard Library.",
+   "stars": 11167,
+   "language": "C++",
+   "created_at": "2019-08-27T01:31:18Z",
+   "pushed_at": "2026-10-19T07:26:29Z",
+   "topics": []
+  },
+  {
+   "full_name": "intel/perfmon",
+   "url": "https://github.com/intel/perfmon",
+   "description": null,
+   "stars": 407,
+   "language": "Python",
+   "created_at": "2021-09-09T18:33:20Z",
+   "pushed_at": "2026-10-14T21:34:29Z",
+   "topics": []
+  },
+  {
+   "full_name": "pmndrs/labs",
+   "url": "https://github.com/pmndrs/labs",
+   "description": "\ud83c\udfc6 JS benching you can trust",
+   "stars": 77,
+   "language": "TypeScript",
+   "created_at": "2026-03-20T00:37:48Z",
+   "pushed_at": "2026-10-18T23:12:20Z",
+   "topics": []
+  },
+  {
+   "full_name": "LiamOsler/CPU-Specs-Website",
+   "url": "https://github.com/LiamOsler/CPU-Specs-Website",
+   "description": "CPU specification dataset for AMD and Intel CPUs with viewer website built with EJS and jQuery DataTables",
+   "stars": 1,
+   "language": "JavaScript",
+   "created_at": "2022-02-15T05:43:02Z",
+   "pushed_at": "2022-06-22T17:02:42Z",
+   "topics": [
+    "datatables",
+    "ejs",
+    "json",
+    "nodejs"
+   ]
+  },
+  {
+   "full_name": "yua134/cyclotrace",
+   "url": "https://github.com/yua134/cyclotrace",
+   "description": "A high-performance, wait-free ring buffer in Rust. Supports SPMC with peek-based semantics instead of destructive consumption.",
+   "stars": 1,
+   "language": "Rust",
+   "created_at": "2026-03-25T17:42:42Z",
+   "pushed_at": "2026-10-09T16:19:37Z",
+   "topics": []
+  },
+  {
+   "full_name": "usamahz/cpu-performance-engineering",
+   "url": "https://github.com/usamahz/cpu-performance-engineering",
+   "description": "A reading path for CPU performance engineering, from one instruction to production inference. Primary sources only, with a runnable benchmark for every section.",
+   "stars": 1165,
+   "language": "Python",
+   "created_at": "2026-09-17T20:52:03Z",
+   "pushed_at": "2026-10-08T18:41:07Z",
+   "topics": [
+    "arm",
+    "awesome-list",
+    "benchmarks",
+    "computer-architecture",
+    "cpu",
+    "edge-ai",
+    "inference",
+    "low-latency",
+    "optimization",
+    "performance",
+    "performance-engineering",
+    "simd",
+    "systems-programming",
+    "x86"
+   ]
+  },
+  {
+   "full_name": "ullu1221/hpc-system-profiles",
+   "url": "https://github.com/ullu1221/hpc-system-profiles",
+   "description": "HPC Deterministic System Performance & Low-Latency Profile Controller (Safe Rust)",
+   "stars": 0,
+   "language": "Rust",
+   "created_at": "2026-10-17T23:51:44Z",
+   "pushed_at": "2026-10-19T07:58:04Z",
+   "topics": []
+  },
+  {
+   "full_name": "holepunchto/bare-cpu-info",
+   "url": "https://github.com/holepunchto/bare-cpu-info",
+   "description": "libcpuinfo bindings for Bare",
+   "stars": 0,
+   "language": "C",
+   "created_at": "2026-07-06T10:54:13Z",
+   "pushed_at": "2026-08-31T10:43:08Z",
+   "topics": []
+  }
+ ]
+}

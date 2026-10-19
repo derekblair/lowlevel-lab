@@ -1,0 +1,121 @@
+{
+ "candidate": "C11",
+ "kind": "repos",
+ "query": "arm64 to x86 translator",
+ "executed_at": "2026-10-18T22:23:37-0700",
+ "api_call": "gh api -X GET search/repositories -f q='arm64 to x86 translator' -f per_page=10",
+ "replay": "gh search repos 'arm64 to x86 translator' --limit 10",
+ "total_count": 6,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "DLTcollab/sse2neon",
+   "url": "https://github.com/DLTcollab/sse2neon",
+   "description": "A translator from Intel SSE intrinsics to Arm/Aarch64 NEON implementation",
+   "stars": 1532,
+   "language": "C++",
+   "created_at": "2018-05-28T05:24:04Z",
+   "pushed_at": "2026-10-18T12:55:47Z",
+   "topics": [
+    "aarch64",
+    "apple-silicon",
+    "arm",
+    "arm64",
+    "armv7l",
+    "armv8",
+    "armv8-a",
+    "high-performance-computing",
+    "intel-intrinsics",
+    "intel-sse-intrinsics",
+    "neon",
+    "neon-intrinsics",
+    "simd",
+    "sse",
+    "sse-intrinsics",
+    "sse2neon",
+    "x86"
+   ]
+  },
+  {
+   "full_name": "mont127/AArchX",
+   "url": "https://github.com/mont127/AArchX",
+   "description": "A x86 to arm64 from scratch translator",
+   "stars": 6,
+   "language": "C",
+   "created_at": "2026-06-03T18:47:11Z",
+   "pushed_at": "2026-10-18T20:23:20Z",
+   "topics": []
+  },
+  {
+   "full_name": "ryanwisemanmusic/Rosette",
+   "url": "https://github.com/ryanwisemanmusic/Rosette",
+   "description": "x86 to ARM64 translator",
+   "stars": 10,
+   "language": "Zig",
+   "created_at": "2026-05-26T11:39:29Z",
+   "pushed_at": "2026-10-19T03:51:20Z",
+   "topics": [
+    "arm64",
+    "assembly",
+    "disassembler",
+    "dos",
+    "dynamic-binary-translation",
+    "elf-parser",
+    "framework",
+    "fuzzer",
+    "fuzzing-framework",
+    "mach-o",
+    "macos",
+    "neon",
+    "powerpc",
+    "ppc",
+    "transpiler",
+    "tso",
+    "x86",
+    "x86-64",
+    "zig"
+   ]
+  },
+  {
+   "full_name": "XS-Corp/rozetka2",
+   "url": "https://github.com/XS-Corp/rozetka2",
+   "description": "Experimental clean-room x86_64 to ARM64 translator for Apple Silicon, with an interpreter, AArch64 JIT, and Mach-O support.",
+   "stars": 9,
+   "language": "C",
+   "created_at": "2026-07-11T14:18:31Z",
+   "pushed_at": "2026-08-10T21:24:44Z",
+   "topics": [
+    "aarch64",
+    "apple-silicon",
+    "arm64",
+    "binary-translation",
+    "c",
+    "emulator",
+    "jit",
+    "macho",
+    "macos",
+    "x86-64"
+   ]
+  },
+  {
+   "full_name": "reasoningsec/prism-internals",
+   "url": "https://github.com/reasoningsec/prism-internals",
+   "description": "Reverse engineering of Microsoft Prism, the x86/x64-to-ARM64 binary translator on Windows on ARM, and its .jc translation cache (REcon 2026).",
+   "stars": 2,
+   "language": "Python",
+   "created_at": "2026-06-20T16:21:41Z",
+   "pushed_at": "2026-06-22T13:57:39Z",
+   "topics": []
+  },
+  {
+   "full_name": "t0b1kent/hyperbridge",
+   "url": "https://github.com/t0b1kent/hyperbridge",
+   "description": "HyperBridge: independent x86-64/x86 to ARM64 CPU translator for Wine on Apple Silicon, the engine of MacRunner (MIT)",
+   "stars": 0,
+   "language": "Assembly",
+   "created_at": "2026-09-25T23:32:13Z",
+   "pushed_at": "2026-10-17T05:43:26Z",
+   "topics": []
+  }
+ ]
+}

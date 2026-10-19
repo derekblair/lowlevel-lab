@@ -1,0 +1,72 @@
+{
+ "candidate": "C06",
+ "kind": "code",
+ "query": "SWAPBR",
+ "executed_at": "2026-10-19T02:28:43-0700",
+ "api_call": "gh api -X GET search/code -f q='SWAPBR' -f per_page=10",
+ "replay": "gh search code 'SWAPBR' --limit 10",
+ "total_count": 14208,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "nadult/FreeFT",
+   "path": "src/base.h",
+   "url": "https://github.com/nadult/FreeFT/blob/d0b09a3bbc189fc777b4f62864ccbd4838fd146b/src/base.h",
+   "description": "Isometric action game engine"
+  },
+  {
+   "full_name": "zkz17/rqcpp_compiler",
+   "path": "utils/instruction.py",
+   "url": "https://github.com/zkz17/rqcpp_compiler/blob/ab42f67b8bf8ec4609e3262256712cca1bb632ba/utils/instruction.py",
+   "description": null
+  },
+  {
+   "full_name": "osgcc/ryzom",
+   "path": "nel/include/nel/misc/rgba.h",
+   "url": "https://github.com/osgcc/ryzom/blob/187aa06faf0a8d7f43fd75b4b0646ee29a0062c8/nel/include/nel/misc/rgba.h",
+   "description": "Nevrax's MMORPG, The Saga of Ryzom. Mirror of their official mercury repository. Graphical resources are CC available on the website below."
+  },
+  {
+   "full_name": "07th-mod/enter_extractor",
+   "path": "src/Decompression.cpp",
+   "url": "https://github.com/07th-mod/enter_extractor/blob/6ab07fd4b61a5b797de1570b1e85575ae43ad3e2/src/Decompression.cpp",
+   "description": null
+  },
+  {
+   "full_name": "jinxiaoye1987/RyzomCore",
+   "path": "nel/include/nel/misc/rgba.h",
+   "url": "https://github.com/jinxiaoye1987/RyzomCore/blob/fce7cd0d53f771885780cbf414aefbda018ae105/nel/include/nel/misc/rgba.h",
+   "description": "Open source MMORPG  GNU license"
+  },
+  {
+   "full_name": "madelmann/AtlasTech1",
+   "path": "Tools.h",
+   "url": "https://github.com/madelmann/AtlasTech1/blob/70b0d82bff95336862b35a893d599e045ac17da1/Tools.h",
+   "description": null
+  },
+  {
+   "full_name": "runeharvest/shared",
+   "path": "nel/include/nel/misc/rgba.h",
+   "url": "https://github.com/runeharvest/shared/blob/4fe0b7c9e47b78a336cae47430095a839e2ca7de/nel/include/nel/misc/rgba.h",
+   "description": "Shared code between client and server, and other repositories"
+  },
+  {
+   "full_name": "facelessuser/BracketHighlighter",
+   "path": "bh_modules/swapbrackets.py",
+   "url": "https://github.com/facelessuser/BracketHighlighter/blob/d627336711c54e09a56f2c4a9dccfc0ca239dec4/bh_modules/swapbrackets.py",
+   "description": "Bracket and tag highlighter for Sublime Text"
+  },
+  {
+   "full_name": "emgucv/emgutf",
+   "path": "Emgu.TF/Toolbox.cs",
+   "url": "https://github.com/emgucv/emgutf/blob/99f73d71d73dd5f39ab137b0cdf9575a3aa9fe9c/Emgu.TF/Toolbox.cs",
+   "description": "Emgu TF is a cross platform .Net wrapper for the Google Tensorflow library. Allows Tensorflow functions to be called from .NET compatible languages such as C#, VB, VC++, IronPython."
+  },
+  {
+   "full_name": "emgucv/emgutf",
+   "path": "Emgu.TF.Models/ImageIO.cs",
+   "url": "https://github.com/emgucv/emgutf/blob/99f73d71d73dd5f39ab137b0cdf9575a3aa9fe9c/Emgu.TF.Models/ImageIO.cs",
+   "description": "Emgu TF is a cross platform .Net wrapper for the Google Tensorflow library. Allows Tensorflow functions to be called from .NET compatible languages such as C#, VB, VC++, IronPython."
+  }
+ ]
+}

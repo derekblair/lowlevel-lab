@@ -1,0 +1,14 @@
+{
+ "repo": "zyedidia/armvis",
+ "description": "Visualizing the ARM64 instruction set",
+ "stars": 12,
+ "created_at": "2024-03-02T00:25:20Z",
+ "pushed_at": "2024-03-04T20:56:09Z",
+ "default_branch": "master",
+ "head_sha": "467ce12540486b24b9440da69e4327993cbb43a8",
+ "fetched_at_utc": "2026-10-19T09:26:47Z",
+ "files": [
+  "README.md",
+  "cmd/arm-vis/main.go"
+ ]
+}

@@ -1,0 +1,72 @@
+{
+ "candidate": "C01",
+ "kind": "code",
+ "query": "\"IC IVAU\" emulator",
+ "executed_at": "2026-10-18T22:20:00-0700",
+ "api_call": "gh api -X GET search/code -f q='\"IC IVAU\" emulator' -f per_page=10",
+ "replay": "gh search code '\"IC IVAU\" emulator' --limit 10",
+ "total_count": 278,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "erlang/otp",
+   "path": "erts/emulator/beam/jit/beam_jit_main.cpp",
+   "url": "https://github.com/erlang/otp/blob/4baff5121418c318f50d93ce7d9ae6a0bb78231b/erts/emulator/beam/jit/beam_jit_main.cpp",
+   "description": "Erlang/OTP"
+  },
+  {
+   "full_name": "erlang/otp",
+   "path": "erts/config.h.in",
+   "url": "https://github.com/erlang/otp/blob/4baff5121418c318f50d93ce7d9ae6a0bb78231b/erts/config.h.in",
+   "description": "Erlang/OTP"
+  },
+  {
+   "full_name": "erlang/otp",
+   "path": "erts/configure.ac",
+   "url": "https://github.com/erlang/otp/blob/4baff5121418c318f50d93ce7d9ae6a0bb78231b/erts/configure.ac",
+   "description": "Erlang/OTP"
+  },
+  {
+   "full_name": "erlang/otp",
+   "path": "make/autoconf/otp.m4",
+   "url": "https://github.com/erlang/otp/blob/4baff5121418c318f50d93ce7d9ae6a0bb78231b/make/autoconf/otp.m4",
+   "description": "Erlang/OTP"
+  },
+  {
+   "full_name": "hrydgard/ppsspp",
+   "path": "Common/Arm64Emitter.cpp",
+   "url": "https://github.com/hrydgard/ppsspp/blob/0c6aa15f9be365bb88265636881814914ee8ac58/Common/Arm64Emitter.cpp",
+   "description": "A PSP emulator for Android, Windows, Mac, Linux and iOS, written in C++. Want to contribute? Join us on Discord at https://discord.gg/5NJB6dD or just send pull requests / issues."
+  },
+  {
+   "full_name": "TheAevoraLabs/SwordigoDesktop",
+   "path": "src/platform/emulator_dynarmic64.cpp",
+   "url": "https://github.com/TheAevoraLabs/SwordigoDesktop/blob/2779687f0a3515153d824765860181b295bff194/src/platform/emulator_dynarmic64.cpp",
+   "description": "A desktop adaptation of Swordigo, delivering fast-paced platforming, magic, and adventure on PC."
+  },
+  {
+   "full_name": "dolphin-emu/dolphin",
+   "path": "Source/Core/Common/Arm64Emitter.cpp",
+   "url": "https://github.com/dolphin-emu/dolphin/blob/1822e3859f061c6f81076c94eb4ba7e6e0a3706c/Source/Core/Common/Arm64Emitter.cpp",
+   "description": "Dolphin is a GameCube / Wii emulator, allowing you to play games for these two platforms on PC with improvements."
+  },
+  {
+   "full_name": "stephaneweg/Onyx",
+   "path": "docs/3DS-EMULATOR-STUDY.md",
+   "url": "https://github.com/stephaneweg/Onyx/blob/9ffa394f71eb92b3fd686523dc7e75ab6f7c62df/docs/3DS-EMULATOR-STUDY.md",
+   "description": "Onyx operating system for Raspbery pi"
+  },
+  {
+   "full_name": "melonDS-emu/melonDS",
+   "path": "src/dolphin/Arm64Emitter.cpp",
+   "url": "https://github.com/melonDS-emu/melonDS/blob/906e9ebb27da8c6a715cd7abab4abfe8a8d29427/src/dolphin/Arm64Emitter.cpp",
+   "description": "DS emulator, sorta"
+  },
+  {
+   "full_name": "ARMSX2/ARMSX3",
+   "path": "rpcs3/Emu/Cell/SPUCommonRecompiler.cpp",
+   "url": "https://github.com/ARMSX2/ARMSX3/blob/103fc79e5c492e98956e5a6f8f7faa053ff8a1ed/rpcs3/Emu/Cell/SPUCommonRecompiler.cpp",
+   "description": "Android port of RPCS3 for ARM64 devices. From one of the founders of ARMSX2: jpolo1224"
+  }
+ ]
+}

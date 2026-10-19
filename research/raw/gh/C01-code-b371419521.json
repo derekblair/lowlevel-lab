@@ -1,0 +1,72 @@
+{
+ "candidate": "C01",
+ "kind": "code",
+ "query": "\"stale\" \"IC IVAU\"",
+ "executed_at": "2026-10-19T02:26:38-0700",
+ "api_call": "gh api -X GET search/code -f q='\"stale\" \"IC IVAU\"' -f per_page=10",
+ "replay": "gh search code '\"stale\" \"IC IVAU\"' --limit 10",
+ "total_count": 502,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "bytecodealliance/wasmtime",
+   "path": "crates/jit-icache-coherence/src/libc/aarch64.rs",
+   "url": "https://github.com/bytecodealliance/wasmtime/blob/a33c18ed395ab09d8366d593c7941fc479efa9c6/crates/jit-icache-coherence/src/libc/aarch64.rs",
+   "description": "A lightweight WebAssembly runtime that is fast, secure, and standards-compliant"
+  },
+  {
+   "full_name": "lightpanda-io/browser",
+   "path": "src/clear_cache.zig",
+   "url": "https://github.com/lightpanda-io/browser/blob/2a1e8bdde9d4ca1c383038d57de380c86a1bbf7c/src/clear_cache.zig",
+   "description": "Lightpanda: the headless browser designed for AI and automation"
+  },
+  {
+   "full_name": "erlang/otp",
+   "path": "erts/emulator/beam/jit/beam_jit_main.cpp",
+   "url": "https://github.com/erlang/otp/blob/d7e0d97ce13ac4a16af25a072c86a7927dbf0d55/erts/emulator/beam/jit/beam_jit_main.cpp",
+   "description": "Erlang/OTP"
+  },
+  {
+   "full_name": "seL4/seL4",
+   "path": "CHANGES.md",
+   "url": "https://github.com/seL4/seL4/blob/357c6003d9f550e22b2adf5b700f356b5ab58ea5/CHANGES.md",
+   "description": "The seL4 microkernel"
+  },
+  {
+   "full_name": "catboost/catboost",
+   "path": "contrib/libs/cxxsupp/builtins/clear_cache.c",
+   "url": "https://github.com/catboost/catboost/blob/8a48d188bcfd87a5198f838c8081a88dab557347/contrib/libs/cxxsupp/builtins/clear_cache.c",
+   "description": "A fast, scalable, high performance Gradient Boosting on Decision Trees library, used for ranking, classification, regression and other machine learning tasks for Python, R, Java, C++. Supports computation on CPU and GPU."
+  },
+  {
+   "full_name": "AsahiLinux/m1n1",
+   "path": "src/memory.c",
+   "url": "https://github.com/AsahiLinux/m1n1/blob/c31ecbe5f4a7494c6ec417bead25d00cd558d7ce/src/memory.c",
+   "description": "A bootloader and experimentation playground for Apple Silicon"
+  },
+  {
+   "full_name": "SAP/SapMachine",
+   "path": "src/hotspot/os_cpu/linux_aarch64/icache_linux_aarch64.hpp",
+   "url": "https://github.com/SAP/SapMachine/blob/67a96b0424623910f2ca0756511d2d36c5a99c05/src/hotspot/os_cpu/linux_aarch64/icache_linux_aarch64.hpp",
+   "description": "An OpenJDK release maintained and supported by SAP"
+  },
+  {
+   "full_name": "vlang/vinix",
+   "path": "kernel/aarch64/cpu/cpu.v",
+   "url": "https://github.com/vlang/vinix/blob/390d8e9570b43aeace405e6d86e00adfc3e73b9b/kernel/aarch64/cpu/cpu.v",
+   "description": "Vinix is an effort to write a modern, fast, and useful operating system in the V programming language"
+  },
+  {
+   "full_name": "CensoredUsername/dynasm-rs",
+   "path": "runtime/src/cache_control.rs",
+   "url": "https://github.com/CensoredUsername/dynasm-rs/blob/d0b78d23f03cbfee442b427b7f7893f9c6917e33/runtime/src/cache_control.rs",
+   "description": "A dynasm-like tool for rust."
+  },
+  {
+   "full_name": "ARMSX2/ARMSX3",
+   "path": "Utilities/JITLLVM.cpp",
+   "url": "https://github.com/ARMSX2/ARMSX3/blob/103fc79e5c492e98956e5a6f8f7faa053ff8a1ed/Utilities/JITLLVM.cpp",
+   "description": "Android port of RPCS3 for ARM64 devices. From one of the founders of ARMSX2: jpolo1224"
+  }
+ ]
+}

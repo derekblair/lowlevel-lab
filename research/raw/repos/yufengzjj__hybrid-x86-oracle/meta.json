@@ -1,0 +1,14 @@
+{
+ "repo": "yufengzjj/hybrid-x86-oracle",
+ "description": "Pluggable golden-reference x86-64 CPUs for differential testing, behind one API",
+ "stars": 0,
+ "created_at": "2026-07-31T04:46:28Z",
+ "pushed_at": "2026-09-29T05:54:39Z",
+ "default_branch": "master",
+ "head_sha": "4c016011f2e183c94f55b915d75c0fe7e6577ded",
+ "fetched_at_utc": "2026-10-19T09:27:04Z",
+ "files": [
+  "README.md",
+  "docs/backend-differences.md"
+ ]
+}

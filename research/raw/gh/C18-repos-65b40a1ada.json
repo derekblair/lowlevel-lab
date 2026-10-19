@@ -1,0 +1,22 @@
+{
+ "candidate": "C18",
+ "kind": "repos",
+ "query": "plt got visualization",
+ "executed_at": "2026-10-18T22:24:59-0700",
+ "api_call": "gh api -X GET search/repositories -f q='plt got visualization' -f per_page=10",
+ "replay": "gh search repos 'plt got visualization' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "roshanjanaknikam/predic_chronic_kidney_disease",
+   "url": "https://github.com/roshanjanaknikam/predic_chronic_kidney_disease",
+   "description": "In this project I have  predict whether person has chronic kidney disease or not chronic kidney disease?? and developed the machine learning module . before the developed module  I have analysis the data  and got informative insights .  firstly imported the data using pandas library  and imported all required libraries. such as  numpy as np , seaborn as sns , matplotlib.pyplot as plt  , and plotly for visualization .  and for developing machine learning module   import  sklearn . ",
+   "stars": 0,
+   "language": "Jupyter Notebook",
+   "created_at": "2022-07-28T09:53:55Z",
+   "pushed_at": "2022-07-28T10:37:34Z",
+   "topics": []
+  }
+ ]
+}

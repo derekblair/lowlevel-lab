@@ -1,0 +1,72 @@
+{
+ "candidate": "C03",
+ "kind": "code",
+ "query": "\"aux_offset\" intel_pt",
+ "executed_at": "2026-10-19T02:27:30-0700",
+ "api_call": "gh api -X GET search/code -f q='\"aux_offset\" intel_pt' -f per_page=10",
+ "replay": "gh search code '\"aux_offset\" intel_pt' --limit 10",
+ "total_count": 1436,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "hase-project/hase",
+   "path": "hase/perf/snapshot.py",
+   "url": "https://github.com/hase-project/hase/blob/9c1e28a6968716dfe37519476cb8fdaecb830dfa/hase/perf/snapshot.py",
+   "description": "Timeless debugging with symbolic execution and processor trace"
+  },
+  {
+   "full_name": "Mic92/tracedump",
+   "path": "tracedump/perf/snapshot.py",
+   "url": "https://github.com/Mic92/tracedump/blob/a84eac58106f1f1d7a82f5dee2a327861e763e4e/tracedump/perf/snapshot.py",
+   "description": "System service to dump Intel processor trace + memory after a crash."
+  },
+  {
+   "full_name": "google/honggfuzz",
+   "path": "linux/perf.c",
+   "url": "https://github.com/google/honggfuzz/blob/940b958dfeb6f9131fd846cae31fcc0fe996ae98/linux/perf.c",
+   "description": "Security oriented software fuzzer. Supports evolutionary, feedback-driven fuzzing based on code coverage (SW and HW based)"
+  },
+  {
+   "full_name": "intel/libipt",
+   "path": "doc/howto_capture.md",
+   "url": "https://github.com/intel/libipt/blob/907b908a50090bd90a5aa0d3e5291435b5a4bdcc/doc/howto_capture.md",
+   "description": "libipt - an Intel(R) Processor Trace decoder library"
+  },
+  {
+   "full_name": "oreilly-japan/binary-hacks-rebooted",
+   "path": "ch05_debugger_tracer/52_intel_pt/tracer.c",
+   "url": "https://github.com/oreilly-japan/binary-hacks-rebooted/blob/46194dae196f4d368666a0eaebd502b963843bd7/ch05_debugger_tracer/52_intel_pt/tracer.c",
+   "description": "\u300eBinary Hacks Rebooted\u300f\u306e\u30b5\u30dd\u30fc\u30c8\u30ea\u30dd\u30b8\u30c8\u30ea"
+  },
+  {
+   "full_name": "janestreet/magic-trace",
+   "path": "direct_backend/manual_perf_stubs.c",
+   "url": "https://github.com/janestreet/magic-trace/blob/b3faf23fccfc4373d47bb6458c9d7dc79b0723fe/direct_backend/manual_perf_stubs.c",
+   "description": "magic-trace collects and displays high-resolution traces of what a process is doing"
+  },
+  {
+   "full_name": "rmalmain/libafl.qemu-intel-pt",
+   "path": "target/i386/intel_pt.c",
+   "url": "https://github.com/rmalmain/libafl.qemu-intel-pt/blob/9c7d524b61157ac1037131c096f9331af32b525c/target/i386/intel_pt.c",
+   "description": null
+  },
+  {
+   "full_name": "DynamoRIO/dynamorio",
+   "path": "ext/drpttracer/drpttracer.c",
+   "url": "https://github.com/DynamoRIO/dynamorio/blob/6d2165aa485ca91bf10faa64440cfadce850b0bc/ext/drpttracer/drpttracer.c",
+   "description": "Dynamic Instrumentation Tool Platform"
+  },
+  {
+   "full_name": "constantfold/pt-explorer",
+   "path": "intel_pt_perf_collector.cpp",
+   "url": "https://github.com/constantfold/pt-explorer/blob/c9fef65b7466defc4b1d02541cf0cbcc19742d93/intel_pt_perf_collector.cpp",
+   "description": "Source code of \"PT Explorer\" (part of \"Tracing execution of large-scale C++ programs with Intel PT)"
+  },
+  {
+   "full_name": "AFLplusplus/LibAFL",
+   "path": "crates/libafl_intelpt/src/linux.rs",
+   "url": "https://github.com/AFLplusplus/LibAFL/blob/70259b66bcbdc322b81ee59e71d83f27e0187c35/crates/libafl_intelpt/src/linux.rs",
+   "description": "Advanced Fuzzing Library - Slot your Fuzzer together in Rust! Scales across cores and machines. For Windows, Android, MacOS, Linux, no_std, ..."
+  }
+ ]
+}

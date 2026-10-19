@@ -1,0 +1,82 @@
+{
+ "candidate": "C06",
+ "kind": "repos",
+ "query": "reversible assembly language",
+ "executed_at": "2026-10-18T22:22:32-0700",
+ "api_call": "gh api -X GET search/repositories -f q='reversible assembly language' -f per_page=10",
+ "replay": "gh search repos 'reversible assembly language' --limit 10",
+ "total_count": 6,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "epiqc/RKQC",
+   "url": "https://github.com/epiqc/RKQC",
+   "description": "RKQC is a compiler for reversible logic circuitry. The framework has been developed to compile high level circuit descriptions down to \"QASM\" format assembly language instructions, primarily for quantum computing machines.",
+   "stars": 17,
+   "language": "C++",
+   "created_at": "2016-06-27T23:16:55Z",
+   "pushed_at": "2016-07-22T19:46:28Z",
+   "topics": []
+  },
+  {
+   "full_name": "cyberenigma-lgtm/MultiLang-ASM",
+   "url": "https://github.com/cyberenigma-lgtm/MultiLang-ASM",
+   "description": "The first multilingual x86_64 assembler. Write assembly in your native language. 10 languages, 80+ instructions, reversible translation.",
+   "stars": 2,
+   "language": "C",
+   "created_at": "2025-12-25T14:10:16Z",
+   "pushed_at": "2026-10-17T21:46:41Z",
+   "topics": [
+    "assembler",
+    "assembly-language",
+    "internationalization",
+    "multilingual",
+    "nasm",
+    "native-language-programming",
+    "neuro-os",
+    "open-source",
+    "x86-64"
+   ]
+  },
+  {
+   "full_name": "MorieeLM/Reversible-primes",
+   "url": "https://github.com/MorieeLM/Reversible-primes",
+   "description": "code and assembly language to display 10 reversible primes",
+   "stars": 0,
+   "language": "Assembly",
+   "created_at": "2022-10-30T14:55:25Z",
+   "pushed_at": "2022-10-30T15:21:57Z",
+   "topics": []
+  },
+  {
+   "full_name": "MphoRamaisa/Reversible-Primes-Squares",
+   "url": "https://github.com/MphoRamaisa/Reversible-Primes-Squares",
+   "description": "This is a program that prints out the first ten reversible prime squares. There is a C program, Assembly Language program and Machine Code program.",
+   "stars": 0,
+   "language": "Assembly",
+   "created_at": "2022-10-30T14:52:37Z",
+   "pushed_at": "2022-10-30T15:11:22Z",
+   "topics": []
+  },
+  {
+   "full_name": "KoriLeronti/Reversible-prime-squares-2",
+   "url": "https://github.com/KoriLeronti/Reversible-prime-squares-2",
+   "description": "Program that prints the first 10 reversible prime squares. we wiil be using high level language C and low- level langauge assembly and then the machine code.",
+   "stars": 0,
+   "language": "Assembly",
+   "created_at": "2023-01-27T11:05:30Z",
+   "pushed_at": "2023-01-27T11:05:36Z",
+   "topics": []
+  },
+  {
+   "full_name": "reshna-null-tsovera/QRL_Quantum_Compiler",
+   "url": "https://github.com/reshna-null-tsovera/QRL_Quantum_Compiler",
+   "description": "A full-spectrum natural language to quantum compiler that translates structured human requests (in standard text) into:  Quantum Assembly (QASM 2.0/3.0)  Quantum Error Correction codes (qLDPC-ready)  Trinary logic & custom gate mappings  Reversible output back into human-readable explanations",
+   "stars": 0,
+   "language": null,
+   "created_at": "2025-10-30T10:48:09Z",
+   "pushed_at": "2025-10-30T10:48:10Z",
+   "topics": []
+  }
+ ]
+}

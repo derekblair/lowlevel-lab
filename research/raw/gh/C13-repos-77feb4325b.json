@@ -1,0 +1,115 @@
+{
+ "candidate": "C13",
+ "kind": "repos",
+ "query": "FiSim",
+ "executed_at": "2026-10-18T22:24:07-0700",
+ "api_call": "gh api -X GET search/repositories -f q='FiSim' -f per_page=10",
+ "replay": "gh search repos 'FiSim' --limit 10",
+ "total_count": 55,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "Keysight/FiSim",
+   "url": "https://github.com/Keysight/FiSim",
+   "description": "An open-source deterministic fault attack simulator prototype",
+   "stars": 67,
+   "language": "C#",
+   "created_at": "2020-10-22T15:18:16Z",
+   "pushed_at": "2020-11-29T16:20:57Z",
+   "topics": []
+  },
+  {
+   "full_name": "Devnilson/fisima",
+   "url": "https://github.com/Devnilson/fisima",
+   "description": "Awesome Finite State Machine",
+   "stars": 1,
+   "language": "TypeScript",
+   "created_at": "2020-05-23T06:48:17Z",
+   "pushed_at": "2023-01-06T07:16:13Z",
+   "topics": []
+  },
+  {
+   "full_name": "AWF-GAUG/fisim",
+   "url": "https://github.com/AWF-GAUG/fisim",
+   "description": "Forest Inventory Simulator (fisim) is a package for simulating response and samplign designs common in forest inventories",
+   "stars": 0,
+   "language": "R",
+   "created_at": "2017-10-24T08:21:33Z",
+   "pushed_at": "2020-02-17T22:03:12Z",
+   "topics": []
+  },
+  {
+   "full_name": "antidv/FISIMentalSync-Prototype",
+   "url": "https://github.com/antidv/FISIMentalSync-Prototype",
+   "description": "Control de Salud UNAYOE - UNMSM",
+   "stars": 3,
+   "language": "HTML",
+   "created_at": "2023-09-16T15:30:47Z",
+   "pushed_at": "2023-11-15T17:04:56Z",
+   "topics": []
+  },
+  {
+   "full_name": "AKUsima1234/fisimisikitaber2",
+   "url": "https://github.com/AKUsima1234/fisimisikitaber2",
+   "description": null,
+   "stars": 0,
+   "language": null,
+   "created_at": "2025-06-29T09:34:19Z",
+   "pushed_at": "2025-06-29T09:35:29Z",
+   "topics": []
+  },
+  {
+   "full_name": "myk12/FISim",
+   "url": "https://github.com/myk12/FISim",
+   "description": "Simulation of Cybertwin, the next generation network architecture, based on ns-3 platform.",
+   "stars": 1,
+   "language": "C++",
+   "created_at": "2023-02-06T02:22:25Z",
+   "pushed_at": "2024-12-05T10:15:15Z",
+   "topics": []
+  },
+  {
+   "full_name": "mtfelipe777/Fisimulator2",
+   "url": "https://github.com/mtfelipe777/Fisimulator2",
+   "description": null,
+   "stars": 0,
+   "language": null,
+   "created_at": "2026-09-23T12:51:43Z",
+   "pushed_at": "2026-09-23T12:51:44Z",
+   "topics": []
+  },
+  {
+   "full_name": "fadi-alkhoury/fisim",
+   "url": "https://github.com/fadi-alkhoury/fisim",
+   "description": "Fisim simulates financial scenarios and generates monthly transactions for the simulation period.",
+   "stars": 1,
+   "language": "C++",
+   "created_at": "2021-05-30T10:41:10Z",
+   "pushed_at": "2021-05-30T10:51:55Z",
+   "topics": [
+    "financial",
+    "simulation"
+   ]
+  },
+  {
+   "full_name": "nesaro/fisimula",
+   "url": "https://github.com/nesaro/fisimula",
+   "description": "Reminder of how I programmed before learning the basics",
+   "stars": 0,
+   "language": "C++",
+   "created_at": "2013-09-14T07:51:07Z",
+   "pushed_at": "2020-12-25T18:53:08Z",
+   "topics": []
+  },
+  {
+   "full_name": "AKUsima1234/fisim",
+   "url": "https://github.com/AKUsima1234/fisim",
+   "description": null,
+   "stars": 0,
+   "language": "HTML",
+   "created_at": "2025-06-29T10:33:20Z",
+   "pushed_at": "2025-06-29T10:33:58Z",
+   "topics": []
+  }
+ ]
+}

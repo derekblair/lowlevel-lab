@@ -1,0 +1,72 @@
+{
+ "candidate": "C02",
+ "kind": "code",
+ "query": "\"MACHINE_CLEARS.XMC\"",
+ "executed_at": "2026-10-18T22:20:32-0700",
+ "api_call": "gh api -X GET search/code -f q='\"MACHINE_CLEARS.XMC\"' -f per_page=10",
+ "replay": "gh search code '\"MACHINE_CLEARS.XMC\"' --limit 10",
+ "total_count": 234,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "torvalds/linux",
+   "path": "tools/perf/pmu-events/arch/x86/novalake/pipeline.json",
+   "url": "https://github.com/torvalds/linux/blob/c03c1a14507dfaf8b856c2608f9ac216021fc222/tools/perf/pmu-events/arch/x86/novalake/pipeline.json",
+   "description": "Linux kernel source tree"
+  },
+  {
+   "full_name": "torvalds/linux",
+   "path": "tools/perf/pmu-events/arch/x86/pantherlake/pipeline.json",
+   "url": "https://github.com/torvalds/linux/blob/c03c1a14507dfaf8b856c2608f9ac216021fc222/tools/perf/pmu-events/arch/x86/pantherlake/pipeline.json",
+   "description": "Linux kernel source tree"
+  },
+  {
+   "full_name": "torvalds/linux",
+   "path": "tools/perf/pmu-events/arch/x86/clearwaterforest/pipeline.json",
+   "url": "https://github.com/torvalds/linux/blob/c03c1a14507dfaf8b856c2608f9ac216021fc222/tools/perf/pmu-events/arch/x86/clearwaterforest/pipeline.json",
+   "description": "Linux kernel source tree"
+  },
+  {
+   "full_name": "intel/perfmon",
+   "path": "CWF/events/clearwaterforest_core.json",
+   "url": "https://github.com/intel/perfmon/blob/8da58930a226ab3eac72f309bd0fb1d5abfc6245/CWF/events/clearwaterforest_core.json",
+   "description": null
+  },
+  {
+   "full_name": "intel/perfmon",
+   "path": "NVL/events/novalake_arcticwolf_core.json",
+   "url": "https://github.com/intel/perfmon/blob/8da58930a226ab3eac72f309bd0fb1d5abfc6245/NVL/events/novalake_arcticwolf_core.json",
+   "description": null
+  },
+  {
+   "full_name": "intel/perfmon",
+   "path": "PTL/events/pantherlake_darkmont_core.json",
+   "url": "https://github.com/intel/perfmon/blob/8da58930a226ab3eac72f309bd0fb1d5abfc6245/PTL/events/pantherlake_darkmont_core.json",
+   "description": null
+  },
+  {
+   "full_name": "CXWorld/CapFrameX",
+   "path": "pmcreader-plugin/intel-perfmon/CWF/events/clearwaterforest_core.json",
+   "url": "https://github.com/CXWorld/CapFrameX/blob/1b5f53da907f0a1de6fde2b75ff8267c79b08b2b/pmcreader-plugin/intel-perfmon/CWF/events/clearwaterforest_core.json",
+   "description": "Frametime capture and analysis tool"
+  },
+  {
+   "full_name": "CXWorld/CapFrameX",
+   "path": "pmcreader-plugin/intel-perfmon/PTL/events/pantherlake_darkmont_core.json",
+   "url": "https://github.com/CXWorld/CapFrameX/blob/1b5f53da907f0a1de6fde2b75ff8267c79b08b2b/pmcreader-plugin/intel-perfmon/PTL/events/pantherlake_darkmont_core.json",
+   "description": "Frametime capture and analysis tool"
+  },
+  {
+   "full_name": "SELinuxProject/selinux-kernel",
+   "path": "tools/perf/pmu-events/arch/x86/pantherlake/pipeline.json",
+   "url": "https://github.com/SELinuxProject/selinux-kernel/blob/d0db3d89effa1ebff996584671f03cad9409f257/tools/perf/pmu-events/arch/x86/pantherlake/pipeline.json",
+   "description": "GitHub mirror of the SELinux kernel repository"
+  },
+  {
+   "full_name": "SELinuxProject/selinux-kernel",
+   "path": "tools/perf/pmu-events/arch/x86/clearwaterforest/pipeline.json",
+   "url": "https://github.com/SELinuxProject/selinux-kernel/blob/d0db3d89effa1ebff996584671f03cad9409f257/tools/perf/pmu-events/arch/x86/clearwaterforest/pipeline.json",
+   "description": "GitHub mirror of the SELinux kernel repository"
+  }
+ ]
+}

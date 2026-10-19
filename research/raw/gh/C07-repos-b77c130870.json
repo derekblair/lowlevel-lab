@@ -1,0 +1,120 @@
+{
+ "candidate": "C07",
+ "kind": "repos",
+ "query": "heterogeneous isa",
+ "executed_at": "2026-10-19T02:23:41-0700",
+ "api_call": "gh api -X GET search/repositories -f q='heterogeneous isa' -f per_page=10",
+ "replay": "gh search repos 'heterogeneous isa' --limit 10",
+ "total_count": 13,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "ssrg-vt/popcorn-compiler",
+   "url": "https://github.com/ssrg-vt/popcorn-compiler",
+   "description": "Popcorn Linux compiler toolchain for heterogeneous-ISA execution ",
+   "stars": 49,
+   "language": "C",
+   "created_at": "2017-07-08T04:57:02Z",
+   "pushed_at": "2024-04-05T20:23:34Z",
+   "topics": [
+    "popcorn"
+   ]
+  },
+  {
+   "full_name": "systems-nuts/unifico",
+   "url": "https://github.com/systems-nuts/unifico",
+   "description": "Compiler and build harness for heterogeneous-ISA binaries with the same stack layout.",
+   "stars": 6,
+   "language": "C",
+   "created_at": "2020-10-17T12:43:11Z",
+   "pushed_at": "2024-09-11T20:05:26Z",
+   "topics": [
+    "arm64",
+    "heterogeneous-isa",
+    "llvm",
+    "migration",
+    "x86"
+   ]
+  },
+  {
+   "full_name": "systems-nuts/criu-het",
+   "url": "https://github.com/systems-nuts/criu-het",
+   "description": "CRIU HET - Checkpoint Restart In User-space for Linux for heterogeneous ISA CPUs (aarch64 and x86_64)",
+   "stars": 3,
+   "language": "C",
+   "created_at": "2020-03-06T11:08:37Z",
+   "pushed_at": "2020-06-10T21:55:07Z",
+   "topics": []
+  },
+  {
+   "full_name": "husainnk/criu-dsm",
+   "url": "https://github.com/husainnk/criu-dsm",
+   "description": "Framework to scale-out applications threads across homogeneous & heterogeneous ISA nodes",
+   "stars": 0,
+   "language": "C",
+   "created_at": "2023-04-20T10:36:48Z",
+   "pushed_at": "2023-06-24T00:44:45Z",
+   "topics": []
+  },
+  {
+   "full_name": "lac-dcc/JINN-C",
+   "url": "https://github.com/lac-dcc/JINN-C",
+   "description": "JINN-C Adaptive Compiler for Heterogeneous Single-ISA architectures",
+   "stars": 5,
+   "language": "Scala",
+   "created_at": "2019-09-23T13:13:55Z",
+   "pushed_at": "2019-09-28T15:00:27Z",
+   "topics": []
+  },
+  {
+   "full_name": "githubhj/Heterogeneous-Architecture-Research-Project-Emulator",
+   "url": "https://github.com/githubhj/Heterogeneous-Architecture-Research-Project-Emulator",
+   "description": "An emulator for a subset of the HARP ISA according to the HARP ISA documentation.",
+   "stars": 0,
+   "language": "C++",
+   "created_at": "2015-09-22T03:27:23Z",
+   "pushed_at": "2015-11-05T03:31:07Z",
+   "topics": []
+  },
+  {
+   "full_name": "guenesch/Simulation-of-a-Heterogeneous-Fleet-of-Cooperating-Robots-in-Isaac-Sim",
+   "url": "https://github.com/guenesch/Simulation-of-a-Heterogeneous-Fleet-of-Cooperating-Robots-in-Isaac-Sim",
+   "description": "OCP based fleet simulaitons",
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2026-08-03T06:57:32Z",
+   "pushed_at": "2026-08-03T07:42:19Z",
+   "topics": []
+  },
+  {
+   "full_name": "aadehamid/scada_harmonization",
+   "url": "https://github.com/aadehamid/scada_harmonization",
+   "description": "ISA-95-aligned harmonization service for transforming heterogeneous SCADA telemetry into canonical UNS-compatible messages",
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2026-02-16T03:19:48Z",
+   "pushed_at": "2026-10-12T04:26:07Z",
+   "topics": []
+  },
+  {
+   "full_name": "IkramSen/dag-analyzer",
+   "url": "https://github.com/IkramSen/dag-analyzer",
+   "description": "Description, analysis, code generation tool for  complex real-time tasks modeled using HPC DAG on Heterogeneous ISA architectures ",
+   "stars": 1,
+   "language": "C++",
+   "created_at": "2019-10-30T10:09:33Z",
+   "pushed_at": "2019-10-30T10:16:46Z",
+   "topics": []
+  },
+  {
+   "full_name": "dev-pmallapp/helm",
+   "url": "https://github.com/dev-pmallapp/helm",
+   "description": "HELM \u2014 Heterogeneous Execution and Latency Model. Next-generation, research-grade hardware simulator: Rust core, Python-first interface, multi-ISA, multi-mode, multi-timing.",
+   "stars": 0,
+   "language": "Rust",
+   "created_at": "2026-09-14T16:49:52Z",
+   "pushed_at": "2026-09-14T17:36:01Z",
+   "topics": []
+  }
+ ]
+}

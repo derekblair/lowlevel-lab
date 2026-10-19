@@ -1,0 +1,42 @@
+{
+ "candidate": "C06",
+ "kind": "repos",
+ "query": "reversible instruction set",
+ "executed_at": "2026-10-18T22:22:29-0700",
+ "api_call": "gh api -X GET search/repositories -f q='reversible instruction set' -f per_page=10",
+ "replay": "gh search repos 'reversible instruction set' --limit 10",
+ "total_count": 3,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "InfamousPlatypus/4bitInstructionSet",
+   "url": "https://github.com/InfamousPlatypus/4bitInstructionSet",
+   "description": "A four bit instruction set in reversable and irreversible versions ",
+   "stars": 0,
+   "language": null,
+   "created_at": "2025-06-27T20:06:07Z",
+   "pushed_at": "2025-06-27T20:42:16Z",
+   "topics": []
+  },
+  {
+   "full_name": "ennakax/kcats",
+   "url": "https://github.com/ennakax/kcats",
+   "description": "Interpreter for an instruction set for a reversible stack machine",
+   "stars": 0,
+   "language": "Haskell",
+   "created_at": "2025-05-17T14:19:27Z",
+   "pushed_at": "2025-06-18T13:57:49Z",
+   "topics": []
+  },
+  {
+   "full_name": "brkmnd/Jnsc",
+   "url": "https://github.com/brkmnd/Jnsc",
+   "description": "A compiler that compiles the reversible programming language Janus to the reversible instructions set Bob",
+   "stars": 1,
+   "language": "HTML",
+   "created_at": "2019-08-15T13:19:05Z",
+   "pushed_at": "2021-01-18T22:57:35Z",
+   "topics": []
+  }
+ ]
+}

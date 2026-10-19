@@ -1,0 +1,135 @@
+{
+ "candidate": "C23",
+ "kind": "repos",
+ "query": "kvm hello world",
+ "executed_at": "2026-10-18T22:25:42-0700",
+ "api_call": "gh api -X GET search/repositories -f q='kvm hello world' -f per_page=10",
+ "replay": "gh search repos 'kvm hello world' --limit 10",
+ "total_count": 15,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "dpw/kvm-hello-world",
+   "url": "https://github.com/dpw/kvm-hello-world",
+   "description": "A minimal kvm example",
+   "stars": 523,
+   "language": "C",
+   "created_at": "2016-06-09T04:19:36Z",
+   "pushed_at": "2022-07-30T14:22:42Z",
+   "topics": []
+  },
+  {
+   "full_name": "Lenz-K/arm64-kvm-hello-world",
+   "url": "https://github.com/Lenz-K/arm64-kvm-hello-world",
+   "description": "A bare metal AArch64 hello-world program, that is run in a KVM  AArch64 VM.",
+   "stars": 29,
+   "language": "C++",
+   "created_at": "2021-07-28T19:31:42Z",
+   "pushed_at": "2024-01-06T14:13:48Z",
+   "topics": [
+    "aarch64",
+    "arm",
+    "arm64",
+    "assembly",
+    "kvm",
+    "qemu",
+    "virtual-machine",
+    "virtualization",
+    "vm"
+   ]
+  },
+  {
+   "full_name": "Lenz-K/android-kvm-hello-world",
+   "url": "https://github.com/Lenz-K/android-kvm-hello-world",
+   "description": "An Android app, that runs a bare metal AArch64 hello-world program, in a KVM AArch64 VM.",
+   "stars": 9,
+   "language": "C++",
+   "created_at": "2021-08-31T12:04:42Z",
+   "pushed_at": "2022-03-28T10:54:39Z",
+   "topics": [
+    "aarch64",
+    "android",
+    "arm64",
+    "kvm",
+    "virtual-machine",
+    "virtualization",
+    "vm"
+   ]
+  },
+  {
+   "full_name": "loicpoulain/kvmrun",
+   "url": "https://github.com/loicpoulain/kvmrun",
+   "description": "Minimal VMM implementation - KVM hello world example (learning purpose)",
+   "stars": 6,
+   "language": "C",
+   "created_at": "2020-04-20T16:48:51Z",
+   "pushed_at": "2022-09-14T13:45:19Z",
+   "topics": [
+    "aarch64",
+    "kvm",
+    "mmio",
+    "virtual-machine"
+   ]
+  },
+  {
+   "full_name": "chennupatianilkumar/KvmHelloWorld",
+   "url": "https://github.com/chennupatianilkumar/KvmHelloWorld",
+   "description": null,
+   "stars": 0,
+   "language": "C",
+   "created_at": "2020-01-21T02:03:00Z",
+   "pushed_at": "2020-01-21T02:03:57Z",
+   "topics": []
+  },
+  {
+   "full_name": "NikoZHAI/khw-cpp",
+   "url": "https://github.com/NikoZHAI/khw-cpp",
+   "description": "kvm-hello world with c++",
+   "stars": 0,
+   "language": "CMake",
+   "created_at": "2023-05-01T02:16:54Z",
+   "pushed_at": "2023-05-01T03:11:18Z",
+   "topics": []
+  },
+  {
+   "full_name": "tpot/kvm-hello-world-rs",
+   "url": "https://github.com/tpot/kvm-hello-world-rs",
+   "description": "Port of kvm-hello-world.c to Rust",
+   "stars": 0,
+   "language": "Rust",
+   "created_at": "2024-05-31T00:27:30Z",
+   "pushed_at": "2024-06-03T23:06:45Z",
+   "topics": []
+  },
+  {
+   "full_name": "shivam-1997/kvm-hello-world",
+   "url": "https://github.com/shivam-1997/kvm-hello-world",
+   "description": null,
+   "stars": 0,
+   "language": "C",
+   "created_at": "2020-02-12T20:44:37Z",
+   "pushed_at": "2020-02-14T11:43:54Z",
+   "topics": []
+  },
+  {
+   "full_name": "eastmoutain/kvm_hello_world",
+   "url": "https://github.com/eastmoutain/kvm_hello_world",
+   "description": null,
+   "stars": 0,
+   "language": "C",
+   "created_at": "2018-03-05T08:43:58Z",
+   "pushed_at": "2018-03-05T08:46:21Z",
+   "topics": []
+  },
+  {
+   "full_name": "JaewonHur/kvm-hello-world",
+   "url": "https://github.com/JaewonHur/kvm-hello-world",
+   "description": null,
+   "stars": 0,
+   "language": "C",
+   "created_at": "2021-05-04T00:47:39Z",
+   "pushed_at": "2021-05-04T00:56:31Z",
+   "topics": []
+  }
+ ]
+}

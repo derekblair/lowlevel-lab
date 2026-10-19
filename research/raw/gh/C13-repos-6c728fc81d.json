@@ -1,0 +1,11 @@
+{
+ "candidate": "C13",
+ "kind": "repos",
+ "query": "fault injection simulator arm",
+ "executed_at": "2026-10-18T22:24:01-0700",
+ "api_call": "gh api -X GET search/repositories -f q='fault injection simulator arm' -f per_page=10",
+ "replay": "gh search repos 'fault injection simulator arm' --limit 10",
+ "total_count": 0,
+ "incomplete_results": false,
+ "items": []
+}

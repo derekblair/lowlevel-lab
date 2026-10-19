@@ -1,0 +1,120 @@
+{
+ "candidate": "C02",
+ "kind": "repos",
+ "query": "\"cross-modifying\" in:readme",
+ "executed_at": "2026-10-19T02:26:48-0700",
+ "api_call": "gh api -X GET search/repositories -f q='\"cross-modifying\" in:readme' -f per_page=10",
+ "replay": "gh search repos '\"cross-modifying\" in:readme' --limit 10",
+ "total_count": 15,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "backtrace-labs/dynamic_flag",
+   "url": "https://github.com/backtrace-labs/dynamic_flag",
+   "description": "A C library for runtime-flippable feature flags on Linux/x86-64, with negligible overhead in the common case",
+   "stars": 77,
+   "language": "C",
+   "created_at": "2021-12-03T14:53:18Z",
+   "pushed_at": "2022-10-12T15:05:25Z",
+   "topics": []
+  },
+  {
+   "full_name": "drakehuo/orange-bot",
+   "url": "https://github.com/drakehuo/orange-bot",
+   "description": null,
+   "stars": 30,
+   "language": "Python",
+   "created_at": "2022-07-20T22:42:28Z",
+   "pushed_at": "2022-07-21T20:37:26Z",
+   "topics": []
+  },
+  {
+   "full_name": "appnexus/acf",
+   "url": "https://github.com/appnexus/acf",
+   "description": "An-source C library developed and used at AppNexus.",
+   "stars": 114,
+   "language": "C",
+   "created_at": "2017-12-19T21:56:01Z",
+   "pushed_at": "2019-11-24T15:21:35Z",
+   "topics": []
+  },
+  {
+   "full_name": "hayamdk/ryzen_segv_test",
+   "url": "https://github.com/hayamdk/ryzen_segv_test",
+   "description": "RYZEN SEGV test code",
+   "stars": 48,
+   "language": "C",
+   "created_at": "2017-06-23T11:07:55Z",
+   "pushed_at": "2017-11-06T15:20:33Z",
+   "topics": []
+  },
+  {
+   "full_name": "Kucoin/kucoin-futures-node-sdk",
+   "url": "https://github.com/Kucoin/kucoin-futures-node-sdk",
+   "description": "KuCoin Futures API SDK for Node.js language",
+   "stars": 19,
+   "language": "JavaScript",
+   "created_at": "2019-10-18T03:19:36Z",
+   "pushed_at": "2025-03-04T07:37:20Z",
+   "topics": []
+  },
+  {
+   "full_name": "madhav-051429/CLV",
+   "url": "https://github.com/madhav-051429/CLV",
+   "description": null,
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2025-12-15T03:21:31Z",
+   "pushed_at": "2025-12-23T19:10:26Z",
+   "topics": []
+  },
+  {
+   "full_name": "UBC-LFS/greengene",
+   "url": "https://github.com/UBC-LFS/greengene",
+   "description": null,
+   "stars": 0,
+   "language": "PHP",
+   "created_at": "2020-03-09T21:52:44Z",
+   "pushed_at": "2025-11-06T18:55:01Z",
+   "topics": []
+  },
+  {
+   "full_name": "meuer26/SimpleComputer32v1_Student",
+   "url": "https://github.com/meuer26/SimpleComputer32v1_Student",
+   "description": "Dual-Pentium (P54C) Teaching Computer",
+   "stars": 0,
+   "language": "VHDL",
+   "created_at": "2026-10-09T11:57:05Z",
+   "pushed_at": "2026-10-13T16:15:54Z",
+   "topics": []
+  },
+  {
+   "full_name": "roberthedwardsIV/limit_order_book",
+   "url": "https://github.com/roberthedwardsIV/limit_order_book",
+   "description": "Simple Limit Order Book",
+   "stars": 0,
+   "language": "C++",
+   "created_at": "2026-09-17T00:01:41Z",
+   "pushed_at": "2026-10-10T16:59:09Z",
+   "topics": []
+  },
+  {
+   "full_name": "moshejs/fx-value-date",
+   "url": "https://github.com/moshejs/fx-value-date",
+   "description": "FX settlement/value-date math \u2014 spot, tom, forward tenors across two currency calendars, USD-lag & EOM rules. Zero dependencies.",
+   "stars": 0,
+   "language": "TypeScript",
+   "created_at": "2026-07-11T19:02:39Z",
+   "pushed_at": "2026-10-10T22:07:59Z",
+   "topics": [
+    "finance",
+    "forex",
+    "fx",
+    "settlement",
+    "trading",
+    "typescript",
+    "value-date"
+   ]
+  }
+ ]
+}

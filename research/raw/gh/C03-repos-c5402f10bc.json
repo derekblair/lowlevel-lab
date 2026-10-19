@@ -1,0 +1,176 @@
+{
+ "candidate": "C03",
+ "kind": "repos",
+ "query": "topic:processor-trace",
+ "executed_at": "2026-10-19T02:27:15-0700",
+ "api_call": "gh api -X GET search/repositories -f q='topic:processor-trace' -f per_page=10",
+ "replay": "gh search repos 'topic:processor-trace' --limit 10",
+ "total_count": 9,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "RUB-SysSec/kAFL",
+   "url": "https://github.com/RUB-SysSec/kAFL",
+   "description": "Code for the USENIX 2017 paper: kAFL: Hardware-Assisted Feedback Fuzzing for OS Kernels",
+   "stars": 596,
+   "language": "Python",
+   "created_at": "2017-08-13T12:38:59Z",
+   "pushed_at": "2019-01-10T21:23:25Z",
+   "topics": [
+    "fuzzing",
+    "intel-pt",
+    "intelpt",
+    "kernel",
+    "kernel-fuzzing",
+    "processor-trace"
+   ]
+  },
+  {
+   "full_name": "andikleen/simple-pt",
+   "url": "https://github.com/andikleen/simple-pt",
+   "description": "Simple Intel CPU processor tracing on Linux",
+   "stars": 359,
+   "language": "C",
+   "created_at": "2015-08-14T22:03:52Z",
+   "pushed_at": "2023-03-01T16:46:21Z",
+   "topics": [
+    "debug",
+    "kernel-driver",
+    "performance-analysis",
+    "performance-tuning",
+    "processor-trace",
+    "pt-decoder",
+    "trace",
+    "x86"
+   ]
+  },
+  {
+   "full_name": "BlackLuny/WinIPTCollector",
+   "url": "https://github.com/BlackLuny/WinIPTCollector",
+   "description": "Intel Processor Trace package collector for Windows",
+   "stars": 19,
+   "language": "C++",
+   "created_at": "2020-06-07T06:37:12Z",
+   "pushed_at": "2020-06-14T05:38:58Z",
+   "topics": [
+    "debug",
+    "kernel-driver",
+    "performance-tuning",
+    "processor-trace",
+    "reverse-engineering",
+    "tracer"
+   ]
+  },
+  {
+   "full_name": "pulp-platform/trdb",
+   "url": "https://github.com/pulp-platform/trdb",
+   "description": "RISC-V Processor Tracing tools and library",
+   "stars": 16,
+   "language": "C",
+   "created_at": "2019-03-15T16:43:20Z",
+   "pushed_at": "2024-03-17T18:32:00Z",
+   "topics": [
+    "e-trace",
+    "instruction-trace",
+    "processor-trace",
+    "riscv"
+   ]
+  },
+  {
+   "full_name": "sum-catnip/libipt-rs",
+   "url": "https://github.com/sum-catnip/libipt-rs",
+   "description": "high level rust bindings for the libipt (intel processor tracing) library",
+   "stars": 16,
+   "language": "Rust",
+   "created_at": "2019-11-28T20:48:06Z",
+   "pushed_at": "2025-08-05T09:28:38Z",
+   "topics": [
+    "branch-coverage",
+    "branch-tracer",
+    "decoding",
+    "intel",
+    "intelpt",
+    "ipt",
+    "processor-trace",
+    "rust"
+   ]
+  },
+  {
+   "full_name": "accemic/CTXP-format",
+   "url": "https://github.com/accemic/CTXP-format",
+   "description": "Format Specification for Unified Processor Trace",
+   "stars": 3,
+   "language": "Python",
+   "created_at": "2025-10-24T09:24:14Z",
+   "pushed_at": "2026-07-29T04:46:54Z",
+   "topics": [
+    "embedded-trace",
+    "file-format",
+    "processor-trace",
+    "riscv"
+   ]
+  },
+  {
+   "full_name": "hassanIqbal1994/kernel-os",
+   "url": "https://github.com/hassanIqbal1994/kernel-os",
+   "description": "\ud83d\udda5\ufe0f Build a minimal 64-bit x86 bare-metal kernel with custom toolchain, VGA output, and GRUB support for efficient low-level programming.",
+   "stars": 3,
+   "language": "Assembly",
+   "created_at": "2025-12-07T07:36:28Z",
+   "pushed_at": "2026-10-14T06:55:01Z",
+   "topics": [
+    "filter",
+    "filter-access",
+    "fuzzing",
+    "k210",
+    "kernel",
+    "kernel-functions",
+    "kext",
+    "macos",
+    "os-kernel",
+    "osdev",
+    "plan9",
+    "processor-trace",
+    "rcore",
+    "riscv32",
+    "rust",
+    "sysinfo",
+    "tee",
+    "vfs"
+   ]
+  },
+  {
+   "full_name": "tuxology/vmpt",
+   "url": "https://github.com/tuxology/vmpt",
+   "description": "Creates bundles of VM related hardware trace packets in JSON",
+   "stars": 2,
+   "language": "C",
+   "created_at": "2016-04-18T22:10:02Z",
+   "pushed_at": "2016-07-07T22:49:19Z",
+   "topics": [
+    "intel",
+    "intel-pt",
+    "perf",
+    "performance",
+    "processor-trace"
+   ]
+  },
+  {
+   "full_name": "BlackLuny/ptkgenerator",
+   "url": "https://github.com/BlackLuny/ptkgenerator",
+   "description": "High performance multi threading realtime intel Processor Trace data collector and decoder implemented in rust by using libipt.",
+   "stars": 1,
+   "language": null,
+   "created_at": "2021-11-20T03:48:00Z",
+   "pushed_at": "2021-11-20T04:10:47Z",
+   "topics": [
+    "debugger",
+    "driver",
+    "libipt",
+    "multithreading",
+    "processor-trace",
+    "rust"
+   ]
+  }
+ ]
+}

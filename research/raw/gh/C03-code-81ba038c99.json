@@ -1,0 +1,18 @@
+{
+ "candidate": "C03",
+ "kind": "code",
+ "query": "\"pt_image_add_cached\" jit",
+ "executed_at": "2026-10-19T02:27:37-0700",
+ "api_call": "gh api -X GET search/code -f q='\"pt_image_add_cached\" jit' -f per_page=10",
+ "replay": "gh search code '\"pt_image_add_cached\" jit' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "wilvk/asm-test",
+   "path": "docs/internal/plans/hardware-trace-plan.md",
+   "url": "https://github.com/wilvk/asm-test/blob/6ab09b91395f771591515b419f279aba3acdc6f0/docs/internal/plans/hardware-trace-plan.md",
+   "description": "A C-hosted unit-testing framework for assembly language."
+  }
+ ]
+}

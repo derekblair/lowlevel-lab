@@ -1,0 +1,11 @@
+{
+ "candidate": "C04",
+ "kind": "repos",
+ "query": "undefined flags x86",
+ "executed_at": "2026-10-18T22:21:30-0700",
+ "api_call": "gh api -X GET search/repositories -f q='undefined flags x86' -f per_page=10",
+ "replay": "gh search repos 'undefined flags x86' --limit 10",
+ "total_count": 0,
+ "incomplete_results": false,
+ "items": []
+}

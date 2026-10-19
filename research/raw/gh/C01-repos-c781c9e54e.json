@@ -1,0 +1,32 @@
+{
+ "candidate": "C01",
+ "kind": "repos",
+ "query": "isla axiomatic",
+ "executed_at": "2026-10-19T02:21:38-0700",
+ "api_call": "gh api -X GET search/repositories -f q='isla axiomatic' -f per_page=10",
+ "replay": "gh search repos 'isla axiomatic' --limit 10",
+ "total_count": 2,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "rems-project/system-semantics-arm-axiomatic-models",
+   "url": "https://github.com/rems-project/system-semantics-arm-axiomatic-models",
+   "description": "Isla-compatible systems-level tests",
+   "stars": 6,
+   "language": "Python",
+   "created_at": "2021-10-27T11:46:15Z",
+   "pushed_at": "2025-11-11T10:34:10Z",
+   "topics": []
+  },
+  {
+   "full_name": "bensimner/isla-axiomatic",
+   "url": "https://github.com/bensimner/isla-axiomatic",
+   "description": "Tools and scripts for running isla-axiomatic",
+   "stars": 0,
+   "language": "Shell",
+   "created_at": "2025-01-30T14:46:18Z",
+   "pushed_at": "2025-06-17T09:34:20Z",
+   "topics": []
+  }
+ ]
+}

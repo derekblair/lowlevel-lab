@@ -1,0 +1,32 @@
+{
+ "candidate": "C13",
+ "kind": "repos",
+ "query": "bit flip machine code",
+ "executed_at": "2026-10-18T22:24:03-0700",
+ "api_call": "gh api -X GET search/repositories -f q='bit flip machine code' -f per_page=10",
+ "replay": "gh search repos 'bit flip machine code' --limit 10",
+ "total_count": 2,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "ankur0691/TuringMachine",
+   "url": "https://github.com/ankur0691/TuringMachine",
+   "description": "This project provides code for TuringFlipper to flip the bits in input tape, Turing Subtractor to subtract two numbers based on number of zeroes and Turing Decider to decide whether the input has equal number of zeroes and ones. ",
+   "stars": 0,
+   "language": null,
+   "created_at": "2017-12-24T16:45:57Z",
+   "pushed_at": "2018-01-10T17:49:29Z",
+   "topics": []
+  },
+  {
+   "full_name": "realaaravdas/MicroLogix",
+   "url": "https://github.com/realaaravdas/MicroLogix",
+   "description": "A real-time, browser-native hardware schematic designer and logic emulator capable of stepping down from gate-level operations (AND, OR, flip-flops) to emulating an entire custom 8-bit or 16-bit microprocessor running machine code.",
+   "stars": 0,
+   "language": "TypeScript",
+   "created_at": "2026-10-05T06:07:54Z",
+   "pushed_at": "2026-10-05T06:08:12Z",
+   "topics": []
+  }
+ ]
+}

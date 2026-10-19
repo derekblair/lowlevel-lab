@@ -1,0 +1,123 @@
+{
+ "candidate": "C04",
+ "kind": "repos",
+ "query": "p-core e-core created:>2026-04-01",
+ "executed_at": "2026-10-19T02:27:53-0700",
+ "api_call": "gh api -X GET search/repositories -f q='p-core e-core created:>2026-04-01' -f per_page=10",
+ "replay": "gh search repos 'p-core e-core created:>2026-04-01' --limit 10",
+ "total_count": 13,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "joaocarvalhoopen/parallel_for__in_Odin",
+   "url": "https://github.com/joaocarvalhoopen/parallel_for__in_Odin",
+   "description": "A parallel_for( ) with work stealling technique to utilize all the performance of hybrid CPUs with p-cores and e-cores.",
+   "stars": 6,
+   "language": "Odin",
+   "created_at": "2026-08-02T15:49:17Z",
+   "pushed_at": "2026-08-02T15:53:00Z",
+   "topics": []
+  },
+  {
+   "full_name": "tsarev-is/pe-cores",
+   "url": "https://github.com/tsarev-is/pe-cores",
+   "description": "Toggle Intel P-cores and E-cores on Linux to save battery or unlock full performance",
+   "stars": 0,
+   "language": "Shell",
+   "created_at": "2026-05-21T21:38:36Z",
+   "pushed_at": "2026-05-21T21:40:45Z",
+   "topics": []
+  },
+  {
+   "full_name": "abdulkadirturkan/p-core-vs-e-core-master-thesis",
+   "url": "https://github.com/abdulkadirturkan/p-core-vs-e-core-master-thesis",
+   "description": "Performance Parity of Performance-Cores and Efficient-Cores in OpenMP Parallel Image Filtering: A Benchmarking and VTune Microarchitecture Analysis on Intel Raptor Lake",
+   "stars": 0,
+   "language": "C++",
+   "created_at": "2026-05-13T09:19:24Z",
+   "pushed_at": "2026-05-13T10:29:23Z",
+   "topics": []
+  },
+  {
+   "full_name": "Brad-Devices/BradISA",
+   "url": "https://github.com/Brad-Devices/BradISA",
+   "description": "BradISA \u2014 the Brad Devices CPU instruction set architecture: the shared software contract behind every BradCore (Phoenix P-cores, Falcon E-cores), with Verilog/VHDL reference cores",
+   "stars": 0,
+   "language": "Verilog",
+   "created_at": "2026-09-14T06:37:10Z",
+   "pushed_at": "2026-10-08T02:58:55Z",
+   "topics": [
+    "bradisa",
+    "bradverse",
+    "cpu",
+    "instruction-set",
+    "isa",
+    "reference-implementation",
+    "risc",
+    "rtl",
+    "verilog",
+    "vhdl"
+   ]
+  },
+  {
+   "full_name": "tasadilet-ctrl/monte-carlo-lp-ball",
+   "url": "https://github.com/tasadilet-ctrl/monte-carlo-lp-ball",
+   "description": "Monte Carlo L_p-ball volume estimation (serial + OpenMP), validated against closed-form ground truth: curse of dimensionality measured directly, RNG seeding calibration tested, P-core/E-core speedup limit found",
+   "stars": 0,
+   "language": "C++",
+   "created_at": "2026-08-31T14:36:08Z",
+   "pushed_at": "2026-09-01T16:28:12Z",
+   "topics": []
+  },
+  {
+   "full_name": "NagireddiYashaswini/Pacer",
+   "url": "https://github.com/NagireddiYashaswini/Pacer",
+   "description": "An adaptive user-space scheduling daemon that dynamically steers threads between P-cores and E-cores using online hardware performance counter measurements (IPC, cache stalls, and energy efficiency) rather than static heuristics.",
+   "stars": 0,
+   "language": "C",
+   "created_at": "2026-10-10T17:13:15Z",
+   "pushed_at": "2026-10-11T07:22:53Z",
+   "topics": []
+  },
+  {
+   "full_name": "SapphireRapids/pecore-bench",
+   "url": "https://github.com/SapphireRapids/pecore-bench",
+   "description": "P-core vs E-core benchmark for Windows 11 hybrid CPUs: per-core int/FP/AVX2/AVX-VNNI/AVX-512 latency & throughput, plus cache latency/bandwidth curves, in one self-contained exe",
+   "stars": 0,
+   "language": "Rust",
+   "created_at": "2026-10-02T15:21:12Z",
+   "pushed_at": "2026-10-02T15:28:33Z",
+   "topics": []
+  },
+  {
+   "full_name": "7zrs/CoreLasso",
+   "url": "https://github.com/7zrs/CoreLasso",
+   "description": "A Process-Lasso-style CPU affinity / CPU-Set manager for hybrid Intel CPUs. Built for this machine: **i7-13650HX \u2014 6 P-cores (12 threads, CPU 0\u201311) + 8 E-cores (CPU 12\u201319)**.",
+   "stars": 0,
+   "language": "C#",
+   "created_at": "2026-10-15T14:55:05Z",
+   "pushed_at": "2026-10-15T14:57:53Z",
+   "topics": []
+  },
+  {
+   "full_name": "TheGccb/Battrie-Saver",
+   "url": "https://github.com/TheGccb/Battrie-Saver",
+   "description": "This project aims to provide a script-based solution to optimize power consumption on Intel hybrid CPUs (H and HX series). By forcing Windows to prioritize Efficient-cores (E-cores) over Performance-cores (P-cores)",
+   "stars": 0,
+   "language": "Batchfile",
+   "created_at": "2026-04-26T15:28:55Z",
+   "pushed_at": "2026-04-26T16:13:45Z",
+   "topics": []
+  },
+  {
+   "full_name": "Pratham-2105/gemmx-cpp",
+   "url": "https://github.com/Pratham-2105/gemmx-cpp",
+   "description": "Experimental study of dense matrix multiplication (GEMM) optimization in C++20: loop ordering, cache blocking, AVX2/FMA SIMD, and multithreading on a hybrid P-core/E-core x86 CPU, with a reproducible benchmark pipeline and raw data.",
+   "stars": 0,
+   "language": "C++",
+   "created_at": "2026-09-24T20:25:30Z",
+   "pushed_at": "2026-10-10T17:28:57Z",
+   "topics": []
+  }
+ ]
+}

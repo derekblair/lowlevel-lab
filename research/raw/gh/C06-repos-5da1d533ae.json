@@ -1,0 +1,169 @@
+{
+ "candidate": "C06",
+ "kind": "repos",
+ "query": "\"reversible\" \"machine code\" in:readme",
+ "executed_at": "2026-10-19T02:28:32-0700",
+ "api_call": "gh api -X GET search/repositories -f q='\"reversible\" \"machine code\" in:readme' -f per_page=10",
+ "replay": "gh search repos '\"reversible\" \"machine code\" in:readme' --limit 10",
+ "total_count": 311,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "swoole/typephp",
+   "url": "https://github.com/swoole/typephp",
+   "description": "Compile PHP to Native Binaries",
+   "stars": 1448,
+   "language": "PHP",
+   "created_at": "2026-05-11T05:35:46Z",
+   "pushed_at": "2026-10-19T09:21:24Z",
+   "topics": []
+  },
+  {
+   "full_name": "TheWover/Manager",
+   "url": "https://github.com/TheWover/Manager",
+   "description": "Library of tools and examples for loading/bootstrapping managed code from unmanaged code in .NET",
+   "stars": 64,
+   "language": "C++",
+   "created_at": "2019-06-16T22:24:43Z",
+   "pushed_at": "2019-11-22T16:34:38Z",
+   "topics": []
+  },
+  {
+   "full_name": "bex-co/beancount-io",
+   "url": "https://github.com/bex-co/beancount-io",
+   "description": "\ud83d\udcb0 Double-entry bookkeeping made easy \u2014 plain-text accounting for humans and AI agents. Polished iOS & Android app built with React Native + Expo.",
+   "stars": 307,
+   "language": "TypeScript",
+   "created_at": "2020-10-02T07:00:24Z",
+   "pushed_at": "2026-10-19T09:22:39Z",
+   "topics": [
+    "accounting",
+    "android",
+    "beancount",
+    "bookkeeping",
+    "double-entry",
+    "expo",
+    "finance",
+    "fintech",
+    "graphql",
+    "ios",
+    "ledger",
+    "mobile-app",
+    "money-manager",
+    "personal-finance",
+    "plaintext-accounting",
+    "react-native",
+    "typescript"
+   ]
+  },
+  {
+   "full_name": "rep-movsd/9d",
+   "url": "https://github.com/rep-movsd/9d",
+   "description": "Complete software suite for the nand2tetris MOOC course",
+   "stars": 20,
+   "language": "C++",
+   "created_at": "2017-08-02T08:30:42Z",
+   "pushed_at": "2019-02-10T12:49:08Z",
+   "topics": []
+  },
+  {
+   "full_name": "tawroot/antigravity-cleaner",
+   "url": "https://github.com/tawroot/antigravity-cleaner",
+   "description": "\u26a1 Bypass Google Sanctions, Region Lock & 403/429 Errors in Antigravity IDE & 2.x. Zero-TUN SOCKS5 Smart Injector, Doctor & Surgical Quota Reset.",
+   "stars": 180,
+   "language": "HTML",
+   "created_at": "2025-12-15T13:27:43Z",
+   "pushed_at": "2026-10-18T13:36:36Z",
+   "topics": [
+    "403-forbidden",
+    "anti-censorship",
+    "antigravity-ide",
+    "china",
+    "clash",
+    "developer-tools",
+    "gemini-code-assist",
+    "google-antigravity",
+    "iran",
+    "region-lock",
+    "russia",
+    "sanctions-bypass",
+    "v2ray"
+   ]
+  },
+  {
+   "full_name": "Studio-Todos/Lin-Symmetric",
+   "url": "https://github.com/Studio-Todos/Lin-Symmetric",
+   "description": null,
+   "stars": 28,
+   "language": "C++",
+   "created_at": "2026-03-09T01:36:16Z",
+   "pushed_at": "2026-08-29T05:22:05Z",
+   "topics": []
+  },
+  {
+   "full_name": "umpolungfish/cumpyl",
+   "url": "https://github.com/umpolungfish/cumpyl",
+   "description": "Cumpyl - Python binary analysis and rewriting framework",
+   "stars": 8,
+   "language": "Python",
+   "created_at": "2025-08-18T14:06:15Z",
+   "pushed_at": "2026-02-05T14:56:27Z",
+   "topics": [
+    "analysis",
+    "binary",
+    "binarypack",
+    "binaryunpack",
+    "cli",
+    "encoding",
+    "hexdump",
+    "hexdump-viewer",
+    "malware",
+    "malware-analysis",
+    "malware-analyzer",
+    "malware-development",
+    "malware-research",
+    "obfuscation",
+    "obfuscator",
+    "python",
+    "tool",
+    "unlicense",
+    "vibe-coded",
+    "vibecoding"
+   ]
+  },
+  {
+   "full_name": "number42net/sharp-pc1251",
+   "url": "https://github.com/number42net/sharp-pc1251",
+   "description": null,
+   "stars": 8,
+   "language": "BASIC",
+   "created_at": "2022-05-05T18:24:49Z",
+   "pushed_at": "2023-08-15T08:19:15Z",
+   "topics": []
+  },
+  {
+   "full_name": "jndean/Railway",
+   "url": "https://github.com/jndean/Railway",
+   "description": "A time-and-memory-linearly reversible imperative programming language, featuring multi-threading and mono-directional data. \ud83d\ude82",
+   "stars": 8,
+   "language": "Python",
+   "created_at": "2019-07-20T11:45:37Z",
+   "pushed_at": "2020-03-27T22:00:35Z",
+   "topics": [
+    "programming-language",
+    "reversible-computation",
+    "reversible-programming-language"
+   ]
+  },
+  {
+   "full_name": "cykim8811/RISC-R",
+   "url": "https://github.com/cykim8811/RISC-R",
+   "description": "A computer architecture designed to implement reversible computing principles",
+   "stars": 4,
+   "language": "Python",
+   "created_at": "2024-07-30T14:52:00Z",
+   "pushed_at": "2024-08-15T13:39:41Z",
+   "topics": []
+  }
+ ]
+}

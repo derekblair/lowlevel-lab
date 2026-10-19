@@ -1,0 +1,131 @@
+{
+ "candidate": "C02",
+ "kind": "repos",
+ "query": "smc microbenchmark in:name,description,readme",
+ "executed_at": "2026-10-18T22:20:15-0700",
+ "api_call": "gh api -X GET search/repositories -f q='smc microbenchmark in:name,description,readme' -f per_page=10",
+ "replay": "gh search repos 'smc microbenchmark in:name,description,readme' --limit 10",
+ "total_count": 13,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "aimeedaicn/ABC-MMD-TimeSeriesData",
+   "url": "https://github.com/aimeedaicn/ABC-MMD-TimeSeriesData",
+   "description": "Summer Project for MSc Statistics",
+   "stars": 0,
+   "language": "R",
+   "created_at": "2025-08-27T11:27:20Z",
+   "pushed_at": "2025-10-09T04:27:29Z",
+   "topics": []
+  },
+  {
+   "full_name": "joshgivens/SC2GroupProject",
+   "url": "https://github.com/joshgivens/SC2GroupProject",
+   "description": null,
+   "stars": 0,
+   "language": "R",
+   "created_at": "2022-05-17T13:49:15Z",
+   "pushed_at": "2022-06-06T11:20:39Z",
+   "topics": []
+  },
+  {
+   "full_name": "edbonneville/parlSMCFCS",
+   "url": "https://github.com/edbonneville/parlSMCFCS",
+   "description": "A parallel wrapper for smcfcs imputation",
+   "stars": 0,
+   "language": "R",
+   "created_at": "2021-01-18T14:59:58Z",
+   "pushed_at": "2025-08-13T14:18:11Z",
+   "topics": []
+  },
+  {
+   "full_name": "jiegec/awesome-stars",
+   "url": "https://github.com/jiegec/awesome-stars",
+   "description": "Awesome List of my own!",
+   "stars": 115,
+   "language": null,
+   "created_at": "2016-08-02T01:06:12Z",
+   "pushed_at": "2025-09-23T01:36:33Z",
+   "topics": [
+    "awesome-list"
+   ]
+  },
+  {
+   "full_name": "jaywcjlove/awesome-swift-macos-apps",
+   "url": "https://github.com/jaywcjlove/awesome-swift-macos-apps",
+   "description": "A curated collection of open-source macOS applications built with Swift",
+   "stars": 1756,
+   "language": "Swift",
+   "created_at": "2024-10-09T07:21:55Z",
+   "pushed_at": "2026-10-19T04:33:29Z",
+   "topics": [
+    "awesome",
+    "awesome-list",
+    "desktop-app",
+    "macos",
+    "macos-app",
+    "macos-application",
+    "macos-menubar",
+    "macos-setup",
+    "macos-swift",
+    "macosx",
+    "open-source-project",
+    "swift",
+    "swift-app",
+    "swift-application",
+    "swift-macros",
+    "swiftui"
+   ]
+  },
+  {
+   "full_name": "divdhack-netizen/bit_ai",
+   "url": "https://github.com/divdhack-netizen/bit_ai",
+   "description": "A small agent with local inference. Designed to work with very small models, it is useful for working with documents and summaries from a terminal",
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2026-10-13T11:26:01Z",
+   "pushed_at": "2026-10-18T07:37:34Z",
+   "topics": []
+  },
+  {
+   "full_name": "AP1028/macos-nvidia-vfio",
+   "url": "https://github.com/AP1028/macos-nvidia-vfio",
+   "description": null,
+   "stars": 5,
+   "language": "Shell",
+   "created_at": "2026-10-08T07:45:59Z",
+   "pushed_at": "2026-10-09T04:12:54Z",
+   "topics": []
+  },
+  {
+   "full_name": "t0b1kent/hyperbridge",
+   "url": "https://github.com/t0b1kent/hyperbridge",
+   "description": "HyperBridge: independent x86-64/x86 to ARM64 CPU translator for Wine on Apple Silicon, the engine of MacRunner (MIT)",
+   "stars": 0,
+   "language": "Assembly",
+   "created_at": "2026-09-25T23:32:13Z",
+   "pushed_at": "2026-10-17T05:43:26Z",
+   "topics": []
+  },
+  {
+   "full_name": "forera-ai/cachalot",
+   "url": "https://github.com/forera-ai/cachalot",
+   "description": "A DeepSeek Flash 4.1 on mac",
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2026-09-14T21:02:11Z",
+   "pushed_at": "2026-10-18T19:23:21Z",
+   "topics": []
+  },
+  {
+   "full_name": "manhtdd/conf-crawler",
+   "url": "https://github.com/manhtdd/conf-crawler",
+   "description": null,
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2024-12-10T05:08:46Z",
+   "pushed_at": "2025-02-27T15:07:54Z",
+   "topics": []
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+{
+ "candidate": "C04",
+ "kind": "repos",
+ "query": "hybrid cpu differential testing",
+ "executed_at": "2026-10-18T22:21:27-0700",
+ "api_call": "gh api -X GET search/repositories -f q='hybrid cpu differential testing' -f per_page=10",
+ "replay": "gh search repos 'hybrid cpu differential testing' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "yufengzjj/hybrid-x86-oracle",
+   "url": "https://github.com/yufengzjj/hybrid-x86-oracle",
+   "description": "Pluggable golden-reference x86-64 CPUs for differential testing, behind one API",
+   "stars": 0,
+   "language": "Rust",
+   "created_at": "2026-07-31T04:46:28Z",
+   "pushed_at": "2026-09-29T05:54:39Z",
+   "topics": []
+  }
+ ]
+}

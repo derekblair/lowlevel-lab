@@ -1,0 +1,72 @@
+{
+ "candidate": "C06",
+ "kind": "code",
+ "query": "\"reversible\" PROT_EXEC mmap jit",
+ "executed_at": "2026-10-19T02:28:52-0700",
+ "api_call": "gh api -X GET search/code -f q='\"reversible\" PROT_EXEC mmap jit' -f per_page=10",
+ "replay": "gh search code '\"reversible\" PROT_EXEC mmap jit' --limit 10",
+ "total_count": 106,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "OutlineDriven/outline-driven-development",
+   "path": ".devin/skills/jit-compilation/SKILL.md",
+   "url": "https://github.com/OutlineDriven/outline-driven-development/blob/b0e8ce89a19fac880251dc3ea1babfeb4503a4fe/.devin/skills/jit-compilation/SKILL.md",
+   "description": "Outline-Driven Development - opinionated methodology between vibes and specs. AST tooling + context engineering + loop engineering on your hands. Plugins for Claude / Codex / Gemini / Cursor."
+  },
+  {
+   "full_name": "launix-de/memcp",
+   "path": "scm/jit.go",
+   "url": "https://github.com/launix-de/memcp/blob/b4e3743900e1b9faf532eb0f4aaf0bf7acad0cbb/scm/jit.go",
+   "description": "A columnar In-Memory Database as Drop-In Replacement for MySQL supporting 10x performance in OLAP workloads and similar performance in OLTP"
+  },
+  {
+   "full_name": "OutlineDriven/odin-claude-plugin",
+   "path": "plugins/odin-native/skills/jit-compilation/SKILL.md",
+   "url": "https://github.com/OutlineDriven/odin-claude-plugin/blob/8ce0e87a3e88043cdeb4be21eec5565bbdc638ea/plugins/odin-native/skills/jit-compilation/SKILL.md",
+   "description": "Outline-Driven Development for Claude Code - 46 agents, 25+ skills, diagram-first methodology, AST-based editing, atomic commits."
+  },
+  {
+   "full_name": "jart/cosmopolitan",
+   "path": "tool/net/help.txt",
+   "url": "https://github.com/jart/cosmopolitan/blob/34fa4edae8c5c2bd09b8544a50c9e5f4f888dac1/tool/net/help.txt",
+   "description": "build-once run-anywhere c library"
+  },
+  {
+   "full_name": "jart/cosmopolitan",
+   "path": "tool/net/definitions.lua",
+   "url": "https://github.com/jart/cosmopolitan/blob/34fa4edae8c5c2bd09b8544a50c9e5f4f888dac1/tool/net/definitions.lua",
+   "description": "build-once run-anywhere c library"
+  },
+  {
+   "full_name": "sbcl/sbcl",
+   "path": "src/runtime/save.c",
+   "url": "https://github.com/sbcl/sbcl/blob/6ca32707bab9edbeb22741f8b209e37f9c4cf9d1/src/runtime/save.c",
+   "description": "Mirror of Steel Bank Common Lisp (SBCL)'s official repository"
+  },
+  {
+   "full_name": "RopRunners/rctf-2026",
+   "path": "internal/possibly_maybe/runner/src/jit/jit.c",
+   "url": "https://github.com/RopRunners/rctf-2026/blob/44523b13190595efe49742899c9393010c631310/internal/possibly_maybe/runner/src/jit/jit.c",
+   "description": null
+  },
+  {
+   "full_name": "OutlineDriven/outline-driven-development",
+   "path": ".devin/skills/interpreters/SKILL.md",
+   "url": "https://github.com/OutlineDriven/outline-driven-development/blob/b0e8ce89a19fac880251dc3ea1babfeb4503a4fe/.devin/skills/interpreters/SKILL.md",
+   "description": "Outline-Driven Development - opinionated methodology between vibes and specs. AST tooling + context engineering + loop engineering on your hands. Plugins for Claude / Codex / Gemini / Cursor."
+  },
+  {
+   "full_name": "harshdhamaniya/android-security-handbook",
+   "path": "65-Hooking/cheatsheet.md",
+   "url": "https://github.com/harshdhamaniya/android-security-handbook/blob/569a2c4e69d48381b7a354944e2d61dc65e141ce/65-Hooking/cheatsheet.md",
+   "description": "Android security and penetration testing, from first principles to senior practitioner. 81 chapters, ~327 labs, measured rather than recited."
+  },
+  {
+   "full_name": "willfaust/Madeira",
+   "path": "app/Madeira/ContentView.swift",
+   "url": "https://github.com/willfaust/Madeira/blob/279fd0f83170425db002fe25d6bd62f6355f497d/app/Madeira/ContentView.swift",
+   "description": "Run x86-64 Windows PC games on jailed iOS via FEX-Emu + Wine + DXMT"
+  }
+ ]
+}

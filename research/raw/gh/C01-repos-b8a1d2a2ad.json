@@ -1,0 +1,22 @@
+{
+ "candidate": "C01",
+ "kind": "repos",
+ "query": "icache coherence emulator",
+ "executed_at": "2026-10-18T22:19:28-0700",
+ "api_call": "gh api -X GET search/repositories -f q='icache coherence emulator' -f per_page=10",
+ "replay": "gh search repos 'icache coherence emulator' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "ZacharyCM/harvard-mesi-dv",
+   "url": "https://github.com/ZacharyCM/harvard-mesi-dv",
+   "description": "MESI snooping coherence protocol implemented on a Harvard Architecture cache system (ICache + DCache), with a UVM-lite SystemVerilog verification suite featuring constrained-random stimulus, bus monitor, scoreboard, and functional coverage. Built on top of the MyPC 80186 FPGA emulator by Waldo Alvarez.",
+   "stars": 0,
+   "language": "C++",
+   "created_at": "2026-03-08T00:30:30Z",
+   "pushed_at": "2026-03-09T03:28:29Z",
+   "topics": []
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+{
+ "candidate": "C12",
+ "kind": "repos",
+ "query": "elf quine",
+ "executed_at": "2026-10-18T22:23:52-0700",
+ "api_call": "gh api -X GET search/repositories -f q='elf quine' -f per_page=10",
+ "replay": "gh search repos 'elf quine' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "meithecatte/mips-quine",
+   "url": "https://github.com/meithecatte/mips-quine",
+   "description": "MIPS Quine that disassembles its own code and parses its own ELF symbol table",
+   "stars": 2,
+   "language": "Assembly",
+   "created_at": "2023-06-08T22:17:48Z",
+   "pushed_at": "2023-06-08T22:20:09Z",
+   "topics": []
+  }
+ ]
+}

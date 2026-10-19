@@ -1,0 +1,72 @@
+{
+ "candidate": "C03",
+ "kind": "code",
+ "query": "\"fup_on_ptw\"",
+ "executed_at": "2026-10-19T02:23:07-0700",
+ "api_call": "gh api -X GET search/code -f q='\"fup_on_ptw\"' -f per_page=10",
+ "replay": "gh search code '\"fup_on_ptw\"' --limit 10",
+ "total_count": 4624,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "andikleen/simple-pt",
+   "path": "sptcmd",
+   "url": "https://github.com/andikleen/simple-pt/blob/83dc356cbccbb6a6efabe031920cf7ba032efdd6/sptcmd",
+   "description": "Simple Intel CPU processor tracing on Linux"
+  },
+  {
+   "full_name": "EOS-team/EOS",
+   "path": "src/RROS/arch/x86/events/intel/pt.c",
+   "url": "https://github.com/EOS-team/EOS/blob/40c8096ed6603bf0a2e256d4d594a56048765c4c/src/RROS/arch/x86/events/intel/pt.c",
+   "description": "EOS is a dual-core operating system designed specifically for embodied intelligence, suitable for robots, drones, satellites or other scenarios requiring real-time and general capabilities."
+  },
+  {
+   "full_name": "andikleen/simple-pt",
+   "path": "simple-pt.c",
+   "url": "https://github.com/andikleen/simple-pt/blob/83dc356cbccbb6a6efabe031920cf7ba032efdd6/simple-pt.c",
+   "description": "Simple Intel CPU processor tracing on Linux"
+  },
+  {
+   "full_name": "zhovner/OneFileLinux",
+   "path": "linux-4.14.22/arch/x86/events/intel/pt.h",
+   "url": "https://github.com/zhovner/OneFileLinux/blob/91666aeddd11d3e73f21a720c2cc1e1828a71206/linux-4.14.22/arch/x86/events/intel/pt.h",
+   "description": "Live linux distro combined in one ~20MB file. Runs on any UEFI computer."
+  },
+  {
+   "full_name": "EOS-team/EOS",
+   "path": "src/RROS/tools/perf/Documentation/perf-intel-pt.txt",
+   "url": "https://github.com/EOS-team/EOS/blob/40c8096ed6603bf0a2e256d4d594a56048765c4c/src/RROS/tools/perf/Documentation/perf-intel-pt.txt",
+   "description": "EOS is a dual-core operating system designed specifically for embodied intelligence, suitable for robots, drones, satellites or other scenarios requiring real-time and general capabilities."
+  },
+  {
+   "full_name": "EOS-team/EOS",
+   "path": "src/RROS/arch/x86/kvm/vmx/vmx.c",
+   "url": "https://github.com/EOS-team/EOS/blob/40c8096ed6603bf0a2e256d4d594a56048765c4c/src/RROS/arch/x86/kvm/vmx/vmx.c",
+   "description": "EOS is a dual-core operating system designed specifically for embodied intelligence, suitable for robots, drones, satellites or other scenarios requiring real-time and general capabilities."
+  },
+  {
+   "full_name": "ia32-doc/ia32-doc",
+   "path": "out/ia32_compact.h",
+   "url": "https://github.com/ia32-doc/ia32-doc/blob/efdea98d09f95ba5c05ae4ab9a5e6837e35183b7/out/ia32_compact.h",
+   "description": "IA32-doc is a project which aims to put as many definitions from the Intel Manual into machine-processable format as possible"
+  },
+  {
+   "full_name": "zhovner/OneFileLinux",
+   "path": "linux-4.14.22/arch/x86/events/intel/pt.c",
+   "url": "https://github.com/zhovner/OneFileLinux/blob/91666aeddd11d3e73f21a720c2cc1e1828a71206/linux-4.14.22/arch/x86/events/intel/pt.c",
+   "description": "Live linux distro combined in one ~20MB file. Runs on any UEFI computer."
+  },
+  {
+   "full_name": "EOS-team/EOS",
+   "path": "src/RROS/arch/x86/include/asm/msr-index.h",
+   "url": "https://github.com/EOS-team/EOS/blob/40c8096ed6603bf0a2e256d4d594a56048765c4c/src/RROS/arch/x86/include/asm/msr-index.h",
+   "description": "EOS is a dual-core operating system designed specifically for embodied intelligence, suitable for robots, drones, satellites or other scenarios requiring real-time and general capabilities."
+  },
+  {
+   "full_name": "sslab-gatech/janus",
+   "path": "lkl/arch/x86/events/intel/pt.h",
+   "url": "https://github.com/sslab-gatech/janus/blob/58d9e85df86068f9532f28f45a7e2041b32a165c/lkl/arch/x86/events/intel/pt.h",
+   "description": "Janus: a state-of-the-art file system fuzzer on Linux"
+  }
+ ]
+}

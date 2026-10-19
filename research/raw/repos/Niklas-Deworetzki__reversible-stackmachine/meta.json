@@ -1,0 +1,14 @@
+{
+ "repo": "Niklas-Deworetzki/reversible-stackmachine",
+ "description": "Virtual machine implementation of a low-level reversible stack machine optimised for performance.",
+ "stars": 4,
+ "created_at": "2022-10-03T14:01:43Z",
+ "pushed_at": "2022-10-03T14:11:39Z",
+ "default_branch": "main",
+ "head_sha": "2143f6a7e54d6493d2322f1dc5b4ae19c3c93b01",
+ "fetched_at_utc": "2026-10-19T09:28:30Z",
+ "files": [
+  "README.md",
+  "build.sh"
+ ]
+}

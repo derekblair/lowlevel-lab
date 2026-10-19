@@ -1,0 +1,58 @@
+{
+ "candidate": "C19",
+ "kind": "repos",
+ "query": "self-replicating machine code",
+ "executed_at": "2026-10-18T22:25:17-0700",
+ "api_call": "gh api -X GET search/repositories -f q='self-replicating machine code' -f per_page=10",
+ "replay": "gh search repos 'self-replicating machine code' --limit 10",
+ "total_count": 3,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "DavidCanHelp/unit",
+   "url": "https://github.com/DavidCanHelp/unit",
+   "description": "A self-replicating software nanobot. Forth interpreter + S-expression mesh protocol + genetic programming + distributed computation + persistence, all in one binary. Units spawn copies, evolve their own code, distribute goals across peers, hibernate and resurrect. Works across machines over UDP. Try the live demo.",
+   "stars": 19,
+   "language": "Rust",
+   "created_at": "2026-03-25T16:46:24Z",
+   "pushed_at": "2026-09-13T22:31:03Z",
+   "topics": [
+    "nanobot"
+   ]
+  },
+  {
+   "full_name": "damianfye/vestige",
+   "url": "https://github.com/damianfye/vestige",
+   "description": "A digital evolution soup built as an archaeology site: self-replicating machine code, and the instruments to work out what it became.",
+   "stars": 0,
+   "language": "JavaScript",
+   "created_at": "2026-08-29T09:55:49Z",
+   "pushed_at": "2026-08-29T09:55:52Z",
+   "topics": [
+    "alife",
+    "artificial-life",
+    "avida",
+    "digital-evolution",
+    "self-replication",
+    "tierra"
+   ]
+  },
+  {
+   "full_name": "yurbar/primordia",
+   "url": "https://github.com/yurbar/primordia",
+   "description": "A soup of self-replicating machine code: one hand-written 55-instruction ancestor, and the compression, parasites and collapses that evolved from it.",
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2026-08-27T05:08:46Z",
+   "pushed_at": "2026-08-27T05:32:17Z",
+   "topics": [
+    "alife",
+    "artificial-life",
+    "evolution",
+    "self-replication",
+    "tierra",
+    "virtual-machine"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,142 @@
+{
+ "candidate": "C06",
+ "kind": "repos",
+ "query": "janus reversible",
+ "executed_at": "2026-10-18T22:22:23-0700",
+ "api_call": "gh api -X GET search/repositories -f q='janus reversible' -f per_page=10",
+ "replay": "gh search repos 'janus reversible' --limit 10",
+ "total_count": 18,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "mbudde/jana",
+   "url": "https://github.com/mbudde/jana",
+   "description": "An interpreter for Janus, the reversible programming language.",
+   "stars": 15,
+   "language": "Haskell",
+   "created_at": "2013-02-07T13:13:10Z",
+   "pushed_at": "2020-06-07T15:06:03Z",
+   "topics": [
+    "interpreter",
+    "janus",
+    "programming-language",
+    "reversible-programming-language"
+   ]
+  },
+  {
+   "full_name": "joristt/Hanus",
+   "url": "https://github.com/joristt/Hanus",
+   "description": "A much more powerful version of the reversible language Janus, built in Haskell",
+   "stars": 8,
+   "language": "TeX",
+   "created_at": "2017-11-14T13:44:52Z",
+   "pushed_at": "2018-01-28T20:19:24Z",
+   "topics": []
+  },
+  {
+   "full_name": "andrebfc/Janus-Parser-with-antlr4",
+   "url": "https://github.com/andrebfc/Janus-Parser-with-antlr4",
+   "description": "Janus reversible computing programming language with antlr4",
+   "stars": 4,
+   "language": "Java",
+   "created_at": "2019-05-12T11:14:17Z",
+   "pushed_at": "2021-04-19T11:50:04Z",
+   "topics": []
+  },
+  {
+   "full_name": "Ekima/Reversible-Graph-Algorithms-Janus-",
+   "url": "https://github.com/Ekima/Reversible-Graph-Algorithms-Janus-",
+   "description": "Code files for my bachelor's project written in the Janus programming language. Fall/Winter 2014",
+   "stars": 5,
+   "language": "Python",
+   "created_at": "2014-09-25T20:46:29Z",
+   "pushed_at": "2015-07-04T11:41:02Z",
+   "topics": []
+  },
+  {
+   "full_name": "evincarofautumn/Janus",
+   "url": "https://github.com/evincarofautumn/Janus",
+   "description": "An implementation of the Janus reversible programming language",
+   "stars": 3,
+   "language": "Haskell",
+   "created_at": "2017-05-31T03:54:40Z",
+   "pushed_at": "2017-05-31T03:54:58Z",
+   "topics": []
+  },
+  {
+   "full_name": "jsbursik/Janus-Keyboard",
+   "url": "https://github.com/jsbursik/Janus-Keyboard",
+   "description": "A reversible split ergonomic keyboard made with Ergogen and KiCAD, firmware made with ZMK.",
+   "stars": 4,
+   "language": "JavaScript",
+   "created_at": "2024-05-13T21:15:11Z",
+   "pushed_at": "2026-09-18T18:25:08Z",
+   "topics": [
+    "ergogen",
+    "ergonomic-keyboard",
+    "keyboard",
+    "kicad-pcb",
+    "zmk"
+   ]
+  },
+  {
+   "full_name": "pointlander/janus",
+   "url": "https://github.com/pointlander/janus",
+   "description": "Gradient Descent based Factoring using Analog Reversible Logic",
+   "stars": 2,
+   "language": "Go",
+   "created_at": "2018-12-02T06:08:00Z",
+   "pushed_at": "2025-04-08T21:01:05Z",
+   "topics": []
+  },
+  {
+   "full_name": "joule-lang/joule",
+   "url": "https://github.com/joule-lang/joule",
+   "description": "Reversible Object-Oriented Language: Janus Object-Oriented Language = JOOL = Joule",
+   "stars": 2,
+   "language": null,
+   "created_at": "2016-04-10T09:45:36Z",
+   "pushed_at": "2017-02-02T21:22:12Z",
+   "topics": []
+  },
+  {
+   "full_name": "hyperpolymath/januskey",
+   "url": "https://github.com/hyperpolymath/januskey",
+   "description": "Rust CLI for reversible file operations. Every delete, modify, and move carries inversion metadata, enabling instant rollback without external backups. Uses content-addressed storage (SHA-256) and an append-only operation log. Formal proofs of the complete reversibility guarantee are pending.",
+   "stars": 3,
+   "language": "Rust",
+   "created_at": "2025-12-11T00:28:38Z",
+   "pushed_at": "2026-10-14T01:17:43Z",
+   "topics": [
+    "cli-tool",
+    "content-addressed-storage",
+    "epistemic-computing",
+    "epistemic-infrastructure",
+    "equivalence-aware-computing",
+    "file-operations",
+    "hyperpolymath",
+    "instant-rollback",
+    "maximum-principal-reduction",
+    "open-source",
+    "reversible-file-operations",
+    "rust",
+    "secure-deletion",
+    "security",
+    "transaction",
+    "typed-provenance",
+    "veridical-computing",
+    "zero-trust"
+   ]
+  },
+  {
+   "full_name": "minifold/reversible-regression",
+   "url": "https://github.com/minifold/reversible-regression",
+   "description": "Regression algorithms using reversible programming language Janus",
+   "stars": 0,
+   "language": null,
+   "created_at": "2022-12-11T18:47:09Z",
+   "pushed_at": "2022-12-19T00:55:13Z",
+   "topics": []
+  }
+ ]
+}

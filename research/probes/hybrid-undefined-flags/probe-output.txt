@@ -1,0 +1,100 @@
+# probe outputs, 2026-10-18 22:27:30 PDT, host nibbles,  Intel(R) Core(TM) Ultra X7 358H
+# P-cores = CPUs 0-3 (cpu_core PMU), E-cores = CPUs 4-15 (cpu_atom PMU)
+$ ./uflags 0
+mul      b2457222ce0dd06b
+imul     b2457222ce0dd06b
+bsf0     75fe3d30d54ff45b
+bsr0     75fe3d30d54ff45b
+shl      1591bb4e23f0896b
+shr8     e7ec29f6759043d3
+shld16   5b017ce3d59876f7
+shrd16   83721e1f92f22177
+rol      13e0302668a8fb97
+rcl8     3a99b9700ed10bf0
+and      85dfb7662b440743
+bt       bea055b554070eb7
+tzcnt    ffa3dab4f973704b
+lzcnt    eb184a2c23d5ffc3
+bswap16  5b4b04c0b2525983
+div      9d2f5e34aafbde3b
+exit=0
+$ ./uflags 1
+mul      b2457222ce0dd06b
+imul     b2457222ce0dd06b
+bsf0     75fe3d30d54ff45b
+bsr0     75fe3d30d54ff45b
+shl      1591bb4e23f0896b
+shr8     e7ec29f6759043d3
+shld16   5b017ce3d59876f7
+shrd16   83721e1f92f22177
+rol      13e0302668a8fb97
+rcl8     3a99b9700ed10bf0
+and      85dfb7662b440743
+bt       bea055b554070eb7
+tzcnt    ffa3dab4f973704b
+lzcnt    eb184a2c23d5ffc3
+bswap16  5b4b04c0b2525983
+div      9d2f5e34aafbde3b
+exit=0
+$ ./uflags 4
+mul      b2457222ce0dd06b
+imul     b2457222ce0dd06b
+bsf0     75fe3d30d54ff45b
+bsr0     75fe3d30d54ff45b
+shl      cb794c507d7a896b
+shr8     3c8b944f0266d3d3
+shld16   d86770088f95a6f7
+shrd16   5cb36c1154e89177
+rol      2152b735ffe83b97
+rcl8     3f1eb48059bd3bf0
+and      85dfb7662b440743
+bt       bea055b554070eb7
+tzcnt    ffa3dab4f973704b
+lzcnt    eb184a2c23d5ffc3
+bswap16  5b4b04c0b2525983
+div      9d2f5e34aafbde3b
+exit=0
+$ ./uflags 12
+mul      b2457222ce0dd06b
+imul     b2457222ce0dd06b
+bsf0     75fe3d30d54ff45b
+bsr0     75fe3d30d54ff45b
+shl      cb794c507d7a896b
+shr8     3c8b944f0266d3d3
+shld16   d86770088f95a6f7
+shrd16   5cb36c1154e89177
+rol      2152b735ffe83b97
+rcl8     3f1eb48059bd3bf0
+and      85dfb7662b440743
+bt       bea055b554070eb7
+tzcnt    ffa3dab4f973704b
+lzcnt    eb184a2c23d5ffc3
+bswap16  5b4b04c0b2525983
+div      9d2f5e34aafbde3b
+exit=0
+$ ./refine   # same inputs, CPU0 vs CPU4, per shift count: which bits differ
+shl    : c=2[OF ] c=3[OF ] c=4[OF ] c=5[OF ] c=6[OF ] c=7[OF ] c=8[OF ] c=9[OF ] c=10[OF ] c=11[OF ] c=12[OF ] c=13[OF ] c=14[OF ] c=15[OF ] c=16[OF ] c=17[OF ] c=18[OF ] c=19[OF ] c=20[OF ] c=21[OF ] c=22[OF ] c=23[OF ] c=24[OF ] c=25[OF ] c=26[OF ] c=27[OF ] c=28[OF ] c=29[OF ] c=30[OF ] c=31[OF ] c=32[OF ] c=33[OF ] c=34[OF ] c=35[OF ] c=36[OF ] c=37[OF ] c=38[OF ] c=39[OF ] c=40[OF ] c=41[OF ] c=42[OF ] c=43[OF ] c=44[OF ] c=45[OF ] c=46[OF ] c=47[OF ] c=48[OF ] c=49[OF ] c=50[OF ] c=51[OF ] c=52[OF ] c=53[OF ] c=54[OF ] c=55[OF ] c=56[OF ] c=57[OF ] c=58[OF ] c=59[OF ] c=60[OF ] c=61[OF ] c=62[OF ] c=63[OF ]
+shr    : c=2[OF ] c=3[OF ] c=4[OF ] c=5[OF ] c=6[OF ] c=7[OF ] c=8[OF ] c=9[OF ] c=10[OF ] c=11[OF ] c=12[OF ] c=13[OF ] c=14[OF ] c=15[OF ] c=16[OF ] c=17[OF ] c=18[OF ] c=19[OF ] c=20[OF ] c=21[OF ] c=22[OF ] c=23[OF ] c=24[OF ] c=25[OF ] c=26[OF ] c=27[OF ] c=28[OF ] c=29[OF ] c=30[OF ] c=31[OF ] c=32[OF ] c=33[OF ] c=34[OF ] c=35[OF ] c=36[OF ] c=37[OF ] c=38[OF ] c=39[OF ] c=40[OF ] c=41[OF ] c=42[OF ] c=43[OF ] c=44[OF ] c=45[OF ] c=46[OF ] c=47[OF ] c=48[OF ] c=49[OF ] c=50[OF ] c=51[OF ] c=52[OF ] c=53[OF ] c=54[OF ] c=55[OF ] c=56[OF ] c=57[OF ] c=58[OF ] c=59[OF ] c=60[OF ] c=61[OF ] c=62[OF ] c=63[OF ]
+sar    : identical
+shl8   : c=2[OF ] c=3[OF ] c=4[OF ] c=5[OF ] c=6[OF ] c=7[OF ] c=8[OF ] c=9[OF ] c=10[OF ] c=11[OF ] c=12[OF ] c=13[OF ] c=14[OF ] c=15[OF ] c=16[OF ] c=17[OF ] c=18[OF ] c=19[OF ] c=20[OF ] c=21[OF ] c=22[OF ] c=23[OF ] c=24[OF ] c=25[OF ] c=26[OF ] c=27[OF ] c=28[OF ] c=29[OF ] c=30[OF ] c=31[OF ] c=34[OF ] c=35[OF ] c=36[OF ] c=37[OF ] c=38[OF ] c=39[OF ] c=40[OF ] c=41[OF ] c=42[OF ] c=43[OF ] c=44[OF ] c=45[OF ] c=46[OF ] c=47[OF ] c=48[OF ] c=49[OF ] c=50[OF ] c=51[OF ] c=52[OF ] c=53[OF ] c=54[OF ] c=55[OF ] c=56[OF ] c=57[OF ] c=58[OF ] c=59[OF ] c=60[OF ] c=61[OF ] c=62[OF ] c=63[OF ]
+shr8   : c=2[OF ] c=3[OF ] c=4[OF ] c=5[OF ] c=6[OF ] c=7[OF ] c=8[OF ] c=9[OF ] c=10[OF ] c=11[OF ] c=12[OF ] c=13[OF ] c=14[OF ] c=15[OF ] c=16[OF ] c=17[OF ] c=18[OF ] c=19[OF ] c=20[OF ] c=21[OF ] c=22[OF ] c=23[OF ] c=24[OF ] c=25[OF ] c=26[OF ] c=27[OF ] c=28[OF ] c=29[OF ] c=30[OF ] c=31[OF ] c=34[OF ] c=35[OF ] c=36[OF ] c=37[OF ] c=38[OF ] c=39[OF ] c=40[OF ] c=41[OF ] c=42[OF ] c=43[OF ] c=44[OF ] c=45[OF ] c=46[OF ] c=47[OF ] c=48[OF ] c=49[OF ] c=50[OF ] c=51[OF ] c=52[OF ] c=53[OF ] c=54[OF ] c=55[OF ] c=56[OF ] c=57[OF ] c=58[OF ] c=59[OF ] c=60[OF ] c=61[OF ] c=62[OF ] c=63[OF ]
+shld16 : c=2[OF ] c=3[OF ] c=4[OF ] c=5[OF ] c=6[OF ] c=7[OF ] c=8[OF ] c=9[OF ] c=10[OF ] c=11[OF ] c=12[OF ] c=13[OF ] c=14[OF ] c=15[OF ] c=16[OF ] c=17[OF ] c=18[OF ] c=19[OF ] c=20[OF ] c=21[OF ] c=22[OF ] c=23[OF ] c=24[OF ] c=25[OF ] c=26[OF ] c=27[OF ] c=28[OF ] c=29[OF ] c=30[OF ] c=31[OF ] c=34[OF ] c=35[OF ] c=36[OF ] c=37[OF ] c=38[OF ] c=39[OF ] c=40[OF ] c=41[OF ] c=42[OF ] c=43[OF ] c=44[OF ] c=45[OF ] c=46[OF ] c=47[OF ] c=48[OF ] c=49[OF ] c=50[OF ] c=51[OF ] c=52[OF ] c=53[OF ] c=54[OF ] c=55[OF ] c=56[OF ] c=57[OF ] c=58[OF ] c=59[OF ] c=60[OF ] c=61[OF ] c=62[OF ] c=63[OF ]
+shrd16 : c=2[OF ] c=3[OF ] c=4[OF ] c=5[OF ] c=6[OF ] c=7[OF ] c=8[OF ] c=9[OF ] c=10[OF ] c=11[OF ] c=12[OF ] c=13[OF ] c=14[OF ] c=15[OF ] c=16[OF ] c=17[OF ] c=18[OF ] c=19[OF ] c=20[OF ] c=21[OF ] c=22[OF ] c=23[OF ] c=24[OF ] c=25[OF ] c=26[OF ] c=27[OF ] c=28[OF ] c=29[OF ] c=30[OF ] c=31[OF ] c=34[OF ] c=35[OF ] c=36[OF ] c=37[OF ] c=38[OF ] c=39[OF ] c=40[OF ] c=41[OF ] c=42[OF ] c=43[OF ] c=44[OF ] c=45[OF ] c=46[OF ] c=47[OF ] c=48[OF ] c=49[OF ] c=50[OF ] c=51[OF ] c=52[OF ] c=53[OF ] c=54[OF ] c=55[OF ] c=56[OF ] c=57[OF ] c=58[OF ] c=59[OF ] c=60[OF ] c=61[OF ] c=62[OF ] c=63[OF ]
+shld64 : c=2[OF ] c=3[OF ] c=4[OF ] c=5[OF ] c=6[OF ] c=7[OF ] c=8[OF ] c=9[OF ] c=10[OF ] c=11[OF ] c=12[OF ] c=13[OF ] c=14[OF ] c=15[OF ] c=16[OF ] c=17[OF ] c=18[OF ] c=19[OF ] c=20[OF ] c=21[OF ] c=22[OF ] c=23[OF ] c=24[OF ] c=25[OF ] c=26[OF ] c=27[OF ] c=28[OF ] c=29[OF ] c=30[OF ] c=31[OF ] c=32[OF ] c=33[OF ] c=34[OF ] c=35[OF ] c=36[OF ] c=37[OF ] c=38[OF ] c=39[OF ] c=40[OF ] c=41[OF ] c=42[OF ] c=43[OF ] c=44[OF ] c=45[OF ] c=46[OF ] c=47[OF ] c=48[OF ] c=49[OF ] c=50[OF ] c=51[OF ] c=52[OF ] c=53[OF ] c=54[OF ] c=55[OF ] c=56[OF ] c=57[OF ] c=58[OF ] c=59[OF ] c=60[OF ] c=61[OF ] c=62[OF ] c=63[OF ]
+rol    : c=2[OF ] c=3[OF ] c=4[OF ] c=5[OF ] c=6[OF ] c=7[OF ] c=8[OF ] c=9[OF ] c=10[OF ] c=11[OF ] c=12[OF ] c=13[OF ] c=14[OF ] c=15[OF ] c=16[OF ] c=17[OF ] c=18[OF ] c=19[OF ] c=20[OF ] c=21[OF ] c=22[OF ] c=23[OF ] c=24[OF ] c=25[OF ] c=26[OF ] c=27[OF ] c=28[OF ] c=29[OF ] c=30[OF ] c=31[OF ] c=32[OF ] c=33[OF ] c=34[OF ] c=35[OF ] c=36[OF ] c=37[OF ] c=38[OF ] c=39[OF ] c=40[OF ] c=41[OF ] c=42[OF ] c=43[OF ] c=44[OF ] c=45[OF ] c=46[OF ] c=47[OF ] c=48[OF ] c=49[OF ] c=50[OF ] c=51[OF ] c=52[OF ] c=53[OF ] c=54[OF ] c=55[OF ] c=56[OF ] c=57[OF ] c=58[OF ] c=59[OF ] c=60[OF ] c=61[OF ] c=62[OF ] c=63[OF ]
+ror    : c=2[OF ] c=3[OF ] c=4[OF ] c=5[OF ] c=6[OF ] c=7[OF ] c=8[OF ] c=9[OF ] c=10[OF ] c=11[OF ] c=12[OF ] c=13[OF ] c=14[OF ] c=15[OF ] c=16[OF ] c=17[OF ] c=18[OF ] c=19[OF ] c=20[OF ] c=21[OF ] c=22[OF ] c=23[OF ] c=24[OF ] c=25[OF ] c=26[OF ] c=27[OF ] c=28[OF ] c=29[OF ] c=30[OF ] c=31[OF ] c=32[OF ] c=33[OF ] c=34[OF ] c=35[OF ] c=36[OF ] c=37[OF ] c=38[OF ] c=39[OF ] c=40[OF ] c=41[OF ] c=42[OF ] c=43[OF ] c=44[OF ] c=45[OF ] c=46[OF ] c=47[OF ] c=48[OF ] c=49[OF ] c=50[OF ] c=51[OF ] c=52[OF ] c=53[OF ] c=54[OF ] c=55[OF ] c=56[OF ] c=57[OF ] c=58[OF ] c=59[OF ] c=60[OF ] c=61[OF ] c=62[OF ] c=63[OF ]
+rcl8   : c=2[OF ] c=3[OF ] c=4[OF ] c=5[OF ] c=6[OF ] c=7[OF ] c=8[OF ] c=11[OF ] c=12[OF ] c=13[OF ] c=14[OF ] c=15[OF ] c=16[OF ] c=17[OF ] c=20[OF ] c=21[OF ] c=22[OF ] c=23[OF ] c=24[OF ] c=25[OF ] c=26[OF ] c=29[OF ] c=30[OF ] c=31[OF ] c=34[OF ] c=35[OF ] c=36[OF ] c=37[OF ] c=38[OF ] c=39[OF ] c=40[OF ] c=43[OF ] c=44[OF ] c=45[OF ] c=46[OF ] c=47[OF ] c=48[OF ] c=49[OF ] c=52[OF ] c=53[OF ] c=54[OF ] c=55[OF ] c=56[OF ] c=57[OF ] c=58[OF ] c=61[OF ] c=62[OF ] c=63[OF ]
+rcr8   : c=2[OF ] c=3[OF ] c=4[OF ] c=5[OF ] c=6[OF ] c=7[OF ] c=8[OF ] c=11[OF ] c=12[OF ] c=13[OF ] c=14[OF ] c=15[OF ] c=16[OF ] c=17[OF ] c=20[OF ] c=21[OF ] c=22[OF ] c=23[OF ] c=24[OF ] c=25[OF ] c=26[OF ] c=29[OF ] c=30[OF ] c=31[OF ] c=34[OF ] c=35[OF ] c=36[OF ] c=37[OF ] c=38[OF ] c=39[OF ] c=40[OF ] c=43[OF ] c=44[OF ] c=45[OF ] c=46[OF ] c=47[OF ] c=48[OF ] c=49[OF ] c=52[OF ] c=53[OF ] c=54[OF ] c=55[OF ] c=56[OF ] c=57[OF ] c=58[OF ] c=61[OF ] c=62[OF ] c=63[OF ]
+exit=0
+$ ./rule     # which OF formula each core matches (count>=2)
+== P core (CPU 0)
+  shl : [first-step rule]
+  shr : [MSB(src)^MSB(res) (sign-change)] [first-step rule]
+  rol : [first-step rule]
+  ror : [first-step rule]
+== E core (CPU 4)
+  shl : [MSB(res)^CF (last-step rule)]
+  shr : [OF=0] [MSB(res)^MSB2(res) (ror-style)]
+  rol : [MSB(res)^CF (last-step rule)]
+  ror : [MSB(res)^MSB2(res) (ror-style)]
+exit=0

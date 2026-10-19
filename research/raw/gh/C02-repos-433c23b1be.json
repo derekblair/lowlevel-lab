@@ -1,0 +1,38 @@
+{
+ "candidate": "C02",
+ "kind": "repos",
+ "query": "self-modifying code benchmark",
+ "executed_at": "2026-10-18T22:20:03-0700",
+ "api_call": "gh api -X GET search/repositories -f q='self-modifying code benchmark' -f per_page=10",
+ "replay": "gh search repos 'self-modifying code benchmark' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "xamurapi/AEGIS",
+   "url": "https://github.com/xamurapi/AEGIS",
+   "description": "Self-modifying AI that rewrites its own source code, trains its own LoRA weights, and evolves under a held-out benchmark gate. 36 modules \u00b7 7 layers + 5 higher-order systems \u00b7 deterministic core cycle \u00b7 1354 tests, 92% branch coverage, 99.8% mutation score.",
+   "stars": 1,
+   "language": "Python",
+   "created_at": "2026-04-27T18:35:24Z",
+   "pushed_at": "2026-08-03T14:52:07Z",
+   "topics": [
+    "agi",
+    "ai-safety",
+    "artificial-intelligence",
+    "asi",
+    "autonomous-agents",
+    "cognitive-architecture",
+    "deterministic",
+    "fastapi",
+    "fine-tuning",
+    "llm",
+    "lora",
+    "mutation-testing",
+    "python",
+    "self-improvement",
+    "self-modifying-code"
+   ]
+  }
+ ]
+}

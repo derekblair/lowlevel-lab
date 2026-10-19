@@ -1,0 +1,128 @@
+{
+ "candidate": "C22",
+ "kind": "repos",
+ "query": "magic-trace",
+ "executed_at": "2026-10-18T22:25:39-0700",
+ "api_call": "gh api -X GET search/repositories -f q='magic-trace' -f per_page=10",
+ "replay": "gh search repos 'magic-trace' --limit 10",
+ "total_count": 34,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "janestreet/magic-trace",
+   "url": "https://github.com/janestreet/magic-trace",
+   "description": "magic-trace collects and displays high-resolution traces of what a process is doing",
+   "stars": 6301,
+   "language": "OCaml",
+   "created_at": "2022-01-26T20:41:33Z",
+   "pushed_at": "2026-08-19T16:49:41Z",
+   "topics": [
+    "intel",
+    "introspection",
+    "performance-tools",
+    "profile",
+    "tracing",
+    "visualizer",
+    "x86"
+   ]
+  },
+  {
+   "full_name": "Roguelazer/pystack",
+   "url": "https://github.com/Roguelazer/pystack",
+   "description": "Examine Python stack traces on Linux using the magic of ptrace(2).",
+   "stars": 9,
+   "language": "C++",
+   "created_at": "2016-07-26T18:25:49Z",
+   "pushed_at": "2018-04-14T01:58:11Z",
+   "topics": []
+  },
+  {
+   "full_name": "2zH/emiya",
+   "url": "https://github.com/2zH/emiya",
+   "description": "Trace on(create) weapons(...) by magic.",
+   "stars": 2,
+   "language": "JavaScript",
+   "created_at": "2018-04-01T16:25:57Z",
+   "pushed_at": "2023-01-03T16:51:36Z",
+   "topics": []
+  },
+  {
+   "full_name": "bureus/MMM-Postnord",
+   "url": "https://github.com/bureus/MMM-Postnord",
+   "description": "Magic Mirror Module - Automatically track and trace PostNords letters, parcels and pallets with your phone number or email",
+   "stars": 6,
+   "language": "JavaScript",
+   "created_at": "2019-08-19T20:00:50Z",
+   "pushed_at": "2021-05-22T08:58:26Z",
+   "topics": []
+  },
+  {
+   "full_name": "robertofernandez/MagicTrace",
+   "url": "https://github.com/robertofernandez/MagicTrace",
+   "description": "Drawing trace tool that uses AR, using Java.",
+   "stars": 0,
+   "language": "Java",
+   "created_at": "2022-05-01T16:24:06Z",
+   "pushed_at": "2024-08-21T01:14:29Z",
+   "topics": []
+  },
+  {
+   "full_name": "grmpnk/MagicalDraw-Tracer",
+   "url": "https://github.com/grmpnk/MagicalDraw-Tracer",
+   "description": "MagicalDraw tracing feature extension",
+   "stars": 0,
+   "language": "JavaScript",
+   "created_at": "2026-10-13T10:37:35Z",
+   "pushed_at": "2026-10-14T15:59:30Z",
+   "topics": [
+    "draw",
+    "drawing",
+    "extension",
+    "javascript",
+    "trace",
+    "tracing",
+    "userscript"
+   ]
+  },
+  {
+   "full_name": "kristianmandrup/magic_tracer",
+   "url": "https://github.com/kristianmandrup/magic_tracer",
+   "description": "Rework of tracer-util-adv, an unobtrusive highly configurabel ruby code tracer using a nice DSL",
+   "stars": 1,
+   "language": "Ruby",
+   "created_at": "2010-02-27T22:27:06Z",
+   "pushed_at": "2010-02-27T22:27:42Z",
+   "topics": []
+  },
+  {
+   "full_name": "huhdnasd/ip-tracer-magic",
+   "url": "https://github.com/huhdnasd/ip-tracer-magic",
+   "description": null,
+   "stars": 0,
+   "language": null,
+   "created_at": "2026-09-09T15:44:59Z",
+   "pushed_at": "2026-09-09T15:45:55Z",
+   "topics": []
+  },
+  {
+   "full_name": "orgTestCodacy11KRepos110MB/repo-3256-magic-trace",
+   "url": "https://github.com/orgTestCodacy11KRepos110MB/repo-3256-magic-trace",
+   "description": null,
+   "stars": 0,
+   "language": "OCaml",
+   "created_at": "2023-01-31T00:27:42Z",
+   "pushed_at": "2023-02-01T11:33:41Z",
+   "topics": []
+  },
+  {
+   "full_name": "ajaypv/magic-eden-wallet-tracer",
+   "url": "https://github.com/ajaypv/magic-eden-wallet-tracer",
+   "description": "magic eden wallet tracker",
+   "stars": 1,
+   "language": "JavaScript",
+   "created_at": "2022-09-17T05:42:10Z",
+   "pushed_at": "2022-09-17T10:54:46Z",
+   "topics": []
+  }
+ ]
+}

@@ -1,0 +1,82 @@
+{
+ "candidate": "C01",
+ "kind": "repos",
+ "query": "aarch64 emulator python",
+ "executed_at": "2026-10-19T02:21:49-0700",
+ "api_call": "gh api -X GET search/repositories -f q='aarch64 emulator python' -f per_page=10",
+ "replay": "gh search repos 'aarch64 emulator python' --limit 10",
+ "total_count": 3,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "bet4it/udbserver",
+   "url": "https://github.com/bet4it/udbserver",
+   "description": "Unicorn Emulator Debug Server - Written in Rust, with bindings for C, Go, Java and Python",
+   "stars": 435,
+   "language": "Rust",
+   "created_at": "2022-04-22T14:39:16Z",
+   "pushed_at": "2026-07-27T02:09:55Z",
+   "topics": [
+    "aarch64",
+    "arm",
+    "bindings",
+    "debugging",
+    "emulator",
+    "gdb",
+    "gdbserver",
+    "m68k",
+    "mips",
+    "powerpc",
+    "reverse-engineering",
+    "riscv",
+    "rust-ffi",
+    "x86"
+   ]
+  },
+  {
+   "full_name": "parmesan-arch/pARMesan",
+   "url": "https://github.com/parmesan-arch/pARMesan",
+   "description": "A simple CPU architecture specification based on AArch64 and with a little x86 inspiration. Additionally, a C implementation of this architecture and an assembler written in Python.",
+   "stars": 0,
+   "language": "C",
+   "created_at": "2023-01-15T23:42:14Z",
+   "pushed_at": "2026-09-23T02:10:13Z",
+   "topics": [
+    "arm",
+    "cpu",
+    "emulator",
+    "instruction-set-architecture",
+    "x86-64"
+   ]
+  },
+  {
+   "full_name": "espetro/wowplay",
+   "url": "https://github.com/espetro/wowplay",
+   "description": "Run World of Warcraft 3.3.5a on Apple Silicon. x87-to-AArch64 instruction bridging via RosettaX87, Wine/CrossOver integration, and automated runtime patching for 32-bit x86 games on modern macOS.",
+   "stars": 1,
+   "language": "Rust",
+   "created_at": "2026-06-09T12:22:56Z",
+   "pushed_at": "2026-06-13T07:31:00Z",
+   "topics": [
+    "apple-silicon",
+    "arm64",
+    "crossover",
+    "emulator",
+    "ffi",
+    "gaming",
+    "hexagonal-architecture",
+    "ports-and-adapters",
+    "python",
+    "retro-gaming",
+    "rosetta",
+    "runtime-patching",
+    "rust",
+    "wine",
+    "world-of-warcraft",
+    "wowclassic",
+    "x87-emulation",
+    "zig"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,72 @@
+{
+ "candidate": "C03",
+ "kind": "code",
+ "query": "ptwrite jit",
+ "executed_at": "2026-10-18T22:21:08-0700",
+ "api_call": "gh api -X GET search/code -f q='ptwrite jit' -f per_page=10",
+ "replay": "gh search code 'ptwrite jit' --limit 10",
+ "total_count": 9952,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "NetBSD/pkgsrc-wip",
+   "path": "gdb/PLIST.common",
+   "url": "https://github.com/NetBSD/pkgsrc-wip/blob/67553aef83397f863c526534611b59fb675c3b0d/gdb/PLIST.common",
+   "description": "Work-in-progress packages for pkgsrc, the portable package system from NetBSD [mirror]"
+  },
+  {
+   "full_name": "apportable/gdb",
+   "path": "gdb/ChangeLog",
+   "url": "https://github.com/apportable/gdb/blob/2eae15c5d5ded9f821a2a2a93bb4c9b32703d012/gdb/ChangeLog",
+   "description": "Apportable gdb fork"
+  },
+  {
+   "full_name": "RainM/rperf",
+   "path": "libperf/Documentation/intel-pt.txt",
+   "url": "https://github.com/RainM/rperf/blob/d0b58ede8ce2fbc60ad35f0cea6ad33be1e486fd/libperf/Documentation/intel-pt.txt",
+   "description": null
+  },
+  {
+   "full_name": "intel/gdb",
+   "path": "gdb/config.in",
+   "url": "https://github.com/intel/gdb/blob/769b9e09ab95359696c5feb8684ac3ab8b51a8f8/gdb/config.in",
+   "description": "Intel(R) Distribution for GDB*"
+  },
+  {
+   "full_name": "darchons/android-gdb",
+   "path": "gdb/ChangeLog",
+   "url": "https://github.com/darchons/android-gdb/blob/4f632e368a9cb4935d1682ae3afd28c2642a26d1/gdb/ChangeLog",
+   "description": "GDB fork targetting Android/Fennec development"
+  },
+  {
+   "full_name": "JuliaReinforcementLearning/ReinforcementLearning.jl",
+   "path": ".cspell/julia_words.txt",
+   "url": "https://github.com/JuliaReinforcementLearning/ReinforcementLearning.jl/blob/701d2f976bc40d10f0b5b751e237f3ce01b228ff/.cspell/julia_words.txt",
+   "description": "A reinforcement learning package for Julia"
+  },
+  {
+   "full_name": "bmwiedemann/openSUSE",
+   "path": "packages/g/gdb/.rev",
+   "url": "https://github.com/bmwiedemann/openSUSE/blob/6212ad5327696ed2a11a1b2df4b1d73bbe3e1c39/packages/g/gdb/.rev",
+   "description": "public mirror of openSUSE sources from build.opensuse.org"
+  },
+  {
+   "full_name": "ibuclaw/gdb",
+   "path": "gdb/ChangeLog",
+   "url": "https://github.com/ibuclaw/gdb/blob/a95098580b445c560a03f6c2f39648a6c3db7d3e/gdb/ChangeLog",
+   "description": "Fork of GDB with D-related fixes."
+  },
+  {
+   "full_name": "tum-ei-eda/etiss",
+   "path": "src/CPUCore.cpp",
+   "url": "https://github.com/tum-ei-eda/etiss/blob/74451e05512e10c2e8574b914e7dc8a19de67975/src/CPUCore.cpp",
+   "description": "Extendable Translating Instruction Set Simulator"
+  },
+  {
+   "full_name": "smssexe/manpages-data",
+   "path": "man1/perf-inject.md",
+   "url": "https://github.com/smssexe/manpages-data/blob/d248a6c196d8366b5aabdf36c6693b4e7f2e8ee5/man1/perf-inject.md",
+   "description": "man pages files data"
+  }
+ ]
+}

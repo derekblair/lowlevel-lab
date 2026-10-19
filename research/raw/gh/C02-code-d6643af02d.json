@@ -1,0 +1,72 @@
+{
+ "candidate": "C02",
+ "kind": "code",
+ "query": "\"self-modifying\" perf_event_open PROT_EXEC",
+ "executed_at": "2026-10-19T02:27:08-0700",
+ "api_call": "gh api -X GET search/code -f q='\"self-modifying\" perf_event_open PROT_EXEC' -f per_page=10",
+ "replay": "gh search code '\"self-modifying\" perf_event_open PROT_EXEC' --limit 10",
+ "total_count": 193,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "cattius/opcodetester",
+   "path": "version2/x86/opcodeTester/specpoline.c",
+   "url": "https://github.com/cattius/opcodetester/blob/decbb2aa0beab9131d058af5f817194efe53b871/version2/x86/opcodeTester/specpoline.c",
+   "description": "Tool for automated testing and analysis of Intel x86-64 undocumented instructions in user mode and in the kernel"
+  },
+  {
+   "full_name": "mkerrisk/man-pages",
+   "path": "man2/perf_event_open.2",
+   "url": "https://github.com/mkerrisk/man-pages/blob/ae6b221882ce71ba82fcdbe02419a225111502f0/man2/perf_event_open.2",
+   "description": "Linux man-pages"
+  },
+  {
+   "full_name": "jart/cosmopolitan",
+   "path": "tool/net/help.txt",
+   "url": "https://github.com/jart/cosmopolitan/blob/34fa4edae8c5c2bd09b8544a50c9e5f4f888dac1/tool/net/help.txt",
+   "description": "build-once run-anywhere c library"
+  },
+  {
+   "full_name": "jart/cosmopolitan",
+   "path": "tool/net/definitions.lua",
+   "url": "https://github.com/jart/cosmopolitan/blob/34fa4edae8c5c2bd09b8544a50c9e5f4f888dac1/tool/net/definitions.lua",
+   "description": "build-once run-anywhere c library"
+  },
+  {
+   "full_name": "smssexe/manpages-data",
+   "path": "man2/perf_event_open.md",
+   "url": "https://github.com/smssexe/manpages-data/blob/d248a6c196d8366b5aabdf36c6693b4e7f2e8ee5/man2/perf_event_open.md",
+   "description": "man pages files data"
+  },
+  {
+   "full_name": "edilson258/google",
+   "path": "manpages/man2/perf_event_open.2",
+   "url": "https://github.com/edilson258/google/blob/faf09d092847ee24d957e1fb03f09d68a18155d5/manpages/man2/perf_event_open.2",
+   "description": "A local search engine (TF-IDF)"
+  },
+  {
+   "full_name": "deepin-community/manpages-l10n",
+   "path": "templates/man2/perf_event_open.2.pot",
+   "url": "https://github.com/deepin-community/manpages-l10n/blob/b30860b234be8c1342602930e19b7f546d6c8c50/templates/man2/perf_event_open.2.pot",
+   "description": null
+  },
+  {
+   "full_name": "envymoon/IteraRAG",
+   "path": "RAG/data/raw/libc/perf_event_open.txt",
+   "url": "https://github.com/envymoon/IteraRAG/blob/62d9b561d67264371d98c2c21f27c019e33d8518/RAG/data/raw/libc/perf_event_open.txt",
+   "description": "A multi-stage RAG optimization framework designed to identify the most efficient configuration for hybrid datasets. Features four iterative architectures evaluated through a custom quantitative scoring engine"
+  },
+  {
+   "full_name": "linux-jm/manual",
+   "path": "manual/LDP_man-pages/original/man2/perf_event_open.2",
+   "url": "https://github.com/linux-jm/manual/blob/20daa7cc89bbd6f68fd06c7747e39e7bedad58c4/manual/LDP_man-pages/original/man2/perf_event_open.2",
+   "description": null
+  },
+  {
+   "full_name": "deepin-community/manpages",
+   "path": "man/man2/perf_event_open.2",
+   "url": "https://github.com/deepin-community/manpages/blob/d9b92d18b8dcb127c3bc257d49ce1395c68c0d8a/man/man2/perf_event_open.2",
+   "description": null
+  }
+ ]
+}

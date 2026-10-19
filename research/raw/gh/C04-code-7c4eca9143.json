@@ -1,0 +1,72 @@
+{
+ "candidate": "C04",
+ "kind": "code",
+ "query": "\"core type\" cpuid 0x1a sched_setaffinity",
+ "executed_at": "2026-10-18T22:21:55-0700",
+ "api_call": "gh api -X GET search/code -f q='\"core type\" cpuid 0x1a sched_setaffinity' -f per_page=10",
+ "replay": "gh search code '\"core type\" cpuid 0x1a sched_setaffinity' --limit 10",
+ "total_count": 50,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "fastbuild/fastbuild",
+   "path": "Code/Core/Env/CPUInfo.cpp",
+   "url": "https://github.com/fastbuild/fastbuild/blob/7e75d08258ab7ee2a902a3d51196e17cacee4ec7/Code/Core/Env/CPUInfo.cpp",
+   "description": "High performance build system for Windows, OSX and Linux. Supporting caching, network distribution and more."
+  },
+  {
+   "full_name": "nuclearcat/intel-features",
+   "path": "src/probes/cpuid.rs",
+   "url": "https://github.com/nuclearcat/intel-features/blob/073f38f1e7c20d4dc9df6b49699df7a2db95dc71/src/probes/cpuid.rs",
+   "description": "Shows features available on intel(r)(tm) hardware"
+  },
+  {
+   "full_name": "uart/hardwarePrefetching",
+   "path": "tools/get_cpuid.c",
+   "url": "https://github.com/uart/hardwarePrefetching/blob/97a5b81e88c391d51e01707d22c795032de1b8de/tools/get_cpuid.c",
+   "description": "Code repository for work on hardware prefetching and controlling hardware prefetchers."
+  },
+  {
+   "full_name": "Jerry-Hang/steel-front",
+   "path": "src/engine/cpu.rs",
+   "url": "https://github.com/Jerry-Hang/steel-front/blob/d93832a10fe3ee7a52f41865ea16e0b5aa19a222/src/engine/cpu.rs",
+   "description": "Rust + Vulkan 3D game engine & FPS demo, std-only"
+  },
+  {
+   "full_name": "JuliaLang/cpufeatures",
+   "path": "src/host_x86.cpp",
+   "url": "https://github.com/JuliaLang/cpufeatures/blob/cba903128dc982a16a2b5788f8179eb04e58c2bf/src/host_x86.cpp",
+   "description": null
+  },
+  {
+   "full_name": "Niko1221/Strata",
+   "path": "src/kernels/cpu/iq_avx2_parity.cpp",
+   "url": "https://github.com/Niko1221/Strata/blob/477ac13cbe8e582c20484871ce459d20d82df09d/src/kernels/cpu/iq_avx2_parity.cpp",
+   "description": "Qwen3.8-Flash-Next on any consumer hardware: one-click install for Windows / Linux. Strata inference engine, OpenAI/Anthropic API on localhost, optional image input."
+  },
+  {
+   "full_name": "mseminatore/cblas",
+   "path": "cpuid_x64.c",
+   "url": "https://github.com/mseminatore/cblas/blob/a4877090a97532721a8c0faed5addaa5b23d7067/cpuid_x64.c",
+   "description": "ANSI-C implementation of a subset of the BLAS standard library. Useful as a learning playground for BLAS optimization experimentation."
+  },
+  {
+   "full_name": "amd/aocl-utils",
+   "path": "SDK/Include/Capi/au/cpuid/cpuid_core.h",
+   "url": "https://github.com/amd/aocl-utils/blob/ba4afcf0247008dc257479c5ae2b5f5300ecaa7b/SDK/Include/Capi/au/cpuid/cpuid_core.h",
+   "description": "AOCL-Utils library to get CPU architecture, Cache information and CPU features flags etc."
+  },
+  {
+   "full_name": "herumi/xbyak",
+   "path": "xbyak/xbyak_util.h",
+   "url": "https://github.com/herumi/xbyak/blob/cd6bad3cad2e07a3e277c23d2b1f065320024717/xbyak/xbyak_util.h",
+   "description": "A JIT assembler for x86/x64 architectures supporting the latest instruction set extensions such as AVX10.2 and ACE"
+  },
+  {
+   "full_name": "amd/aocl-utils",
+   "path": "SDK/Include/Capi/au/cpuid/au_cpuid_header_only.h",
+   "url": "https://github.com/amd/aocl-utils/blob/ba4afcf0247008dc257479c5ae2b5f5300ecaa7b/SDK/Include/Capi/au/cpuid/au_cpuid_header_only.h",
+   "description": "AOCL-Utils library to get CPU architecture, Cache information and CPU features flags etc."
+  }
+ ]
+}

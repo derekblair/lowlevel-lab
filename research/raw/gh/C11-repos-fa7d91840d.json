@@ -1,0 +1,11 @@
+{
+ "candidate": "C11",
+ "kind": "repos",
+ "query": "static binary translation arm64",
+ "executed_at": "2026-10-18T22:23:46-0700",
+ "api_call": "gh api -X GET search/repositories -f q='static binary translation arm64' -f per_page=10",
+ "replay": "gh search repos 'static binary translation arm64' --limit 10",
+ "total_count": 0,
+ "incomplete_results": false,
+ "items": []
+}

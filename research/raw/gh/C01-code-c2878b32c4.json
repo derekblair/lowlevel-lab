@@ -1,0 +1,72 @@
+{
+ "candidate": "C01",
+ "kind": "code",
+ "query": "\"IminLine\" emulator",
+ "executed_at": "2026-10-19T02:26:31-0700",
+ "api_call": "gh api -X GET search/code -f q='\"IminLine\" emulator' -f per_page=10",
+ "replay": "gh search code '\"IminLine\" emulator' --limit 10",
+ "total_count": 183,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "donnemartin/dev-setup",
+   "path": ".vim/colors/solarized.vim",
+   "url": "https://github.com/donnemartin/dev-setup/blob/d86102d761afa5cc1853078200b844212f99e234/.vim/colors/solarized.vim",
+   "description": "macOS development environment setup:  Easy-to-understand instructions with automated setup scripts for developer tools like Vim, Sublime Text, Bash, iTerm, Python data analysis, Spark, Hadoop MapReduce, AWS, Heroku, JavaScript web development, Android development, common data stores, and dev-based OS X defaults."
+  },
+  {
+   "full_name": "ozaki-r/arm-js",
+   "path": "js/armv7-cp15.js",
+   "url": "https://github.com/ozaki-r/arm-js/blob/5afce124bfbc370413655e5325faea07a92fc0a4/js/armv7-cp15.js",
+   "description": "An ARM emulator written in JavaScript"
+  },
+  {
+   "full_name": "v5tech/notes",
+   "path": "mac/.vim/colors/solarized.vim",
+   "url": "https://github.com/v5tech/notes/blob/4d2c2b3ee6b6bece734032ca6e59bea882e44afd/mac/.vim/colors/solarized.vim",
+   "description": "notes"
+  },
+  {
+   "full_name": "Svirusx/Nethunter-s7-kernel-StockOreo",
+   "path": "arch/arm64/kernel/ctr_el0_handler.c",
+   "url": "https://github.com/Svirusx/Nethunter-s7-kernel-StockOreo/blob/9edbea6d7e7bdb1f3802d83718b003426653b5e3/arch/arm64/kernel/ctr_el0_handler.c",
+   "description": "Nethunter Kernel for Galaxy s7(SM-G930F & SM-G935F) Stock Oreo"
+  },
+  {
+   "full_name": "8890dev/android_kernel_samsung_universal8890",
+   "path": "arch/arm64/kernel/ctr_el0_handler.c",
+   "url": "https://github.com/8890dev/android_kernel_samsung_universal8890/blob/4978c39cce72dfdd56562ae1566eb0cde6b57a5e/arch/arm64/kernel/ctr_el0_handler.c",
+   "description": null
+  },
+  {
+   "full_name": "j0shua-SYSON/S5LBox",
+   "path": "docs/dynarec.md",
+   "url": "https://github.com/j0shua-SYSON/S5LBox/blob/0998eaf8cbbb27d5e19b874999241e47df4c9e8d/docs/dynarec.md",
+   "description": "Boot real iPhone OS 3 \u2014 Apple's actual kernel, launchd & SpringBoard \u2014 inside an app on a modern iPhone. A from-scratch, full-system S5L8900/ARMv6 emulator in portable C."
+  },
+  {
+   "full_name": "kaochenlong/eddie-vim",
+   "path": "colors/solarized_dark.vim",
+   "url": "https://github.com/kaochenlong/eddie-vim/blob/0815db52bb137c93c622a7fff7e140fc6fb259c3/colors/solarized_dark.vim",
+   "description": "Yet another vimrc"
+  },
+  {
+   "full_name": "electro7/dot_debian",
+   "path": ".vim/colors/solarized_dark.vim",
+   "url": "https://github.com/electro7/dot_debian/blob/68df0ca7f0c90145267c3ce1829668c9e936392a/.vim/colors/solarized_dark.vim",
+   "description": "Config files for linux (debian based)"
+  },
+  {
+   "full_name": "keith/dotfiles",
+   "path": "vim/colors/solarized.vim",
+   "url": "https://github.com/keith/dotfiles/blob/f7552bfb4fd16ea2b5ddf84de9ba2a497b9aa494/vim/colors/solarized.vim",
+   "description": "My vim, zsh, tmux, and macOS dotfiles"
+  },
+  {
+   "full_name": "laixintao/myrc",
+   "path": "vim-colors/solarized.vim",
+   "url": "https://github.com/laixintao/myrc/blob/fac02ee1469ebcc8fdc797b69fdf510e4eef8a10/vim-colors/solarized.vim",
+   "description": "\u2699\ufe0f My Linux Config files."
+  }
+ ]
+}

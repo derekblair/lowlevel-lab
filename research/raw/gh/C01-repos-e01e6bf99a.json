@@ -1,0 +1,168 @@
+{
+ "candidate": "C01",
+ "kind": "repos",
+ "query": "instruction cache coherence in:readme aarch64",
+ "executed_at": "2026-10-19T02:26:09-0700",
+ "api_call": "gh api -X GET search/repositories -f q='instruction cache coherence in:readme aarch64' -f per_page=10",
+ "replay": "gh search repos 'instruction cache coherence in:readme aarch64' --limit 10",
+ "total_count": 132,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "cirosantilli/linux-kernel-module-cheat",
+   "url": "https://github.com/cirosantilli/linux-kernel-module-cheat",
+   "description": "The perfect emulation setup to study and develop the Linux kernel, kernel modules, QEMU, gem5 and x86_64, ARMv7 and ARMv8 userland and baremetal assembly, ANSI C, C++ and POSIX. GDB step debug and KGDB just work. Powered by Buildroot and crosstool-NG. Highly automated. Thoroughly documented. Automated tests. \"Tested\" in an Ubuntu 24.04 host.",
+   "stars": 4517,
+   "language": "Python",
+   "created_at": "2016-07-30T08:38:26Z",
+   "pushed_at": "2026-06-16T06:03:49Z",
+   "topics": [
+    "buildroot",
+    "gdb",
+    "kgdb",
+    "linux-kernel",
+    "linux-kernel-module",
+    "qemu"
+   ]
+  },
+  {
+   "full_name": "ruvnet/rvm",
+   "url": "https://github.com/ruvnet/rvm",
+   "description": "RVM \u2014 The Virtual Machine Built for the Agentic Age, in Rust.",
+   "stars": 150,
+   "language": "Rust",
+   "created_at": "2026-04-04T14:59:42Z",
+   "pushed_at": "2026-10-10T03:09:03Z",
+   "topics": [
+    "bare-metal",
+    "capability",
+    "coherence",
+    "edge-computing",
+    "hypervisor",
+    "microhypervisor",
+    "no-std",
+    "rust",
+    "rvm",
+    "witness"
+   ]
+  },
+  {
+   "full_name": "riscv/sail-riscv",
+   "url": "https://github.com/riscv/sail-riscv",
+   "description": "Sail RISC-V model",
+   "stars": 781,
+   "language": "Sail",
+   "created_at": "2018-11-27T15:24:33Z",
+   "pushed_at": "2026-10-19T03:49:06Z",
+   "topics": []
+  },
+  {
+   "full_name": "stong/how-to-exploit-a-double-free",
+   "url": "https://github.com/stong/how-to-exploit-a-double-free",
+   "description": "How to exploit a double free vulnerability in 2021. Use After Free for Dummies",
+   "stars": 1389,
+   "language": "Python",
+   "created_at": "2021-10-26T03:47:35Z",
+   "pushed_at": "2025-01-31T08:45:58Z",
+   "topics": [
+    "binary",
+    "ctf",
+    "double-free",
+    "exploitation",
+    "heap",
+    "lock-free",
+    "microarchitecture",
+    "pwn",
+    "tutorial",
+    "use-after-free",
+    "walkthrough"
+   ]
+  },
+  {
+   "full_name": "usamahz/cpu-performance-engineering",
+   "url": "https://github.com/usamahz/cpu-performance-engineering",
+   "description": "A reading path for CPU performance engineering, from one instruction to production inference. Primary sources only, with a runnable benchmark for every section.",
+   "stars": 1165,
+   "language": "Python",
+   "created_at": "2026-09-17T20:52:03Z",
+   "pushed_at": "2026-10-08T18:41:07Z",
+   "topics": [
+    "arm",
+    "awesome-list",
+    "benchmarks",
+    "computer-architecture",
+    "cpu",
+    "edge-ai",
+    "inference",
+    "low-latency",
+    "optimization",
+    "performance",
+    "performance-engineering",
+    "simd",
+    "systems-programming",
+    "x86"
+   ]
+  },
+  {
+   "full_name": "zhurong90s/doclib",
+   "url": "https://github.com/zhurong90s/doclib",
+   "description": "my doclib",
+   "stars": 1,
+   "language": null,
+   "created_at": "2023-05-12T02:18:31Z",
+   "pushed_at": "2023-01-30T09:48:00Z",
+   "topics": []
+  },
+  {
+   "full_name": "Martins3/Martins3.github.io",
+   "url": "https://github.com/Martins3/Martins3.github.io",
+   "description": ":book: Notes about Linux Kernel, Compiler and GPU",
+   "stars": 87,
+   "language": "C",
+   "created_at": "2020-09-23T01:40:55Z",
+   "pushed_at": "2026-10-09T10:00:27Z",
+   "topics": []
+  },
+  {
+   "full_name": "cnrv/riscv-soc-book",
+   "url": "https://github.com/cnrv/riscv-soc-book",
+   "description": "\u5173\u4e8eRISC-V\u4f60\u6240\u9700\u8981\u77e5\u9053\u7684\u4e00\u5207",
+   "stars": 568,
+   "language": null,
+   "created_at": "2017-07-24T09:37:29Z",
+   "pushed_at": "2023-04-01T15:17:02Z",
+   "topics": []
+  },
+  {
+   "full_name": "rems-project/rmem",
+   "url": "https://github.com/rems-project/rmem",
+   "description": "rmem public repo",
+   "stars": 53,
+   "language": "JavaScript",
+   "created_at": "2018-12-19T14:24:40Z",
+   "pushed_at": "2026-10-03T10:34:17Z",
+   "topics": []
+  },
+  {
+   "full_name": "loadingalias/cargo-rail",
+   "url": "https://github.com/loadingalias/cargo-rail",
+   "description": "The Rust Monorepo Engine",
+   "stars": 231,
+   "language": "Rust",
+   "created_at": "2025-11-07T07:12:01Z",
+   "pushed_at": "2026-10-16T19:27:12Z",
+   "topics": [
+    "build-cache",
+    "cargo",
+    "cargo-plugins",
+    "change-detection",
+    "ci",
+    "dependency-management",
+    "monorepo",
+    "release-automation-tool",
+    "rust",
+    "workspace"
+   ]
+  }
+ ]
+}

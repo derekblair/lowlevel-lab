@@ -1,0 +1,11 @@
+{
+ "candidate": "C05",
+ "kind": "repos",
+ "query": "x86 corewar arena",
+ "executed_at": "2026-10-18T22:22:14-0700",
+ "api_call": "gh api -X GET search/repositories -f q='x86 corewar arena' -f per_page=10",
+ "replay": "gh search repos 'x86 corewar arena' --limit 10",
+ "total_count": 0,
+ "incomplete_results": false,
+ "items": []
+}

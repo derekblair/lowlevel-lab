@@ -1,0 +1,11 @@
+{
+ "candidate": "C12",
+ "kind": "repos",
+ "query": "arm64 elf quine",
+ "executed_at": "2026-10-19T02:23:59-0700",
+ "api_call": "gh api -X GET search/repositories -f q='arm64 elf quine' -f per_page=10",
+ "replay": "gh search repos 'arm64 elf quine' --limit 10",
+ "total_count": 0,
+ "incomplete_results": false,
+ "items": []
+}

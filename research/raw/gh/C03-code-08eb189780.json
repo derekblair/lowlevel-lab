@@ -1,0 +1,72 @@
+{
+ "candidate": "C03",
+ "kind": "code",
+ "query": "ptwrite language:C",
+ "executed_at": "2026-10-19T02:22:50-0700",
+ "api_call": "gh api -X GET search/code -f q='ptwrite language:C' -f per_page=10",
+ "replay": "gh search code 'ptwrite language:C' --limit 10",
+ "total_count": 32832,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "anotheremily/buchla700",
+   "path": "src/ram/ptwrite.c",
+   "url": "https://github.com/anotheremily/buchla700/blob/4be520da96dd1eef21c68780638bb20937d13bc7/src/ram/ptwrite.c",
+   "description": "Buchla 700 Source Code - Get the original here: http://users.ece.gatech.edu/lanterma/buchla700/"
+  },
+  {
+   "full_name": "mo0kid/buchla700",
+   "path": "buchla-68k/ram/ptwrite.c",
+   "url": "https://github.com/mo0kid/buchla700/blob/442f055435c68b673d8403a3fbe81b5fc0095a0d/buchla-68k/ram/ptwrite.c",
+   "description": "A Buchla 700 emulation with working audio and companion iPad OSC controller"
+  },
+  {
+   "full_name": "alexandrasandulescu/snippets",
+   "path": "intel-pt/ptwrite.c",
+   "url": "https://github.com/alexandrasandulescu/snippets/blob/80c6b2f152be975f6fab29c630d7ef751a018796/intel-pt/ptwrite.c",
+   "description": null
+  },
+  {
+   "full_name": "orbisdev/PS4SDK",
+   "path": "include/ptwriteintrin.h",
+   "url": "https://github.com/orbisdev/PS4SDK/blob/29878ae49ef645be83f8275b3eb8e0e2def53304/include/ptwriteintrin.h",
+   "description": "TEMPORAL PS4SDK HOME WHILE NEW FEATURES WIP ARE INCORPORATED "
+  },
+  {
+   "full_name": "hase-project/hase",
+   "path": "pt/ffi.h",
+   "url": "https://github.com/hase-project/hase/blob/9c1e28a6968716dfe37519476cb8fdaecb830dfa/pt/ffi.h",
+   "description": "Timeless debugging with symbolic execution and processor trace"
+  },
+  {
+   "full_name": "thomasxm/BOAZ_beta",
+   "path": "Include/immintrin.h",
+   "url": "https://github.com/thomasxm/BOAZ_beta/blob/7495ca538f8182e08be280f820b8ef9f34582d89/Include/immintrin.h",
+   "description": "Multilayered AV/EDR Evasion Framework (no longer actively maintained)"
+  },
+  {
+   "full_name": "andikleen/simple-pt",
+   "path": "sptdecode.c",
+   "url": "https://github.com/andikleen/simple-pt/blob/83dc356cbccbb6a6efabe031920cf7ba032efdd6/sptdecode.c",
+   "description": "Simple Intel CPU processor tracing on Linux"
+  },
+  {
+   "full_name": "thomasxm/BOAZ_beta",
+   "path": "New_Include/immintrin.h",
+   "url": "https://github.com/thomasxm/BOAZ_beta/blob/7495ca538f8182e08be280f820b8ef9f34582d89/New_Include/immintrin.h",
+   "description": "Multilayered AV/EDR Evasion Framework (no longer actively maintained)"
+  },
+  {
+   "full_name": "TritonDataCenter/illumos-kvm",
+   "path": "kvm_paging_tmpl.h",
+   "url": "https://github.com/TritonDataCenter/illumos-kvm/blob/a7f088a6252631a8fd3d86f413fe0c7809ac50c3/kvm_paging_tmpl.h",
+   "description": "KVM driver for illumos"
+  },
+  {
+   "full_name": "TritonDataCenter/illumos-kvm",
+   "path": "kvm_mmu.c",
+   "url": "https://github.com/TritonDataCenter/illumos-kvm/blob/a7f088a6252631a8fd3d86f413fe0c7809ac50c3/kvm_mmu.c",
+   "description": "KVM driver for illumos"
+  }
+ ]
+}

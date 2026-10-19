@@ -1,0 +1,76 @@
+{
+ "candidate": "C06",
+ "kind": "repos",
+ "query": "reversible virtual machine",
+ "executed_at": "2026-10-18T22:22:17-0700",
+ "api_call": "gh api -X GET search/repositories -f q='reversible virtual machine' -f per_page=10",
+ "replay": "gh search repos 'reversible virtual machine' --limit 10",
+ "total_count": 6,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "Niklas-Deworetzki/reversible-stackmachine",
+   "url": "https://github.com/Niklas-Deworetzki/reversible-stackmachine",
+   "description": "Virtual machine implementation of a low-level reversible stack machine optimised for performance.",
+   "stars": 4,
+   "language": "C++",
+   "created_at": "2022-10-03T14:01:43Z",
+   "pushed_at": "2022-10-03T14:11:39Z",
+   "topics": [
+    "cpp",
+    "reversible-computation",
+    "stackmachine"
+   ]
+  },
+  {
+   "full_name": "dabernado/iris",
+   "url": "https://github.com/dabernado/iris",
+   "description": "Isomorphic, r-IM complete ISA and virtual machine for reversible computation",
+   "stars": 5,
+   "language": "Rust",
+   "created_at": "2021-08-01T00:34:07Z",
+   "pushed_at": "2023-01-12T00:58:09Z",
+   "topics": []
+  },
+  {
+   "full_name": "boberetezeke/reversible-lang-js",
+   "url": "https://github.com/boberetezeke/reversible-lang-js",
+   "description": "A simple virtual machine for learning programming",
+   "stars": 3,
+   "language": "JavaScript",
+   "created_at": "2012-06-04T03:14:55Z",
+   "pushed_at": "2012-12-18T03:01:03Z",
+   "topics": []
+  },
+  {
+   "full_name": "hoelzl/Revue",
+   "url": "https://github.com/hoelzl/Revue",
+   "description": "A virtual machine for REVersible User Experiences in teaching algorithms",
+   "stars": 1,
+   "language": "Clojure",
+   "created_at": "2014-08-14T12:56:29Z",
+   "pushed_at": "2014-12-15T17:02:21Z",
+   "topics": []
+  },
+  {
+   "full_name": "sri-builds/mangomachine",
+   "url": "https://github.com/sri-builds/mangomachine",
+   "description": "A deliberately tiny, trace-first 8-bit virtual machine with reversible debugging, built in Rust.",
+   "stars": 0,
+   "language": "Rust",
+   "created_at": "2026-08-09T11:19:24Z",
+   "pushed_at": "2026-08-09T17:58:02Z",
+   "topics": []
+  },
+  {
+   "full_name": "JuhoArtturiHemminki/ZenoMachine_virtual-By-LeapNorthEast",
+   "url": "https://github.com/JuhoArtturiHemminki/ZenoMachine_virtual-By-LeapNorthEast",
+   "description": "ZenoMachine_virtual by LeapNorthEast: A virtualized spacetime condensation layer for Intel i7 (10th/11th Gen.) that decouples logical hypercomputation from physical clock speed limits & packs multi-quadrillion info-units into a bounded virtual time grid using 1-cycle AVX-512 vector pipelines, reversible phase symmetries, and Zero-RAM I/O streaming.",
+   "stars": 0,
+   "language": "Assembly",
+   "created_at": "2026-05-16T23:50:37Z",
+   "pushed_at": "2026-05-20T08:26:32Z",
+   "topics": []
+  }
+ ]
+}

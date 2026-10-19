@@ -1,0 +1,72 @@
+{
+ "candidate": "C04",
+ "kind": "code",
+ "query": "\"undefined\" \"overflow flag\" \"shift count\"",
+ "executed_at": "2026-10-19T02:28:20-0700",
+ "api_call": "gh api -X GET search/code -f q='\"undefined\" \"overflow flag\" \"shift count\"' -f per_page=10",
+ "replay": "gh search code '\"undefined\" \"overflow flag\" \"shift count\"' --limit 10",
+ "total_count": 1344,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "llvm/llvm-project",
+   "path": "llvm/lib/Transforms/InstCombine/InstCombineSelect.cpp",
+   "url": "https://github.com/llvm/llvm-project/blob/3b4061ce19745f66b985276f183d0f59b4861a7e/llvm/lib/Transforms/InstCombine/InstCombineSelect.cpp",
+   "description": "The LLVM Project is a collection of modular and reusable compiler and toolchain technologies."
+  },
+  {
+   "full_name": "red/red",
+   "path": "docs/red-system/red-system-specs.txt",
+   "url": "https://github.com/red/red/blob/08139eddb8ddc2ddb6aaa89b916033b529600f3b/docs/red-system/red-system-specs.txt",
+   "description": "Red is a next-generation programming language strongly inspired by Rebol, but with a broader field of usage thanks to its native-code compiler, from system programming to high-level scripting and cross-platform reactive GUI, while providing modern support for concurrency, all in a zero-install, zero-config, single ~1MB file! "
+  },
+  {
+   "full_name": "simh/simh",
+   "path": "VAX/vax_cis.c",
+   "url": "https://github.com/simh/simh/blob/2b731d80395a65d5eca28da09439131c38dcf52d/VAX/vax_cis.c",
+   "description": "The Computer History Simulation Project "
+  },
+  {
+   "full_name": "Heniokhos-Systems/KernRift",
+   "path": "docs/UNDEFINED_BEHAVIOR.md",
+   "url": "https://github.com/Heniokhos-Systems/KernRift/blob/1b6b3263cd75e7cc24ad0cd65e110385e9001813/docs/UNDEFINED_BEHAVIOR.md",
+   "description": null
+  },
+  {
+   "full_name": "simh/simh",
+   "path": "H316/h316_cpu.c",
+   "url": "https://github.com/simh/simh/blob/2b731d80395a65d5eca28da09439131c38dcf52d/H316/h316_cpu.c",
+   "description": "The Computer History Simulation Project "
+  },
+  {
+   "full_name": "simh/simh",
+   "path": "PDP1/pdp1_cpu.c",
+   "url": "https://github.com/simh/simh/blob/2b731d80395a65d5eca28da09439131c38dcf52d/PDP1/pdp1_cpu.c",
+   "description": "The Computer History Simulation Project "
+  },
+  {
+   "full_name": "simh/simh",
+   "path": "HP3000/hp3000_cpu.h",
+   "url": "https://github.com/simh/simh/blob/2b731d80395a65d5eca28da09439131c38dcf52d/HP3000/hp3000_cpu.h",
+   "description": "The Computer History Simulation Project "
+  },
+  {
+   "full_name": "simh/simh",
+   "path": "HP2100/hp2100_cpu.c",
+   "url": "https://github.com/simh/simh/blob/2b731d80395a65d5eca28da09439131c38dcf52d/HP2100/hp2100_cpu.c",
+   "description": "The Computer History Simulation Project "
+  },
+  {
+   "full_name": "dibingfa/flash-linux0.11-talk",
+   "path": "\u4e00\u4e9b\u975e\u5fc5\u8981\u7684\u8d44\u6599/x86-interrupt-list/inter61a/INTERRUP.A",
+   "url": "https://github.com/dibingfa/flash-linux0.11-talk/blob/74598968b11493aea658a08834b0fb66ea611bfb/\u4e00\u4e9b\u975e\u5fc5\u8981\u7684\u8d44\u6599/x86-interrupt-list/inter61a/INTERRUP.A",
+   "description": "\u4f60\u7ba1\u8fd9\u7834\u73a9\u610f\u53eb\u64cd\u4f5c\u7cfb\u7edf\u6e90\u7801 \u2014 \u50cf\u5c0f\u8bf4\u4e00\u6837\u54c1\u8bfb Linux 0.11 \u6838\u5fc3\u4ee3\u7801"
+  },
+  {
+   "full_name": "simh/simh",
+   "path": "HP3000/hp3000_cpu_base.c",
+   "url": "https://github.com/simh/simh/blob/2b731d80395a65d5eca28da09439131c38dcf52d/HP3000/hp3000_cpu_base.c",
+   "description": "The Computer History Simulation Project "
+  }
+ ]
+}

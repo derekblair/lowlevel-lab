@@ -1,0 +1,22 @@
+{
+ "candidate": "C17",
+ "kind": "repos",
+ "query": "ARCH_SET_CPUID",
+ "executed_at": "2026-10-18T22:24:39-0700",
+ "api_call": "gh api -X GET search/repositories -f q='ARCH_SET_CPUID' -f per_page=10",
+ "replay": "gh search repos 'ARCH_SET_CPUID' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "cellengine/mini-cpuid",
+   "url": "https://github.com/cellengine/mini-cpuid",
+   "description": "Tiny utility to call cpuid, especially to set /arch in binding.gyp",
+   "stars": 0,
+   "language": "C++",
+   "created_at": "2022-07-19T00:15:53Z",
+   "pushed_at": "2023-11-25T01:00:46Z",
+   "topics": []
+  }
+ ]
+}

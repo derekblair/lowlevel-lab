@@ -1,0 +1,22 @@
+{
+ "candidate": "C04",
+ "kind": "repos",
+ "query": "p-core e-core differences",
+ "executed_at": "2026-10-18T22:21:24-0700",
+ "api_call": "gh api -X GET search/repositories -f q='p-core e-core differences' -f per_page=10",
+ "replay": "gh search repos 'p-core e-core differences' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "abbychau/cpu-process-affinity",
+   "url": "https://github.com/abbychau/cpu-process-affinity",
+   "description": "A Windows benchmarking tool for measuring performance differences between P-cores and E-cores on Intel hybrid architecture processors.",
+   "stars": 1,
+   "language": "C++",
+   "created_at": "2024-04-30T17:41:29Z",
+   "pushed_at": "2024-12-31T14:23:42Z",
+   "topics": []
+  }
+ ]
+}

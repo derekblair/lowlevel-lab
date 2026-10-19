@@ -1,0 +1,11 @@
+{
+ "candidate": "C02",
+ "kind": "repos",
+ "query": "smc machine clear",
+ "executed_at": "2026-10-19T02:22:17-0700",
+ "api_call": "gh api -X GET search/repositories -f q='smc machine clear' -f per_page=10",
+ "replay": "gh search repos 'smc machine clear' --limit 10",
+ "total_count": 0,
+ "incomplete_results": false,
+ "items": []
+}

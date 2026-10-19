@@ -1,0 +1,72 @@
+{
+ "candidate": "C03",
+ "kind": "code",
+ "query": "ptwrite language:Assembly",
+ "executed_at": "2026-10-19T02:22:57-0700",
+ "api_call": "gh api -X GET search/code -f q='ptwrite language:Assembly' -f per_page=10",
+ "replay": "gh search code 'ptwrite language:Assembly' --limit 10",
+ "total_count": 580,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "netwide-assembler/nasm",
+   "path": "travis/insns/ptwrite/ptwrite.asm",
+   "url": "https://github.com/netwide-assembler/nasm/blob/fbdc88565ccccfa0e8c69b21b1953d1eded02e89/travis/insns/ptwrite/ptwrite.asm",
+   "description": "A cross-platform x86 assembler with an Intel-like syntax"
+  },
+  {
+   "full_name": "netwide-assembler/nasm",
+   "path": "travis/insns/ptwrite/ptwrite_narrow.asm",
+   "url": "https://github.com/netwide-assembler/nasm/blob/fbdc88565ccccfa0e8c69b21b1953d1eded02e89/travis/insns/ptwrite/ptwrite_narrow.asm",
+   "description": "A cross-platform x86 assembler with an Intel-like syntax"
+  },
+  {
+   "full_name": "autc04/Retro68",
+   "path": "binutils/gas/testsuite/gas/i386/ptwrite.s",
+   "url": "https://github.com/autc04/Retro68/blob/afedcdcb53d40f25d7c68db9a63a3bb1b021d77b/binutils/gas/testsuite/gas/i386/ptwrite.s",
+   "description": "a gcc-based cross-compiler for classic 68K and PPC Macintoshes"
+  },
+  {
+   "full_name": "autc04/Retro68",
+   "path": "binutils/gas/testsuite/gas/i386/x86-64-ptwrite.s",
+   "url": "https://github.com/autc04/Retro68/blob/afedcdcb53d40f25d7c68db9a63a3bb1b021d77b/binutils/gas/testsuite/gas/i386/x86-64-ptwrite.s",
+   "description": "a gcc-based cross-compiler for classic 68K and PPC Macintoshes"
+  },
+  {
+   "full_name": "Yiruma96/MLARandom-repo",
+   "path": "src/gas/testsuite/gas/i386/ptwrite.s",
+   "url": "https://github.com/Yiruma96/MLARandom-repo/blob/6befcf514038cb2ffbe12743bfcf1d606c2fb306/src/gas/testsuite/gas/i386/ptwrite.s",
+   "description": null
+  },
+  {
+   "full_name": "Yiruma96/MLARandom-repo",
+   "path": "src/gas/testsuite/gas/i386/x86-64-ptwrite.s",
+   "url": "https://github.com/Yiruma96/MLARandom-repo/blob/6befcf514038cb2ffbe12743bfcf1d606c2fb306/src/gas/testsuite/gas/i386/x86-64-ptwrite.s",
+   "description": null
+  },
+  {
+   "full_name": "STMicroelectronics/gnu-tools-for-stm32",
+   "path": "src/gdb/gas/testsuite/gas/i386/ptwrite.s",
+   "url": "https://github.com/STMicroelectronics/gnu-tools-for-stm32/blob/b8cdff71b827478c8510c70b3a15d2b50c759255/src/gdb/gas/testsuite/gas/i386/ptwrite.s",
+   "description": "GNU Tools for STM32 toolchain sources"
+  },
+  {
+   "full_name": "STMicroelectronics/gnu-tools-for-stm32",
+   "path": "src/binutils/gas/testsuite/gas/i386/ptwrite.s",
+   "url": "https://github.com/STMicroelectronics/gnu-tools-for-stm32/blob/b8cdff71b827478c8510c70b3a15d2b50c759255/src/binutils/gas/testsuite/gas/i386/ptwrite.s",
+   "description": "GNU Tools for STM32 toolchain sources"
+  },
+  {
+   "full_name": "espressif/binutils-esp32ulp",
+   "path": "gas/testsuite/gas/i386/ptwrite.s",
+   "url": "https://github.com/espressif/binutils-esp32ulp/blob/9bb46bab6b2e1ef1a246c3700f0a9ed791bfe477/gas/testsuite/gas/i386/ptwrite.s",
+   "description": "Binutils fork with support for the ESP32 ULP co-processor"
+  },
+  {
+   "full_name": "STMicroelectronics/gnu-tools-for-stm32",
+   "path": "src/gdb/gas/testsuite/gas/i386/x86-64-ptwrite.s",
+   "url": "https://github.com/STMicroelectronics/gnu-tools-for-stm32/blob/b8cdff71b827478c8510c70b3a15d2b50c759255/src/gdb/gas/testsuite/gas/i386/x86-64-ptwrite.s",
+   "description": "GNU Tools for STM32 toolchain sources"
+  }
+ ]
+}

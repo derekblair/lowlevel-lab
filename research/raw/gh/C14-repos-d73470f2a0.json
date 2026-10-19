@@ -1,0 +1,62 @@
+{
+ "candidate": "C14",
+ "kind": "repos",
+ "query": "perf skid",
+ "executed_at": "2026-10-18T22:24:13-0700",
+ "api_call": "gh api -X GET search/repositories -f q='perf skid' -f per_page=10",
+ "replay": "gh search repos 'perf skid' --limit 10",
+ "total_count": 5,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "josealbertodiaz184-rgb/Tabla-de-performance-anti-skid-Md80",
+   "url": "https://github.com/josealbertodiaz184-rgb/Tabla-de-performance-anti-skid-Md80",
+   "description": null,
+   "stars": 0,
+   "language": "HTML",
+   "created_at": "2026-09-04T17:43:45Z",
+   "pushed_at": "2026-09-04T17:44:34Z",
+   "topics": []
+  },
+  {
+   "full_name": "josealbertodiaz184-rgb/Tabla-de-performance-anti-skid-Md80.",
+   "url": "https://github.com/josealbertodiaz184-rgb/Tabla-de-performance-anti-skid-Md80.",
+   "description": null,
+   "stars": 0,
+   "language": "HTML",
+   "created_at": "2026-09-04T17:49:15Z",
+   "pushed_at": "2026-09-04T17:50:10Z",
+   "topics": []
+  },
+  {
+   "full_name": "josealbertodiaz184-rgb/Tabla-de-performance-anti-skid-Md80-83.",
+   "url": "https://github.com/josealbertodiaz184-rgb/Tabla-de-performance-anti-skid-Md80-83.",
+   "description": null,
+   "stars": 0,
+   "language": "HTML",
+   "created_at": "2026-09-05T17:40:58Z",
+   "pushed_at": "2026-09-05T17:42:10Z",
+   "topics": []
+  },
+  {
+   "full_name": "josealbertodiaz184-rgb/Tabla-de-performance-additional-accelerate---stop-distance-anti-skid-inop-Md80.",
+   "url": "https://github.com/josealbertodiaz184-rgb/Tabla-de-performance-additional-accelerate---stop-distance-anti-skid-inop-Md80.",
+   "description": null,
+   "stars": 0,
+   "language": "HTML",
+   "created_at": "2026-09-05T18:06:03Z",
+   "pushed_at": "2026-09-05T18:07:25Z",
+   "topics": []
+  },
+  {
+   "full_name": "josealbertodiaz184-rgb/Tabla-de-performance-additional-accelerate---stop-distance-anti-skid-inop-Md80",
+   "url": "https://github.com/josealbertodiaz184-rgb/Tabla-de-performance-additional-accelerate---stop-distance-anti-skid-inop-Md80",
+   "description": null,
+   "stars": 0,
+   "language": "HTML",
+   "created_at": "2026-09-05T17:57:43Z",
+   "pushed_at": "2026-09-05T17:58:35Z",
+   "topics": []
+  }
+ ]
+}

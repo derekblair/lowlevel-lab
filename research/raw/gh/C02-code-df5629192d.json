@@ -1,0 +1,72 @@
+{
+ "candidate": "C02",
+ "kind": "code",
+ "query": "MEMBARRIER_CMD_PRIVATE_EXPEDITED_SYNC_CORE",
+ "executed_at": "2026-10-19T02:26:59-0700",
+ "api_call": "gh api -X GET search/code -f q='MEMBARRIER_CMD_PRIVATE_EXPEDITED_SYNC_CORE' -f per_page=10",
+ "replay": "gh search code 'MEMBARRIER_CMD_PRIVATE_EXPEDITED_SYNC_CORE' --limit 10",
+ "total_count": 6656,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "cloudius-systems/osv",
+   "path": "include/api/sys/membarrier.h",
+   "url": "https://github.com/cloudius-systems/osv/blob/872f606b7a5e29b081147b545a0eb0db5098fd14/include/api/sys/membarrier.h",
+   "description": "OSv, a new operating system for the cloud."
+  },
+  {
+   "full_name": "chakra-core/ChakraCore",
+   "path": "pal/src/thread/process.cpp",
+   "url": "https://github.com/chakra-core/ChakraCore/blob/97e68c9174209413f621deb2f963941550ef6f22/pal/src/thread/process.cpp",
+   "description": "ChakraCore is an open source Javascript engine with a C API."
+  },
+  {
+   "full_name": "kernelslacker/trinity",
+   "path": "include/kernel/membarrier.h",
+   "url": "https://github.com/kernelslacker/trinity/blob/d4c26f234eebdda051a0d5642aca916ecf501194/include/kernel/membarrier.h",
+   "description": "Linux system call fuzzer"
+  },
+  {
+   "full_name": "kernelslacker/trinity",
+   "path": "syscalls/concurrency/membarrier.c",
+   "url": "https://github.com/kernelslacker/trinity/blob/d4c26f234eebdda051a0d5642aca916ecf501194/syscalls/concurrency/membarrier.c",
+   "description": "Linux system call fuzzer"
+  },
+  {
+   "full_name": "QuarkContainer/Quark",
+   "path": "qlib/linux/membarrier.rs",
+   "url": "https://github.com/QuarkContainer/Quark/blob/0992988b9753e461a30033f6225fec3d7113f106/qlib/linux/membarrier.rs",
+   "description": "A secure container runtime with CRI/OCI interface"
+  },
+  {
+   "full_name": "EOS-team/EOS",
+   "path": "src/RROS/include/uapi/linux/membarrier.h",
+   "url": "https://github.com/EOS-team/EOS/blob/40c8096ed6603bf0a2e256d4d594a56048765c4c/src/RROS/include/uapi/linux/membarrier.h",
+   "description": "EOS is a dual-core operating system designed specifically for embodied intelligence, suitable for robots, drones, satellites or other scenarios requiring real-time and general capabilities."
+  },
+  {
+   "full_name": "malwarepad/cavOS",
+   "path": "target/usr/include/sys/membarrier.h",
+   "url": "https://github.com/malwarepad/cavOS/blob/2ba0edb47c846761d87657cc423436e15d148077/target/usr/include/sys/membarrier.h",
+   "description": "\ud83d\udcbe Amd64 operating system in C. Trying to make a full OS, with a simple and readable codebase!"
+  },
+  {
+   "full_name": "EOS-team/EOS",
+   "path": "src/RROS/kernel/sched/membarrier.c",
+   "url": "https://github.com/EOS-team/EOS/blob/40c8096ed6603bf0a2e256d4d594a56048765c4c/src/RROS/kernel/sched/membarrier.c",
+   "description": "EOS is a dual-core operating system designed specifically for embodied intelligence, suitable for robots, drones, satellites or other scenarios requiring real-time and general capabilities."
+  },
+  {
+   "full_name": "jgarzik/hk",
+   "path": "kernel/membarrier.rs",
+   "url": "https://github.com/jgarzik/hk/blob/2d4e80fc9ead9d4443c422bd8d5dbd3a5e522657/kernel/membarrier.rs",
+   "description": "A modern, Linux compatible OS kernel"
+  },
+  {
+   "full_name": "sslab-gatech/janus",
+   "path": "lkl/include/uapi/linux/membarrier.h",
+   "url": "https://github.com/sslab-gatech/janus/blob/58d9e85df86068f9532f28f45a7e2041b32a165c/lkl/include/uapi/linux/membarrier.h",
+   "description": "Janus: a state-of-the-art file system fuzzer on Linux"
+  }
+ ]
+}

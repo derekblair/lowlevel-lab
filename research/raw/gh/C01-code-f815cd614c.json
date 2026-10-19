@@ -1,0 +1,72 @@
+{
+ "candidate": "C01",
+ "kind": "code",
+ "query": "\"cache_state_modelled\"",
+ "executed_at": "2026-10-18T22:19:53-0700",
+ "api_call": "gh api -X GET search/code -f q='\"cache_state_modelled\"' -f per_page=10",
+ "replay": "gh search code '\"cache_state_modelled\"' --limit 10",
+ "total_count": 2284,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "littlekernel/lk",
+   "path": "docs/fvp-base/how_to_run.md",
+   "url": "https://github.com/littlekernel/lk/blob/7558c1ac6e3158ce1c31f164d2c5f15674020de1/docs/fvp-base/how_to_run.md",
+   "description": "LK embedded kernel"
+  },
+  {
+   "full_name": "zephyrproject-rtos/zephyr",
+   "path": "boards/arm/fvp_base_revc_2xaem/board.cmake",
+   "url": "https://github.com/zephyrproject-rtos/zephyr/blob/a915b2f12675b48b16d56653ea145dcd8f20cbbf/boards/arm/fvp_base_revc_2xaem/board.cmake",
+   "description": "Primary Git Repository for the Zephyr Project. Zephyr is a new generation, scalable, optimized, secure RTOS for multiple hardware architectures."
+  },
+  {
+   "full_name": "islet-project/islet",
+   "path": "scripts/.config",
+   "url": "https://github.com/islet-project/islet/blob/a90a367617bcc4d2503ad282f69443c101ad8ff4/scripts/.config",
+   "description": "An on-device confidential computing platform"
+  },
+  {
+   "full_name": "nrfconnect/sdk-zephyr",
+   "path": "boards/arm/fvp_corstone1000/atomic.c",
+   "url": "https://github.com/nrfconnect/sdk-zephyr/blob/3876d7301c92d7bae52781b57450781f0b4bf1b0/boards/arm/fvp_corstone1000/atomic.c",
+   "description": "NCS downstream of https://github.com/zephyrproject-rtos/zephyr"
+  },
+  {
+   "full_name": "islet-project/islet",
+   "path": "scripts/.config_aosp",
+   "url": "https://github.com/islet-project/islet/blob/a90a367617bcc4d2503ad282f69443c101ad8ff4/scripts/.config_aosp",
+   "description": "An on-device confidential computing platform"
+  },
+  {
+   "full_name": "nrfconnect/sdk-zephyr",
+   "path": "boards/arm/fvp_base_revc_2xaem/board.cmake",
+   "url": "https://github.com/nrfconnect/sdk-zephyr/blob/3876d7301c92d7bae52781b57450781f0b4bf1b0/boards/arm/fvp_base_revc_2xaem/board.cmake",
+   "description": "NCS downstream of https://github.com/zephyrproject-rtos/zephyr"
+  },
+  {
+   "full_name": "opencomputeproject/OCP-HM-MegaRAC_Community_Edition",
+   "path": "meta-arm/meta-arm-bsp/documentation/fvp-base.md",
+   "url": "https://github.com/opencomputeproject/OCP-HM-MegaRAC_Community_Edition/blob/a7584dca1fb709e557b9393ecfcaa2df00e00788/meta-arm/meta-arm-bsp/documentation/fvp-base.md",
+   "description": "This repository is deprecated. OCP created new org in github to have the Megarac community edition. Please refer README for more details"
+  },
+  {
+   "full_name": "OP-TEE/build",
+   "path": "fvp.mk",
+   "url": "https://github.com/OP-TEE/build/blob/146e1c466ae89acf266373626bf98e6592821c4d/fvp.mk",
+   "description": "Makefiles to use OP-TEE on various platforms"
+  },
+  {
+   "full_name": "bao-project/bao-demos",
+   "path": "platforms/fvp-r/README.md",
+   "url": "https://github.com/bao-project/bao-demos/blob/f4d55d8044e1e17e6e54261e1da7db7e18d34725/platforms/fvp-r/README.md",
+   "description": "A guide on how to build and use a set of Bao guest configurations for various platforms"
+  },
+  {
+   "full_name": "SpaceExplorationTechnologies/starlink-wifi-gen2",
+   "path": "ATF/docs/plat/arm/fvp/index.rst",
+   "url": "https://github.com/SpaceExplorationTechnologies/starlink-wifi-gen2/blob/f592948af9cfd7c2a8c85cfcfa973b2b821419e2/ATF/docs/plat/arm/fvp/index.rst",
+   "description": "Public GPLv2 release of 2nd generation Starlink Wifi Router Code"
+  }
+ ]
+}

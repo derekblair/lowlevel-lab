@@ -1,0 +1,130 @@
+{
+ "candidate": "C06",
+ "kind": "repos",
+ "query": "reversible vm",
+ "executed_at": "2026-10-19T02:23:32-0700",
+ "api_call": "gh api -X GET search/repositories -f q='reversible vm' -f per_page=10",
+ "replay": "gh search repos 'reversible vm' --limit 10",
+ "total_count": 9,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "tobiasosborne/BennettVM.jl",
+   "url": "https://github.com/tobiasosborne/BennettVM.jl",
+   "description": "A reversible-VM backend for Bennett.jl, informed by 50 years of reversible-computing literature. Phase-0 spike complete; Phase 2 production pending PRD v4.",
+   "stars": 3,
+   "language": "Julia",
+   "created_at": "2026-05-23T18:58:45Z",
+   "pushed_at": "2026-09-27T19:09:03Z",
+   "topics": []
+  },
+  {
+   "full_name": "GitHubofYJF/VMIE",
+   "url": "https://github.com/GitHubofYJF/VMIE",
+   "description": "The  implementation of \"Visually Meaningful Encryption via Image to Image Reversible\"",
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2025-12-23T10:48:33Z",
+   "pushed_at": "2026-09-07T14:07:39Z",
+   "topics": []
+  },
+  {
+   "full_name": "LaVashikk/vmf-ledger",
+   "url": "https://github.com/LaVashikk/vmf-ledger",
+   "description": "Reversible VMF edits: structural diff, block matching and a sidecar journal",
+   "stars": 0,
+   "language": "Rust",
+   "created_at": "2026-09-15T16:03:38Z",
+   "pushed_at": "2026-10-12T10:29:46Z",
+   "topics": []
+  },
+  {
+   "full_name": "ShobhanKarthish/memento",
+   "url": "https://github.com/ShobhanKarthish/memento",
+   "description": "memento is a tiny bytecode VM with reversible execution",
+   "stars": 0,
+   "language": "Rust",
+   "created_at": "2026-07-19T08:43:31Z",
+   "pushed_at": "2026-07-19T17:58:52Z",
+   "topics": []
+  },
+  {
+   "full_name": "kostyk348/phase-vm",
+   "url": "https://github.com/kostyk348/phase-vm",
+   "description": "Reversible register machine: every op writes one destination, sources stay intact \u2192 inverse from current state, zero logs. F\u207b\u00b9(F(S))==S, reverse ~6.8 ns/leaf.",
+   "stars": 0,
+   "language": "Rust",
+   "created_at": "2026-09-02T19:22:06Z",
+   "pushed_at": "2026-10-16T08:43:29Z",
+   "topics": [
+    "cryptography",
+    "reversible-computing",
+    "rust",
+    "time-travel-debugging",
+    "virtual-machine",
+    "zero-log"
+   ]
+  },
+  {
+   "full_name": "nshkrdotcom/omarchy-beam-deck",
+   "url": "https://github.com/nshkrdotcom/omarchy-beam-deck",
+   "description": "Host-aware BEAM and OTP control plane for Omarchy Quattro. Observes every local and distributed BEAM VM, manages host scheduler budgets and density, detects process pathologies and mailbox backpressure, visualizes supervision and cluster topology, and provides reversible runtime controls with zero application instrumentation required.",
+   "stars": 5,
+   "language": "Elixir",
+   "created_at": "2026-09-05T04:52:29Z",
+   "pushed_at": "2026-09-09T00:02:41Z",
+   "topics": [
+    "bar-widget",
+    "beam",
+    "beam-deck",
+    "cluster-monitoring",
+    "cockpit",
+    "distributed-systems",
+    "elixir",
+    "erlang",
+    "nshkr-omarchy",
+    "omarchy",
+    "omarchy-plugin",
+    "omarchy-quattro",
+    "otp",
+    "panel",
+    "process-monitor",
+    "qml",
+    "quickshell",
+    "scheduler",
+    "system-monitor",
+    "telemetry"
+   ]
+  },
+  {
+   "full_name": "Adrijan-Petek/win10-lite-manager-aggressive-menu",
+   "url": "https://github.com/Adrijan-Petek/win10-lite-manager-aggressive-menu",
+   "description": "This repository contains aggressive system tweaks for Windows 10 that can significantly alter system behavior, remove built-in apps, disable security features, and change privacy-related settings. Use at your own risk. Test in a VM and create a full system image backup before running. Some changes may not be reversible.",
+   "stars": 7,
+   "language": "PowerShell",
+   "created_at": "2025-09-28T19:09:14Z",
+   "pushed_at": "2025-09-28T19:11:23Z",
+   "topics": []
+  },
+  {
+   "full_name": "mystivara-creator/IO_Pure_Performance_Kunzite",
+   "url": "https://github.com/mystivara-creator/IO_Pure_Performance_Kunzite",
+   "description": "A lightweight I/O scheduler and Virtual Memory (VM) optimizer for KernelSU. Modifies only the essentials\u2014allowing UFS storage and the chipset to run cleanly without aggressive background processing overhead. Safe, reversible, and easy to install.",
+   "stars": 1,
+   "language": "Shell",
+   "created_at": "2026-09-11T10:04:47Z",
+   "pushed_at": "2026-09-12T01:48:42Z",
+   "topics": []
+  },
+  {
+   "full_name": "alesrox/axio",
+   "url": "https://github.com/alesrox/axio",
+   "description": "Axio is an imperative, high-level, and strongly typed programming language featuring a register-based VM that combines **Native Finite State Machines (FSM)** with **Deterministic Replay / Rollback execution**, providing first-class primitives for building reliable, event-driven, and reversible stateful applications.",
+   "stars": 1,
+   "language": "C",
+   "created_at": "2026-09-10T23:25:32Z",
+   "pushed_at": "2026-09-10T23:28:44Z",
+   "topics": []
+  }
+ ]
+}

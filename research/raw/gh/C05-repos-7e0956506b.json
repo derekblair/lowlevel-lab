@@ -1,0 +1,32 @@
+{
+ "candidate": "C05",
+ "kind": "repos",
+ "query": "corewar native",
+ "executed_at": "2026-10-18T22:22:01-0700",
+ "api_call": "gh api -X GET search/repositories -f q='corewar native' -f per_page=10",
+ "replay": "gh search repos 'corewar native' --limit 10",
+ "total_count": 2,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "SneakyBugs/CoreWarden",
+   "url": "https://github.com/SneakyBugs/CoreWarden",
+   "description": "Ad-blocking DNS that feels native on Kubernetes",
+   "stars": 0,
+   "language": "Go",
+   "created_at": "2025-01-30T15:22:45Z",
+   "pushed_at": "2026-10-18T13:08:01Z",
+   "topics": []
+  },
+  {
+   "full_name": "thinkst/promptwars",
+   "url": "https://github.com/thinkst/promptwars",
+   "description": "Prompt Wars is a modern, AI-native riff on CoreWars. Instead of programs, you create AI warriors in the form of prompts that battle other AI warriors created by other players.",
+   "stars": 3,
+   "language": "TypeScript",
+   "created_at": "2026-09-20T21:20:01Z",
+   "pushed_at": "2026-09-21T06:47:18Z",
+   "topics": []
+  }
+ ]
+}

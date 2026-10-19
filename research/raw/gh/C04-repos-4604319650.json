@@ -1,0 +1,79 @@
+{
+ "candidate": "C04",
+ "kind": "repos",
+ "query": "x86 instruction fuzzer",
+ "executed_at": "2026-10-18T22:21:21-0700",
+ "api_call": "gh api -X GET search/repositories -f q='x86 instruction fuzzer' -f per_page=10",
+ "replay": "gh search repos 'x86 instruction fuzzer' --limit 10",
+ "total_count": 5,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "blitz/baresifter",
+   "url": "https://github.com/blitz/baresifter",
+   "description": "A bare-metal x86 instruction set fuzzer a la Sandsifter",
+   "stars": 75,
+   "language": "C++",
+   "created_at": "2018-01-23T00:12:14Z",
+   "pushed_at": "2024-03-13T16:30:38Z",
+   "topics": [
+    "bare-metal",
+    "baremetal",
+    "capstone",
+    "fuzzing",
+    "reverse-engineering",
+    "x86"
+   ]
+  },
+  {
+   "full_name": "nstarke/instrfuzz",
+   "url": "https://github.com/nstarke/instrfuzz",
+   "description": "A CPU Instruction Fuzzer for QEMU x86",
+   "stars": 10,
+   "language": "Assembly",
+   "created_at": "2024-03-29T23:16:53Z",
+   "pushed_at": "2024-04-08T15:06:32Z",
+   "topics": [
+    "assembly",
+    "fuzzer",
+    "x86"
+   ]
+  },
+  {
+   "full_name": "gaidardzhiev/ring0fuzzer",
+   "url": "https://github.com/gaidardzhiev/ring0fuzzer",
+   "description": "Ring 0 x86_64 opcode fuzzer for smashing undocumented instructions, trapping faults, and stress-testing CPU behavior from inside the kernel.",
+   "stars": 3,
+   "language": "C",
+   "created_at": "2025-10-30T09:20:53Z",
+   "pushed_at": "2026-02-21T09:22:38Z",
+   "topics": [
+    "fuzzer",
+    "kernel",
+    "kernel-module",
+    "opcodes",
+    "undocumented"
+   ]
+  },
+  {
+   "full_name": "preames/inst-decode-search",
+   "url": "https://github.com/preames/inst-decode-search",
+   "description": "Using coverage guided fuzzing to explore the intricacies of x86-64 instruction decoding.",
+   "stars": 4,
+   "language": "Rust",
+   "created_at": "2021-12-07T23:21:48Z",
+   "pushed_at": "2021-12-24T19:32:28Z",
+   "topics": []
+  },
+  {
+   "full_name": "p4zuu/kernel-insn-fuzzing",
+   "url": "https://github.com/p4zuu/kernel-insn-fuzzing",
+   "description": "Fuzzing the Linux kernel x86 instruction decoding code. ",
+   "stars": 0,
+   "language": null,
+   "created_at": "2024-06-05T21:48:18Z",
+   "pushed_at": "2024-06-19T08:43:40Z",
+   "topics": []
+  }
+ ]
+}

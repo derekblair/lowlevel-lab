@@ -1,0 +1,141 @@
+{
+ "candidate": "C04",
+ "kind": "repos",
+ "query": "\"undefined flags\" in:readme",
+ "executed_at": "2026-10-19T02:27:47-0700",
+ "api_call": "gh api -X GET search/repositories -f q='\"undefined flags\" in:readme' -f per_page=10",
+ "replay": "gh search repos '\"undefined flags\" in:readme' --limit 10",
+ "total_count": 261,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "juliangrtz/frida-iOS-syscall-tracer",
+   "url": "https://github.com/juliangrtz/frida-iOS-syscall-tracer",
+   "description": "Traces syscalls on iOS via Frida, including Mach syscalls.",
+   "stars": 111,
+   "language": "TypeScript",
+   "created_at": "2023-11-26T14:00:55Z",
+   "pushed_at": "2026-04-03T18:33:17Z",
+   "topics": [
+    "frida",
+    "frida-stalker",
+    "ios",
+    "ios-security",
+    "strace",
+    "syscall",
+    "tracer"
+   ]
+  },
+  {
+   "full_name": "barotto/test386.asm",
+   "url": "https://github.com/barotto/test386.asm",
+   "description": "x86 CPU tester for emulators",
+   "stars": 69,
+   "language": "Assembly",
+   "created_at": "2017-04-27T17:23:52Z",
+   "pushed_at": "2026-04-19T16:33:22Z",
+   "topics": [
+    "assembly",
+    "cpu-diagnostic",
+    "cpu-tester",
+    "emulator-tester",
+    "x86",
+    "x86-tester"
+   ]
+  },
+  {
+   "full_name": "linkeddata/rdflib.js",
+   "url": "https://github.com/linkeddata/rdflib.js",
+   "description": "Linked Data API for JavaScript",
+   "stars": 598,
+   "language": "HTML",
+   "created_at": "2011-12-13T23:22:49Z",
+   "pushed_at": "2026-10-12T10:59:23Z",
+   "topics": []
+  },
+  {
+   "full_name": "sindresorhus/meow",
+   "url": "https://github.com/sindresorhus/meow",
+   "description": "\ud83d\udc08 CLI app helper",
+   "stars": 3717,
+   "language": "JavaScript",
+   "created_at": "2014-10-12T14:24:36Z",
+   "pushed_at": "2026-07-21T18:40:22Z",
+   "topics": [
+    "cli",
+    "command-line",
+    "javascript",
+    "kitten",
+    "meow",
+    "nodejs"
+   ]
+  },
+  {
+   "full_name": "meeDamian/country-emoji",
+   "url": "https://github.com/meeDamian/country-emoji",
+   "description": "Converts between country names, ISO 3166-1 codes and flag emojis.",
+   "stars": 88,
+   "language": "JavaScript",
+   "created_at": "2016-10-07T18:21:22Z",
+   "pushed_at": "2026-05-28T00:37:45Z",
+   "topics": [
+    "country-emoji",
+    "country-names",
+    "emoji",
+    "flag",
+    "iso3166-1",
+    "nodejs"
+   ]
+  },
+  {
+   "full_name": "codepb/jquery-template",
+   "url": "https://github.com/codepb/jquery-template",
+   "description": "A template plugin for jQuery. Allows templating without cluttering JavaScript code with markup. Simple, Concise yet powerful.",
+   "stars": 602,
+   "language": "JavaScript",
+   "created_at": "2013-05-25T07:38:35Z",
+   "pushed_at": "2021-12-31T13:17:45Z",
+   "topics": []
+  },
+  {
+   "full_name": "dogtagpki/coolkey",
+   "url": "https://github.com/dogtagpki/coolkey",
+   "description": null,
+   "stars": 27,
+   "language": "C++",
+   "created_at": "2017-02-22T16:26:33Z",
+   "pushed_at": "2024-02-13T23:13:20Z",
+   "topics": []
+  },
+  {
+   "full_name": "breck7/drillBits",
+   "url": "https://github.com/breck7/drillBits",
+   "description": "Code from https://queue.acm.org/detail.cfm?id=3448307 unzipped",
+   "stars": 21,
+   "language": "C",
+   "created_at": "2021-01-30T15:46:37Z",
+   "pushed_at": "2021-01-30T15:47:03Z",
+   "topics": []
+  },
+  {
+   "full_name": "SingleStepTests/80286",
+   "url": "https://github.com/SingleStepTests/80286",
+   "description": "A Hardware-Generated CPU Test Suite for the Intel 80286",
+   "stars": 40,
+   "language": "Python",
+   "created_at": "2025-06-30T18:55:06Z",
+   "pushed_at": "2025-11-02T19:00:21Z",
+   "topics": []
+  },
+  {
+   "full_name": "edwardt/basequery",
+   "url": "https://github.com/edwardt/basequery",
+   "description": null,
+   "stars": 0,
+   "language": null,
+   "created_at": "2021-03-24T15:24:46Z",
+   "pushed_at": "2021-03-22T04:54:10Z",
+   "topics": []
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "candidate": "C23",
+ "kind": "repos",
+ "query": "page table walk visualizer",
+ "executed_at": "2026-10-18T22:25:45-0700",
+ "api_call": "gh api -X GET search/repositories -f q='page table walk visualizer' -f per_page=10",
+ "replay": "gh search repos 'page table walk visualizer' --limit 10",
+ "total_count": 2,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "hemindesai04/page-table-walker",
+   "url": "https://github.com/hemindesai04/page-table-walker",
+   "description": "Simulator and Visualizer for 2-stage ARM v9 Page Table Walk.",
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2026-02-27T09:32:14Z",
+   "pushed_at": "2026-02-27T09:34:58Z",
+   "topics": []
+  },
+  {
+   "full_name": "davidgeamanu/Virtual-Memory-Simulator",
+   "url": "https://github.com/davidgeamanu/Virtual-Memory-Simulator",
+   "description": "A JavaFX educational simulator visualizing virtual memory management, TLB lookups, page table walks, and page replacement algorithms (FIFO, LRU, Optimal)",
+   "stars": 0,
+   "language": "Java",
+   "created_at": "2026-01-22T16:59:59Z",
+   "pushed_at": "2026-02-24T16:21:52Z",
+   "topics": [
+    "educational-tool",
+    "java",
+    "javafx",
+    "memory-management",
+    "operating-systems",
+    "page-replacement",
+    "page-replacement-algorithm",
+    "virtual-memory"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+{
+ "candidate": "C04",
+ "kind": "repos",
+ "query": "cpu instruction fuzzer created:>2026-04-01",
+ "executed_at": "2026-10-19T02:27:56-0700",
+ "api_call": "gh api -X GET search/repositories -f q='cpu instruction fuzzer created:>2026-04-01' -f per_page=10",
+ "replay": "gh search repos 'cpu instruction fuzzer created:>2026-04-01' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "bvsnithin/NIRVFuzz",
+   "url": "https://github.com/bvsnithin/NIRVFuzz",
+   "description": "NIRVFuzz is a simulation-based, coverage-guided fuzzing framework for RISC-V processor cores. It automatically generates and mutates sequences of RISC-V machine instructions, runs them through a Verilator simulation of the target CPU, and uses hardware-observable feedback signals to guide the search toward inputs that expose bugs.",
+   "stars": 1,
+   "language": "Verilog",
+   "created_at": "2026-05-01T21:31:29Z",
+   "pushed_at": "2026-05-03T22:57:25Z",
+   "topics": []
+  }
+ ]
+}

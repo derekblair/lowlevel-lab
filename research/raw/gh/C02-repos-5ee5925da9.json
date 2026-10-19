@@ -1,0 +1,200 @@
+{
+ "candidate": "C02",
+ "kind": "repos",
+ "query": "topic:self-modifying-code",
+ "executed_at": "2026-10-19T02:26:42-0700",
+ "api_call": "gh api -X GET search/repositories -f q='topic:self-modifying-code' -f per_page=10",
+ "replay": "gh search repos 'topic:self-modifying-code' --limit 10",
+ "total_count": 70,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "d35ha/xObf",
+   "url": "https://github.com/d35ha/xObf",
+   "description": "Simple x86/x86_64 instruction level obfuscator based on a basic SBI engine",
+   "stars": 282,
+   "language": "C++",
+   "created_at": "2019-11-01T17:33:43Z",
+   "pushed_at": "2022-11-20T17:53:27Z",
+   "topics": [
+    "malware-research",
+    "self-modifying-code",
+    "static-binary-instrumentation"
+   ]
+  },
+  {
+   "full_name": "dmaivel/covirt",
+   "url": "https://github.com/dmaivel/covirt",
+   "description": "An x86-64 code virtualizer for VM based obfuscation",
+   "stars": 272,
+   "language": "C++",
+   "created_at": "2024-12-02T23:47:38Z",
+   "pushed_at": "2024-12-21T23:34:19Z",
+   "topics": [
+    "code-virtualizer",
+    "compiler",
+    "mba",
+    "mixed-boolean-arithmetic",
+    "obfuscation",
+    "obfuscator",
+    "reverse-engineering",
+    "self-modifying-code",
+    "virtual-machine",
+    "virtualization",
+    "virtualizer",
+    "vm",
+    "vmp",
+    "vmprotect"
+   ]
+  },
+  {
+   "full_name": "loreloc/mkpoly",
+   "url": "https://github.com/loreloc/mkpoly",
+   "description": "A simple polymorphic engine",
+   "stars": 46,
+   "language": "Assembly",
+   "created_at": "2018-06-18T19:43:58Z",
+   "pushed_at": "2019-08-08T20:45:10Z",
+   "topics": [
+    "assembly",
+    "malware",
+    "polymorphic-engine",
+    "self-modifying-code"
+   ]
+  },
+  {
+   "full_name": "ahmershahdev/obscuralang",
+   "url": "https://github.com/ahmershahdev/obscuralang",
+   "description": "ObscuraLang \u2014 a machine-native, post-human programming language. Not meant to be read. Not meant for humans. Built as a fun side project, driven purely by vibe coding and AI experimentation. This is the doctrine.",
+   "stars": 42,
+   "language": "CSS",
+   "created_at": "2025-07-16T20:28:29Z",
+   "pushed_at": "2026-02-16T11:57:37Z",
+   "topics": [
+    "ahmershahdev",
+    "ai-language",
+    "ai-to-ai",
+    "experimental-language",
+    "machine-native",
+    "meta-language",
+    "mutation-language",
+    "obscuralang",
+    "post-human",
+    "self-modifying-code",
+    "syedahmershah",
+    "symbolic-programming"
+   ]
+  },
+  {
+   "full_name": "telepath9000/elf-packer",
+   "url": "https://github.com/telepath9000/elf-packer",
+   "description": "Encrypts 64-bit elf files that decrypt at runtime. ",
+   "stars": 38,
+   "language": "C",
+   "created_at": "2018-01-31T17:27:27Z",
+   "pushed_at": "2025-03-06T18:00:41Z",
+   "topics": [
+    "binary-analysis",
+    "elf-binaries",
+    "elf-format",
+    "elf-parser",
+    "elf64",
+    "encryption",
+    "injection-attacks",
+    "linux",
+    "self-modifying-code"
+   ]
+  },
+  {
+   "full_name": "ericyoc/obfuscation_techniques_poc",
+   "url": "https://github.com/ericyoc/obfuscation_techniques_poc",
+   "description": "Demonstrates of eight common code obfuscation techniques",
+   "stars": 22,
+   "language": "Jupyter Notebook",
+   "created_at": "2024-04-10T18:28:25Z",
+   "pushed_at": "2024-09-04T16:11:25Z",
+   "topics": [
+    "anti-analysis",
+    "control-flow-obfuscation",
+    "junk-code-insertation",
+    "name-obfuscation",
+    "obfuscation",
+    "opaque-predicates",
+    "packing-compression",
+    "reverse-engineering",
+    "self-modifying-code",
+    "string-encryption",
+    "virtualization-intepretation"
+   ]
+  },
+  {
+   "full_name": "lurak/Polymorphic_engine",
+   "url": "https://github.com/lurak/Polymorphic_engine",
+   "description": null,
+   "stars": 18,
+   "language": "Python",
+   "created_at": "2020-03-30T09:52:40Z",
+   "pushed_at": "2020-06-15T07:53:26Z",
+   "topics": [
+    "assembly",
+    "junk-instructions",
+    "linux-x86-64-bit",
+    "nasm-assembly",
+    "polymorphic-engine",
+    "python",
+    "self-modifying-code"
+   ]
+  },
+  {
+   "full_name": "x0reaxeax/Fetch-n-Exec",
+   "url": "https://github.com/x0reaxeax/Fetch-n-Exec",
+   "description": "An x64 binary executing code that's not inside of it.",
+   "stars": 17,
+   "language": "C",
+   "created_at": "2021-11-13T23:53:32Z",
+   "pushed_at": "2023-02-28T12:03:03Z",
+   "topics": [
+    "polymorphism",
+    "runtime-polymorphism",
+    "self-modifying-code",
+    "urban-dollop",
+    "x64"
+   ]
+  },
+  {
+   "full_name": "pwnslinger/SMC",
+   "url": "https://github.com/pwnslinger/SMC",
+   "description": "Self-modifying Code de-obfuscation",
+   "stars": 17,
+   "language": "Python",
+   "created_at": "2017-05-02T15:34:44Z",
+   "pushed_at": "2017-05-17T15:02:42Z",
+   "topics": [
+    "deobfuscation",
+    "junkcode",
+    "obfuscation",
+    "self-modifying-code",
+    "smc",
+    "unpacker"
+   ]
+  },
+  {
+   "full_name": "hovewoof/My-Simple-Crackme",
+   "url": "https://github.com/hovewoof/My-Simple-Crackme",
+   "description": "This project demonstrating multiple protection and anti-analysis techniques, including self-modifying code.",
+   "stars": 16,
+   "language": "C++",
+   "created_at": "2023-09-12T19:29:26Z",
+   "pushed_at": "2023-10-09T19:25:50Z",
+   "topics": [
+    "anti-debugging",
+    "code-obfuscation",
+    "crackme",
+    "dynamic-code-integrity-checking",
+    "security",
+    "self-modifying-code",
+    "virtual-machine-detection"
+   ]
+  }
+ ]
+}

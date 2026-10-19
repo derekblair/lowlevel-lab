@@ -1,0 +1,11 @@
+{
+ "candidate": "C09",
+ "kind": "repos",
+ "query": "disassembly self-synchronization",
+ "executed_at": "2026-10-18T22:23:13-0700",
+ "api_call": "gh api -X GET search/repositories -f q='disassembly self-synchronization' -f per_page=10",
+ "replay": "gh search repos 'disassembly self-synchronization' --limit 10",
+ "total_count": 0,
+ "incomplete_results": false,
+ "items": []
+}

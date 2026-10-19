@@ -1,0 +1,11 @@
+{
+ "candidate": "C04",
+ "kind": "repos",
+ "query": "alder lake e-core instruction",
+ "executed_at": "2026-10-18T22:21:33-0700",
+ "api_call": "gh api -X GET search/repositories -f q='alder lake e-core instruction' -f per_page=10",
+ "replay": "gh search repos 'alder lake e-core instruction' --limit 10",
+ "total_count": 0,
+ "incomplete_results": false,
+ "items": []
+}

@@ -1,0 +1,223 @@
+# lowlevel-lab novelty queries (round 1). Format: cand<TAB>repos|code<TAB>query
+# Goal: try to KILL each candidate -- phrase queries toward the likeliest prior art.
+#
+# C01 stale-fetch: AArch64 emulator with a non-coherent (adversarial) I-cache model
+C01	repos	icache coherence emulator
+C01	repos	aarch64 emulator instruction cache
+C01	repos	arm64 self-modifying code cache maintenance
+C01	repos	stale instruction cache
+C01	repos	ifetch litmus
+C01	repos	arm64 jit icache flush
+C01	repos	cache maintenance emulator in:name,description,readme
+C01	code	"cache_state_modelled"
+C01	code	"IC IVAU" emulator
+# C02 smc-observatory: SMC/XMC machine-clear cartography on hybrid P/E x86 cores
+C02	repos	self-modifying code benchmark
+C02	repos	machine clears self-modifying
+C02	repos	cross-modifying code
+C02	repos	self-modifying code penalty x86
+C02	repos	smc microbenchmark in:name,description,readme
+C02	repos	hybrid p-core e-core microbenchmark
+C02	code	"MACHINE_CLEARS.SMC" perf_event_open
+C02	code	"MACHINE_CLEARS.XMC"
+C02	code	"cross-modifying code" serialize
+# C03 pt-truth: version-correct Intel PT decoding of self-modifying code (PTWRITE markers)
+C03	repos	intel pt self-modifying code
+C03	repos	processor trace jit
+C03	repos	ptwrite
+C03	repos	intel processor trace decoder python
+C03	repos	libipt jit
+C03	repos	intel pt code version
+C03	code	ptwrite jit
+C03	code	"pt_image_set_callback"
+# C04 hybrid-diff: P-core vs E-core differential instruction/flag/CPUID scanner
+C04	repos	sandsifter
+C04	repos	x86 instruction fuzzer
+C04	repos	p-core e-core differences
+C04	repos	hybrid cpu differential testing
+C04	repos	undefined flags x86
+C04	repos	alder lake e-core instruction
+C04	code	"core type" cpuid 0x1a sched_setaffinity
+# C05 silicon-corewar: Core War with native x86-64 warriors on real cores
+C05	repos	core war x86
+C05	repos	corewar native
+C05	repos	corewar machine code
+C05	repos	core war multicore
+C05	repos	codeguru xtreme
+C05	repos	x86 corewar arena
+# C06 reversible-jit: reversible ISA with a bidirectional x86-64 JIT
+C06	repos	reversible virtual machine
+C06	repos	reversible computing jit
+C06	repos	janus reversible
+C06	repos	pendulum reversible
+C06	repos	reversible instruction set
+C06	repos	reversible assembly language
+# C07 isa-hop: one process hopping between native x86-64 and emulated AArch64
+C07	repos	heterogeneous isa migration
+C07	repos	popcorn linux
+C07	repos	cross-isa migration
+C07	repos	migrate execution x86 arm
+C07	repos	cross-isa execution emulator native
+# C08 a64-atlas: whole-encoding-space atlas of AArch64, differential vs binutils
+C08	repos	aarch64 encoding space
+C08	repos	arm64 opcode map
+C08	repos	instruction space visualization
+C08	repos	hilbert curve instruction encoding
+C08	repos	aarch64 decoder differential
+# C09 x86-lattice: superset-decoding lattice + resynchronisation statistics
+C09	repos	superset disassembly
+C09	repos	overlapping instructions x86
+C09	repos	instruction overlap visualization
+C09	repos	disassembly self-synchronization
+# C10 mirror: program that single-steps itself (TF) and renders its own execution
+C10	repos	trap flag single step tracer
+C10	repos	self-tracing program
+C10	repos	sigtrap single step in-process
+C10	repos	program visualizes its own execution
+C10	code	"REG_EFL" 0x100 SIGTRAP
+# C11 mini-rosetta: AArch64 -> x86-64 binary translator with flag-mapping proof
+C11	repos	arm64 to x86 translator
+C11	repos	aarch64 x86-64 binary translation
+C11	repos	arm64 recompiler x86
+C11	repos	static binary translation arm64
+# C12 quine-relay-isa: cross-ISA machine-code quine relay
+C12	repos	binary quine
+C12	repos	elf quine
+C12	repos	cross-architecture quine
+C12	repos	machine code quine relay
+# C13 bitflip-map: single-bit fault sensitivity map of machine code
+C13	repos	fault injection simulator arm
+C13	repos	bit flip machine code
+C13	repos	FiSim
+C13	repos	instruction skip fault simulation
+# C14 skid-map: sampling-skid atlas per core type
+C14	repos	perf skid
+C14	repos	pebs skid
+C14	repos	sampling skid measurement
+# C15 rep-probe: guard-page probing of fast-string progress granularity
+C15	repos	rep movsb page fault
+C15	repos	fast strings microcode granularity
+C15	repos	rep movsb interrupt
+# C16 befunge-smc-jit
+C16	repos	befunge jit
+C16	repos	befunge x86 jit
+C16	repos	funge jit
+# C17 cpuid-mirror: CPUID faulting tracer/spoofer
+C17	repos	ARCH_SET_CPUID
+C17	repos	cpuid faulting
+C17	repos	cpuid trap user space
+C17	code	"ARCH_SET_CPUID"
+# C18 loader-film: visualize ld.so relocation + lazy binding
+C18	repos	dynamic linker visualization
+C18	repos	plt got visualization
+C18	repos	relocation visualizer
+C18	repos	lazy binding visualization
+# C19 native-tierra: artificial life in real machine code
+C19	repos	tierra x86
+C19	repos	artificial life machine code
+C19	repos	evolving x86 machine code
+C19	repos	self-replicating machine code
+# C20 cfi-duel (expected CUT): CET shadow stack vs PAC
+C20	repos	cet shadow stack demo
+C20	repos	pointer authentication emulator
+# C21 meta-equiv (expected CUT): metamorphic variant equivalence
+C21	repos	metamorphic engine
+C21	repos	binary code equivalence checker
+# C22 tnt-barcode: control-flow barcodes from PT TNT bits
+C22	repos	intel pt visualization
+C22	repos	branch trace visualization
+C22	repos	magic-trace
+# C23 kvm-pagewalk
+C23	repos	kvm hello world
+C23	repos	page table walk visualizer
+# ---- round 2 (2026-10-18 ~22:50): aimed at threats surfaced by web search ----
+# C01 reshaped -> "ifetch sanitizer": who models/diagnoses A64 cache maintenance?
+C01	repos	isla axiomatic
+C01	repos	herd7 ifetch
+C01	repos	icache sanitizer
+C01	repos	cache maintenance checker jit
+C01	repos	aarch64 emulator python
+C01	repos	arm64 emulator self-modifying code
+C01	code	"ic ivau" language:Python
+C01	code	"CTR_EL0" DIC IDC emulator
+# C02: SMaCk and other SMC-measurement repos
+C02	repos	SMaCk
+C02	repos	self-modifying code side channel
+C02	repos	smc machine clear
+C02	repos	cross modifying code test
+C02	code	"machine_clears.smc"
+# C03: PTWRITE users; PT decoders that might version code
+C03	code	ptwrite language:C
+C03	code	ptwrite language:Assembly
+C03	code	"fup_on_ptw"
+C03	repos	intel pt python
+C03	repos	ptxed
+# C05: native / threaded Core War
+C05	repos	corewar threads
+C05	repos	corewar x86-64
+C05	repos	core war assembly native
+# C06: reversible ISA VMs
+C06	repos	REL-16
+C06	repos	reversible isa
+C06	repos	reversible vm
+C06	repos	bob isa reversible
+# C07: Unifico / heterogeneous ISA
+C07	repos	unifico
+C07	repos	heterogeneous isa
+# C09: superset disassembly tools
+C09	repos	multiverse binary rewriter
+C09	repos	superset disassembler
+# C10: TF self-tracing
+C10	repos	trap flag tracer
+C10	repos	eflags tf single step
+# C12: AArch64 quines
+C12	repos	aarch64 quine
+C12	repos	arm64 elf quine
+# C22: PT viewers
+C22	repos	intel pt trace viewer
+C22	repos	processor trace visualization
+# ---- round 3 (2026-10-19 ~02:40): REVIEW-00 §2.1 minimums for shortlist + first alternate ----
+# C01 ifetch sanitizer (A64)
+C01	repos	topic:aarch64 topic:emulator
+C01	repos	"IC IVAU" in:readme
+C01	repos	instruction cache coherence in:readme aarch64
+C01	repos	aarch64 emulator created:>2026-04-01
+C01	repos	self-modifying arm64 created:>2026-04-01
+C01	code	"IminLine" emulator
+C01	code	"stale" "IC IVAU"
+# C02 SMC/XMC observatory (x86 hybrid)
+C02	repos	topic:self-modifying-code
+C02	repos	"self-modifying code" "machine clear" in:readme
+C02	repos	"cross-modifying" in:readme
+C02	repos	self-modifying code created:>2026-04-01
+C02	code	MEMBARRIER_CMD_PRIVATE_EXPEDITED_SYNC_CORE
+C02	code	"self-modifying" perf_event_open PROT_EXEC
+# C03 pt-truth
+C03	repos	topic:intel-pt
+C03	repos	topic:processor-trace
+C03	repos	"intel pt" "self-modifying" in:readme
+C03	repos	intel pt created:>2026-04-01
+C03	code	"aux_offset" intel_pt
+C03	code	"pt_image_add_cached" jit
+# C04 hybrid-diff
+C04	repos	topic:cpu-fuzzing
+C04	repos	topic:hybrid-cpu
+C04	repos	"undefined flags" in:readme
+C04	repos	"E-core" "P-core" undefined in:readme
+C04	repos	p-core e-core created:>2026-04-01
+C04	repos	cpu instruction fuzzer created:>2026-04-01
+C04	code	"OF is undefined" shl
+C04	code	"undefined" "overflow flag" "shift count"
+# C06 reversible JIT
+C06	repos	topic:reversible-computing
+C06	repos	reversible jit in:readme
+C06	repos	"reversible" "machine code" in:readme
+C06	repos	reversible isa created:>2026-04-01
+C06	code	SWAPBR
+C06	code	"reversible" PROT_EXEC mmap jit
+# C05 silicon-corewar (first alternate)
+C05	repos	topic:corewar
+C05	repos	"core war" native in:readme
+C05	repos	corewar created:>2026-04-01
+C05	code	corewar sched_setaffinity
+C05	code	"PROT_EXEC" warrior arena

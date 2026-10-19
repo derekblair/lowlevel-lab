@@ -1,0 +1,27 @@
+{
+ "candidate": "C12",
+ "kind": "repos",
+ "query": "aarch64 quine",
+ "executed_at": "2026-10-19T02:23:56-0700",
+ "api_call": "gh api -X GET search/repositories -f q='aarch64 quine' -f per_page=10",
+ "replay": "gh search repos 'aarch64 quine' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "quine-build/quine-target-aarch64",
+   "url": "https://github.com/quine-build/quine-target-aarch64",
+   "description": "Quine compiler backend for ARM64 architecture",
+   "stars": 0,
+   "language": null,
+   "created_at": "2025-04-13T20:54:28Z",
+   "pushed_at": "2025-04-14T15:34:26Z",
+   "topics": [
+    "arm64",
+    "compiler",
+    "python",
+    "security"
+   ]
+  }
+ ]
+}

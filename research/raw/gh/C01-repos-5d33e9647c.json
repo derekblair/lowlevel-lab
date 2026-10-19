@@ -1,0 +1,134 @@
+{
+ "candidate": "C01",
+ "kind": "repos",
+ "query": "\"IC IVAU\" in:readme",
+ "executed_at": "2026-10-19T02:26:06-0700",
+ "api_call": "gh api -X GET search/repositories -f q='\"IC IVAU\" in:readme' -f per_page=10",
+ "replay": "gh search repos '\"IC IVAU\" in:readme' --limit 10",
+ "total_count": 21,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "hu847266h/scene-unlock-toolkit",
+   "url": "https://github.com/hu847266h/scene-unlock-toolkit",
+   "description": "Scene (N1 Alpha8) activation-chain research: LSPosed module (legacy stubs, verdict rewrite) + scene-daemon runtime hot-patch (ptrace icache sync). MIUI + KernelSU.",
+   "stars": 32,
+   "language": "Java",
+   "created_at": "2026-09-30T00:19:18Z",
+   "pushed_at": "2026-10-03T12:18:26Z",
+   "topics": [
+    "android",
+    "arm64",
+    "hotpatch",
+    "lsposed",
+    "miui",
+    "ptrace",
+    "reverse-engineering",
+    "scene-app",
+    "xposed"
+   ]
+  },
+  {
+   "full_name": "cyyself/jit-coherence-test",
+   "url": "https://github.com/cyyself/jit-coherence-test",
+   "description": "Understand microarchitecture features of I-D Coherence.",
+   "stars": 6,
+   "language": "C++",
+   "created_at": "2024-01-03T16:46:30Z",
+   "pushed_at": "2026-03-21T16:57:22Z",
+   "topics": []
+  },
+  {
+   "full_name": "TheAevoraLabs/SwordigoDesktop",
+   "url": "https://github.com/TheAevoraLabs/SwordigoDesktop",
+   "description": "A desktop adaptation of Swordigo, delivering fast-paced platforming, magic, and adventure on PC.",
+   "stars": 9,
+   "language": "C++",
+   "created_at": "2026-06-15T08:49:38Z",
+   "pushed_at": "2026-10-18T20:01:20Z",
+   "topics": [
+    "androidlinuxruntime",
+    "cpp20",
+    "game-engine",
+    "linux",
+    "modding-tools",
+    "opengl-es",
+    "pcport",
+    "qt6",
+    "srt",
+    "swordigo",
+    "windows"
+   ]
+  },
+  {
+   "full_name": "ylh440104/InfinityCore-Android-CVE-2026-98260",
+   "url": "https://github.com/ylh440104/InfinityCore-Android-CVE-2026-98260",
+   "description": "CVE-2026-98260 (Timer) Android/ARM64 port",
+   "stars": 4,
+   "language": "C",
+   "created_at": "2026-10-18T23:26:39Z",
+   "pushed_at": "2026-10-18T23:39:03Z",
+   "topics": []
+  },
+  {
+   "full_name": "goliajp/aarch64-study",
+   "url": "https://github.com/goliajp/aarch64-study",
+   "description": "AArch64 SoC simulator in the browser \u2014 teach OS internals one architectural concept per version (Rust \u2192 WASM)",
+   "stars": 1,
+   "language": "Rust",
+   "created_at": "2026-04-29T18:46:03Z",
+   "pushed_at": "2026-05-01T03:28:18Z",
+   "topics": []
+  },
+  {
+   "full_name": "Surest-ok/cherry_kmod",
+   "url": "https://github.com/Surest-ok/cherry_kmod",
+   "description": null,
+   "stars": 0,
+   "language": "C",
+   "created_at": "2026-10-16T08:30:54Z",
+   "pushed_at": "2026-10-18T12:15:57Z",
+   "topics": []
+  },
+  {
+   "full_name": "a730322563-blip/pte-",
+   "url": "https://github.com/a730322563-blip/pte-",
+   "description": null,
+   "stars": 0,
+   "language": "C",
+   "created_at": "2026-09-18T14:07:07Z",
+   "pushed_at": "2026-09-19T13:42:50Z",
+   "topics": []
+  },
+  {
+   "full_name": "DigitalisX64/sample_hello_digitalis",
+   "url": "https://github.com/DigitalisX64/sample_hello_digitalis",
+   "description": "The sample code to verify DigtitalisX64",
+   "stars": 0,
+   "language": "C++",
+   "created_at": "2026-04-04T04:18:58Z",
+   "pushed_at": "2026-10-18T15:33:43Z",
+   "topics": []
+  },
+  {
+   "full_name": "sanixmon/marvel-super-war-localization",
+   "url": "https://github.com/sanixmon/marvel-super-war-localization",
+   "description": "Marvel Super War (\u6f2b\u5a01\u8d85\u7ea7\u6218\u4e89) English localization research, string datasets, and automated patch tooling",
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2026-09-11T04:00:18Z",
+   "pushed_at": "2026-09-14T10:13:06Z",
+   "topics": []
+  },
+  {
+   "full_name": "dreamlike-ocean/hotspot-vmstruct-bridge",
+   "url": "https://github.com/dreamlike-ocean/hotspot-vmstruct-bridge",
+   "description": "\u8fd9\u4e2a\u9879\u76ee\u7528 pure Java + FFM \u8bfb\u53d6 HotSpot-family JVM \u7684\u5185\u90e8\u7ed3\u6784\u548c\u7b26\u53f7\uff0c\u5e76\u8fdb\u884c\u4e00\u4e9b\u6709\u8da3\u64cd\u4f5c",
+   "stars": 10,
+   "language": "Java",
+   "created_at": "2026-06-28T09:47:05Z",
+   "pushed_at": "2026-07-01T09:38:35Z",
+   "topics": []
+  }
+ ]
+}

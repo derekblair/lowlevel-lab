@@ -1,0 +1,50 @@
+{
+ "candidate": "C11",
+ "kind": "repos",
+ "query": "arm64 recompiler x86",
+ "executed_at": "2026-10-18T22:23:43-0700",
+ "api_call": "gh api -X GET search/repositories -f q='arm64 recompiler x86' -f per_page=10",
+ "replay": "gh search repos 'arm64 recompiler x86' --limit 10",
+ "total_count": 3,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "bloodborne-native/bloodborne-recomp",
+   "url": "https://github.com/bloodborne-native/bloodborne-recomp",
+   "description": "A static recompiler for Bloodborne (PS4): turns your own copy of the game's code into native C. With bbcpu, an x86-64 interpreter and arm64 translator.",
+   "stars": 5,
+   "language": "C",
+   "created_at": "2026-10-10T23:15:46Z",
+   "pushed_at": "2026-10-13T14:10:46Z",
+   "topics": []
+  },
+  {
+   "full_name": "RINNECODER/x64-arm64-aot",
+   "url": "https://github.com/RINNECODER/x64-arm64-aot",
+   "description": "Ahead-of-time recompiler: x86-64 PS5 executables to native ARM64 via LLVM IR (experimental)",
+   "stars": 1,
+   "language": "Python",
+   "created_at": "2026-10-13T18:58:07Z",
+   "pushed_at": "2026-10-18T22:17:59Z",
+   "topics": [
+    "apple-silicon",
+    "arm64",
+    "binary-translation",
+    "compiler",
+    "llvm",
+    "recompiler",
+    "x86-64"
+   ]
+  },
+  {
+   "full_name": "callsvc/nuclear",
+   "url": "https://github.com/callsvc/nuclear",
+   "description": "A MIPS and ARM JIT recompiler for x86_64 and ARM64",
+   "stars": 1,
+   "language": "C++",
+   "created_at": "2024-08-28T14:37:54Z",
+   "pushed_at": "2024-08-31T02:22:22Z",
+   "topics": []
+  }
+ ]
+}

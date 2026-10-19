@@ -1,0 +1,45 @@
+{
+ "candidate": "C09",
+ "kind": "repos",
+ "query": "overlapping instructions x86",
+ "executed_at": "2026-10-18T22:23:07-0700",
+ "api_call": "gh api -X GET search/repositories -f q='overlapping instructions x86' -f per_page=10",
+ "replay": "gh search repos 'overlapping instructions x86' --limit 10",
+ "total_count": 2,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "vikrant-vikram/disasm",
+   "url": "https://github.com/vikrant-vikram/disasm",
+   "description": "a Python-based disassembler inspired by the Hex-Rays Decompiler (XHydra) in IDA Pro. It disassembles x86/x64 binaries, generates C-like pseudocode, and detects advanced anti-disassembly techniques such as junk code, overlapping instructions, opaque predicates, self-modifying code, ",
+   "stars": 5,
+   "language": "Python",
+   "created_at": "2025-05-19T12:36:27Z",
+   "pushed_at": "2025-11-15T12:12:00Z",
+   "topics": []
+  },
+  {
+   "full_name": "djayuffe/uber-micro-demos",
+   "url": "https://github.com/djayuffe/uber-micro-demos",
+   "description": "30 DOS demos, each under 9 bytes of x86 assembly: the stack as the screen, found-by-evolution screens, overlapping-instruction demos that corrode the DOS screen, PC-speaker noise. CI, emulated-CPU tests, tagged releases.",
+   "stars": 0,
+   "language": "Python",
+   "created_at": "2026-10-09T18:56:41Z",
+   "pushed_at": "2026-10-11T03:45:42Z",
+   "topics": [
+    "8-byte",
+    "assembly",
+    "demoscene",
+    "dos",
+    "dosbox",
+    "nasm",
+    "pc-speaker",
+    "retro",
+    "sizecoding",
+    "text-mode",
+    "tiny",
+    "x86"
+   ]
+  }
+ ]
+}

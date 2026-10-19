@@ -1,0 +1,22 @@
+{
+ "candidate": "C01",
+ "kind": "repos",
+ "query": "ifetch litmus",
+ "executed_at": "2026-10-18T22:19:39-0700",
+ "api_call": "gh api -X GET search/repositories -f q='ifetch litmus' -f per_page=10",
+ "replay": "gh search repos 'ifetch litmus' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "rems-project/litmus-tests-riscv-ifetch",
+   "url": "https://github.com/rems-project/litmus-tests-riscv-ifetch",
+   "description": null,
+   "stars": 1,
+   "language": null,
+   "created_at": "2026-06-10T04:36:43Z",
+   "pushed_at": "2026-06-30T18:55:33Z",
+   "topics": []
+  }
+ ]
+}
