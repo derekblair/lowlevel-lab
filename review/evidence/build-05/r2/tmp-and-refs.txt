@@ -1,0 +1,4 @@
+# temp-dir accounting, traced make @3ab1033
+mkdir(/tmp/*) = 0: 51
+rmdir(/tmp/*) = 0: 51
+external refs in lattice.html: 0

@@ -1,0 +1,17 @@
+# indep_true.py vs 3ab1033 (2026-10-19 10:13:51 PDT)
+/usr/bin/true .text @ 0x1480, maxbytes=160: author N=156 bounds=45; -w N=163 bounds=46; same bytes: False
+  author 'true boundaries' NOT instruction starts (-w): []
+  instruction starts missing from author's set: [163]
+  per-offset length author vs -w: 162/163 agree; differ at [(161, 2, None)]
+  lendec vs -w on REAL instruction starts: 45/45; misses: []
+  author's resync (author bounds+lengths): resync=109 never=2 median=1 insns le2=0.69 max=10 byte_median=5
+  corrected (-w bounds+lengths):            resync=114 never=2 median=1.0 insns le2=0.68 max=10 byte_median=6.0
+
+# lendec_sample.py (reviewer's C09-3 sample, unchanged) vs 3ab1033
+/usr/lib/x86_64-linux-gnu/libc.so.6:0x127510+55: offsets=55 {'AGREE': 44, 'BAD-ACCEPTED': 2, 'BAD-REJECTED': 2, 'LENDEC-NONE': 7}; reference instruction starts sized correctly: 17/17
+/usr/lib/x86_64-linux-gnu/libc.so.6:0x11c830+157: offsets=157 {'AGREE': 123, 'BAD-ACCEPTED': 13, 'BAD-REJECTED': 8, 'LENDEC-NONE': 13}; reference instruction starts sized correctly: 42/42
+/usr/lib/x86_64-linux-gnu/libc.so.6:0x1883a4+160: offsets=160 {'AGREE': 112, 'BAD-ACCEPTED': 3, 'BAD-REJECTED': 3, 'LENDEC-NONE': 42}; reference instruction starts sized correctly: 44/57
+/usr/bin/grep:0x10c50+64: offsets=64 {'AGREE': 46, 'BAD-ACCEPTED': 12, 'BAD-REJECTED': 3, 'LENDEC-NONE': 3}; reference instruction starts sized correctly: 15/16
+/tmp/claude-1000/-home-derekblair-projects-lowlevel-lab/87e90670-4823-4349-8a40-2341765a4ef8/scratchpad/b05/trap.o:0x0+53: offsets=53 {'AGREE': 47, 'BAD-REJECTED': 4, 'LENDEC-NONE': 2}; reference instruction starts sized correctly: 19/19
+/tmp/claude-1000/-home-derekblair-projects-lowlevel-lab/87e90670-4823-4349-8a40-2341765a4ef8/scratchpad/b05/t.o:0x0+126: offsets=126 {'AGREE': 105, 'BAD-REJECTED': 6, 'LENDEC-NONE': 15}; reference instruction starts sized correctly: 38/38
+TOTAL {'AGREE': 477, 'BAD-ACCEPTED': 30, 'BAD-REJECTED': 26, 'LENDEC-NONE': 82}

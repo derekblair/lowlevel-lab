@@ -1,0 +1,7 @@
+unmodified lattice.html                                    -> PASS  [re-derived from data: arcs 127 (drawn 127), merges 52 (drawn 52), histogram 4 bars (drawn 4, data match=True), corpus stats embedded=True]
+(a) one misaligned arc deleted from the SVG                -> FAIL  [re-derived from data: arcs 127 (drawn 126), merges 52 (drawn 52), histogram 4 bars (drawn 4, data match=True), corpus stats embedded=True]
+(b) one merge marker deleted                               -> FAIL  [re-derived from data: arcs 127 (drawn 127), merges 52 (drawn 51), histogram 4 bars (drawn 4, data match=True), corpus stats embedded=True]
+(c) embedded histogram count +1                            -> FAIL  [re-derived from data: arcs 127 (drawn 127), merges 52 (drawn 52), histogram 4 bars (drawn 4, data match=False), corpus stats embedded=True]
+(d) embedded objlen at off 5: 2 -> 3 (drawing unchanged)   -> FAIL  [re-derived from data: arcs 127 (drawn 127), merges 51 (drawn 52), histogram 4 bars (drawn 4, data match=False), corpus stats embedded=True]
+(e) one histogram bar deleted                              -> FAIL  [re-derived from data: arcs 127 (drawn 127), merges 52 (drawn 52), histogram 4 bars (drawn 3, data match=True), corpus stats embedded=True]
+(f) one misaligned arc's endpoint moved by one byte (11 px) -> PASS  [re-derived from data: arcs 127 (drawn 127), merges 52 (drawn 52), histogram 4 bars (drawn 4, data match=True), corpus stats embedded=True]

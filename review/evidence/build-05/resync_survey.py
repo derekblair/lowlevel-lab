@@ -4,7 +4,9 @@
 Not author code and not a fix: evidence for whether the build's headline
 ("median 1 instruction, ~80% within <=2", one 126-byte function) generalises.
 
-usage: python3 -I resync_survey.py FILE[:label] ...
+usage: python3 -I resync_survey.py FILE[:label[:CAP]] ...
+  CAP: analyse only .text, cut at the last instruction start <= CAP bytes.
+  env SURVEY_MINSEC (default 32): skip smaller sections; SURVEY_MAXCHAIN (default 64).
 Each FILE's code sections (objdump -d -w -z) are one region per section.
 Boundaries = objdump's linear sweep: GROUND TRUTH for gcc-built .o files (no
 inline data on x86-64), only a REFERENCE decode for stripped binaries.
@@ -16,11 +18,13 @@ Resync, as in superset.py: from each non-boundary offset follow the chain
 k -> k+len until it lands on a boundary; count instructions and bytes.
 Chains that pass through an objdump '(bad)' are reported separately.
 """
-import re, statistics as st, subprocess, sys, tempfile, os
+import os, re, statistics as st, subprocess, sys, tempfile
 
 LINEW = re.compile(r"^\s*([0-9a-f]+):\t((?:[0-9a-f]{2} )+)\s*\t?(.*)$")
 SEC = re.compile(r"^Disassembly of section (\S+):")
 W = 31
+MINSEC = int(os.environ.get("SURVEY_MINSEC", "32"))      # skip smaller sections
+MAXCHAIN = int(os.environ.get("SURVEY_MAXCHAIN", "64"))  # chain length cap
 
 
 def sections(path):
@@ -66,7 +70,7 @@ def survey(raw, starts):
         if k in B:
             continue
         pos, n, hit_bad = k, 0, False
-        while pos < N and n < 64:
+        while pos < N and n < MAXCHAIN:
             hit_bad |= bad[pos]; pos += L[pos]; n += 1
             if pos in B:
                 res.append((n, pos - k, hit_bad)); break
@@ -87,11 +91,18 @@ def fmt(rs, never, tag):
 def main():
     pooled = {}
     for spec in sys.argv[1:]:
-        path, _, label = spec.partition(":")
+        path, _, rest = spec.partition(":")
+        label, _, caps = rest.partition(":")
         label = label or "file"
+        cap = int(caps) if caps else None   # FILE:label:CAP = .text only, cut at an insn start <= CAP
         for name, s in sections(path).items():
-            if len(s["raw"]) < 32:
+            if len(s["raw"]) < MINSEC:
                 continue
+            if cap is not None:
+                if name != ".text":
+                    continue
+                cut = max(o for o in s["starts"] if o <= cap) if len(s["raw"]) > cap else len(s["raw"])
+                s = {"raw": s["raw"][:cut], "starts": [o for o in s["starts"] if o < cut], "base": s["base"]}
             rs, never = survey(bytes(s["raw"]), s["starts"])
             print(f"{os.path.basename(path)} {name} [{label}] {len(s['raw'])}B insns={len(s['starts'])}")
             print("   " + fmt(rs, never, "all chains"))

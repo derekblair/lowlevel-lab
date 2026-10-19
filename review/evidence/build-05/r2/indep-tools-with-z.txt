@@ -1,0 +1,28 @@
+# REVIEWER TOOL FIX 2026-10-19 10:14:17 PDT: indep_lattice.wide_decode lacked -z (the same zero-run elision flagged in B1); re-run with -z.
+## vs round-1 gate commit 9f1a7ae
+/usr/bin/true .text @ 0x1480, maxbytes=160: author N=163 bounds=49; -w N=163 bounds=46; same bytes: True
+  author 'true boundaries' NOT instruction starts (-w): [12, 45, 69]
+    off 12: inside the 'cs nopw 0x0(%rax,%rax,1)' at off 5 (10 bytes)
+    off 45: inside the 'mov    %fs:0x28,%rax' at off 38 (9 bytes)
+    off 69: inside the 'sub    %fs:0x28,%rax' at off 62 (9 bytes)
+  instruction starts missing from author's set: []
+  per-offset length author vs -w: 154/163 agree; differ at [(5, 7, 10), (6, 7, 9), (7, 7, 8), (38, 7, 9), (39, 7, 8), (62, 7, 9), (63, 7, 8), (161, None, 2), (162, None, 1)]
+  lendec vs -w on REAL instruction starts: 45/45; misses: []
+  author's resync (author bounds+lengths): resync=111 never=2 median=2 insns le2=0.68 max=10 byte_median=5
+  corrected (-w bounds+lengths):            resync=118 never=0 median=1.0 insns le2=0.69 max=10 byte_median=5.0
+## vs fix-round commit 3ab1033
+/usr/bin/true .text @ 0x1480, maxbytes=160: author N=156 bounds=45; -w N=163 bounds=46; same bytes: False
+  author 'true boundaries' NOT instruction starts (-w): []
+  instruction starts missing from author's set: [163]
+  per-offset length author vs -w: 162/163 agree; differ at [(162, None, 1)]
+  lendec vs -w on REAL instruction starts: 45/45; misses: []
+  author's resync (author bounds+lengths): resync=109 never=2 median=1 insns le2=0.69 max=10 byte_median=5
+  corrected (-w bounds+lengths):            resync=118 never=0 median=1.0 insns le2=0.69 max=10 byte_median=5.0
+## work() re-derivation vs 9f1a7ae with -z
+region work: N=126 insns=38; author region identical: True; author bounds identical: True
+per-offset objdump length, author (no -w) vs -w: 126/126 agree; differ at 0 offsets
+longest decode at any offset (-w): 7 bytes
+offsets objdump decodes as (bad): 6 ['0x2', '0x15', '0x5c', '0x64', '0x6c', '0x74']
+resync with author lengths:   resync=88 never=0 median=1.0 insns le2=0.81 max=5 byte_median=3.0
+resync with correct lengths:  resync=88 never=0 median=1.0 insns le2=0.81 max=5 byte_median=3.0
+correct-length resyncs whose chain passes through a (bad): 13; resyncs landing exactly on region end N: 1

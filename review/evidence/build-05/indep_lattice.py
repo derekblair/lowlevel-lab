@@ -38,7 +38,7 @@ def region(obj, sym):
 def wide_decode(blob, k):
     with tempfile.TemporaryDirectory() as d:
         f = os.path.join(d, "r.bin"); open(f, "wb").write(blob)
-        out = subprocess.run(["objdump", "-D", "-w", "-b", "binary", "-m", "i386:x86-64",
+        out = subprocess.run(["objdump", "-D", "-w", "-z", "-b", "binary", "-m", "i386:x86-64",
                               f"--start-address={k}", f"--stop-address={k + 16}", f],
                              capture_output=True, text=True, check=True).stdout
     for ln in out.splitlines():

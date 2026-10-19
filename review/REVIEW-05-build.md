@@ -1,4 +1,4 @@
-GATE: build-05 | VERDICT: CHANGES REQUESTED | ROUND: 1 | AT: 2026-10-19 09:35 PDT | COMMIT: 9f1a7ae
+GATE: build-05 | VERDICT: APPROVE | ROUND: 2 | AT: 2026-10-19 10:16 PDT | COMMIT: 3ab1033 (round 1: CHANGES REQUESTED @9f1a7ae)
 
 # REVIEW-05-build — C09 x86 superset-decode lattice (`parts/05-x86-lattice/`, P5 slot)
 
@@ -145,3 +145,56 @@ Fix B1–B3, re-capture RUN.md, add a "Fix round 1" section to BUILD-05.md, and 
 At round 2 I'll re-run `indep_true.py`, `lendec_sample.py` and `resync_survey.py` against your corpus numbers, and re-render the lattice headless.
 
 BUILD-04 fix round 1 (`3e1ca1e`, posted 09:25) is next in my queue.
+
+## Round 2: fix round 1 @ `3ab1033`, APPROVE (2026-10-19 10:16 PDT)
+
+**Reviewed:** commit `3ab1033`, named in the GATE line at 10:10.
+
+**Reproduced in:** a fresh clone at `tasks/reviewer-repro/build-05-r2`, under `env -i`.
+
+**Evidence:** `review/evidence/build-05/r2/`.
+
+### Blockers
+
+| Round-1 issue | Status | Basis |
+|---|---|---|
+| **B1** authority misparsed (no `-w`/`-z`); `(bad)` policy undocumented | **FIXED** | `-w -z` on every call. Linear decodes are self-checked for contiguity. Per-offset lengths come from one windowed call per region and are cross-checked at every true boundary (39,249/39,249). The `(bad)`/`.byte` policy is stated, and every statistic is given with and without `(bad)` chains. My `indep_true.py`, run against this tree, finds **0 false boundaries** (was 3) and lendec **45/45** (`rerun-indep-tools.txt`) |
+| **B2** single-function anecdote | **FIXED** | Two arms: ground truth (8 gcc `-O2` objects, 18 sections, 61/61 function entries confirmed by the symbol table, n=8,400) and a labelled reference decode (5 `/usr/bin` binaries, n=115,884). **I re-derived both pooled results with my own `resync_survey.py` on the same corpus definition, and every figure matches RUN.md exactly** (`survey-author-corpus.txt`). Ground truth: median 2, P(≤1)=0.49, P(≤2)=0.71, P(≤3)=0.83, max 14, never 24; `(bad)`-free n=7,425, median 1, P(≤2)=0.76. Reference: median 2, P(≤2)=0.56, max 101; `(bad)`-free 0.77. My own *different* corpus from round 1 (14 objects; 5 binaries, uncapped) gives the same picture: ground truth 2.0/0.70, reference 2/0.56, reference `(bad)`-free 1/0.78. **So the finding is robust to the corpus choice** |
+| **B3** no lattice drawn; false legend | **FIXED** | My headless render (`lattice-render-r2.png`, firefox, 1600×1200) shows a real superset lattice: true-stream arcs above the axis, misaligned decodes below, `(bad)` edges dashed, merge points, example chains followed to their merge, a histogram and the corpus table. The legend matches the classes the code assigns, and there are 0 external refs. **The self-check VERDICT is not vacuous** (`lattice-mutation-output.txt`): deleting an arc, a merge marker or a histogram bar, or falsifying the embedded histogram or one embedded length, each makes `_check_lattice` **FAIL**. (Geometry is not checked: N6) |
+
+### Reproduction
+
+| Test | Result | Evidence |
+|---|---|---|
+| `make` ×2 (clean clone) | `make_exit=0`, **10/10 PASS** both runs, about 9 s each. Output is **identical to RUN.md's make block** | `make-run1.txt` |
+| strace | **CLEAN**. Temp directories: 51 created, **51 removed** (round-1 N4 fixed) | `strace-audit.txt`, `tmp-and-refs.txt` |
+| my C09-3 sample (unchanged) | **WRONG 0** (was 3: `syscall`). Real starts sized correctly: **175/189**. The misses are VEX (13, honest None), `rep stos` (1) and region edges. BAD-ACCEPTED 30 is now disclosed in lendec's docstring | `rerun-indep-tools.txt` |
+| lendec on the corpus (author's run, reproduced) | True boundaries: AGREE 2,715, **WRONG 0**, NONE 38 | `make-run1.txt` |
+
+### Correction to my round-1 evidence
+
+My `indep_lattice.wide_decode` lacked `-z`, the very flaw B1 named, so it too elided the `/usr/bin/true` head's trailing zero run (offsets 161–162). With `-z` (`indep-tools-with-z.txt`), round 1's "corrected" figures for that sample become:
+
+| Figure | Round 1 (my tool without `-z`) | Corrected (with `-z`) |
+|---|---|---|
+| n | 114 | 118 |
+| never | 2 | 0 |
+| median | 1.0 | 1.0 |
+| byte median | 6.0 | 5.0 |
+
+Every round-1 conclusion stands: the 3 false boundaries, the 7 capped lengths, lendec 45/45 rather than 45/48, and the median falling from 2 to 1. The `work()` re-derivation is unaffected because it has no zero runs.
+
+### Nits (not blocking)
+
+- **N6:** `_check_lattice` counts arcs, merges and bars, but doesn't verify arc **geometry**. Moving one arc's endpoint by a byte still PASSES (mutation f). Comparing each `M x0 … x1` against `k` and `k+objlen` would close this.
+- **N7:** the HTML heads the drawn region "headline region — gt.c:work()" (`superset.py:497`). The README correctly calls it the *illustration*, at median 1 against the corpus's 2. Rename the heading to match.
+- **Observation, not a defect:** the five claim VERDICTs were formulated from the data, and their thresholds are the author's. The README says both. They are regression pins, not pre-registered tests. That's the honest framing, and it is the one used.
+
+### Novelty in the implementation: N2 delivered
+
+The running artifact now quantifies Linn & Debray's qualitative claim on a corpus:
+- Ground truth: a median of 2 instructions, 71% within 2 and 83% within 3.
+- `(bad)`-free chains: a median of 1.
+- `/usr/bin`: a heavier tail, explained by 37% `(bad)`-touching chains.
+
+That settles the "one or two" vs "two or three" discrepancy: they describe two different populations. The README discloses the `(bad)`-free selection effect and the gcc-only corpus. The lattice is now an actual superset-decode picture that a learner can read. **Gate BUILD-05 is CLEARED.**

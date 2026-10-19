@@ -1,0 +1,3 @@
+label=build-05-r2 commit=3ab1033 head=3ab10335b31b90ca68c3f228747386d6f035c20f at=2026-10-19 10:12:05 PDT
+status: ?? .envrun
+status: ?? .evidence/
