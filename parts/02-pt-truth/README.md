@@ -32,21 +32,28 @@ P-core, CPU 4 a Darkmont E-core, and CPU 12 a Darkmont LP-E core (R14).
   behaves **per core class** (REVIEW-02 round 3, B3):
   - **Darkmont (E, LP-E): exact only over an interval band.**
     - It mis-attributes at the **shortest** tested interval in every run (E at
-      350–546 TSC, 4–11 wrong of 24; LP-E at 548–594, 6–13 wrong), and at some
-      rows up to ~950 TSC, above one MTC period (768 TSC).
+      192–318 TSC, 3–15 wrong of 24; LP-E at 248–536, 7–14 wrong). Coarse
+      delays 25/50 keep that row well below one MTC period (768 TSC), so the
+      gated failure never rests on a single execution (N9). It also fails at
+      some rows above one period (LP-E at 870 TSC here; up to ~950 in earlier
+      captures).
     - It mis-attributes at **long gaps**, from the **predicted edge**. The 8-bit
       MTC payload CTC[period+7:period] wraps every 2^(mtc_period+8) CTC ticks:
       2¹¹ × 96 (CPUID.15H TSC/CTC = 192/2) = **196,608 TSC ticks**. This is a
       prediction, not a fit.
-    - In RUN.md the first failing long rows land at 2.3–2.5×10⁵ TSC (or by
-      1.5–1.8×10⁶ when a sweep step lands below the edge), and the last exact
-      long rows reach 1.85×10⁵. The edge lies between. A VERDICT requires the
-      onset to match the prediction within 2×. Its detail names which side was
-      tight in that run (N8): E usually brackets from the failure side, LP-E
-      often from the exact side.
+    - In RUN.md the first failing long rows land at 2.1–2.2×10⁵ TSC (LP-E),
+      or by 1.2–2.1×10⁶ when the sweep's 10⁵ step lands below the edge. The
+      last exact long rows reach 1.23×10⁵ (1.85×10⁵ in an earlier capture), so
+      the edge lies between. A VERDICT requires the onset to match the
+      prediction within 2×. Its detail names which side was tight in that run
+      (N8); that depends on where each run's 10⁵ step lands relative to the
+      edge.
   - **Cougar Cove (P): exact at every tested interval ≥ 2 MTC periods**
-    (1,536 TSC), from ~2×10³ TSC up to the longest gap swept (~4–5×10⁶ TSC,
-    ≥ 19× the edge). No long-gap failure ever appeared.
+    (1,536 TSC), from ~2×10³ TSC up to the longest gap swept (up to ~6×10⁶ TSC
+    in RUN.md; the VERDICT requires ≥ 10× the edge). No long-gap failure ever
+    appeared. In RUN.md §3 the P rows below 2 periods include failures from
+    274 to 936 TSC (16 of 24 wrong at 312), and every row from 1,024 TSC up is
+    exact.
     - Its **lower edge sits at about one MTC period**, the resolution of a
       clock that ticks once per period. A dedicated short-delay probe (RUN.md
       §5) ran 20 coarse rows. The 8 that mis-attribute (1–4 of 24 executions)
@@ -54,18 +61,19 @@ P-core, CPU 4 a Darkmont E-core, and CPU 12 a Darkmont LP-E core (R14).
       row at ≥ 970 TSC is exact. (`interval` is a median, so a row just above
       one period still holds executions inside it.)
 - **Mechanism, read from the packets** (BranchEn=0, at the longest gap):
-  - Cougar Cove's trace carries an MTC **every period**: ~1.2–1.6×10⁵ MTCs per
+  - Cougar Cove's trace carries an MTC **every period**: ~1.1–1.9×10⁵ MTCs per
     capture, every payload step +1, **zero** whole-wrap (Δ0) steps.
-  - Darkmont's carries ~230–290 MTCs and a **single** TSC, and **43–70%** of its
-    consecutive MTC steps are **Δ0**: the next MTC came a whole 8-bit payload
+  - Darkmont's carries ~200–300 MTCs and a **single** TSC, and **63–71%** of its
+    consecutive MTC steps in RUN.md are **Δ0** (43–77% across all of today's
+    pinned runs): the next MTC came a whole 8-bit payload
     wrap later. A random delta would be 0 with probability only 1/256.
   - So on Darkmont the clock cannot see the wraps that elapsed. That is the
     long-gap failure, and the sparse MTCs are also why Darkmont's short-interval
     edge sits above one period. A VERDICT checks the ≥100× density gap, P's
     zero Δ0, and Darkmont's ≥10% Δ0 share (~25× chance). The reviewer's own
     SDM-table framer found the same.
-  - **The price of Cougar Cove's exactness:** its trace is **~230–340× larger**
-    at the longest gap (~2.5–3.4×10⁵ bytes vs ~1×10³).
+  - **The price of Cougar Cove's exactness:** its trace is **~220–380× larger**
+    at the longest gap (~2.4–3.9×10⁵ bytes vs ~1×10³).
 - **Fine PT timing** (dense MTC + CYC) is exact on all OVF-free rows of every
   class, including four P fine rows below one coarse period (318–710 TSC, §5).
 - **So the PTW-fence advantages are specifically:**

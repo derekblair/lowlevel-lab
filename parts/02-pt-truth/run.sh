@@ -8,7 +8,10 @@ cd "$(dirname "$0")"
 VERSIONS="${VERSIONS:-24}"
 # coarse sweeps to 1e6 for the long-gap (MTC-wrap) regime; fine is capped at 1e4
 # because fine CYC floods the AUX ring at long delays -> OVF (REVIEW-02-build B2).
-COARSE_DELAYS="${COARSE_DELAYS:-0 100 1000 10000 100000 1000000}"
+# Coarse delays 25 and 50 put each class's shortest row well below one MTC
+# period (768 TSC), so the gated Darkmont short-interval failure never rests on
+# a single execution near the edge (REVIEW-02 round 4, N9).
+COARSE_DELAYS="${COARSE_DELAYS:-0 25 50 100 1000 10000 100000 1000000}"
 FINE_DELAYS="${FINE_DELAYS:-0 100 1000 10000}"
 # Every capture is PINNED, and the sweep runs once per core class (REVIEW-02
 # round 2, nit d; R14): unpinned, the scheduler's choice of core class decided

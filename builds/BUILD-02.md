@@ -212,3 +212,23 @@ three classes, give 10/10 VERDICTs PASS. RUN.md re-captured.
 Re-verified: 3/3 consecutive `make` runs under `env -i`, each covering all
 three classes, give 12/12 VERDICTs PASS; the §5 probe is appended verbatim.
 RUN.md re-captured.
+
+## Post-clearance nit N9 (REVIEW-02 round 4: APPROVE @abd11f4)
+
+- **N9 — FIXED.** The gated "Darkmont mis-attributes at the shortest tested
+  interval" could rest on one execution: the reviewer saw LP-E's shortest row
+  land at 852 TSC with 1/24 wrong. The coarse sweep now includes delays **25
+  and 50**, which put each class's shortest row well below one MTC period.
+  - In RUN.md the Darkmont shortest rows are E at 192–318 TSC (3–15 wrong) and
+    LP-E at 248–536 (7–14 wrong); three extra pre-capture runs gave 4–15
+    wrong.
+  - RUN.md's determinism note now says this row's count varies but stays clear
+    of zero.
+  - For P the extra rows only feed the INFO edge report; P's gated check starts
+    at 2 periods.
+- README numbers re-synced to the re-captured RUN.md. The N8 sentence is
+  generalized: which bracket side is tight depends on where each run's 10⁵
+  step lands; this capture had E bracketing from the exact side.
+
+Re-verified: 3/3 `make` under `env -i`, 12/12 VERDICTs PASS each; the §5
+probe is preserved verbatim.

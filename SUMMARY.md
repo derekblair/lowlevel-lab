@@ -149,7 +149,7 @@ independent trap-flag single-step ground truth:
     ~10⁷ TSC, because its trace carries an MTC **every period**. Its lower
     edge sits at about one MTC period (768 TSC), the clock's resolution. A
     dedicated probe found failures only for median intervals below ~1.2
-    periods. The price is a trace ~230–510× larger.
+    periods. The price is a trace ~220–510× larger.
   - So the fence's **accuracy** advantage is on Darkmont (both regimes), and
     on P only near or below one MTC period. On every class it needs no timing
     packets and no particular emission density.

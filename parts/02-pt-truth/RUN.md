@@ -1,6 +1,6 @@
-# RUN.md — pt-truth, verbatim build+run on nibbles (post-clearance correction, round 2: per core class)
+# RUN.md — pt-truth, verbatim build+run on nibbles (post-clearance correction, cleared at round 4; + N9)
 
-Captured 2026-10-19 12:25:16 PDT on nibbles, unprivileged derekblair,
+Captured 2026-10-19 12:31:23 PDT on nibbles, unprivileged derekblair,
 perf_event_paranoid=2, under `env -i`. Verbatim, from clean.
 
 ## Nondeterministic fields (R3)
@@ -12,8 +12,11 @@ periods (1,536 TSC), including every long gap; its lower edge is about one MTC p
 Also load-bearing: fine-exact, and the MTC-density / delta-0 mechanism at the longest gap.
 NONDETERMINISTIC: absolute TSC; measured intervals (P's vary widely run to run, so which
 P rows land near its lower edge is reported as INFO); MTC/TSC packet counts, delta-0 shares
-and trace bytes; OVF is rare (reported per row, excluded from scoring). Each sweep is
-pinned: CPU 0 = Cougar Cove P, 4 = Darkmont E, 12 = Darkmont LP-E.
+and trace bytes; OVF is rare (reported per row, excluded from scoring). The wrong-count on
+Darkmont's shortest row varies (it is a count out of 24 executions near the clock's
+resolution); the coarse delays 25/50 keep that row well below one MTC period so the count
+stays clear of zero (N9). Each sweep is pinned: CPU 0 = Cougar Cove P, 4 = Darkmont E,
+12 = Darkmont LP-E.
 
 ## 0. Environment
 ```
@@ -53,56 +56,62 @@ pt-truth: version attribution of self-modifying code, PTW-fenced vs time-keyed
 ================================================================================================
 class timing     delay interval(TSC)  ovf     MTC  MTCd0   TSC    bytes | fenced ok/wrong | time-keyed ok/wrong
 ---------------------------------------------------------------------------------------------------------------
-P     coarse         0          2560    0     169      0     1      944 |       24/0      |         24/0       
-P     coarse       100           624    0      96      0     1      816 |       24/0      |         24/0       
-P     coarse      1000         15870    0     558      0     1     1744 |       24/0      |         24/0       
-P     coarse     10000        142258    0    3806      0     5     8544 |       24/0      |         24/0       
-P     coarse    100000       1340544    0   36941      0    38    77200 |       24/0      |         24/0       
-P     coarse   1000000       5092076    0  160239      0   163   332912 |       24/0      |         24/0       
-P     fine           0           848    0     454      0     2     2576 |       24/0      |         24/0       
-P     fine         100           424    0     508      0     2     2720 |       24/0      |         24/0       
-P     fine        1000         17550    0    4884      0    11    20912 |       24/0      |         24/0       
-P     fine       10000         75104    0   16425      0    34    68800 |       24/0      |         24/0       
-E     coarse         0           538    0      28      0     1      520 |       24/0      |         14/10      
-E     coarse       100           350    0      30      0     1      524 |       24/0      |         13/11      
-E     coarse      1000          3088    0      52      0     1      568 |       24/0      |         24/0       
-E     coarse     10000         11382    0      44      0     1      552 |       24/0      |         24/0       
-E     coarse    100000        246774    0      79      6     1      624 |       24/0      |          3/21      
-E     coarse   1000000       1409318    0     238    144     1      988 |       24/0      |          1/23      
-E     fine           0          1226    0    1014      0     3     4620 |       24/0      |         24/0       
-E     fine         100           410    0     374      0     1     2020 |       24/0      |         24/0       
-E     fine        1000          2404    0    1228      0     3     5496 |       24/0      |         24/0       
-E     fine       10000         11402    0    3336      0     7    14148 |       24/0      |         24/0       
-LP-E  coarse         0           948    0      33      0     1      528 |       24/0      |          6/18      
-LP-E  coarse       100           548    0      38      0     1      540 |       24/0      |         16/8       
-LP-E  coarse      1000          1568    0      46      0     1      556 |       24/0      |         24/0       
-LP-E  coarse     10000         22490    0      53      0     1      568 |       24/0      |         24/0       
-LP-E  coarse    100000        231594    0      79      4     1      624 |       24/0      |          5/19      
-LP-E  coarse   1000000       1848220    0     284    199     1     1052 |       24/0      |          1/23      
-LP-E  fine           0           712    0     814      0     2     3816 |       24/0      |         24/0       
-LP-E  fine         100           892    0    1054      0     3     4788 |       24/0      |         24/0       
-LP-E  fine        1000          2738    0    1384      0     3     6116 |       24/0      |         24/0       
-LP-E  fine       10000         20196    0    5859      0    12    24440 |       24/0      |         24/0       
+P     coarse         0          1526    0     102      0     1      752 |       24/0      |         24/0       
+P     coarse        25           936    0      64      0     1      736 |       24/0      |         22/2       
+P     coarse        50           542    0      81      0     1      768 |       24/0      |         24/0       
+P     coarse       100           586    0      89      0     1      784 |       24/0      |         24/0       
+P     coarse      1000          2046    0     273      0     1     1216 |       24/0      |         24/0       
+P     coarse     10000        153502    0    4080      0     5     9136 |       24/0      |         24/0       
+P     coarse    100000       1604898    0   50372      0    52   105216 |       24/0      |         24/0       
+P     coarse   1000000       5899414    0  186558      0   190   387504 |       24/0      |         24/0       
+P     fine           0           806    0     443      0     2     2496 |       24/0      |         24/0       
+P     fine         100           356    0     457      0     2     2608 |       24/0      |         24/0       
+P     fine        1000          5438    0    2958      0     7    12976 |       24/0      |         24/0       
+P     fine       10000         83826    0   21306      0    44    89040 |       24/0      |         24/0       
+E     coarse         0           554    0      33      0     1      528 |       24/0      |         16/8       
+E     coarse        25           540    0      33      0     1      528 |       24/0      |          9/15      
+E     coarse        50           444    0      37      0     1      536 |       24/0      |         13/11      
+E     coarse       100           318    0      27      0     1      516 |       24/0      |         14/10      
+E     coarse      1000          2932    0      52      0     1      568 |       24/0      |         24/0       
+E     coarse     10000         25054    0      55      0     1      572 |       24/0      |         24/0       
+E     coarse    100000        123204    0      65      0     1      600 |       24/0      |         24/0       
+E     coarse   1000000       2053464    0     300    212     1     1092 |       24/0      |          1/23      
+E     fine           0           520    0     410      0     2     2208 |       24/0      |         24/0       
+E     fine         100           548    0     696      0     2     3328 |       24/0      |         24/0       
+E     fine        1000          1310    0     624      0     2     3064 |       24/0      |         24/0       
+E     fine       10000         22586    0    6197      0    13    25800 |       24/0      |         24/0       
+LP-E  coarse         0           612    0      41      0     1      544 |       24/0      |         17/7       
+LP-E  coarse        25           624    0      47      0     1      556 |       24/0      |         21/3       
+LP-E  coarse        50           536    0      32      0     1      528 |       24/0      |         11/13      
+LP-E  coarse       100           870    0      48      0     1      560 |       24/0      |         23/1       
+LP-E  coarse      1000          1626    0      46      0     1      556 |       24/0      |         24/0       
+LP-E  coarse     10000         20912    0      52      0     1      568 |       24/0      |         24/0       
+LP-E  coarse    100000        205662    0      76      1     1      616 |       24/0      |         14/10      
+LP-E  coarse   1000000       1760024    0     274    192     1     1028 |       24/0      |          1/23      
+LP-E  fine           0           906    0     840      0     2     3904 |       24/0      |         24/0       
+LP-E  fine         100           374    0     494      0     2     2544 |       24/0      |         24/0       
+LP-E  fine        1000          1524    0     775      0     2     3672 |       24/0      |         24/0       
+LP-E  fine       10000         13022    0    3657      0     8    15484 |       24/0      |         24/0       
 
 ================================================================================================
 VERDICTS
 ================================================================================================
-VERDICT PASS: PTW-fenced attribution is exact on every row of every core class, needs no timing packets  [fenced wrong total = 0; no-preceding-fence = 0 over 30 rows, classes ['P', 'E', 'LP-E']]
-INFO: OVF rows excluded from time-keyed scoring (lossy trace != method result): 0 of 30: none
+VERDICT PASS: PTW-fenced attribution is exact on every row of every core class, needs no timing packets  [fenced wrong total = 0; no-preceding-fence = 0 over 36 rows, classes ['P', 'E', 'LP-E']]
+INFO: OVF rows excluded from time-keyed scoring (lossy trace != method result): 0 of 36: none
 INFO: one MTC period = 2^3 CTC x TSC/CTC = 768 TSC; one 8-bit payload wrap (predicted long-gap edge) = 2^(3+8) CTC x 192/2 = 196608 TSC
-VERDICT PASS: P: coarse time-keyed is exact at EVERY tested interval >= 2 MTC periods (clear of its one-period resolution edge), incl. every long gap  [5/5 rows exact, intervals 2560..5092076 TSC (one MTC period = 768)]
-INFO: P below 2 MTC periods (around its lower edge, ~1 period): [(624, 0)]
-VERDICT PASS: P: NO long-gap mis-attribution: exact at the longest interval, >= 10x the predicted wrap edge (an MTC every period, so the payload never wraps unseen)  [longest coarse interval 5092076 TSC (= 26x the edge 196608): time-keyed wrong=0]
-VERDICT PASS: E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [3088, 11382]]
-VERDICT PASS: E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 350 TSC: wrong 11/24; all short failures (<band): [(350, 11), (538, 10)]]
-VERDICT PASS: E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 11382 (= 17.3x below the edge) <= 2x196608; smallest long-gap failure 246774 (= 1.26x the edge) >= 196608/2; within 2x of the edge on: failure side]
-VERDICT PASS: LP-E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [1568, 22490]]
-VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 548 TSC: wrong 8/24; all short failures (<band): [(548, 8), (948, 18)]]
-VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 22490 (= 8.7x below the edge) <= 2x196608; smallest long-gap failure 231594 (= 1.18x the edge) >= 196608/2; within 2x of the edge on: failure side]
-VERDICT PASS: mechanism: at the longest gap Cougar Cove carries >= 100x Darkmont's MTCs with no delta-0 payload steps, while >= 10% of Darkmont's MTC steps are a whole payload wrap (delta 0 mod 256, ~25x the 1/256 chance level)  [MTC per capture: P 160239; E 238; LP-E 284; delta-0 share: E 61%; LP-E 70%; P delta-0 0 of 160238]
-INFO: the price of Cougar Cove's exactness at the longest gap: trace volume P 332912 B vs E 988 B (337x), LP-E 1052 B (316x)
+VERDICT PASS: P: coarse time-keyed is exact at EVERY tested interval >= 2 MTC periods (clear of its one-period resolution edge), incl. every long gap  [4/4 rows exact, intervals 2046..5899414 TSC (one MTC period = 768)]
+INFO: P below 2 MTC periods (around its lower edge, ~1 period): [(542, 0), (586, 0), (936, 2), (1526, 0)]
+VERDICT PASS: P: NO long-gap mis-attribution: exact at the longest interval, >= 10x the predicted wrap edge (an MTC every period, so the payload never wraps unseen)  [longest coarse interval 5899414 TSC (= 30x the edge 196608): time-keyed wrong=0]
+VERDICT PASS: E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [2932, 25054, 123204]]
+VERDICT PASS: E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 318 TSC: wrong 10/24; all short failures (<band): [(318, 10), (444, 11), (540, 15), (554, 8)]]
+VERDICT PASS: E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 123204 (= 1.6x below the edge) <= 2x196608; smallest long-gap failure 2053464 (= 10.44x the edge) >= 196608/2; within 2x of the edge on: exact side]
+VERDICT PASS: LP-E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [1626, 20912]]
+VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 536 TSC: wrong 13/24; all short failures (<band): [(536, 13), (612, 7), (624, 3), (870, 1)]]
+VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 20912 (= 9.4x below the edge) <= 2x196608; smallest long-gap failure 205662 (= 1.05x the edge) >= 196608/2; within 2x of the edge on: failure side]
+VERDICT PASS: mechanism: at the longest gap Cougar Cove carries >= 100x Darkmont's MTCs with no delta-0 payload steps, while >= 10% of Darkmont's MTC steps are a whole payload wrap (delta 0 mod 256, ~25x the 1/256 chance level)  [MTC per capture: P 186558; E 300; LP-E 274; delta-0 share: E 71%; LP-E 70%; P delta-0 0 of 186557]
+INFO: the price of Cougar Cove's exactness at the longest gap: trace volume P 387504 B vs E 1092 B (355x), LP-E 1028 B (377x)
 VERDICT PASS: FINE timing: time-keyed is exact on all OVF-free rows of every class (dense timing closes Darkmont's short-interval gap; P had none)  [fine time-keyed wrong = [('P', 0), ('P', 0), ('P', 0), ('P', 0), ('E', 0), ('E', 0), ('E', 0), ('E', 0), ('LP-E', 0), ('LP-E', 0), ('LP-E', 0), ('LP-E', 0)]]
-VERDICT PASS: wherever time-keyed mis-attributes, PTW-fenced is exact  [rows with time-keyed wrong: 8; of those, fenced wrong: 0]
+VERDICT PASS: wherever time-keyed mis-attributes, PTW-fenced is exact  [rows with time-keyed wrong: 12; of those, fenced wrong: 0]
 
 Interpretation, per core class:
 * PTW-fenced: an executed in-band PTWRITE fence pins each traced execution to
@@ -139,56 +148,62 @@ pt-truth: version attribution of self-modifying code, PTW-fenced vs time-keyed
 ================================================================================================
 class timing     delay interval(TSC)  ovf     MTC  MTCd0   TSC    bytes | fenced ok/wrong | time-keyed ok/wrong
 ---------------------------------------------------------------------------------------------------------------
-P     coarse         0          2038    0     186      0     1      912 |       24/0      |         24/0       
-P     coarse       100           674    0      97      0     1      800 |       24/0      |         24/0       
-P     coarse      1000          1270    0     159      0     1      976 |       24/0      |         24/0       
-P     coarse     10000          8864    0     685      0     1     2016 |       24/0      |         24/0       
-P     coarse    100000        765572    0   20627      0    22    43408 |       24/0      |         24/0       
-P     coarse   1000000       3810636    0  119006      0   121   247456 |       24/0      |         24/0       
-P     fine           0           748    0     407      0     2     2368 |       24/0      |         24/0       
-P     fine         100          1618    0    1035      0     3     4976 |       24/0      |         24/0       
-P     fine        1000          1148    0    1210      0     3     5680 |       24/0      |         24/0       
-P     fine       10000        153344    0   25899      0    53   107872 |       24/0      |         24/0       
-E     coarse         0           660    0      27      0     1      516 |       24/0      |         13/11      
-E     coarse       100           546    0      40      0     1      544 |       24/0      |         20/4       
-E     coarse      1000          1666    0      46      0     1      556 |       24/0      |         24/0       
-E     coarse     10000         25054    0      52      0     1      568 |       24/0      |         24/0       
-E     coarse    100000        115648    0      57      0     1      576 |       24/0      |         24/0       
-E     coarse   1000000       1847630    0     291    191     1     1096 |       24/0      |          1/23      
-E     fine           0           536    0     410      0     2     2204 |       24/0      |         24/0       
-E     fine         100           426    0     525      0     2     2656 |       24/0      |         24/0       
-E     fine        1000          1420    0     626      0     2     3076 |       24/0      |         24/0       
-E     fine       10000         12140    0    3473      0     8    14748 |       24/0      |         24/0       
-LP-E  coarse         0           570    0      40      0     1      544 |       24/0      |         18/6       
-LP-E  coarse       100           902    0      49      0     1      564 |       24/0      |         23/1       
-LP-E  coarse      1000          2212    0      50      0     1      564 |       24/0      |         24/0       
-LP-E  coarse     10000         19194    0      51      0     1      564 |       24/0      |         24/0       
-LP-E  coarse    100000        185114    0      73      0     1      608 |       24/0      |         24/0       
-LP-E  coarse   1000000       1457598    0     235    148     1      960 |       24/0      |          1/23      
-LP-E  fine           0           572    0     608      0     2     2996 |       24/0      |         24/0       
-LP-E  fine         100           360    0     618      0     2     3044 |       24/0      |         24/0       
-LP-E  fine        1000          1514    0     782      0     2     3700 |       24/0      |         24/0       
-LP-E  fine       10000         12674    0    3755      0     8    15868 |       24/0      |         24/0       
+P     coarse         0           894    0      58      0     1      736 |       24/0      |         23/1       
+P     coarse        25           848    0      57      0     1      736 |       24/0      |         24/0       
+P     coarse        50           336    0      49      0     1      736 |       24/0      |         21/3       
+P     coarse       100           326    0      45      0     1      736 |       24/0      |         18/6       
+P     coarse      1000          1122    0      95      0     1      816 |       24/0      |         24/0       
+P     coarse     10000         76334    0    2212      0     3     5216 |       24/0      |         24/0       
+P     coarse    100000        112878    0    9013      0    11    19424 |       24/0      |         24/0       
+P     coarse   1000000       4024748    0  133620      0   136   277728 |       24/0      |         24/0       
+P     fine           0           804    0     464      0     2     2592 |       24/0      |         24/0       
+P     fine         100           554    0     657      0     2     3376 |       24/0      |         24/0       
+P     fine        1000          3314    0    2169      0     5     9680 |       24/0      |         24/0       
+P     fine       10000        105548    0   26706      0    55   111456 |       24/0      |         24/0       
+E     coarse         0           662    0      28      0     1      520 |       24/0      |          8/16      
+E     coarse        25           228    0      27      0     1      516 |       24/0      |         21/3       
+E     coarse        50           416    0      38      0     1      540 |       24/0      |         16/8       
+E     coarse       100           298    0      28      0     1      520 |       24/0      |         13/11      
+E     coarse      1000          2706    0      50      0     1      564 |       24/0      |         24/0       
+E     coarse     10000         11734    0      44      0     1      552 |       24/0      |         24/0       
+E     coarse    100000        123366    0      63      0     1      596 |       24/0      |         24/0       
+E     coarse   1000000       2053338    0     296    208     1     1084 |       24/0      |          1/23      
+E     fine           0           520    0     413      0     2     2228 |       24/0      |         24/0       
+E     fine         100           428    0     755      0     2     3576 |       24/0      |         24/0       
+E     fine        1000          1312    0     610      0     2     3012 |       24/0      |         24/0       
+E     fine       10000         20218    0    5746      0    12    23988 |       24/0      |         24/0       
+LP-E  coarse         0           572    0      42      0     1      548 |       24/0      |         20/4       
+LP-E  coarse        25           594    0      43      0     1      548 |       24/0      |         18/6       
+LP-E  coarse        50           276    0      33      0     1      528 |       24/0      |         17/7       
+LP-E  coarse       100           560    0      39      0     1      540 |       24/0      |         19/5       
+LP-E  coarse      1000          2556    0      49      0     1      560 |       24/0      |         24/0       
+LP-E  coarse     10000         12998    0      48      0     1      560 |       24/0      |         24/0       
+LP-E  coarse    100000        217728    0      77      3     1      620 |       24/0      |          1/23      
+LP-E  coarse   1000000       1503670    0     244    153     1      996 |       24/0      |          1/23      
+LP-E  fine           0           814    0    1016      0     3     4664 |       24/0      |         24/0       
+LP-E  fine         100           864    0     949      0     3     4400 |       24/0      |         24/0       
+LP-E  fine        1000          2320    0    1221      0     3     5476 |       24/0      |         24/0       
+LP-E  fine       10000         22638    0    6285      0    13    26152 |       24/0      |         24/0       
 
 ================================================================================================
 VERDICTS
 ================================================================================================
-VERDICT PASS: PTW-fenced attribution is exact on every row of every core class, needs no timing packets  [fenced wrong total = 0; no-preceding-fence = 0 over 30 rows, classes ['P', 'E', 'LP-E']]
-INFO: OVF rows excluded from time-keyed scoring (lossy trace != method result): 0 of 30: none
+VERDICT PASS: PTW-fenced attribution is exact on every row of every core class, needs no timing packets  [fenced wrong total = 0; no-preceding-fence = 0 over 36 rows, classes ['P', 'E', 'LP-E']]
+INFO: OVF rows excluded from time-keyed scoring (lossy trace != method result): 0 of 36: none
 INFO: one MTC period = 2^3 CTC x TSC/CTC = 768 TSC; one 8-bit payload wrap (predicted long-gap edge) = 2^(3+8) CTC x 192/2 = 196608 TSC
-VERDICT PASS: P: coarse time-keyed is exact at EVERY tested interval >= 2 MTC periods (clear of its one-period resolution edge), incl. every long gap  [4/4 rows exact, intervals 2038..3810636 TSC (one MTC period = 768)]
-INFO: P below 2 MTC periods (around its lower edge, ~1 period): [(674, 0), (1270, 0)]
-VERDICT PASS: P: NO long-gap mis-attribution: exact at the longest interval, >= 10x the predicted wrap edge (an MTC every period, so the payload never wraps unseen)  [longest coarse interval 3810636 TSC (= 19x the edge 196608): time-keyed wrong=0]
-VERDICT PASS: E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [1666, 25054, 115648]]
-VERDICT PASS: E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 546 TSC: wrong 4/24; all short failures (<band): [(546, 4), (660, 11)]]
-VERDICT PASS: E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 115648 (= 1.7x below the edge) <= 2x196608; smallest long-gap failure 1847630 (= 9.40x the edge) >= 196608/2; within 2x of the edge on: exact side]
-VERDICT PASS: LP-E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [2212, 19194, 185114]]
-VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 570 TSC: wrong 6/24; all short failures (<band): [(570, 6), (902, 1)]]
-VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 185114 (= 1.1x below the edge) <= 2x196608; smallest long-gap failure 1457598 (= 7.41x the edge) >= 196608/2; within 2x of the edge on: exact side]
-VERDICT PASS: mechanism: at the longest gap Cougar Cove carries >= 100x Darkmont's MTCs with no delta-0 payload steps, while >= 10% of Darkmont's MTC steps are a whole payload wrap (delta 0 mod 256, ~25x the 1/256 chance level)  [MTC per capture: P 119006; E 291; LP-E 235; delta-0 share: E 66%; LP-E 63%; P delta-0 0 of 119005]
-INFO: the price of Cougar Cove's exactness at the longest gap: trace volume P 247456 B vs E 1096 B (226x), LP-E 960 B (258x)
+VERDICT PASS: P: coarse time-keyed is exact at EVERY tested interval >= 2 MTC periods (clear of its one-period resolution edge), incl. every long gap  [3/3 rows exact, intervals 76334..4024748 TSC (one MTC period = 768)]
+INFO: P below 2 MTC periods (around its lower edge, ~1 period): [(326, 6), (336, 3), (848, 0), (894, 1), (1122, 0)]
+VERDICT PASS: P: NO long-gap mis-attribution: exact at the longest interval, >= 10x the predicted wrap edge (an MTC every period, so the payload never wraps unseen)  [longest coarse interval 4024748 TSC (= 20x the edge 196608): time-keyed wrong=0]
+VERDICT PASS: E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [2706, 11734, 123366]]
+VERDICT PASS: E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 228 TSC: wrong 3/24; all short failures (<band): [(228, 3), (298, 11), (416, 8), (662, 16)]]
+VERDICT PASS: E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 123366 (= 1.6x below the edge) <= 2x196608; smallest long-gap failure 2053338 (= 10.44x the edge) >= 196608/2; within 2x of the edge on: exact side]
+VERDICT PASS: LP-E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [2556, 12998]]
+VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 276 TSC: wrong 7/24; all short failures (<band): [(276, 7), (560, 5), (572, 4), (594, 6)]]
+VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 12998 (= 15.1x below the edge) <= 2x196608; smallest long-gap failure 217728 (= 1.11x the edge) >= 196608/2; within 2x of the edge on: failure side]
+VERDICT PASS: mechanism: at the longest gap Cougar Cove carries >= 100x Darkmont's MTCs with no delta-0 payload steps, while >= 10% of Darkmont's MTC steps are a whole payload wrap (delta 0 mod 256, ~25x the 1/256 chance level)  [MTC per capture: P 133620; E 296; LP-E 244; delta-0 share: E 71%; LP-E 63%; P delta-0 0 of 133619]
+INFO: the price of Cougar Cove's exactness at the longest gap: trace volume P 277728 B vs E 1084 B (256x), LP-E 996 B (279x)
 VERDICT PASS: FINE timing: time-keyed is exact on all OVF-free rows of every class (dense timing closes Darkmont's short-interval gap; P had none)  [fine time-keyed wrong = [('P', 0), ('P', 0), ('P', 0), ('P', 0), ('E', 0), ('E', 0), ('E', 0), ('E', 0), ('LP-E', 0), ('LP-E', 0), ('LP-E', 0), ('LP-E', 0)]]
-VERDICT PASS: wherever time-keyed mis-attributes, PTW-fenced is exact  [rows with time-keyed wrong: 6; of those, fenced wrong: 0]
+VERDICT PASS: wherever time-keyed mis-attributes, PTW-fenced is exact  [rows with time-keyed wrong: 14; of those, fenced wrong: 0]
 
 Interpretation, per core class:
 * PTW-fenced: an executed in-band PTWRITE fence pins each traced execution to
@@ -225,56 +240,62 @@ pt-truth: version attribution of self-modifying code, PTW-fenced vs time-keyed
 ================================================================================================
 class timing     delay interval(TSC)  ovf     MTC  MTCd0   TSC    bytes | fenced ok/wrong | time-keyed ok/wrong
 ---------------------------------------------------------------------------------------------------------------
-P     coarse         0          1270    0      84      0     1      752 |       24/0      |         24/0       
-P     coarse       100           604    0      91      0     1      784 |       24/0      |         24/0       
-P     coarse      1000         12898    0     438      0     1     1520 |       24/0      |         24/0       
-P     coarse     10000         54350    0    2781      0     4     6432 |       24/0      |         24/0       
-P     coarse    100000        161180    0   12097      0    13    25728 |       24/0      |         24/0       
-P     coarse   1000000       4643794    0  162981      0   166   338656 |       24/0      |         24/0       
-P     fine           0           704    0     420      0     2     2448 |       24/0      |         24/0       
-P     fine         100          1428    0    1291      0     3     6000 |       24/0      |         24/0       
-P     fine        1000         12394    0    2917      0     7    12784 |       24/0      |         24/0       
-P     fine       10000        111762    0   23716      0    49    98976 |       24/0      |         24/0       
-E     coarse         0           860    0      30      0     1      524 |       24/0      |          9/15      
-E     coarse       100           428    0      36      0     1      536 |       24/0      |         17/7       
-E     coarse      1000          2544    0      49      0     1      560 |       24/0      |         24/0       
-E     coarse     10000         13418    0      49      0     1      560 |       24/0      |         24/0       
-E     coarse    100000        231332    0      79      5     1      624 |       24/0      |          2/22      
-E     coarse   1000000       1157098    0     227     98     2     1064 |       24/0      |          4/20      
-E     fine           0           778    0     728      0     2     3464 |       24/0      |         24/0       
-E     fine         100           656    0     874      0     2     4020 |       24/0      |         24/0       
-E     fine        1000          2400    0    1241      0     3     5552 |       24/0      |         24/0       
-E     fine       10000         19712    0    5580      0    12    23332 |       24/0      |         24/0       
-LP-E  coarse         0           594    0      35      0     1      532 |       24/0      |         11/13      
-LP-E  coarse       100           884    0      49      0     1      560 |       24/0      |         24/0       
-LP-E  coarse      1000          1482    0      46      0     1      556 |       24/0      |         24/0       
-LP-E  coarse     10000         12664    0      49      0     1      560 |       24/0      |         24/0       
-LP-E  coarse    100000        123384    0      59      0     1      580 |       24/0      |         24/0       
-LP-E  coarse   1000000       1766546    0     282    197     1     1056 |       24/0      |          1/23      
-LP-E  fine           0           950    0     712      0     2     3400 |       24/0      |         24/0       
-LP-E  fine         100           358    0     464      0     2     2428 |       24/0      |         24/0       
-LP-E  fine        1000          2622    0    1461      6     4     6452 |       24/0      |         24/0       
-LP-E  fine       10000         18994    0    5724      0    12    23900 |       24/0      |         24/0       
+P     coarse         0          1024    0      71      0     1      736 |       24/0      |         24/0       
+P     coarse        25           742    0      53      0     1      736 |       24/0      |         23/1       
+P     coarse        50           274    0      41      0     1      704 |       24/0      |         20/4       
+P     coarse       100           312    0      47      0     1      736 |       24/0      |          8/16      
+P     coarse      1000          8330    0     257      0     1     1184 |       24/0      |         24/0       
+P     coarse     10000         76738    0    2169      0     3     5120 |       24/0      |         24/0       
+P     coarse    100000        613110    0   13377      0    14    28352 |       24/0      |         24/0       
+P     coarse   1000000       3649366    0  114547      0   117   238160 |       24/0      |         24/0       
+P     fine           0           726    0     391      0     2     2352 |       24/0      |         24/0       
+P     fine         100           716    0     934      0     3     4576 |       24/0      |         24/0       
+P     fine        1000          2092    0    1517      0     4     6992 |       24/0      |         24/0       
+P     fine       10000        133300    0   26789      0    55   111520 |       24/0      |         24/0       
+E     coarse         0           714    0      30      0     1      524 |       24/0      |         13/11      
+E     coarse        25           192    0      23      0     1      508 |       24/0      |          9/15      
+E     coarse        50           376    0      35      0     1      532 |       24/0      |         11/13      
+E     coarse       100           308    0      28      0     1      520 |       24/0      |          5/19      
+E     coarse      1000          1348    0      43      0     1      548 |       24/0      |         24/0       
+E     coarse     10000         25050    0      53      0     1      568 |       24/0      |         24/0       
+E     coarse    100000        112156    0      61      0     2      608 |       24/0      |         24/0       
+E     coarse   1000000       1827596    0     277    180     1     1068 |       24/0      |          1/23      
+E     fine           0           522    0     420      0     2     2244 |       24/0      |         24/0       
+E     fine         100           516    0     630      0     2     3068 |       24/0      |         24/0       
+E     fine        1000          2754    0    1720      0     4     7500 |       24/0      |         24/0       
+E     fine       10000         20018    0    5526      0    12    23104 |       24/0      |         24/0       
+LP-E  coarse         0           572    0      39      0     1      540 |       24/0      |         16/8       
+LP-E  coarse        25           360    0      34      0     1      532 |       24/0      |         10/14      
+LP-E  coarse        50           248    0      29      0     1      520 |       24/0      |         10/14      
+LP-E  coarse       100           920    0      49      0     1      560 |       24/0      |         24/0       
+LP-E  coarse      1000          1508    0      46      0     1      556 |       24/0      |         24/0       
+LP-E  coarse     10000         12576    0      51      0     1      568 |       24/0      |         24/0       
+LP-E  coarse    100000        123410    0      60      0     1      584 |       24/0      |         24/0       
+LP-E  coarse   1000000       1231688    0     196    125     2      884 |       24/0      |          2/22      
+LP-E  fine           0           592    0     617      0     2     3032 |       24/0      |         24/0       
+LP-E  fine         100           358    0     480      0     2     2488 |       24/0      |         24/0       
+LP-E  fine        1000          1524    0     826      0     2     3880 |       24/0      |         24/0       
+LP-E  fine       10000         13182    0    4046      0     9    17084 |       24/0      |         24/0       
 
 ================================================================================================
 VERDICTS
 ================================================================================================
-VERDICT PASS: PTW-fenced attribution is exact on every row of every core class, needs no timing packets  [fenced wrong total = 0; no-preceding-fence = 0 over 30 rows, classes ['P', 'E', 'LP-E']]
-INFO: OVF rows excluded from time-keyed scoring (lossy trace != method result): 0 of 30: none
+VERDICT PASS: PTW-fenced attribution is exact on every row of every core class, needs no timing packets  [fenced wrong total = 0; no-preceding-fence = 0 over 36 rows, classes ['P', 'E', 'LP-E']]
+INFO: OVF rows excluded from time-keyed scoring (lossy trace != method result): 0 of 36: none
 INFO: one MTC period = 2^3 CTC x TSC/CTC = 768 TSC; one 8-bit payload wrap (predicted long-gap edge) = 2^(3+8) CTC x 192/2 = 196608 TSC
-VERDICT PASS: P: coarse time-keyed is exact at EVERY tested interval >= 2 MTC periods (clear of its one-period resolution edge), incl. every long gap  [4/4 rows exact, intervals 12898..4643794 TSC (one MTC period = 768)]
-INFO: P below 2 MTC periods (around its lower edge, ~1 period): [(604, 0), (1270, 0)]
-VERDICT PASS: P: NO long-gap mis-attribution: exact at the longest interval, >= 10x the predicted wrap edge (an MTC every period, so the payload never wraps unseen)  [longest coarse interval 4643794 TSC (= 24x the edge 196608): time-keyed wrong=0]
-VERDICT PASS: E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [2544, 13418]]
-VERDICT PASS: E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 428 TSC: wrong 7/24; all short failures (<band): [(428, 7), (860, 15)]]
-VERDICT PASS: E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 13418 (= 14.7x below the edge) <= 2x196608; smallest long-gap failure 231332 (= 1.18x the edge) >= 196608/2; within 2x of the edge on: failure side]
-VERDICT PASS: LP-E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [884, 1482, 12664, 123384]]
-VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 594 TSC: wrong 13/24; all short failures (<band): [(594, 13)]]
-VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 123384 (= 1.6x below the edge) <= 2x196608; smallest long-gap failure 1766546 (= 8.99x the edge) >= 196608/2; within 2x of the edge on: exact side]
-VERDICT PASS: mechanism: at the longest gap Cougar Cove carries >= 100x Darkmont's MTCs with no delta-0 payload steps, while >= 10% of Darkmont's MTC steps are a whole payload wrap (delta 0 mod 256, ~25x the 1/256 chance level)  [MTC per capture: P 162981; E 227; LP-E 282; delta-0 share: E 43%; LP-E 70%; P delta-0 0 of 162980]
-INFO: the price of Cougar Cove's exactness at the longest gap: trace volume P 338656 B vs E 1064 B (318x), LP-E 1056 B (321x)
+VERDICT PASS: P: coarse time-keyed is exact at EVERY tested interval >= 2 MTC periods (clear of its one-period resolution edge), incl. every long gap  [4/4 rows exact, intervals 8330..3649366 TSC (one MTC period = 768)]
+INFO: P below 2 MTC periods (around its lower edge, ~1 period): [(274, 4), (312, 16), (742, 1), (1024, 0)]
+VERDICT PASS: P: NO long-gap mis-attribution: exact at the longest interval, >= 10x the predicted wrap edge (an MTC every period, so the payload never wraps unseen)  [longest coarse interval 3649366 TSC (= 19x the edge 196608): time-keyed wrong=0]
+VERDICT PASS: E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [1348, 25050, 112156]]
+VERDICT PASS: E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 192 TSC: wrong 15/24; all short failures (<band): [(192, 15), (308, 19), (376, 13), (714, 11)]]
+VERDICT PASS: E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 112156 (= 1.8x below the edge) <= 2x196608; smallest long-gap failure 1827596 (= 9.30x the edge) >= 196608/2; within 2x of the edge on: exact side]
+VERDICT PASS: LP-E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [920, 1508, 12576, 123410]]
+VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 248 TSC: wrong 14/24; all short failures (<band): [(248, 14), (360, 14), (572, 8)]]
+VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 123410 (= 1.6x below the edge) <= 2x196608; smallest long-gap failure 1231688 (= 6.26x the edge) >= 196608/2; within 2x of the edge on: exact side]
+VERDICT PASS: mechanism: at the longest gap Cougar Cove carries >= 100x Darkmont's MTCs with no delta-0 payload steps, while >= 10% of Darkmont's MTC steps are a whole payload wrap (delta 0 mod 256, ~25x the 1/256 chance level)  [MTC per capture: P 114547; E 277; LP-E 196; delta-0 share: E 65%; LP-E 64%; P delta-0 0 of 114546]
+INFO: the price of Cougar Cove's exactness at the longest gap: trace volume P 238160 B vs E 1068 B (223x), LP-E 884 B (269x)
 VERDICT PASS: FINE timing: time-keyed is exact on all OVF-free rows of every class (dense timing closes Darkmont's short-interval gap; P had none)  [fine time-keyed wrong = [('P', 0), ('P', 0), ('P', 0), ('P', 0), ('E', 0), ('E', 0), ('E', 0), ('E', 0), ('LP-E', 0), ('LP-E', 0), ('LP-E', 0), ('LP-E', 0)]]
-VERDICT PASS: wherever time-keyed mis-attributes, PTW-fenced is exact  [rows with time-keyed wrong: 6; of those, fenced wrong: 0]
+VERDICT PASS: wherever time-keyed mis-attributes, PTW-fenced is exact  [rows with time-keyed wrong: 12; of those, fenced wrong: 0]
 
 Interpretation, per core class:
 * PTW-fenced: an executed in-band PTWRITE fence pins each traced execution to
