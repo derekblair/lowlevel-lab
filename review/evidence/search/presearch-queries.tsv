@@ -1,0 +1,45 @@
+# Reviewer pre-search (independent vocabulary; author's queries.tsv deliberately not reused)
+# C03 pt-truth — version-correct PT decoding of SMC via PTWRITE fences
+C03	repos	ptwrite in:readme
+C03	repos	topic:intel-pt
+C03	repos	topic:processor-trace
+C03	repos	intel pt decoder created:>2026-04-01
+C03	repos	jitdump intel_pt
+C03	repos	"processor trace" self-modifying in:readme
+C03	repos	hardware trace jit code versions
+C03	code	ptwrite jitdump
+C03	code	"pt_image_set_callback" self-modifying
+C03	code	ptw intel_pt perf_event_attr config
+# C02 smc-observatory — SMC/XMC cost map on hybrid cores
+C02	repos	"self-modifying" benchmark in:readme
+C02	repos	"cross-modifying" in:readme
+C02	repos	smc machine clear
+C02	repos	self modifying code performance x86
+C02	repos	microbenchmark created:>2026-04-01 cache
+C02	code	"machine_clears.smc"
+C02	code	"self-modifying" rdtsc mprotect benchmark
+C02	code	"cross-modifying" "serialize"
+# C01 stale-fetch — A64 emulator with non-coherent I-cache
+C01	repos	"instruction cache" aarch64 emulator in:readme
+C01	repos	"cache maintenance" arm64 in:readme
+C01	repos	isla ifetch
+C01	repos	icache flush bug arm64 jit
+C01	repos	aarch64 emulator created:>2026-04-01
+C01	code	"IC IVAU" stale emulator
+C01	code	"IminLine" "CTR_EL0" emulate
+# C06 reversible-jit
+C06	repos	reverse code generation
+C06	repos	pisa simulator reversible
+C06	repos	inverse program generation
+C06	repos	reversible language compiler x86
+C06	repos	reversible machine code
+C06	code	reversible jit "PROT_EXEC"
+# C12 quine-relay-isa
+C12	repos	elf quine in:readme
+C12	repos	polyglot elf multi architecture
+C12	repos	quine relay assembly
+C12	repos	assembly quine arm64
+# C22 tnt-barcode
+C22	repos	branch trace image visualization
+C22	repos	intel pt visualizer
+C22	repos	control flow fingerprint image algorithm

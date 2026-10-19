@@ -1,0 +1,61 @@
+### 2026-10-19T05:30:54Z repos q=reverse code generation
+exit=0
+total_count=67 incomplete=false
+  hibernate/hibernate-tools  *331  created=2011-03-09  pushed=2026-10-18  Code generation, reverse engineering, ant task and more tools for Hibernate Core
+  casadi/casadi  *2314  created=2012-10-31  pushed=2026-10-18  CasADi is a symbolic framework for numeric optimization implementing automatic differentiation in forward and reverse mo
+  wul7chaos/vmp-reverse-skill  *17  created=2026-09-28  pushed=2026-09-28  Devirtualization pipeline for VMProtect-style binaries: dispatcher/handler slicing, two-generation P-code IR, LLM-contex
+  Kun-k/Re_2_H2O  *24  created=2023-09-06  pushed=2023-11-23  Official codes for paper: Autonomous Driving Scenario Generation via Reversely Regularized Hybrid Offline-and-Online Rei
+  mmrehu/APK-SHIELD-X  *5  created=2026-01-10  pushed=2026-01-10  ltimate APK Obfuscator & Anti-Analysis Tool is an advanced Android security framework that performs deep Smali refactori
+  CornSnak3/003-OOPIS-ReverseCodeGeneration  *0  created=2019-06-05  pushed=2019-06-05  Лабораторная работа №3. ООПИС
+  open-code-modeling/php-code-ast  *7  created=2020-07-29  pushed=2024-11-06  PHP code generation based on PHP Abstract Syntax Tree (AST) with an easy to use high level OO API. Reverse engineering o
+  FURQANAHMAD34/universal-re-skill  *10  created=2026-04-25  pushed=2026-07-21  Universal reverse engineering, 40+ vuln classes & working PoC generation for Android/iOS/Windows PE/Linux ELF/macOS/.NET
+  skizap/Automated-Reverse-Code-Generation-ARCGen-  *1  created=2025-01-13  pushed=2025-05-31  
+  CrazyShaQuiShi/code-generator  *0  created=2019-11-26  pushed=2022-06-21  Reverse code generation tools
+
+### 2026-10-19T05:31:00Z repos q=pisa simulator reversible
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T05:31:06Z repos q=inverse program generation
+exit=0
+total_count=7 incomplete=false
+  VSoubbotin/Amatrol_Pegasus_Kinematics_Project  *2  created=2020-11-14  pushed=2020-11-14  Inverse kinematics calculations for the Amatrol Pegasus robot, through automatic program generation and various troubles
+  anantrajputcode/Matops-c  *15  created=2025-09-13  pushed=2026-09-24  MATOPS is a menu-driven C program that implements core matrix operations used in linear algebra. It allows users to perf
+  anton-lw/Awesome-Inverse-Kinematics-in-Architecture  *1  created=2026-03-18  pushed=2026-03-18  A curated list of inverse kinematics, non-linear simulators, and computational design methods powering the next generati
+  nathanielscip/Hill-Cipher-Encryption-Program-in-C  *0  created=2024-10-05  pushed=2024-10-05  Built a C program to encrypt text using the Hill           Cipher algorithm. Implemented key matrix generation, modular 
+  Dnch0755/Cryptography-Data-Security-Assignment  *0  created=2025-12-21  pushed=2026-01-30  This Assignment will be mainly focusing on the Modular implementation of the Advanced Encryption Standard (AES-128). Thi
+  J0hnrnw4k/RSA-project  *0  created=2025-04-15  pushed=2025-04-15  C implementation of RSA encryption and decryption with a driver program for testing. Includes modular arithmetic, GCD, m
+  hollykoponen/Terrain-Generator-OpenGL-  *2  created=2016-11-12  pushed=2016-11-12  errain ModelingWrite a graphics program using C/C++ and OpenGL to produce and  display  an  interactive  terrain  mesh. 
+
+### 2026-10-19T05:31:12Z repos q=reversible language compiler x86
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T05:31:18Z repos q=reversible machine code
+exit=0
+total_count=12 incomplete=false
+  craigstoller/claude-code-sessions  *3  created=2026-07-31  pushed=2026-10-18  Unofficial tool for Claude Code sessions on disk: make a session visible under your other Claude account on the same mac
+  ychennay/RJMCMC  *8  created=2016-12-07  pushed=2017-01-18  Datasets and code for CS226 (Machine Learning) Research Project (December 2016). The endproduct is a reversible jump Mar
+  smanivesh/Reversible-Data-Hiding-during-Encryption-using-Machine-Learning  *1  created=2023-05-31  pushed=2023-05-31  This is the implementation of research paper "Reversible Data Hiding During Encryption using Machine Learning" (It's not
+  MphoRamaisa/Reversible-Primes-Squares  *0  created=2022-10-30  pushed=2022-10-30  This is a program that prints out the first ten reversible prime squares. There is a C program, Assembly Language progra
+  ghimireaneej07/secret_chat_code_decode_machine_logic  *0  created=2026-01-03  pushed=2026-02-02  Secret Chat Machine is a Python program focused purely on implementing reversible encoding and decoding logic using stri
+  KoriLeronti/Reversible-prime-squares-2  *0  created=2023-01-27  pushed=2023-01-27  Program that prints the first 10 reversible prime squares. we wiil be using high level language C and low- level langaug
+  Nteka10/Improved-mind  *1  created=2022-09-28  pushed=2025-02-10  program that determines and prints 10 reversible square primes in c, MIPS assembly and hexadecimal coded machine code
+  BenKnill/lattice-echo  *0  created=2026-09-26  pushed=2026-10-03  Running chaos backwards: an exactly reversible lattice standard map with HOL Light-verified AArch64 machine code
+  arifinilham9607/MRI-Compatible-CPR-Quantum-FSM  *0  created=2025-11-23  pushed=2025-12-01  "Source code for the paper: Design of an MRI-Compatible CPR Feedback System based on Reversible Quantum Finite State Mac
+  costanzo/suncode  *0  created=2026-08-04  pushed=2026-10-18  A local-first coding agent with an Avalonia desktop app and embedded Rust core, featuring scoped approvals, audited mach
+
+### 2026-10-19T05:31:24Z code q=reversible jit "PROT_EXEC"
+exit=0
+total_count=113 incomplete=false
+  OutlineDriven/outline-driven-development  .devin/skills/jit-compilation/SKILL.md
+  launix-de/memcp  scm/jit.go
+  OutlineDriven/odin-claude-plugin  plugins/odin-native/skills/jit-compilation/SKILL.md
+  acald-creator/nexa-lang  docs/specs/phase-5-jit.md
+  jart/cosmopolitan  tool/net/help.txt
+  sbcl/sbcl  src/runtime/save.c
+  willfaust/Madeira  app/Madeira/ContentView.swift
+  RopRunners/rctf-2026  internal/possibly_maybe/runner/src/jit/jit.c
+  jart/cosmopolitan  tool/net/definitions.lua
+  gmh5225/awesome-game-security  archive/Jordan231111/lsposed-universal-template.txt
+

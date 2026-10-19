@@ -1,0 +1,93 @@
+### 2026-10-19T05:28:44Z repos q="self-modifying" benchmark in:readme
+exit=0
+total_count=1096 incomplete=false
+  clamchowder/Microbenchmarks  *178  created=2021-03-12  pushed=2026-10-18  Trying to figure various CPU things out
+  muratcankoylan/Agent-Skills-for-Context-Engineering  *18170  created=2025-12-21  pushed=2026-10-12  A comprehensive collection of Agent Skills for context engineering, multi-agent architectures, and production agent syst
+  veritas501/ae64  *201  created=2018-11-12  pushed=2024-01-15  basic amd64 alphanumeric shellcode encoder
+  lobehub/awesome-rsi  *810  created=2026-08-11  pushed=2026-10-15  A curated research map of Recursive Self-Improvement (RSI): models, agents, harnesses, embodied systems, automated AI R&
+  kmccleary3301/nested_learning  *713  created=2025-11-10  pushed=2026-02-25  A Reproduction of GDM's Nested Learning Paper
+  erikl2/nested-learning  *80  created=2025-11-14  pushed=2025-12-08  
+  PSRben/VisionHOPE  *1275  created=2026-09-27  pushed=2026-10-12  Official PyTorch implementation of VisionHOPE: Visual Backbones as Self-Modifying Learning Systems.
+  crackmesone/crackmes-re-dataset  *144  created=2026-07-11  pushed=2026-09-15  Labeled reverse-engineering dataset over 4,598 crackmes: flags, verifier scripts, and normalized obfuscation tags.
+  ruvnet/sublinear-time-solver  *91  created=2025-09-19  pushed=2026-10-10  Rust + WASM sublinear-time solver for asymmetric diagonally dominant systems. Exposes Neumann series, push, and hybrid r
+  BetterForAll/self-improving-agents  *170  created=2026-04-04  pushed=2026-04-09  Self-Improving Agents -- A Progression Four levels of self-improving code agents, from the simplest loop to a full adver
+
+### 2026-10-19T05:28:50Z repos q="cross-modifying" in:readme
+exit=0
+total_count=15 incomplete=false
+  backtrace-labs/dynamic_flag  *77  created=2021-12-03  pushed=2022-10-12  A C library for runtime-flippable feature flags on Linux/x86-64, with negligible overhead in the common case
+  drakehuo/orange-bot  *30  created=2022-07-20  pushed=2022-07-21  
+  appnexus/acf  *114  created=2017-12-19  pushed=2019-11-24  An-source C library developed and used at AppNexus.
+  hayamdk/ryzen_segv_test  *48  created=2017-06-23  pushed=2017-11-06  RYZEN SEGV test code
+  Kucoin/kucoin-futures-node-sdk  *19  created=2019-10-18  pushed=2025-03-04  KuCoin Futures API SDK for Node.js language
+  madhav-051429/CLV  *0  created=2025-12-15  pushed=2025-12-23  
+  UBC-LFS/greengene  *0  created=2020-03-09  pushed=2025-11-06  
+  meuer26/SimpleComputer32v1_Student  *0  created=2026-10-09  pushed=2026-10-13  Dual-Pentium (P54C) Teaching Computer
+  roberthedwardsIV/limit_order_book  *0  created=2026-09-17  pushed=2026-10-10  Simple Limit Order Book
+  moshejs/fx-value-date  *0  created=2026-07-11  pushed=2026-10-10  FX settlement/value-date math — spot, tom, forward tenors across two currency calendars, USD-lag & EOM rules. Zero depen
+
+### 2026-10-19T05:28:56Z repos q=smc machine clear
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T05:29:02Z repos q=self modifying code performance x86
+exit=0
+total_count=1 incomplete=false
+  zszszszsz/.config  *363  created=2020-06-23  pushed=2023-10-05  # # Automatically generated file; DO NOT EDIT. # OpenWrt Configuration # CONFIG_MODULES=y CONFIG_HAVE_DOT_CONFIG=y # CON
+
+### 2026-10-19T05:29:07Z repos q=microbenchmark created:>2026-04-01 cache
+exit=0
+total_count=17 incomplete=false
+  zbx-cmd/lab0-microbenchmarks  *0  created=2026-09-11  pushed=2026-09-11  Empirical cache, TLB, page-size, and memory-parallelism microbenchmarks
+  shravyavorugallu/hpc-microbenchmark  *0  created=2026-06-14  pushed=2026-06-14  C++20 benchmark suite: memory bandwidth, cache latency, NUMA topology for HPC node acceptance testing
+  Olajide-Badejo/Metal-msl-microbenchmark  *0  created=2026-04-11  pushed=2026-04-13  CUDA bandwidth tests ported to Metal MSL. Measures M1 GPU DRAM, threadgroup SRAM, and texture-cache bandwidth with Apple
+  Olajide-Badejo/CPU-Microbenchmark-Suite  *0  created=2026-07-23  pushed=2026-07-23  Measures cache latency, STREAM memory bandwidth, and peak AVX2/NEON FLOPS on real hardware, then assembles them into a m
+  AmirrezaAminrad/computer-architecture  *1  created=2026-10-12  pushed=2026-10-12  ArchLab (interactive computer-architecture webapp) and cpu-cache-lab (cache/memory microbenchmarks and simulators)
+  rafalwronapl/kernelarena-rope-kv-fusion  *0  created=2026-06-24  pushed=2026-08-20  Fused Triton RoPE + KV-cache write: RTX 4090 contract microbenchmark evidence
+  shajeen/page_cache_bench  *0  created=2026-07-13  pushed=2026-08-04  Linux I/O microbenchmarks: pread, mmap+MADV_RANDOM, O_DIRECT. 4 KB random-read latency across kernel I/O paths.
+  Nabhya1807/warproute  *0  created=2026-08-24  pushed=2026-09-19  Cache and TLB microbenchmarks for Apple M3 Pro with hardware performance counters
+  roger-chau/cache-experiments  *0  created=2026-07-26  pushed=2026-08-13  Learning the memory hierarchy by measuring it. Microbenchmarks and optimization experiments on real hardware, each with 
+  daryl-888/ada-microbench  *0  created=2026-05-26  pushed=2026-06-05  CUDA microbenchmarks for NVIDIA Ada Lovelace: memory coalescing, cache behavior, and occupancy/ILP experiments. Ongoing 
+
+### 2026-10-19T05:29:13Z code q="machine_clears.smc"
+exit=0
+total_count=16128 incomplete=false
+  Maratyszcza/NNPACK  bench/perf_counter.c
+  gamozolabs/falkervisor_grilled_cheese  srcs/perf/perf.c
+  NVIDIA/cuda-gdb  gprofng/src/hwc_intel_icelake.h
+  MoatLab/Pond  clx-2s-events.txt
+  MoatLab/Pond  cpu2017/clx-2s-events.txt
+  sslab-gatech/Sense  perf
+  TACC/perfexpert  modules/vtune/vtune_event.h
+  STMicroelectronics/gnu-tools-for-stm32  src/gdb/gprofng/common/core_pcbe.c
+  jasonblog/note  linux_system/src/羅習五/ch12/perflist.txt
+  MegEngine/mperf  eca/tma/arch_ratios/adl_grt_ratios.cpp
+
+### 2026-10-19T05:29:26Z code q="self-modifying" rdtsc mprotect benchmark
+exit=0
+total_count=64 incomplete=false
+  jart/cosmopolitan  tool/net/definitions.lua
+  solisoft/luaonbeans  definitions.lua
+  jart/cosmopolitan  tool/net/help.txt
+  andrei-markeev/cloudpebble-portable  src/api/.definitions.lua
+  s0ph0s-dog/werehouse  definitions/redbean.lua
+  jpe90/cosmopolitan  tool/net/definitions.lua
+  RohitRam9701/https-github.com-jart-cosmopolitan  tool/net/definitions.lua
+  xmake-mirror/cosmopolitan  tool/net/definitions.lua
+  jart/blink  README.md
+  autun12/CTF-Writeups  L3akctf2025/pwn/cosmofile/cosmopolitan-master/tool/net/definitions.lua
+
+### 2026-10-19T05:29:41Z code q="cross-modifying" "serialize"
+exit=0
+total_count=82 incomplete=false
+  DynamoRIO/dynamorio  core/arch/atomic_exports.h
+  eval-exec/neomacs  crates/neovm-core/src/emacs_core/runtime/jit/bg.rs
+  sisshiki1969/monoruby  monoruby/src/gvl.rs
+  freelancer-leon/notes  arch/intel/MP_management.md
+  taowen/modularization-examples  今日阅读.md
+  DynamoRIO/drk  core/x86/arch_exports.h
+  xem/minix86  manual/intel-x86-and-64-manual-vol3/o_fe12b1e2a880e0ce-260.html
+  DragonOS-Community/DragonOS  kernel/src/mm/ucontext/uprobe/site.rs
+  cyberark/rdpfuzz  rdpfuzz-dynamorio/core/arch/arch_exports.h
+  vgrichina/berrry-wine  docs/uop-tier-design.md
+

@@ -1,0 +1,21 @@
+# Core topology — reviewer probe 2026-10-18 22:26:23 PDT
+# source: lscpu -e; /sys/devices/system/cpu/cpuN/{topology/cluster_id,cache/index2,index3,cpufreq}; /sys/bus/event_source/devices/cpu_*/cpus
+cpu0  cluster_id=0   L2_shared=0      L3_shared=0-11  max_khz=4700000
+cpu1  cluster_id=8   L2_shared=1      L3_shared=0-11  max_khz=4700000
+cpu2  cluster_id=16  L2_shared=2      L3_shared=0-11  max_khz=4800000
+cpu3  cluster_id=24  L2_shared=3      L3_shared=0-11  max_khz=4700000
+cpu4  cluster_id=32  L2_shared=4-7    L3_shared=0-11  max_khz=3700000
+cpu5  cluster_id=32  L2_shared=4-7    L3_shared=0-11  max_khz=3700000
+cpu6  cluster_id=32  L2_shared=4-7    L3_shared=0-11  max_khz=3700000
+cpu7  cluster_id=32  L2_shared=4-7    L3_shared=0-11  max_khz=3700000
+cpu8  cluster_id=40  L2_shared=8-11   L3_shared=0-11  max_khz=3700000
+cpu9  cluster_id=40  L2_shared=8-11   L3_shared=0-11  max_khz=3700000
+cpu10 cluster_id=40  L2_shared=8-11   L3_shared=0-11  max_khz=3700000
+cpu11 cluster_id=40  L2_shared=8-11   L3_shared=0-11  max_khz=3700000
+cpu12 cluster_id=64  L2_shared=12-15  L3_shared=NONE  max_khz=3300000
+cpu13 cluster_id=64  L2_shared=12-15  L3_shared=NONE  max_khz=3300000
+cpu14 cluster_id=64  L2_shared=12-15  L3_shared=NONE  max_khz=3300000
+cpu15 cluster_id=64  L2_shared=12-15  L3_shared=NONE  max_khz=3300000
+PMU cpu_atom: cpus=4-15
+PMU cpu_core: cpus=0-3
+# => three classes: P (0-3, private L2, L3 0-11), E (4-11, two 4-core L2 clusters, L3 0-11), LP-E (12-15, own L2, NO L3, 3.3 GHz). Both E classes report PMU cpu_atom.

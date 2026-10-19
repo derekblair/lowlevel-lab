@@ -1,0 +1,27 @@
+### 2026-10-19T05:31:39Z repos q=elf quine in:readme
+exit=0
+total_count=100 incomplete=false
+  mame/quine-relay  *14610  created=2013-07-15  pushed=2026-09-01  An uroboros program with 100+ programming languages
+  fiveoutofnine/cool-contracts  *548  created=2022-06-30  pushed=2022-10-06  A compilation of smart contracts I find cool/fun/interesting.
+  neoeno/toy-elf-x86-64-framework  *4  created=2024-09-25  pushed=2024-09-26  
+  axic/evm.elf  *74  created=2022-08-03  pushed=2022-08-03  
+  pointcheck/code_snippets  *3  created=2024-07-15  pushed=2026-10-02  Collection of code snippets for everyday use
+  Esadecimale/thompson-backdoor  *8  created=2026-10-02  pushed=2026-10-04  Trusting Trust, Hands On: Building a Self-Reproducing Compiler Backdoor
+  toddmaustin/bringup-bench  *229  created=2023-04-11  pushed=2026-06-05  Bringup-Bench is a collection of standalone minimal library and system dependence benchmarks useful for bringing up newl
+  fishilico/synacktiv-winter-chall-2025-quinindrome  *4  created=2026-01-21  pushed=2026-01-22  Solution for Synacktiv's 2025 Winter Challenge: Quinindrome
+  meithecatte/mips-quine  *2  created=2023-06-08  pushed=2023-06-08  MIPS Quine that disassembles its own code and parses its own ELF symbol table
+  nsauzede/compbook_test  *6  created=2021-03-03  pushed=2025-08-10  My notes following the "Compiler Book"
+
+### 2026-10-19T05:31:45Z repos q=polyglot elf multi architecture
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T05:31:50Z repos q=quine relay assembly
+exit=0
+total_count=1 incomplete=false
+  Zushah/quine  *0  created=2026-04-25  pushed=2026-04-25  Quine relay: Assembly → C → Rust → C++ → Java → JavaScript → Python.
+
+### 2026-10-19T05:31:56Z repos q=assembly quine arm64
+exit=0
+total_count=0 incomplete=false
+

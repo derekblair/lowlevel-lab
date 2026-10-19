@@ -1,0 +1,95 @@
+### 2026-10-19T05:27:04Z repos q=ptwrite in:readme
+exit=0
+total_count=21 incomplete=false
+  uCFI-GATech/ucfi-compiler  *17  created=2018-10-09  pushed=2019-09-20  
+  bbTomas/mPraat  *19  created=2016-03-26  pushed=2019-01-21  mPraat toolbox for Matlab
+  mazegen/x86reference  *41  created=2024-06-05  pushed=2026-09-22  X86 Opcode and Instruction Reference
+  5BSD/ObservableBSD  *4  created=2026-04-12  pushed=2026-05-01  Observation and telemetry tools for 5BSD
+  lzhfromustc/ptracer-overflow-repro  *0  created=2026-06-07  pushed=2026-06-08  
+  kleftog/streamcfi  *0  created=2025-05-30  pushed=2026-07-04  Repository for StreamCFI
+  Juhyunpark-paper/Cryptographic-Routine-Detection  *2  created=2020-05-31  pushed=2020-05-31  Symmetric-Key Cryptographic Routine Detection in Anti-Reverse Engineered Binaries Using Hardware Tracing
+  to-audiobook/fork-gentle-bin  *0  created=2025-10-30  pushed=2025-12-10  prebuilt binaries from fork-gentle
+  ptraceratc-boop/ptracer-artifact  *0  created=2026-09-23  pushed=2026-10-16  PTracer artifact
+  farzamdorostkar/tmon  *2  created=2024-02-13  pushed=2024-04-16  
+
+### 2026-10-19T05:27:11Z repos q=topic:intel-pt
+exit=0
+total_count=5 incomplete=false
+  RUB-SysSec/kAFL  *596  created=2017-08-13  pushed=2019-01-10  Code for the USENIX 2017 paper: kAFL: Hardware-Assisted Feedback Fuzzing for OS Kernels
+  OctopusTakopi/trace-mcp  *5  created=2026-09-08  pushed=2026-09-26  Intel PT tracer your agent drives over MCP.
+  tuxology/vmpt  *2  created=2016-04-18  pushed=2016-07-07  Creates bundles of VM related hardware trace packets in JSON
+  rcx/intelpt-bins  *1  created=2020-02-20  pushed=2020-03-20  Precompiled binaries for libipt
+  Evian-Zhang/iptr  *1  created=2025-11-18  pushed=2026-02-22  Idiomatic Rust-style Intel-PT trace handling
+
+### 2026-10-19T05:27:16Z repos q=topic:processor-trace
+exit=0
+total_count=9 incomplete=false
+  RUB-SysSec/kAFL  *596  created=2017-08-13  pushed=2019-01-10  Code for the USENIX 2017 paper: kAFL: Hardware-Assisted Feedback Fuzzing for OS Kernels
+  andikleen/simple-pt  *359  created=2015-08-14  pushed=2023-03-01  Simple Intel CPU processor tracing on Linux
+  BlackLuny/WinIPTCollector  *19  created=2020-06-07  pushed=2020-06-14  Intel Processor Trace package collector for Windows
+  pulp-platform/trdb  *16  created=2019-03-15  pushed=2024-03-17  RISC-V Processor Tracing tools and library
+  sum-catnip/libipt-rs  *16  created=2019-11-28  pushed=2025-08-05  high level rust bindings for the libipt (intel processor tracing) library
+  accemic/CTXP-format  *3  created=2025-10-24  pushed=2026-07-29  Format Specification for Unified Processor Trace
+  hassanIqbal1994/kernel-os  *3  created=2025-12-07  pushed=2026-10-14  🖥️ Build a minimal 64-bit x86 bare-metal kernel with custom toolchain, VGA output, and GRUB support for efficient low-le
+  tuxology/vmpt  *2  created=2016-04-18  pushed=2016-07-07  Creates bundles of VM related hardware trace packets in JSON
+  BlackLuny/ptkgenerator  *1  created=2021-11-20  pushed=2021-11-20  High performance multi threading realtime intel Processor Trace data collector and decoder implemented in rust by using 
+
+### 2026-10-19T05:27:22Z repos q=intel pt decoder created:>2026-04-01
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T05:27:28Z repos q=jitdump intel_pt
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T05:27:33Z repos q="processor trace" self-modifying in:readme
+exit=0
+total_count=9 incomplete=false
+  Angelo942/gdb_plus  *20  created=2022-09-06  pushed=2026-10-18  Python library to automate gdb debugging
+  HarshithaShashi/User-Space-Control-Flow-Integrity-CFI-Monitor  *0  created=2026-02-27  pushed=2026-02-27  
+  ridpath/gamehacking-cheatsheet  *95  created=2025-06-03  pushed=2026-01-11  Comprehensive Game Hacking Cheat Sheet for security researchers, reverse engineers, and CTF participants. Covers memory 
+  pavelvladimirovich258614-sys/self-harness  *0  created=2026-06-12  pushed=2026-06-13  
+  wcventure/FuzzingPaper  *2766  created=2019-03-08  pushed=2026-09-30  Recent Fuzzing Paper
+  Marontis/agentic-engineering  *2  created=2026-08-31  pushed=2026-10-07  Research-backed rules, skills, and spec templates for building LLM agent systems -- distilled from arXiv papers, queries
+  goldenscale/GS_GithubMirror  *24  created=2021-11-07  pushed=2023-02-16  A Github Mirror List For GS Star Repository
+  antiface/SchizobotLite  *0  created=2026-08-06  pushed=2026-08-07  The Simplest, Stupidest System in The Universe: Schizobot v.1.0.0
+  mishmashclone/wcventure-FuzzingPaper  *10  created=2020-10-27  pushed=2022-01-15  https://github.com/wcventure/FuzzingPaper
+
+### 2026-10-19T05:27:39Z repos q=hardware trace jit code versions
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T05:27:45Z code q=ptwrite jitdump
+exit=0
+total_count=77 incomplete=false
+  zsh-users/zsh  Completion/Linux/Command/_perf
+  ravynsoft/ravynos  BSD/usr.bin/zsh/Completion/Linux/Command/_perf
+  parallella/parabuntu  overlays/perf/share/man/man1/perf-inject.1
+  dotnet/runtime  src/coreclr/jit/assertionprop.cpp
+  haiwei-li/study  Linux/Debug/6. perf/perf inject.md
+  goweiwen/Allium  static/Apps/BetterWifi.pak/share/zsh/5.9/functions/_perf
+  smssexe/manpages-data  man1/perf-inject.md
+  apple-oss-distributions/zsh  zsh/Completion/Linux/Command/_perf
+  apple-open-source/macos  zsh/zsh/Completion/Linux/Command/_perf
+  dotnet/dotnet  src/runtime/src/coreclr/jit/assertionprop.cpp
+
+### 2026-10-19T05:27:58Z code q="pt_image_set_callback" self-modifying
+exit=0
+total_count=2 incomplete=false
+  wilvk/asm-test  docs/internal/analysis/jit-runtime-tracing.md
+  wilvk/asm-test  docs/internal/plans/hardware-trace-plan.md
+
+### 2026-10-19T05:28:12Z code q=ptw intel_pt perf_event_attr config
+exit=0
+total_count=2724 incomplete=false
+  EOS-team/EOS  src/RROS/tools/perf/util/intel-pt.c
+  zhovner/OneFileLinux  linux-4.14.22/tools/perf/util/intel-pt.c
+  sslab-gatech/janus  lkl/tools/perf/util/intel-pt.c
+  gfreewind/kernel_comment  tools/perf/util/intel-pt.c
+  raphael/linux-samus  build/linux/tools/perf/util/intel-pt.c
+  QQxiaoming/quard_star_tutorial  linux-6.1.11/tools/perf/util/intel-pt.c
+  westerndigitalcorporation/RISC-V-Linux  linux/tools/perf/util/intel-pt.c
+  bouffalolab/bl808_linux  linux-5.10.4-808/tools/perf/util/intel-pt.c
+  ANYCUBIC-3D/Kobra3  k3-kernel/tools/perf/util/intel-pt.c
+  kendryte/k230_sdk  src/little/linux/tools/perf/util/intel-pt.c
+
