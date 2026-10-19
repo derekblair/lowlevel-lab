@@ -1,0 +1,18 @@
+# Weighing post-clearance C12 commit 7321667 (nits N1 alignment text, N2 fail-closed audit), 2026-10-19 12:24:42 PDT
+## plain make (env -i): exit 0, PASS=6 FAIL=0
+VERDICT PASS: fixed point: stage2 is byte-identical to stage0 (cmp + sha256 above)
+VERDICT PASS: stage0/stage2 are x86-64 ELFs, stage1 is an AArch64 ELF (readelf -h)
+VERDICT PASS: C12-2 x86 stage0: exactly 3x write(1,..) + exit, no other syscalls (fail-closed)
+VERDICT PASS: C12-2 AArch64 stage1 (qemu -strace): exactly 3x write(1,..) + exit (fail-closed)
+VERDICT PASS: R6 x86 code decodes (GNU objdump) to the intended mov/movabs/syscall sequence
+VERDICT PASS: R6 AArch64 code decodes (GNU aarch64 objdump) to the intended movz/movk/svc sequence
+ALL VERDICTS PASS
+## make under the reviewer's outer strace (inner strace gets EPERM: the round-1 N2 condition that produced a VACUOUS PASS)
+VERDICT PASS: fixed point: stage2 is byte-identical to stage0 (cmp + sha256 above)
+VERDICT PASS: stage0/stage2 are x86-64 ELFs, stage1 is an AArch64 ELF (readelf -h)
+VERDICT FAIL: C12-2 x86 stage0: exactly 3x write(1,..) + exit, no other syscalls (fail-closed)
+VERDICT PASS: C12-2 AArch64 stage1 (qemu -strace): exactly 3x write(1,..) + exit (fail-closed)
+VERDICT PASS: R6 x86 code decodes (GNU objdump) to the intended mov/movabs/syscall sequence
+VERDICT PASS: R6 AArch64 code decodes (GNU aarch64 objdump) to the intended movz/movk/svc sequence
+SOME VERDICTS FAILED
+=> x86 C12-2 now FAILS CLOSED (was a vacuous PASS in round 1); the AArch64 check uses qemu -strace (not ptrace) and legitimately passes. N2 VERIFIED fixed.
