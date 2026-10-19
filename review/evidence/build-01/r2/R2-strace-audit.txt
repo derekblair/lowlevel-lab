@@ -1,0 +1,16 @@
+strace audit of /home/derekblair/projects/lowlevel-lab/tasks/reviewer-repro/build-01-r2/.evidence/strace.log
+  allowed write roots: /home/derekblair/projects/lowlevel-lab/tasks/reviewer-repro/build-01-r2, /tmp, /dev/null, /dev/tty, /dev/pts, /dev/shm, /proc/self, /proc/thread-self
+  relative-path write-mode opens (resolved against cwd): 1
+  WRITE              0  [none]
+  FS-MUTATE          0  [none]
+  CHDIR-OUT          0  [none]
+  NETWORK            0  [none]
+  EXEC-PRIV/NET      0  [none]
+  PTRACE-ATTACH      0  [none]
+  FOREIGN-WRITE      0  [none]
+  UNIX-SOCKET        4  [info]
+      1782412 socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, 0) = 3
+      1782412 connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+      1782412 socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, 0) = 3
+      1782412 connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+  RESULT: CLEAN

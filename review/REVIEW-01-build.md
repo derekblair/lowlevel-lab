@@ -1,4 +1,4 @@
-GATE: build-01 | VERDICT: CHANGES REQUESTED | ROUND: 1 | AT: 2026-10-19 07:39 PDT | COMMIT: 2949d40
+GATE: build-01 | VERDICT: APPROVE | ROUND: 2 | AT: 2026-10-19 07:52 PDT | COMMIT: 271bd3e (round 1: CHANGES REQUESTED @2949d40)
 
 # REVIEW-01-build — P1 smc-observatory (`parts/01-smc-observatory/`)
 
@@ -117,3 +117,50 @@ The running artifact produces the novel observable named at Gate 1. Per core cla
 Fix B1 and B2, re-capture RUN.md, and add a "Fix round 1" section to BUILD-01.md. Then post `GATE BUILD-01 READY (fix round 1) — commit <hash>`. The nits are requested but not required.
 
 On round 2 I'll re-run steps A through E on the new commit. Per REVIEW-00 §1.9, new [BLOCKING] items may only be raised against changed code.
+
+---
+
+## Round 2: fix round 1 @ `271bd3e`, APPROVE (2026-10-19 07:52 PDT)
+
+I reviewed `271bd3e` (GATE line 07:43; working tree identical). It was reproduced in a fresh clone, `tasks/reviewer-repro/build-01-r2`, under `env -i`. Evidence is in `review/evidence/build-01/r2/`, plus `torn_power.c` and `torn-power-output.txt`.
+
+**Process slip, mine.** I noticed the GATE line at 07:49, not 07:43, because I'd re-baselined my watcher past an unread line (STATUS-REVIEWER 07:49). The round-2 review started at 07:49.
+
+### Blockers
+
+- **B1 — FIXED, and the negative result now has demonstrated power.**
+  - The new `do_torn`/`torn_writer` (`smcobs.c`) matches the design in my round-1 note:
+    - `mov eax, imm32` at 61, with the imm32 at 62–65 straddling the 64-B line;
+    - aligned `volatile` 2-byte half-stores, high half first for A→B and low half first for B→A.
+  - I traced the states: memory only ever holds A, `0x33332222` (MID) or B, so `0x11114444` can only come from a cross-line tear. Both tear directions surface as TORN in one of the two transitions.
+  - The `legit` field lumps MID in with A and B, so I measured power with a reviewer replica that counts each value separately (`torn_power.c`, 9 runs × 5×10⁶ executions, pairs P→E, P→LP-E, E→P). **MID was observed in 47–92% of executions** (`torn-power-output.txt`). The executor constantly samples mid-transition windows, yet **TORN = 0 and other = 0 across 4.5×10⁷ executions**.
+  - "0 torn on this part" is now a real observation with real power, not a guarantee by construction.
+  - [nit] Print the MID count in the `torn` CSV row so RUN.md shows the power itself.
+- **B2 — FIXED.** `.DEFAULT_GOAL := run` is in place. A bare `make` builds, sweeps and reports, with `make_exit=0` and ALL VERDICTS PASS, **twice** in the clean clone (`r2/R2-A-make.txt`, `r2/R2-B-make.txt`).
+
+### Reproduction
+
+- The report tables, the new spread lines (`worst per-cell spread … 0.00`) and every VERDICT line are **identical** to the re-captured RUN.md §4 across both runs.
+  - The only exceptions are VERDICT 9's detail numbers and the xcore medians, which are scheduling-dependent and now **declared** in RUN.md's "Nondeterministic fields (R3)" section.
+- The strengthened VERDICT 9 ("Darkmont books XMC (SMC≈0), P books SMC") passes in all three runs: RUN.md's and my two.
+- **strace: CLEAN** (`r2/R2-strace-audit.txt`). The clone stays clean afterwards.
+
+### Nits
+
+| Nit | Status | Where |
+|---|---|---|
+| N1 | Fixed | The README now states the measured 2–42 shortfall and that its cause isn't established, and retracts the earlier claim |
+| N2 | Fixed | BUILD-01.md now cites `F-all-cpus.txt` and acknowledges the C04 mis-citation |
+| N3 | Fixed | VERDICT 9 now asserts the asymmetric booking itself |
+| N4 | Fixed | RUN.md "Nondeterministic fields (R3)" section added |
+| N5 | Fixed | Spread lines added |
+| N6 | Fixed | `pthread_create` checked, `smcobs.c:237` |
+| N7 | Fixed | "address-based, not value-based" paragraph added |
+
+**No new [BLOCKING].** I reviewed only the changed code (the torn probe, report.py's VERDICT 9 and spread, the Makefile goal), per REVIEW-00 §1.9.
+
+### Why APPROVE
+
+The part reproduces byte-identically from a clean clone. Its novel observable holds on every core of all three classes. Its one probe that had no power now has demonstrated power. Its claims are tagged honestly, and the safety audit is clean. P1 is the strongest build so far.
+
+**Gate BUILD-01 is CLEARED.**

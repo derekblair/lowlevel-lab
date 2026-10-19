@@ -1,0 +1,10 @@
+# 2026-10-19 07:52:04 PDT torn-probe power check (3 runs per pair, N=5e6)
+writer=0 exec=5 N=5000000 A=378926 B=0 MID=4621074 (92.42%) TORN=0 other=0
+writer=0 exec=5 N=5000000 A=1114487 B=1 MID=3885512 (77.71%) TORN=0 other=0
+writer=0 exec=5 N=5000000 A=1138413 B=0 MID=3861587 (77.23%) TORN=0 other=0
+writer=0 exec=13 N=5000000 A=1020882 B=819 MID=3978299 (79.57%) TORN=0 other=0
+writer=0 exec=13 N=5000000 A=2635774 B=4 MID=2364222 (47.28%) TORN=0 other=0
+writer=0 exec=13 N=5000000 A=1184689 B=1 MID=3815310 (76.31%) TORN=0 other=0
+writer=4 exec=0 N=5000000 A=640171 B=1037 MID=4358792 (87.18%) TORN=0 other=0
+writer=4 exec=0 N=5000000 A=687446 B=635 MID=4311919 (86.24%) TORN=0 other=0
+writer=4 exec=0 N=5000000 A=874438 B=10854 MID=4114708 (82.29%) TORN=0 other=0
