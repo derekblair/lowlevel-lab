@@ -1,0 +1,25 @@
+# 2026-10-19 07:23:46 PDT P2 PTW feasibility probe (unprivileged, perf_event_paranoid=2)
+PTW packet @aux+39 hdr=02 32 payload=1122334455667788
+PTW packet @aux+49 hdr=02 32 payload=1122334455667789
+PTW packet @aux+59 hdr=02 32 payload=112233445566778a
+PTW packet @aux+69 hdr=02 32 payload=112233445566778b
+fup_on_ptw=0 aux_head=92 bytes, PTW packets with magic payload: 4/4 -> FEASIBLE
+exit=0
+PTW packet @aux+39 hdr=02 32 payload=1122334455667788
+PTW packet @aux+49 hdr=02 32 payload=1122334455667789
+PTW packet @aux+59 hdr=02 32 payload=112233445566778a
+PTW packet @aux+69 hdr=02 32 payload=112233445566778b
+fup_on_ptw=0 aux_head=92 bytes, PTW packets with magic payload: 4/4 -> FEASIBLE
+exit=0
+PTW packet @aux+39 hdr=02 b2 payload=1122334455667788
+PTW packet @aux+52 hdr=02 b2 payload=1122334455667789
+PTW packet @aux+65 hdr=02 b2 payload=112233445566778a
+PTW packet @aux+78 hdr=02 b2 payload=112233445566778b
+fup_on_ptw=1 aux_head=104 bytes, PTW packets with magic payload: 4/4 -> FEASIBLE
+exit=0
+PTW packet @aux+39 hdr=02 b2 payload=1122334455667788
+PTW packet @aux+52 hdr=02 b2 payload=1122334455667789
+PTW packet @aux+65 hdr=02 b2 payload=112233445566778a
+PTW packet @aux+78 hdr=02 b2 payload=112233445566778b
+fup_on_ptw=1 aux_head=104 bytes, PTW packets with magic payload: 4/4 -> FEASIBLE
+exit=0

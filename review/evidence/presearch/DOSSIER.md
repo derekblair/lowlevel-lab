@@ -200,3 +200,6 @@ Probe source: `review/evidence/presearch/c02-probe/smcprobe.c` (benign own-proce
 - **intel/libipt#21** (2017): a self-modifying-code user's workaround = "remove and re-add a section periodically" / request to read instructions from memory (→ today's `pt_image_set_callback`); `ptwrite` appears only in the maintainer's IP-filter example.
 - GitHub issue search: `ptwrite "self-modifying"` → 1 (#21 above); `ptwrite jit` → 47, none relevant (WAMR/IREE/numba noise).
 - **Conclusion:** consistent with REVIEW-01 §2.2 — the executed-PTWRITE fence is unproposed in the places it would most likely appear; N2 delta stands, conditional on the P2-3 head-to-head.
+
+## P2 capture feasibility — VERIFIED (2026-10-19 07:23 PDT)
+Probe `review/evidence/presearch/p2-ptw-probe/ptwprobe.c` (own-process, user-only): perf_event_open(type=intel_pt, config = pt|branch|ptw[|fup_on_ptw]), data+AUX mmap, 4× `ptwrite` with magic payloads. Output (`p2-ptw-probe/output.txt`, 4 runs): **4/4 PTW packets with the magic payloads, in order**, hdr `02 32` (no FUP) / `02 b2` + 3-byte FUP (fup_on_ptw). → unprivileged PTWEn works at perf_event_paranoid=2; P2's capture path is feasible. **Oracle for BUILD-02:** the author's capture must show its version payloads as PTW packets in program order.
