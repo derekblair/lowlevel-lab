@@ -112,7 +112,11 @@ Three corrections are on record:
 Version-correct decoding of rewritten code already exists **by timestamp**:
 wilvk/asm-test (`PERF_RECORD_TEXT_POKE` timeline), perf `intel_pt_text_poke`,
 libipt `sideband/` (image-over-time at mapping granularity), DRAKVUF (injects
-PTW packets). None uses an *executed* PTWRITE as the in-band version fence, and
+PTW packets), and `avisi-group/icewind`. Per REVIEW-FINAL §2, as read by the
+reviewer, icewind's brig DBT emits `PTWRITE(block_start_pc)` per translated
+block for guest-PC tracing: in-band PTW annotation, the same class as DRAKVUF,
+with no SMC version attribution and no time-keyed comparison. None uses an
+*executed* PTWRITE as the in-band version fence, and
 this part shows the measurable difference against the time-keyed approach. The
 baseline "naive decode is wrong" is **not** the contribution (it is well known).
 Full prior-art dispositions: ../../research/NOVELTY-LOG.md C03.

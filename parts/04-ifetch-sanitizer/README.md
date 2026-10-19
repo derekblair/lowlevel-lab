@@ -56,6 +56,10 @@ class:
   **RMEM** (cl.cam.ac.uk/~pes20/iflat/, which exposes the IDC/DIC knobs) model
   ifetch at **litmus-test scale** — tiny fixed programs, not a sanitizer over an
   arbitrary patch sequence, and without the line-size-mismatch class.
+- **hatter6822/seLe4n** `CacheModel.lean` (found by REVIEW-FINAL's fresh
+  searches; as read by the reviewer): a Lean proof model of one microkernel's
+  own I-cache obligations. It has no CTR_EL0 IDC/DIC, no line-size class and no
+  step naming.
 - **Arm FVP** `cache_state_modelled` and **DynamoRIO**'s SW-cache-consistency
   (keyed on the app's `IC IVAU`) hide or react to the hazard; neither *diagnoses*
   the omitted step.

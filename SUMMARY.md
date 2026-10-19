@@ -43,6 +43,25 @@ Why this order:
   novelty is the measurement and the visualization, and it is defended as
   exactly that.
 
+### The reviewer's pre-registered ranking (REVIEW-FINAL §3)
+
+REVIEW-00 §2.6 fixed a rubric before any build existed: **N × W × I**
+(novelty, works, interesting; each 1–5). It ranks the five differently:
+
+| rank | part | N | W | I | N×W×I |
+|---|---|---|---|---|---|
+| 1 | P1 smc-observatory | 4 | 5 | 5 | 100 |
+| 2 | C12 quine relay | 4 | 5 | 4 | 80 |
+| 3 | P2 pt-truth | 3 | 5 | 5 | 75 |
+| 4 | C09 x86 lattice | 3 | 5 | 4 | 60 |
+| 5 | P4 ifetch-sanitizer | 3 | 5 | 3 | 45 |
+
+The two orders agree at the top and disagree on P4. By novelty confidence it
+is third. On the rubric it is last, because its headline is **model output**:
+qemu is ifetch-coherent, so no real core's stale fetch is ever observed, and
+the rules it teaches are public. That is the most actionable weakness in the
+set, and v2 direction 1 (native ARM64 measurement) fixes exactly that.
+
 ## Per concept — what the prototype proves, and its honest limits
 
 ### 1 · P1 smc-observatory — `parts/01-smc-observatory/` (N3, CLEARED)
@@ -59,9 +78,11 @@ reference sweep:
 - The window tracks the **code's subpage, not the page base**.
 - In-window clears per iteration are exactly **P = 2.000, Darkmont = 1.000**.
 - **Cross-core patching is booked differently by class.** A Darkmont executor
-  books it as `MACHINE_CLEARS.XMC` (≈1.1×10⁵ per 10⁶ iterations, SMC ≈ 0). A
-  Cougar Cove executor books it as `SMC` (≈1.5×10⁵ per 10⁶), and Cougar Cove has
-  no XMC counter.
+  books it as `MACHINE_CLEARS.XMC` (SMC ≈ 0). A Cougar Cove executor books it as
+  `SMC`; Cougar Cove has no XMC counter. That class split is stable. The
+  *rates* depend on scheduling: across the gate and final runs, Darkmont XMC
+  was 1.1–7.2×10⁵ and Cougar Cove SMC 1.3–1.5×10⁵ per 10⁶ iterations (REVIEW-
+  FINAL N1).
 - **No torn instruction fetch was observed** across a line-straddling patch.
 
 **Limits:**
@@ -183,8 +204,9 @@ self-checked for contiguity and cross-checked at all 39,249 true boundaries.
     within 3, and the longest takes 14.
   - Excluding chains through a `(bad)` decode, the median is **1**.
 - **Reference decode, `/usr/bin`:** 5 binaries, n = 115,884. The median is also
-  2, with a heavier tail (P≤2 56%, max 101). That tail is entirely
-  `(bad)`-driven: the `(bad)`-free subset matches ground truth (77% vs 76%).
+  2, with a heavier tail (P≤2 56%, max 101). The excess is `(bad)`-driven: the
+  `(bad)`-free subset matches ground truth within a point (77% vs 76% within
+  2).
 
 That **settles the published disagreement**: Linn & Debray's "one or two" and
 Andriesse et al.'s "two or three" describe **different populations**, and the

@@ -586,3 +586,18 @@ taken/not-taken bits as a per-algorithm texture. It **rides P2's capture**
 (couples to P2's build risk), which is why C09 (independent) is proposed first.
 Reviewer leveled C22 N3 with a short record; a full §2.1+G-2 addendum would
 precede any C22 build.
+
+## Post-final record additions (REVIEW-FINAL §2 fresh searches, N3)
+
+Neighbours found by the reviewer's final fresh searches (14 GitHub, 5 web).
+The descriptions are the reviewer's readings, recorded as data. Neither
+narrows a claim.
+
+- **C03 / P2 (N2 stands):** `avisi-group/icewind`. Its brig DBT emits
+  `PTWRITE(block_start_pc)` per translated block for guest-PC tracing. That is
+  in-band PTW annotation, the class already recorded for DRAKVUF, with no SMC
+  version attribution and no time-keyed comparison.
+- **C01 / P4 (N2 stands):** `hatter6822/seLe4n` `CacheModel.lean`, a Lean proof
+  model of a microkernel's own I-cache obligations. It has no CTR_EL0 IDC/DIC,
+  no line-size class and no step naming. It sits next to herdtools7 / RMEM as
+  formal ifetch modelling.
