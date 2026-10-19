@@ -1,0 +1,15 @@
+# REVIEW-FINAL fresh novelty re-check (prepared 2026-10-19; RUN AT THE FINAL GATE, not before). P1=C02 P2=C03 P3=C12 P4=C01 P5=C09
+F01	repos	self-modifying code created:>2026-09-15
+F02	repos	smc machine clear in:readme
+F03	code	machine_clears.smc
+F04	repos	ptwrite created:>2026-09-15
+F05	repos	intel processor trace pushed:>2026-10-01
+F06	code	ptwrite perf_event_attr
+F07	repos	quine relay machine code
+F08	repos	quine aarch64 created:>2026-09-15
+F09	repos	polyglot elf aarch64 x86
+F10	repos	icache coherence aarch64 created:>2026-09-15
+F11	repos	cache maintenance sanitizer arm64
+F12	code	IC IVAU DC CVAU model stale
+F13	repos	disassembly resynchronization created:>2026-09-15
+F14	repos	superset disassembler pushed:>2026-10-01

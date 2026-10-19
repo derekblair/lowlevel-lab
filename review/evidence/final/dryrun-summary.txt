@@ -1,0 +1,6 @@
+# final_rerun.sh DRY RUN (harness check, not REVIEW-FINAL) — label final-dryrun-1 @ c7baafd, 1 run, 2026-10-19 09:41:58 PDT
+01-smc-observatory       run=1 exit=0 PASS=10 FAIL=0 secs=14
+02-pt-truth              run=1 exit=0 PASS=7 FAIL=0 secs=1
+03-quine-relay           run=1 exit=0 PASS=6 FAIL=0 secs=0
+04-ifetch-sanitizer      run=1 exit=0 PASS=11 FAIL=0 secs=0
+05-x86-lattice           run=1 exit=0 PASS=5 FAIL=0 secs=1
