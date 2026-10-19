@@ -1,4 +1,4 @@
-GATE: build-04 | VERDICT: CHANGES REQUESTED | ROUND: 1 | AT: 2026-10-19 09:07 PDT | COMMIT: 6530c51
+GATE: build-04 | VERDICT: CHANGES REQUESTED | ROUND: 2 | AT: 2026-10-19 09:40 PDT | COMMIT: 3e1ca1e (round 1: CHANGES REQUESTED @6530c51)
 
 # REVIEW-04-build — P4 ifetch-sanitizer (`parts/04-ifetch-sanitizer/`, ARM64)
 
@@ -79,3 +79,66 @@ Fix B1–B4, re-capture RUN.md, add "Fix round 1" to BUILD-04.md, and post `GATE
 At round 2 I'll re-run `code_vs_recipe.py` (adapted to the new API) and `encoder_sample.py`, plus a kernel of my own with a deliberately wrong stride.
 
 **Proceed-in-parallel: GRANTED for BUILD-05 (C09).** These issues are local to this part.
+
+## Round 2: fix round 1 @ `3e1ca1e`, CHANGES REQUESTED (2026-10-19 09:40 PDT)
+
+**Reviewed:** commit `3e1ca1e`, named in the GATE line at 09:25. The diff since `6530c51` also includes the post-gate commit `7321667`.
+
+**Reproduced in:** a fresh clone at `tasks/reviewer-repro/build-04-r2`, under `env -i`.
+
+**Evidence:** `review/evidence/build-04/r2/`.
+
+### Blockers
+
+| Round-1 issue | Status | Basis |
+|---|---|---|
+| **B1** the verdict ignored the program | **FIXED**, but see B5 | `interp(code, entry_off, slot_vaddr, cfg, coherent)` has no recipe argument, and the verdict comes from the executed ops (`Machine.maint`). My `patched_kernel.py` overwrites the `correct` kernel's DC/IC/ISB words with `DSB ISH`, so no builder is involved: now **STALE**. The `none` kernel is **STALE**. My own wrong-stride kernel (an unrolled flush, stride 128 over 64-B lines) is **STALE, missing dc**; stride 64 is **FRESH** (`round2-tests-output.txt`, T5). So the line-size class is detected from executed addresses |
+| **B2** IDC=1 dropped the DSB; impossible config | **FIXED** | `required()` keeps the DSB and ISB. Under IDC=1, "DC; IC; DSB; ISB" is now `OLD!ic`, where round 1's `dsb-rule-check.txt` had it FRESH. `{IDC=0,DIC=1}` is gone |
+| **B3** cited, not quoted | **FIXED** | ARM_REF's CTR_EL0 IDC/DIC sentences match my independently fetched text word for word (`../arm-ctr_el0-excerpt.txt`, same Arm XML build 26/03/2024). The DSB question is settled by keeping the barriers. The sequence location is attributed to secondary sources (N5) |
+| **B4** semantic oracle on one kernel | **FIXED** | All 7 kernels: model (coherent) = qemu = NEW (`make-run1.txt`). The end state compared is x0, which is the observable that matters for these kernels |
+
+**B5 [BLOCKING] (new, inside B1's scope): freshness ignores where the store happens.** I ran the fix round's `interp` on kernels from my own builder (`round2_tests.py`), with IDC=0, DIC=0 and 64-B lines.
+
+| Kernel | Architecture | Model |
+|---|---|---|
+| T0: warm; STR; DC; DSB; IC; DSB; ISB; run | fresh | NEW ✓ |
+| **T1**: warm; DC; DSB; IC; DSB; ISB; **then** STR; run | not guaranteed: no maintenance after the store | **NEW, nothing missing** ✗ |
+| **T2**: …full maintenance…; **second** STR (NEW2); run | NEW2 not guaranteed: the second store is unmaintained | **NEW2, nothing missing** ✗ |
+| **T3**: warm; **DC; STR**; DSB; IC; DSB; ISB; run | not guaranteed: the new bytes are never cleaned to PoU (IDC=0) | **NEW** ✗ |
+| T4: omit DSB1 (DC; IC; DSB; ISB) | stale; the missing step is the DSB | OLD ✓, but names `ic` (N3) |
+
+- **Cause:**
+  - `diagnose()` drops every `str` (`icache_model.py:104–105`) and accepts the required ops as a subsequence anywhere in the trace.
+  - `fetch_word()` then returns the latest bytes, store buffer merged over memory (`:123–129`), whenever `diagnose()` says fresh.
+  - So neither the dirty/clean D-cache state nor `self.icache` decides the fetch. `self.icache` is written at `:65` and `:79` and never read.
+  - The model's own state would answer T1 and T3 correctly: the bytes are still dirty and PoU holds OLD. The fetch just doesn't consult it.
+- **Why it blocks:** "flush, then write" and "patch again after the flush" are real JIT bugs, inside the claimed "any patch sequence" (README:49). The sanitizer passes them as FRESH.
+- **Required:**
+  - Decide the fetch from the model's state, or anchor the required sequence after the last store to the slot's line.
+  - Add T1–T3 (or equivalents) as VERDICTs that must come out STALE, with a named cause.
+  - Re-capture RUN.md.
+
+### Reproduction
+
+| Test | Result | Evidence |
+|---|---|---|
+| `make` ×2 (clean clone) | `make_exit=0`, **11/11 PASS** both runs. Output is **identical to RUN.md's make block** | `make-run1.txt`, clone `.evidence` |
+| strace (`make`) | **CLEAN** | `strace-audit.txt` |
+| *(reviewer)* encoder sample (`a64asm.py` unchanged since `6530c51`), seeds 404 and 4042 | **120/120** byte-identical to `aarch64-linux-gnu-as` | `encoder-sample-r2.txt` |
+| *(reviewer)* adapted code-vs-recipe (a′)/(b′) | STALE / STALE (round 1: FRESH / FRESH) | `patched-kernel-output.txt` |
+| *(reviewer)* T0–T5 | above | `round2-tests-output.txt` |
+
+### Nits
+
+- **N3: omit-DSB1 names the wrong step.** It reports `ic`, although the program contains the IC. The greedy subsequence match consumes the later DSB as "DSB1". README:20 rationalizes this ("IC ineffective"). Anchored matching would name the step that is actually absent: a DSB between the last DC and the first IC.
+- **N4: the line-size VERDICT uses a single wrong address** (`flush_off=64`), not a stride. My T5 shows a strided flush works. Put a stride-128-over-64-B kernel in the VERDICTs.
+- **N5: the sequence citation is secondary.** "DDI 0487G.a B2.2.5, per Rutland/US11210222" comes from a mailing-list post and a patent quoting the manual (the sources in my `arm-ctr_el0-excerpt.txt`). Label it "(secondary)".
+- **N6:** `run_qemu` leaves a `mkdtemp` directory per call (`sanitize.py:156`).
+
+### What clears the gate
+
+Fix B5, add the ordering kernels to the VERDICTs, re-capture RUN.md, add "Fix round 2" to BUILD-04.md, and post `GATE BUILD-04 READY (fix round 2) — commit <hash>`.
+
+I'll re-run `round2_tests.py` unchanged. T1–T3 must come out STALE, and T0 and T5 must keep their current results.
+
+Everything else is now sound. The encoder, the barrier rule, the qemu oracle and program dependence all check out on my own evidence.

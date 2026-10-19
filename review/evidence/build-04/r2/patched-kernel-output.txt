@@ -1,0 +1,2 @@
+(a') correct kernel with 3 DC/IC/ISB words overwritten by DSB ISH (remaining dc/ic/isb: 0): x0=17 -> STALE; missing=dc
+(b') none kernel: x0=17 -> STALE; missing=dc

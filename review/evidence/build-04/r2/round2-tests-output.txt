@@ -1,0 +1,11 @@
+interp signature: (code, entry_off, slot_vaddr, cfg, coherent=False)  (no recipe argument: True)
+test                                                                     | architecture                                     | model x0 / first-missing | qemu
+T0 control: warm; STR; DC;DSB;IC;DSB;ISB; run                            | fresh                                            | NEW / None | qemu=34
+T1 maintenance BEFORE the store: warm; DC;DSB;IC;DSB;ISB; STR; run       | NOT guaranteed (needs maintenance after STR)     | NEW / None | qemu=34
+T2 second patch unmaintained: warm; STR NEW; full maint; STR NEW2; run   | NEW2 NOT guaranteed (2nd STR unmaintained)       | NEW2 / None | qemu=51
+T3 DC before the store, rest after: warm; DC; STR; DSB;IC;DSB;ISB; run   | NOT guaranteed (new bytes never cleaned, IDC=0)  | NEW / None | qemu=34
+T4 omit DSB1 (DC; IC; DSB; ISB): which step is named?                    | stale; the missing step is the DSB between DC and IC | OLD(stale) / ic | qemu=34
+
+T5 line-size mismatch as a real strided flush (unrolled loop), IDC=0,DIC=0, Iline=Dline=64:
+   stride  64: slot @+0x90 (line +0x80) -> NEW / missing=None | qemu=34
+   stride 128: slot @+0x60 (line +0x40) -> OLD(stale) / missing=dc | qemu=34
