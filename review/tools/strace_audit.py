@@ -71,7 +71,7 @@ def main():
         elif call in ("execve", "execveat") and paths and not failed:
             if re.search(r"/(sudo|su|pkexec|doas|curl|wget|ssh|scp|nc|ncat|socat)$", paths[0]):
                 cls = "EXEC-PRIV/NET"
-        elif call == "ptrace" and re.search(r"PTRACE_(ATTACH|SEIZE)", rest):
+        elif call == "ptrace" and not failed and re.search(r"PTRACE_(ATTACH|SEIZE)", rest):
             cls = "PTRACE-ATTACH"
         elif call == "process_vm_writev":
             cls = "FOREIGN-WRITE"
