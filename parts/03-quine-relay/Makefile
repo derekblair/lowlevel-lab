@@ -8,4 +8,4 @@ run:
 
 .PHONY: clean
 clean:
-	rm -f stage0 stage1 stage2 stage0.expected_stageA strace-stage0.txt strace-stage1.txt
+	rm -f stage0 stage1 stage2 stage0.expected_stageA strace-stage0.txt strace-stage1.txt s0.out s1.out

@@ -24,10 +24,14 @@ aarch64-linux-gnu-objdump only to DISASSEMBLE the AArch64 stage as evidence).
 import struct
 import sys
 
-V = 0x400000          # load vaddr for both stages. 64 KiB-aligned: qemu-aarch64's
-ALIGN = 0x10000       # loader expects the guest's 64 KiB page alignment (a 0x1000
-#                       align at 0x200000 is silently rejected by qemu); x86 is
-#                       happy with the stronger alignment too.
+V = 0x400000          # load vaddr for both stages.
+ALIGN = 0x10000       # p_align: 64 KiB is the conventional arm64 page alignment.
+#                       [Corrected per REVIEW-03-build N1: it is NOT required —
+#                       qemu-aarch64 8.2.2 also accepts a 0x1000 align at
+#                       0x400000/0x200000. The real cause of the earlier silent
+#                       "exit 1, no output" was a stage file missing the +x bit;
+#                       verify.sh chmods each emitted stage. 64 KiB kept by
+#                       convention, not necessity.]
 EHDR = 64
 PHDR = 56
 HDR = EHDR + PHDR     # 120: ELF header + one program header

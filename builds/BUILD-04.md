@@ -59,3 +59,13 @@ goes STALE. All 11 VERDICTs PASS (exit 0).
 
 `parts/04-ifetch-sanitizer/`: AGENTS.md, README.md, RUN.md, Makefile, a64asm.py,
 icache_model.py, sanitize.py. Evidence: research/raw/repos/herd__herdtools7-ifetch/.
+
+## Fidelity fix (pre-review, from REVIEW-03-build prep note)
+
+The reviewer's BUILD-04 prep verified from the Arm ARM that **{IDC=0, DIC=1} is
+architecturally impossible** ("if CTR_EL0.DIC is 1 then IDC must also be 1",
+DDI 0487K.a D23.2.35). My initial CONFIGS included that impossible combination.
+Removed it: the matrix now sweeps only the three valid configs
+{IDC=0,DIC=0}, {IDC=1,DIC=0}, {IDC=1,DIC=1}, and a comment + the "omit-IC fresh
+when DIC=1" verdict both note that DIC=1 implies IDC=1. All 11 VERDICTs still
+PASS. The impossibility is cited where the configs are defined.

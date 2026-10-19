@@ -14,12 +14,14 @@ reports whether the patched code runs **fresh or stale** and, if stale, **exactl
 which maintenance step is missing**.
 
 ```
-kernel         both0 (DIC=0,IDC=0)   IDC=1     DIC=1     both1
-correct                        NEW     NEW       NEW       NEW
-omit-DC                     OLD!DC     NEW    OLD!DC       NEW     <- names the omitted step
-omit-IC                     OLD!IC  OLD!IC       NEW       NEW
-omit-ISB                   OLD!ISB OLD!ISB   OLD!ISB   OLD!ISB     <- ISB never excused
+kernel         IDC=0,DIC=0   IDC=1,DIC=0   IDC=1,DIC=1
+correct                NEW           NEW           NEW
+omit-DC             OLD!DC           NEW           NEW     <- IDC=1 excuses DC; step named
+omit-IC             OLD!IC        OLD!IC           NEW     <- DIC=1 (=>IDC=1) excuses IC
+omit-ISB           OLD!ISB       OLD!ISB       OLD!ISB     <- ISB is never excused
 ```
+(Only the three architecturally-valid CTR_EL0 combinations are swept:
+`{IDC=0,DIC=1}` is impossible — DDI 0487K.a D23.2.35 says DIC=1 implies IDC=1.)
 
 ## Why this is novel (see ../../research/NOVELTY-LOG.md C01; REVIEW-01 §2.4)
 

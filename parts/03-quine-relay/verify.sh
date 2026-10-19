@@ -35,15 +35,23 @@ echo "--- aarch64-linux-gnu-objdump of stage1's code (entry region):"
 aarch64-linux-gnu-objdump -D -b binary -m aarch64 --start-address=120 --stop-address=232 stage1 \
   | grep -E '^ +[0-9a-f]+:'
 
-# ---- C12-2 (safety): each stage makes only write(1,...) and exit syscalls ----
-strace -f -o strace-stage0.txt ./stage0 >/dev/null
-x_other=$(grep -vE '^[0-9]+ +(execve|write\(1,|exit\(|\+\+\+)' strace-stage0.txt | grep -c .)
-echo "stage0 syscalls: $(grep -oE '^[0-9]+ +[a-z_]+' strace-stage0.txt | awk '{print $2}' | sort | uniq -c | tr '\n' ' ')"
-[ "$x_other" = 0 ]; v "C12-2 x86 stage0: only execve(harness) + write(1,..) + exit (strace)" $?
-qemu-aarch64 -strace ./stage1 2>strace-stage1.txt >/dev/null
-a_other=$(grep -vE ' (write\(1,|exit\()' strace-stage1.txt | grep -c .)
-echo "stage1 guest syscalls: $(grep -oE ' [a-z_]+\(' strace-stage1.txt | sort | uniq -c | tr '\n' ' ')"
-[ "$a_other" = 0 ]; v "C12-2 AArch64 stage1 (qemu -strace): only write(1,..) + exit" $?
+# ---- C12-2 (safety): each stage makes ONLY write(1,...) + exit. FAIL CLOSED
+# (REVIEW-03-build N2): require EXACTLY 3 write(1, + an exit + a successful
+# tracer run + the expected output size; anything else (incl. a tracer that
+# failed to attach, or an empty log) fails.
+strace -f -o strace-stage0.txt ./stage0 > s0.out; s0rc=$?
+xw=$(grep -cE ' write\(1,' strace-stage0.txt); xe=$(grep -cE ' exit(_group)?\(' strace-stage0.txt)
+xbad=$(grep -E '^[0-9]+ +[a-z_]+\(' strace-stage0.txt | grep -vE ' (execve|write\(1,|exit)' | grep -c .)
+echo "stage0: writes=$xw exits=$xe other=$xbad rc=$s0rc out=$(wc -c <s0.out)B"
+[ "$xw" = 3 ] && [ "$xe" -ge 1 ] && [ "$xbad" = 0 ] && [ "$s0rc" = 0 ] && [ "$(wc -c <s0.out)" -gt 0 ]
+v "C12-2 x86 stage0: exactly 3x write(1,..) + exit, no other syscalls (fail-closed)" $?
+qemu-aarch64 -strace ./stage1 2>strace-stage1.txt > s1.out; s1rc=$?
+aw=$(grep -cE ' write\(1,' strace-stage1.txt); ae=$(grep -cE ' exit(_group)?\(' strace-stage1.txt)
+abad=$(grep -E ' [a-z_0-9]+\(' strace-stage1.txt | grep -vE ' (write\(1,|exit)' | grep -c .)
+echo "stage1: writes=$aw exits=$ae other=$abad rc=$s1rc out=$(wc -c <s1.out)B"
+[ "$aw" = 3 ] && [ "$ae" -ge 1 ] && [ "$abad" = 0 ] && [ "$s1rc" = 0 ] && [ "$(wc -c <s1.out)" -gt 0 ]
+v "C12-2 AArch64 stage1 (qemu -strace): exactly 3x write(1,..) + exit (fail-closed)" $?
+rm -f s0.out s1.out
 
 # ---- R6: hand-emitted encodings decoded by GNU's decoders (independent oracle) ----
 x_mn=$(objdump -D -b binary -m i386:x86-64 --start-address=120 --stop-address=200 stage0 \

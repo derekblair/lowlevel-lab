@@ -56,3 +56,18 @@ ships. All 6 verify VERDICTs PASS (exit 0), captured in RUN.md.
 
 `parts/03-quine-relay/`: AGENTS.md, README.md, RUN.md, Makefile,
 build_fixpoint.py, verify.sh (+ generated stage0/1/2, strace logs — clean-able).
+
+## Nit fixes (REVIEW-03-build, gate already CLEARED)
+
+- **N1 (FALSE runner-quirk claim) — fixed.** The earlier "64 KiB alignment
+  required / 4 KiB silently rejected" was wrong (reviewer verified qemu-aarch64
+  8.2.2 runs the relay at p_align 0x1000 too, at 0x400000 and 0x200000). The
+  real silent "exit 1, no output" was a stage file missing the +x bit. Corrected
+  in build_fixpoint.py and README; 64 KiB kept by convention, not necessity.
+- **N2 (safety check failed open) — fixed.** verify.sh's C12-2 check now FAILS
+  CLOSED: it requires exactly 3 `write(1,` + an exit + a successful tracer run +
+  non-empty output for each stage, so an un-attached tracer / empty log / silent
+  qemu reject can no longer yield a vacuous PASS.
+- **N3 (second R-only PT_LOAD for P)** not taken: the "data, never executed"
+  property is already true (verified) and the single-R+X-segment keeps the
+  construction minimal; noted as an optional structural tightening for v2.

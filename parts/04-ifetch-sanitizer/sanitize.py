@@ -225,11 +225,13 @@ KERNELS = {
     "none":         [],
 }
 
+# Only architecturally-valid CTR_EL0 combinations. Per the Arm ARM, "if
+# CTR_EL0.DIC is 1 then IDC must also be 1", so {IDC=0, DIC=1} is IMPOSSIBLE and
+# is deliberately absent (DDI 0487K.a D23.2.35).
 CONFIGS = {
-    "both0 (DIC=0,IDC=0)": Config(idc=0, dic=0),
-    "IDC=1":               Config(idc=1, dic=0),
-    "DIC=1":               Config(idc=0, dic=1),
-    "both1":               Config(idc=1, dic=1),
+    "IDC=0,DIC=0": Config(idc=0, dic=0),
+    "IDC=1,DIC=0": Config(idc=1, dic=0),
+    "IDC=1,DIC=1": Config(idc=1, dic=1),
 }
 
 
@@ -254,10 +256,10 @@ def main():
       f"mismatches: {fails}" if fails else "all encoders byte-identical")
 
     # ---- P4-2 semantic oracle: coherent-mode model == qemu for EVERY kernel ----
-    print("\n-- semantic oracle (coherent config both0, correct kernel vs qemu) --")
+    print("\n-- semantic oracle (coherent config IDC=0,DIC=0; correct kernel vs qemu) --")
     code, slot_off, entry_off, trace, slot_vaddr = build_kernel(KERNELS["correct"])
     qret = run_qemu(code, entry_off)
-    mret = interp(code, entry_off, slot_vaddr, CONFIGS["both0 (DIC=0,IDC=0)"], trace, True)
+    mret = interp(code, entry_off, slot_vaddr, CONFIGS["IDC=0,DIC=0"], trace, True)
     print(f"correct kernel: qemu exit={qret}  model(coherent) x0={mret}  (both must be NEW={SLOT_NEW})")
     v("semantic oracle: model coherent-mode result == qemu == NEW", qret == SLOT_NEW and mret == SLOT_NEW,
       f"qemu={qret} model={mret} new={SLOT_NEW}")
@@ -291,17 +293,17 @@ def main():
       "")
     # each omission is stale in both0 and the sanitizer names the omitted step
     for kname, step in [("omit-DC", "dc"), ("omit-IC", "ic"), ("omit-ISB", "isb")]:
-        fresh, missing, x0 = results[(kname, "both0 (DIC=0,IDC=0)")]
+        fresh, missing, x0 = results[(kname, "IDC=0,DIC=0")]
         v(f"{kname}: stale under IDC=0/DIC=0, sanitizer names '{STEP_LABEL[step]}'",
           x0 == SLOT_OLD and missing == step,
           f"missing={missing} x0={x0}")
     # IDC=1 excuses the DC omission; DIC=1 excuses the IC omission
     v("omit-DC becomes FRESH when IDC=1 (D-cache clean to PoU not required)",
-      results[("omit-DC", "IDC=1")][2] == SLOT_NEW and results[("omit-DC", "both0 (DIC=0,IDC=0)")][2] == SLOT_OLD,
+      results[("omit-DC", "IDC=1,DIC=0")][2] == SLOT_NEW and results[("omit-DC", "IDC=0,DIC=0")][2] == SLOT_OLD,
       "config-sensitive, as the architecture specifies")
-    v("omit-IC becomes FRESH when DIC=1 (I-cache invalidate to PoU not required)",
-      results[("omit-IC", "DIC=1")][2] == SLOT_NEW and results[("omit-IC", "both0 (DIC=0,IDC=0)")][2] == SLOT_OLD,
-      "")
+    v("omit-IC becomes FRESH when DIC=1 (requires IDC=1; config IDC=1,DIC=1)",
+      results[("omit-IC", "IDC=1,DIC=1")][2] == SLOT_NEW and results[("omit-IC", "IDC=0,DIC=0")][2] == SLOT_OLD,
+      "DIC=1 implies IDC=1 per DDI 0487 D23.2.35; {IDC=0,DIC=1} is impossible and omitted")
     # ISB is always required
     v("omit-ISB is stale in EVERY config (ISB is never excused by IDC/DIC)",
       all(results[("omit-ISB", c)][2] == SLOT_OLD for c in CONFIGS), "")

@@ -50,8 +50,8 @@ AArch64. That is the line separating this from the xarch_shellcode "one binary,
 many code blocks + dispatcher" technique.
 
 Each stage is a freestanding ELF with a single `PT_LOAD` (R+X, W^X) at vaddr
-`0x400000`, 64 KiB-aligned (qemu-aarch64's loader needs the 64 KiB page
-alignment). Each `code_*` is three `write(1, …)` syscalls (emit the other
+`0x400000`, 64 KiB-aligned (the conventional arm64 alignment — **not** required;
+see "Limits"). Each `code_*` is three `write(1, …)` syscalls (emit the other
 header, the other code, then P) and `exit(0)` — nothing else (C12-2).
 
 ## How to run
@@ -97,7 +97,11 @@ only to *check* (see Requirements).
 - **Hand-rolled fixed layout**, specific to these two freestanding ELF shapes
   (one `PT_LOAD`, syscall-only). It is a demonstration of the construction, not
   a general quine-relay compiler.
-- **qemu-aarch64 load quirk learned the hard way:** the stage must be 64 KiB
-  page-aligned (`p_align = 0x10000`); a 4 KiB alignment is silently rejected.
-  And qemu-user requires the emitted stage file to be marked executable before
-  it will run it, which is why `verify.sh` does `chmod +x` on each emitted stage.
+- **qemu-aarch64 runner quirk (corrected, REVIEW-03-build N1):** the real quirk
+  is that qemu-user exits 1 **silently** (no output, no message) when the stage
+  file lacks the executable bit — which is why `verify.sh` `chmod +x`'s each
+  emitted stage. The `p_align = 0x10000` is the conventional arm64 alignment but
+  is **not** required; qemu-aarch64 8.2.2 also runs the relay at `p_align =
+  0x1000` (verified by the reviewer). My earlier "64 KiB required / 4 KiB
+  rejected" claim was wrong and conflated the alignment with the missing-`+x`
+  symptom.
