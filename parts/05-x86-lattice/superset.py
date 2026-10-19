@@ -456,6 +456,7 @@ def emit_lattice(r, allres, path):
             "declen": dlen[k], "bad": bool(obad[k]), "boundary": k in bset}
            for k in range(N)]
     data = {"label": r["label"], "N": N, "per_offset": per,
+            "geom": {"px_per_byte": PX, "left": 40},       # x(k) = left + k * px
             "resync_insn_hist": {str(k): v for k, v in sorted(hist.items())},
             "corpus": allres}
 
@@ -494,7 +495,7 @@ def emit_lattice(r, allres, path):
         'resync length (instructions to rejoin the true stream) &rarr; count</text>',
         "".join(bars),
         "</svg>",
-        f"<h2>headline region &mdash; {r['label']}</h2>",
+        f"<h2>illustration region (the headline is the corpus below) &mdash; {r['label']}</h2>",
         f"<p>{_fmt_stats(r)}</p>",
         "<h2>corpus</h2>",
         _corpus_table(allres),
@@ -751,16 +752,29 @@ def _check_lattice(path, r, corpus):
             if pos in bset:
                 hist[str(n)] = hist.get(str(n), 0) + 1
                 break
-    drawn_arcs = len(re.findall(r'<path class="e (?:true|mis|bad)"', html))
+    # GEOMETRY (N6): every drawn arc must map back, through the embedded x(k) =
+    # left + k*px, to exactly one decode (k, k+objlen[k]) of the right class.
+    g = d.get("geom", {})
+    px, left = g.get("px_per_byte"), g.get("left")
+    want = {(k, k + olen[k], "bad" if per[k]["bad"] else
+             ("true" if per[k]["boundary"] else "mis")) for k in edges}
+    drawn = []
+    for cls, x0, x1 in re.findall(r'<path class="e (true|mis|bad)" d="M(\d+),\d+ '
+                                  r'A[\d.]+,[\d.]+ 0 0,[01] (\d+),\d+"/>', html):
+        k0, r0 = divmod(int(x0) - left, px) if px else (None, 1)
+        k1, r1 = divmod(int(x1) - left, px) if px else (None, 1)
+        drawn.append((k0, k1, cls) if r0 == 0 and r1 == 0 else None)
+    geom_ok = len(drawn) == len(want) and set(drawn) == want
     drawn_merges = html.count('class="merge"')
     nbars = html.count('<rect class="bar"')
-    ok = (drawn_arcs == len(edges) and drawn_merges == len(merges)
+    ok = (geom_ok and drawn_merges == len(merges)
           and hist == d.get("resync_insn_hist") and nbars == len(hist)
           and d.get("corpus") == json.loads(json.dumps(corpus)))
-    return ok, (f"re-derived from data: arcs {len(edges)} (drawn {drawn_arcs}), merges "
-                f"{len(merges)} (drawn {drawn_merges}), histogram {len(hist)} bars (drawn "
-                f"{nbars}, data match={hist == d.get('resync_insn_hist')}), corpus stats "
-                f"embedded={d.get('corpus') == json.loads(json.dumps(corpus))}")
+    return ok, (f"re-derived from data: arcs {len(want)} (drawn {len(drawn)}, every endpoint "
+                f"and class matches={geom_ok}), merges {len(merges)} (drawn {drawn_merges}), "
+                f"histogram {len(hist)} bars (drawn {nbars}, data match="
+                f"{hist == d.get('resync_insn_hist')}), corpus stats embedded="
+                f"{d.get('corpus') == json.loads(json.dumps(corpus))}")
 
 
 if __name__ == "__main__":

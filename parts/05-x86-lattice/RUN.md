@@ -1,6 +1,6 @@
-# RUN.md — x86-lattice, verbatim build+run on nibbles (fix round 1)
+# RUN.md — x86-lattice, verbatim build+run on nibbles (fix round 1 + post-clearance N6/N7)
 
-Captured 2026-10-19 10:10:05 PDT on nibbles, user derekblair, under `env -i` (HOME, PATH=/usr/local/bin:/usr/bin:/bin, LANG=C.UTF-8).
+Captured 2026-10-19 10:21:37 PDT on nibbles, user derekblair, under `env -i` (HOME, PATH=/usr/local/bin:/usr/bin:/bin, LANG=C.UTF-8).
 
 ## Determinism
 Deterministic for a given toolchain and set of /usr/bin binaries: the ground-truth
@@ -70,7 +70,7 @@ VERDICT PASS: claim 2: ...but it is not a bound: >= 10% of ground-truth chains n
 VERDICT PASS: claim 3: Andriesse et al.'s 'two or three' covers >= 75% of ground-truth chains  [P(<=3) = 83%]
 VERDICT PASS: claim 4: the (bad) policy is the hinge: (bad)-free median < all-chain median, in BOTH arms  [ground truth 2 -> 1; reference 2 -> 1]
 VERDICT PASS: claim 5: /usr/bin's heavier tail is (bad)-driven: (bad)-free P<=2 within 5 points of ground truth  [all chains: reference 56% vs ground truth 71%; (bad)-free: 77% vs 76%]
-VERDICT PASS: lattice.html is a real lattice: arcs + merge markers + histogram + re-derivable data (C09-5, B3)  [re-derived from data: arcs 127 (drawn 127), merges 52 (drawn 52), histogram 4 bars (drawn 4, data match=True), corpus stats embedded=True]
+VERDICT PASS: lattice.html is a real lattice: arcs + merge markers + histogram + re-derivable data (C09-5, B3)  [re-derived from data: arcs 127 (drawn 127, every endpoint and class matches=True), merges 52 (drawn 52), histogram 4 bars (drawn 4, data match=True), corpus stats embedded=True]
 
 ALL VERDICTS PASS
 $ echo make_exit=$?
@@ -78,11 +78,11 @@ make_exit=0
 ```
 
 ## The lattice visualization
-lattice.html is self-contained (inline CSS + SVG; per-offset data and corpus stats in
-<script id=data>; no external refs). Rendered headless with a throwaway profile:
+lattice.html is self-contained (inline CSS + SVG; per-offset data, drawing geometry and
+corpus stats in <script id=data>; no external refs). Rendered headless with a throwaway profile:
 ```
 $ firefox --headless --no-remote --profile <tmp> --window-size=1500,1100 --screenshot lattice.png file://$PWD/lattice.html
-exit=0  png_bytes=215006
+exit=0  png_bytes=217423
 $ grep -c "src=\|href=" lattice.html   # external references
 0
 ```

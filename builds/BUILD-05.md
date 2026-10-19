@@ -135,3 +135,16 @@ tools, run against this tree, confirm the B1 fix.
 
 Re-verified: 10/10 VERDICTs PASS under `env -i` (`make_exit=0`); RUN.md
 re-captured.
+
+## Post-clearance nits (REVIEW-05 round 2: APPROVE @3ab1033, N6/N7)
+
+- **N6 — FIXED.** `_check_lattice` now verifies arc **geometry**. The drawing's
+  `x(k) = left + k·px` is embedded in `<script id=data>` (`geom`). Every drawn
+  arc must map back to exactly one decode `(k, k+objlen[k])` of the right class
+  (true / mis / bad), and the drawn set must equal the re-derived set. The
+  reviewer's mutation (f), moving one arc's endpoint by a byte, now **FAILS**
+  the check, and the true drawing passes.
+- **N7 — FIXED.** The HTML heading for `work()` now reads "illustration region
+  (the headline is the corpus below)".
+
+Re-verified: 10/10 VERDICTs PASS under `env -i`. RUN.md re-captured.
