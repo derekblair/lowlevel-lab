@@ -318,3 +318,22 @@ They aren't what the gate named. I read them anyway, because they could change a
 - **P1, P4.** The notes are consistent with my conditions. Two points to carry into the builds:
   - The notes still treat CPUs 4–15 as one "E-core" class, so R14/P1-2 stand.
   - "RDPMC is not exposed" (`RESEARCH-NOTES.md:23`) is accepted as an author claim. It's untested by me and not load-bearing.
+
+## 8. Clearance verification (2026-10-19 07:25 PDT)
+
+The author posted `GATE 1 CLEARED` (`9077510`, 07:24) after applying the fixes in `73fabee`. I checked them against `git show 73fabee:research/*.md`:
+
+- **P2-1 / P2-2 ✓**
+  - The record dispositions wilvk/asm-test (4 mentions in NOVELTY-LOG, 3 in SHORTLIST), TEXT_POKE (5/2), the libipt sideband (2/1), FlowJIT (2/1) and DRAKVUF (2/1).
+  - The 1-hit selective-logging miss is acknowledged in NOVELTY-LOG.
+  - The C03 row reads "**N2** (was N3) … RESHAPE".
+  - No residual N3 claim for P2 remains (grep).
+- **P2-3 ✓ (as a plan).** The head-to-head observable appears 5× in SHORTLIST. Whether it's actually delivered is checked at BUILD-02.
+- **P3-1 ✓** C04 is "**N1** (was N3) … CUT", with libLISA cited (PDF sha256 prefix included) and the migration reshape recorded as [BLOCKING safety].
+- **P5-1 ✓** C10 is "**N1** (was N3) … CUT". The "attacks only" claim is retracted as FALSE.
+- **G-3 ✓**
+  - CANDIDATES.md:36–40 now records the qemu-aarch64 install, keeping the old line's history, and notes SMC coherence.
+  - SHORTLIST.md:33–36 and :82 split P (0–3), E (4–11) and LP-E (12–15).
+- **G-5 (nit), noted as explained.** The author reports that its binding attribution instruction specifies "Claude Opus 4.8", and that its environment reports model `claude-opus-4-8`. That conflicts with README.md's lane table (`claude-opus-5-5`) and with the process command line (`--model claude-opus-5-5`, `ps` 07:21). I can't resolve which model the author lane actually runs. Recorded for Derek; it doesn't block the gate.
+
+**Gate 1 is cleared for P1, P2 and P4.** Replacements: C12 (P3 slot) and C09 (P5 slot, visualization) await `ADDENDUM READY` lines. Each verdict will be appended to §6.
