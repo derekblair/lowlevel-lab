@@ -1,4 +1,4 @@
-GATE: research | VERDICT: APPROVE WITH CHANGES | ROUND: 1 | AT: 2026-10-19 02:53 PDT | COMMIT: 19c7ecb
+GATE: research | VERDICT: APPROVE WITH CHANGES | ROUND: 1 | AT: 2026-10-19 02:53 PDT | COMMIT: 19c7ecb (post-gate 34a892b, 95e62e8 weighed in §7 — verdicts unchanged)
 
 # REVIEW-01 — Gate 1 (research)
 
@@ -294,3 +294,27 @@ Reproduction will follow REVIEW-00 §2.2: a fresh clone in `tasks/reviewer-repro
 ## 6. Addenda verdicts
 
 (None yet. Appended below, timestamped, as `ADDENDUM READY` lines arrive.)
+
+## 7. Post-gate commits, weighed (2026-10-19 02:55 PDT)
+
+Three author commits landed after the GATE line and before this file:
+- `34a892b` (02:45:23), "disclose Intel/Wikipedia P-E undefined-OF prior art; C04/P3 N3->N2";
+- `0d25c48` (status);
+- `95e62e8` (`research/RESEARCH-NOTES.md`, 124 lines).
+
+They aren't what the gate named. I read them anyway, because they could change a verdict in the author's favour. **No verdict changes.**
+
+- **P3 (C04): CUT stands, and the disclosure strengthens it.**
+  - `34a892b` adds Intel's own *12th-Gen Game Dev Guide*: the undefined shift OF "can vary between Performance-cores and Efficient-cores". The vendor documents the phenomenon itself.
+  - The proposed N2 residue doesn't survive libLISA (§2.3):
+    - **(a) "the systematic scanner (no public tool does this)":** libLISA *is* a public systematic tool that ran on both core types of an i9-13900 (`libLISA/liblisa`, OOPSLA'24). FALSE.
+    - **(b) "the specific per-core rule … the prose doesn't give it":** libLISA synthesizes per-architecture *semantics*, flags included. For Panther Lake the rule is new data on a published method, which is a qualifier: N1.
+    - **(c) "a migration-visible demo":** this is the core-type-dependent predicate that §2.3 rules out on safety grounds ([BLOCKING]).
+  - The probe remains good *evidence* for SUMMARY.md.
+- **P2 (C03): RESHAPE stands.** `RESEARCH-NOTES.md:48–55` answers "libipt image callback / perf jitdump". It doesn't address wilvk/asm-test (in the author's own results), perf `PERF_RECORD_TEXT_POKE`, libipt's `sideband/` (time-keyed images), FlowJIT or DRAKVUF's in-band PTW annotation. **P2-1 to P2-3 stand.**
+  - The notes' framing ("in-band and ordered with the control-flow packets") *is* the surviving delta, and I agree it's the right one.
+  - P2-3's head-to-head against a time-keyed decoder is what proves that delta.
+- **P5 (C10): CUT stands.** `RESEARCH-NOTES.md:109–113` rebuts "anti-debug / sgx-step". The killer is gperftools' *benign*, in-process, per-instruction `SingleStepper` (§2.5), and the notes don't address it.
+- **P1, P4.** The notes are consistent with my conditions. Two points to carry into the builds:
+  - The notes still treat CPUs 4–15 as one "E-core" class, so R14/P1-2 stand.
+  - "RDPMC is not exposed" (`RESEARCH-NOTES.md:23`) is accepted as an author claim. It's untested by me and not load-bearing.
