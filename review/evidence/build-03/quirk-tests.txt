@@ -1,0 +1,14 @@
+### quirk tests, 08:50:06
+-- (b) qemu-aarch64 on a NON-executable copy of stage1:
+-rw-rw-r--
+exit=1 stdout=0 bytes  stderr: 
+-- (a1) stage1 with p_align patched 0x10000 -> 0x1000 (vaddr unchanged 0x400000):
+p_align before 0x10000
+  LOAD           0x000000 0x0000000000400000 0x0000000000400000 0x000298 0x000298 R E 0x1000
+exit=0 stdout=632 bytes; equals stage0? YES; stderr: 
+-- (a2) rebuilt relay with V=0x200000, ALIGN=0x1000 (author's comment case), reviewer copy of build_fixpoint.py:
+V = 0x200000          # load vaddr for both stages. 64 KiB-aligned: qemu-aarch64's
+ALIGN = 0x1000       # loader expects the guest's 64 KiB page alignment (a 0x1000
+built z0: x86-64 stage_X, 632 bytes (HDR=120 code_X=80 code_A=112 payload=432); stage_A would be 664 bytes; entry=V+0x78
+x86 stage0 (0x200000/4K) exit=0 -> 664 bytes
+qemu-aarch64 stage1 (0x200000/4K) exit=0 stdout=632 bytes; fixed point? YES; stderr: 

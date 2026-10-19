@@ -1,0 +1,29 @@
+### reviewer's own 2-round cycle (not verify.sh), 08:49:39
+ce9a974b5ca80b3ca7ac380f61959dbad8fb1c5f66fdc512a87302724a56d7cf  s0
+d08b30297fd93b7be4ce2ec592085b2cf47fc1e88e5424ea336f3df5d68cfe24  s1
+ce9a974b5ca80b3ca7ac380f61959dbad8fb1c5f66fdc512a87302724a56d7cf  s2
+d08b30297fd93b7be4ce2ec592085b2cf47fc1e88e5424ea336f3df5d68cfe24  s3
+ce9a974b5ca80b3ca7ac380f61959dbad8fb1c5f66fdc512a87302724a56d7cf  s4
+TWO FULL ROUNDS: s0==s2==s4 and s1==s3 (byte-identical)
+### stage syscall audit (review/tools/stage_syscalls.sh)
+binary=./s0 machine=Advanced Micro Devices X86-64 exit=0 stdout_bytes=664
+        1 exit
+        3 write
+ONLY-WRITE1-EXIT: yes
+binary=./s1 machine=AArch64 exit=0 stdout_bytes=632
+        1 exit
+        3 write
+ONLY-WRITE1-EXIT: yes
+### program headers
+-- s0
+  Type:                              EXEC (Executable file)
+  Machine:                           Advanced Micro Devices X86-64
+  Entry point address:               0x400078
+  Type           Offset   VirtAddr           PhysAddr           FileSiz  MemSiz   Flg Align
+  LOAD           0x000000 0x0000000000400000 0x0000000000400000 0x000278 0x000278 R E 0x10000
+-- s1
+  Type:                              EXEC (Executable file)
+  Machine:                           AArch64
+  Entry point address:               0x400078
+  Type           Offset   VirtAddr           PhysAddr           FileSiz  MemSiz   Flg Align
+  LOAD           0x000000 0x0000000000400000 0x0000000000400000 0x000298 0x000298 R E 0x10000

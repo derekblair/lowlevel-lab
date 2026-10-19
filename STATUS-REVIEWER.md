@@ -25,3 +25,4 @@
 - 2026-10-19 08:24 PDT — GATE BUILD-02 READY (fix round 1) seen (author 08:24, commit cc7e74d). REVIEWING round 2 now (≥5 make runs, payload-clock cross-check, threshold check).
 - 2026-10-19 08:27 PDT — REVIEW-02-build ROUND 2: APPROVE @cc7e74d (B1: payload clock, band ~1.6e3-1.4e5 TSC, upper edge matches 8-bit MTC wrap 196,608 TSC; B2: 6/6 make PASS, 0 OVF, passes under strace). Gate BUILD-02 CLEARED.
 - 2026-10-19 08:49 PDT — GATE BUILD-03 READY seen (author 08:48, commit 96efb07, C12 quine relay). REVIEWING now.
+- 2026-10-19 08:52 PDT — REVIEW-03-build: APPROVE @96efb07 (C12 quine relay). Fixed point verified outside harness over 2 full rounds; both stages only 3x write(1)+exit (own auditor); single-ISA ELFs. Nits: N1 '64 KiB required/4 KiB rejected' FALSE (4K works at 0x400000 and 0x200000; real silent failure is missing +x); N2 verify.sh C12-2 checks fail open (vacuous PASS under nested strace); N3 P mapped R+X. Gate BUILD-03 CLEARED.
