@@ -462,6 +462,11 @@ ISAs. Mission-central (ARM64 *and* x86-64 machine code), now runnable here
   packer, not a quine.
 - code `quine aarch64 x86-64 elf` (68, top hits are blogs / a Raku toolchain /
   kernel notes — none a relay) and `"EM_AARCH64" "EM_X86_64" quine` (0).
+  [Disclosure per REVIEW-01 §6.1 nit: a third code query `"e_machine" quine elf`
+  hit GitHub's HTTP-503 "too many shards failed" repeatedly (a server-side error
+  for that query shape, not throttling); it was replaced by the working
+  `quine aarch64 x86-64 elf` above, so two clean code queries stand. The erroring
+  record remains in research/raw/gh/ for audit.]
 - Single-ISA binary quines read as data (do **not** kill — none is cross-ISA or a
   relay): **panzi/binary-quine** (x86-64 ELF writes itself to stdout without
   reading its code), **meithecatte/mips-quine** (MIPS ELF that disassembles
@@ -525,24 +530,43 @@ is self-synchronising and disassembly is hard*. Restores the visualization theme
   don't have), **KennethAdamMiller/superset_disassembler** (OCaml probabilistic
   superset disassembler, "no false negatives").
 
-**Paper/web (G-2).** Superset disassembly = "disassemble every byte offset,
-no false negatives, many false positives"; a single decode error "cascades" —
-**disassembly drift** (arXiv 2506.09426). Foundational: **Multiverse**
-(Bauman, Lin & Hamlen, NDSS 2018), **Linn & Debray** (CCS 2003, anti-disassembly
-via overlapping instructions), **Andriesse et al.** (USENIX Security 2016 SoK +
-ground truth). These are disassembly *techniques / SoKs / rewriters*; **none is
-a visualization of the superset lattice with measured resynchronisation-length
-statistics** as a pedagogical artifact. The "~a handful of instructions to
-resync" figure is folklore/patent-level, not a measured visual explainer. That
-gap is the N2 delta.
+**Paper/web (G-2) — corrected per REVIEW-01 §6.2 (record corrections a/b/c, all
+reviewer-verified from the PDFs).** Superset disassembly = "disassemble every
+byte offset, no false negatives, many false positives"; a single decode error
+"cascades" (the term *disassembly drift* appears in
+**Zhao, Yang, Zheng & Quinn, "Exploiting Control-flow Enforcement Technology for
+Sound and Precise Static Binary Disassembly" (2025, arXiv 2506.09426)** — its
+abstract reports instrumentation speed, not resync statistics; (a) corrected: I
+had mislabeled this paper "disassembly drift"). Foundational: **Multiverse**
+(Bauman, Lin & Hamlen, NDSS 2018), **Andriesse et al.** (USENIX Security 2016
+SoK + ground truth).
+**(b) The resync claim is PUBLISHED, not folklore.** **Linn & Debray, CCS 2003,
+§3.1 "Self-Repairing Disassembly"** states it, with a worked example (off by
+1/2/3 bytes, back in sync within 1–3 instructions) and, verbatim (reviewer-
+verified, sha256 f59b0db8…): *"In practice, however, we have found that
+disassembly errors usually resynchronize quite quickly — often within just one
+or two instructions beyond the point at which the disassembly error occurred."*
+It is **qualitative — no distribution, no dataset**. So C09's N2 delta is to
+**quantify that 2003 qualitative claim on modern x86-64 binaries, plus the
+lattice visualization** — stated as such, not as "first to notice resync".
+**(c) Neighbours to distinguish** (reviewer round-4): `UlfKargen/desync-cc`
+(Kargén et al., SANER'22 / SCP'23, an *automatic disassembly desynchronization
+obfuscator* — offensive; C09 is analysis-only, never generates desync code),
+`expend20/shifting-codes-python-port` (desyncs linear-sweep disassemblers —
+offensive), and `junxzm1990/x86-sok` (the USENIX Sec'22 disassembly ground-truth
+artifact — relevant to C09-4's ground-truth caveat). None is a resync-statistics
+lattice visualization. **The N2 delta stands, re-stated honestly.**
 
 **Novel observable.** For a real binary: (1) a rendered lattice (ANSI or emitted
 SVG/HTML) showing, per byte offset, the instruction decoded there and where each
-misaligned stream **merges** into the true one; (2) a measured distribution of
-**resync length** (bytes/instructions until a misaligned decode rejoins the true
-stream) over many `/usr/bin` functions — a histogram with median/tail. Machine-
-checkable: the true-stream decode must match `objdump -d` exactly; the resync
-statistics are emitted as data a grep/parse can check.
+misaligned stream **merges** into the true one; (2) a **quantified** distribution
+of **resync length** (bytes AND instructions, from the misaligned start to the
+first boundary shared with the reference stream) over many functions — the
+measured, dataset-backed version of Linn & Debray's 2003 qualitative "1–2
+instructions". Machine-checkable: the length decoder is differential-tested at
+**every offset** against `objdump -d` per offset (C09-3), ground-truth method
+and the stripped-binary caveat stated (C09-4), the viz emitted as parseable
+data (C09-5).
 
 **Prototype plan.** A small x86-64 **length decoder** in C (enough of the
 encoding to advance correctly — prefixes, ModRM, SIB, disp/imm; it need not

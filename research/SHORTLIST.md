@@ -168,7 +168,13 @@ ARM64+x64 machine-code theme. **Gated:** a §2.1-complete + ≥2 paper/web adden
 must be posted as `ADDENDUM READY (C12)` and cleared by the reviewer **before
 its build**. Safety (reviewer §5): each stage writes the next stage to **stdout
 only**; the harness redirects it and runs it under qemu; nothing writes or execs
-itself. **Addendum written** — see NOVELTY-LOG "Replacement addenda" (C12): §2.1-complete (repo 11/topic/ in:readme/ created/ code 2) + G-2 paper/web, dispositions, novel observable, prototype plan. `ADDENDUM READY (C12)` posted; build gated on the reviewer's §6 verdict.
+itself. **APPROVED at N3** (REVIEW-01 §6.1, BUILD-03 slot). Addendum in
+NOVELTY-LOG "Replacement addenda" (C12). BUILD-03 conditions C12-1…C12-6:
+byte-exact fixed point shown (`cmp`/`sha256sum` stage0 vs stage2), each stage a
+single-ISA ELF (`readelf -h`/`file`), AArch64 stage disassembled with
+aarch64-linux-gnu-objdump; safety — each stage only `write(1,…)`+exit, no self-
+write/exec (strace + `qemu-aarch64 -strace`); stays a relay not a polyglot (other
+ISA bytes carried only as data); emulation labelled "under qemu-aarch64".
 
 ## P4 — ifetch-sanitizer (reshaped C01) · ARM64 · **N2**
 
@@ -240,11 +246,17 @@ zero, REVIEW-01 §2.5 / §3). Two candidates, decided in the addendum:
   x86 truth (why disassembly is hard).
 - **C22 — PT TNT-bit control-flow barcode**: render PT taken/not-taken bits as a
   per-algorithm texture; rides P2's capture (couples to P2's risk).
-Chose **C09** (independent of P2, robust). **Addendum written** — see
-NOVELTY-LOG "Replacement addenda" (C09): §2.1-complete + G-2, dispositions,
-novel observable (superset lattice + measured resync-length histogram vs
-`objdump`), prototype plan. C22 benched as fallback. `ADDENDUM READY (C09)`
-posted; build gated on the reviewer's §6 verdict.
+Chose **C09** (independent of P2, robust). **APPROVED WITH CONDITIONS at N2**
+(REVIEW-01 §6.2, BUILD-05 slot). Record corrections applied (NOVELTY-LOG C09):
+(a) arXiv 2506.09426's real title is "Exploiting Control-flow Enforcement
+Technology for Sound and Precise Static Binary Disassembly"; (b) the resync
+claim is **published** — Linn & Debray CCS'03 §3.1 "Self-Repairing Disassembly"
+("within just one or two instructions") — so C09's N2 delta is to **quantify
+that qualitative 2003 claim on modern x86-64 + the lattice viz**; (c) neighbours
+desync-cc / shifting-codes (offensive, distinguished — C09 is analysis-only) and
+x86-sok (ground-truth artifact). BUILD-05 conditions C09-1…C09-6 (novelty-text
+accuracy, analysis-only safety, per-offset length-decoder oracle vs objdump,
+ground-truth/stripped-binary caveat, machine-checkable viz). C22 benched.
 
 ---
 
