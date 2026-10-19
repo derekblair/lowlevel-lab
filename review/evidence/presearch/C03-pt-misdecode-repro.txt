@@ -1,0 +1,49 @@
+# C03 pre-gate reproduction of research/probes/pt-smc-misdecode — 2026-10-19 02:38:06 PDT
+ad08923438382db1f2b62f7429e729943b941138fbc5ba15d3c83e50601246cf  smc.c
+## ./smc
+v1 returned 1, v2 returned 2
+## intel_pt caps
+  ptwrite=1
+  ip_filtering=1
+  mtc=1
+  psb_cyc=1
+  num_address_ranges=2
+## gdb btrace pt (author's exact command line)
+Breakpoint 1 at 0x1190: file smc.c, line 10.
+
+Breakpoint 1, main () at smc.c:10
+10	int main(void){
+Breakpoint 2 at 0x555555555169: file smc.c, line 9.
+
+Breakpoint 2, marker (a=a@entry=1, b=2) at smc.c:9
+9	__attribute__((noinline)) void marker(int a, int b){ printf("v1 returned %d, v2 returned %d\n", a, b); }
+Active record target: record-btrace
+Recording format: Intel Processor Trace.
+Buffer size: 16kB.
+warning: Non-contiguous trace at instruction 35 (offset = 0x3fd0).
+Recorded 69 instructions in 10 functions (1 gaps) for thread 1 (Thread 0x7ffff7fa5740 (LWP 1748573)).
+47	   0x00005555555551d3 <main+67>:	66 89 43 08        	mov    %ax,0x8(%rbx)
+48	   0x00005555555551d7 <main+71>:	ff d3              	call   *%rbx
+49	   0x00007ffff7fba000:	b8 02 00 00 00     	mov    $0x2,%eax
+50	   0x00007ffff7fba005:	90                 	nop
+51	   0x00007ffff7fba006:	90                 	nop
+52	   0x00007ffff7fba007:	90                 	nop
+53	   0x00007ffff7fba008:	90                 	nop
+54	   0x00007ffff7fba009:	c3                 	ret
+55	   0x00005555555551d9 <main+73>:	89 c5              	mov    %eax,%ebp
+56	   0x00005555555551db <main+75>:	48 8b 05 2e 2e 00 00	mov    0x2e2e(%rip),%rax        # 0x555555558010 <v2>
+57	   0x00005555555551e2 <main+82>:	48 89 03           	mov    %rax,(%rbx)
+58	   0x00005555555551e5 <main+85>:	0f b7 05 2c 2e 00 00	movzwl 0x2e2c(%rip),%eax        # 0x555555558018 <v2+8>
+59	   0x00005555555551ec <main+92>:	66 89 43 08        	mov    %ax,0x8(%rbx)
+60	   0x00005555555551f0 <main+96>:	ff d3              	call   *%rbx
+61	   0x00007ffff7fba000:	b8 02 00 00 00     	mov    $0x2,%eax
+62	   0x00007ffff7fba005:	90                 	nop
+63	   0x00007ffff7fba006:	90                 	nop
+64	   0x00007ffff7fba007:	90                 	nop
+65	   0x00007ffff7fba008:	90                 	nop
+66	   0x00007ffff7fba009:	c3                 	ret
+67	   0x00005555555551f2 <main+98>:	89 c6              	mov    %eax,%esi
+Kill the program being debugged? (y or n) [answered Y; input not from terminal]
+[Inferior 1 (process 1748573) killed]
+# RESULT: VERIFIED — instructions 49-54 (first call, which returned 1 per marker a=1) decoded as mov $0x2 + 4 nop + ret, no warning on them.
+# nit: session reports '1 gaps' (Non-contiguous trace at instruction 35, buffer wrap) — unrelated to the SMC region but contradicts a literal 'no gap or warning'.
