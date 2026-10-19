@@ -49,14 +49,14 @@ can diff your counts against mine.
 |---|---|---|---|---|
 | C01 | stale-fetch A64 I-cache emulator | **N2** | **RESHAPE → ifetch-sanitizer** | goliajp/aarch64-study v0.22 *models stale I-cache w/o IC IVAU, passing tests*; cyyself/jit-coherence-test runs it on HW |
 | C02 | SMC/XMC cartography on hybrid x86 | **N3** | **SHORTLIST #1** | SMaCk (L1i *attack*, not benign cost-map, not hybrid/XMC/distance); SelfModTamper (tamper-proofing) |
-| C03 | version-correct PT decode of SMC | **N3** | **SHORTLIST #2** | simple-pt ("Tracing JITed code is not supported"); libipt live-image only; JPortal (JVM side-band) |
-| C04 | P-core vs E-core differential scanner | **N2** | **SHORTLIST #3** | **Intel 12th-Gen GameDev Guide + Wikipedia document P/E undefined-OF divergence** (caps the bare claim); yufengzjj/hybrid-x86-oracle diffs *model backends* not core types; sandsifter/vmsifter (one core) |
+| C03 | version-correct PT decode of SMC | **N2** (was N3) | **SHORTLIST #2 — RESHAPE** (REVIEW-01 §2.2) | wilvk/asm-test `asmtest_codeimage` (TEXT_POKE code-image timeline, was in my own 1-hit query); perf `intel_pt_text_poke`; libipt `sideband/` image-over-time; FlowJIT; DRAKVUF PTW inject. In-band *executed* PTWRITE fence survives as the N2 delta |
+| C04 | P-core vs E-core differential scanner | **N1** (was N3) | **CUT** (REVIEW-01 §2.3) | **libLISA (OOPSLA'24) already diffs i9-13900 P-cores (Raptor Cove) vs E-cores (Gracemont) on undefined shifts/rotates/mul/div and proposes fingerprinting** — reviewer verified the PDF (sha256 b3bee6a9). Newer-gen-of-published ⇒ N1. Probe kept as SUMMARY research evidence; migration-hazard reshape is [BLOCKING safety] |
 | C05 | native Core War on real cores | N2 | alternate (safety) | r2wars (ESIL VM, multi-arch, *emulated*); pMARS/corewar.io (VM). Native-on-cores unseen but sandbox burden high |
 | C06 | reversible ISA, bidirectional native JIT | **N2** | cut (for C01) | kostyk348/phase-vm *emits phase_fwd/phase_rev C, cc -O2 -shared + dlopen* = reverse native codegen already |
 | C07 | in-process x86↔A64 hop | N2 | cut | systems-nuts/unifico, ssrg-vt/popcorn-* (research, cross-machine); core idea exists |
 | C08 | AArch64 encoding-space atlas | **N0** | cut | zyedidia/armvis = A64 Hilbert-curve atlas by instr class, exactly this |
 | C09 | x86 superset-decode lattice + resync stats | N2 | alternate | utds3lab/multiverse, KennethAdamMiller/superset_disassembler (technique exists; viz/stats explainer doesn't) |
-| C10 | program single-steps & renders itself (TF) | **N3** | **SHORTLIST #5** | sgx-step/rosenbridge use TF for *attacks*; no benign self-tracing SMC visualizer found |
+| C10 | program single-steps & renders itself (TF) | **N1** (was N3) | **CUT** (REVIEW-01 §2.5) | **gperftools `SingleStepper` (2024): benign in-process SIGTRAP+TF per-instruction stepper** (`gregs[REG_EFL] |= 0x100`), used in tcmalloc_unittest; ERESI e2dbg; v8 trap-fuzzer. My "attacks only" claim was FALSE; record below §2.1 minimums |
 | C11 | A64→x64 educational translator | N1 | cut | dynarmic/box64/AArchX/Rosette/microlift; many toy translators |
 | C12 | cross-ISA machine-code quine relay | N2 | alternate | meithecatte/mips-quine (single-ISA ELF quine); no cross-ISA binary relay found |
 | C13 | single-bit fault sensitivity map | N1 | cut | Keysight/FiSim (deterministic fault-injection sim); ARMORY/LLFI |
@@ -71,9 +71,15 @@ can diff your counts against mine.
 | C22 | PT TNT-bit control-flow barcode | **N3** | bonus within C03 | magic-trace = function timeline (Perfetto), not a TNT-bit texture; no viz found |
 | C23 | KVM page-walk visualiser | N1 | cut | dpw/kvm-hello-world + many page-walk visualisers |
 
-**Shortlist #4 is C01-reshaped (ifetch-sanitizer), ARM64.** Rationale for
-the final five and the cut consistency check is in
-[SHORTLIST.md](SHORTLIST.md).
+**Post-REVIEW-01 shortlist state (2026-10-19).** REVIEW-01 verdict
+APPROVE WITH CHANGES (commit 19c7ecb). Surviving builds: **P1 C02** (KEEP N3),
+**P2 C03** (RESHAPE N2), **P4 C01-reshaped** (KEEP N2, ARM64). **CUT: P3 C04**
+(libLISA, N1) and **P5 C10** (gperftools SingleStepper, N1). Two replacement
+slots are open; each gets a §2.1-complete + ≥2 paper/web addendum reviewed
+before its build (REVIEW-01 §5.5). Reviewer's non-binding steer: C12 (cross-ISA
+machine-code relay) + a visualization concept (C22-on-P2 or C09). Rationale and
+the cut-consistency check are in [SHORTLIST.md](SHORTLIST.md). The addendum
+dispositions for the replacements are appended at the end of this file.
 
 ---
 
@@ -131,6 +137,27 @@ there". Centrepiece is the model, so per §2.1 N2 is KEEP-as-RESHAPE.
 **Prior art disclosed in README.** Risk: must not collapse into
 aarch64-study's single-line demo — the matrix + diagnosis is the point.
 
+**More prior art to position against (added per REVIEW-01 §2.4, reviewer-found;
+I agree — adjacent, each at litmus/fixed-demo scale, none a whole-program
+step-diagnosing sanitizer with the line-size-mismatch class):**
+- **herdtools7** @12690a83da `catalogue/aarch64-ifetch/` — an ifetch litmus
+  catalogue, simulated by `herd7 -variant ifetch`, run on hardware by
+  `litmus7 -variant self`. (herd7 can't be installed here; its tests are
+  fetched as data for cross-checking expected outcomes — P4-3.)
+- **RMEM** (Cambridge, cl.cam.ac.uk/~pes20/iflat/) — exposes the **IDC/DIC**
+  knobs ("turn off IDC and DIC to get the weakest semantics"), so the IDC/DIC
+  matrix exists **at litmus scale** — but not whole-program with step naming.
+- **DynamoRIO** `core/dispatch.c:958` (AArch64): handles the app's `IC IVAU`
+  for SW cache consistency; a missing `IC IVAU` leaves stale code there too,
+  but it **diagnoses nothing**.
+The surviving delta (REVIEW-01 §2.4): a *whole-program* sanitizer that names
+the omitted step automatically and covers the **I/D line-size-mismatch** class
+(CTR_EL0 differing across cores breaking flush-loop strides — the classic
+big.LITTLE JIT bug), which litmus enumeration and fixed demos don't. BUILD-04
+conditions P4-1…P4-5 (semantic oracle = qemu end-state; encoder oracle =
+aarch64-linux-gnu as/objdump on ≥20 reviewer-chosen insns; every per-config
+verdict cites DDI 0487 § x.y; model-output labelling) apply.
+
 Queries: `research/raw/gh/C01-*.json` (round 1–3). Web: QEMU IC-IVAU
 commit 9719f125 (2023); Arm FVP `cache_state_modelled` (hides maintenance
 defects when off); Simner et al. ESOP'20 ifetch model + isla/herd
@@ -179,52 +206,124 @@ counting of own task is allowed (paranoid=2). **N3, KEEP strong.** Non-GitHub
 prior art (Agner Fog, SDM §9.1.3, blog ~100-cycle folklore) disclosed; caps
 nothing because none is a hybrid distance/XMC map.
 
-## C03 — version-correct PT decode of self-modifying code → **SHORTLIST #2** (N3)
+**Prior art to cite (added per REVIEW-01 §2.1, reviewer-found, I agree it's
+adjacent not fatal):** Botacin, Zanata & Grégio, *"The Self Modifying Code
+(SMC)-Aware Processor (SAP): A security look on architectural impact and
+support"* (J. Computer Virology and Hacking Techniques); repo
+`marcusbotacin/Self-Modifying-Code` @ed09a3abd6 has a PIN flush-aware cache
+simulator + PEBS-based SMC detector — architectural-impact measurement, single
+core class, **no distance sweep, no hybrid, no XMC**. `clamchowder/Microbenchmarks`
+matched "self-modifying" but only *avoids* SMC (not prior art). The README/
+BUILD-01 novelty section must cite Botacin SAP. **Reviewer's own reference
+sweep** (`review/evidence/presearch/c02-probe/`) already shows the striking
+observable and is the oracle BUILD-01 will be held to (see SHORTLIST P1 and the
+BUILD-01 conditions P1-1…P1-6): P-core clears only within its own 64-B line,
+E/LP-E on a 1-KB granularity — matching Intel 248966 §3.6.8.1's Pentium-4-era
+rule for Darkmont but not Cougar Cove. **Three core classes P(0–3)/E(4–11)/
+LP-E(12–15)** must be reported separately (R14); "E = 4–15" is wrong.
+
+## C03 — version-correct PT decode of self-modifying code → **SHORTLIST #2 · RESHAPE to N2** (REVIEW-01 §2.2)
 
 **Pitch:** Intel-PT decoders reconstruct the instruction stream from the
 code bytes *currently* in memory, so self-modifying code is silently
 misdecoded. Keep a versioned code image and emit an in-band `PTWRITE
 <version>` at each code write, so the decoder re-bases on the exact version.
 
-**Phenomenon already proven on this box** (research/probes/pt-smc-misdecode/):
+**Phenomenon proven on this box** (research/probes/pt-smc-misdecode/):
 a program prints `v1 returned 1`, but gdb's own PT instruction-history for
 that same execution shows `mov $0x2,%eax; nop×4; ret` — the *post-patch*
-bytes — with no gap or warning. So "PT misdecodes SMC" is demonstrated, not
-asserted.
+bytes. [Correction per REVIEW-01 §2.2 nit: the misdecoded *instructions*
+carry no gap/warning, but the gdb session does report "1 gaps" from a buffer
+wrap before the SMC region — "no gap or warning" was too broad.]
 
-**Closest threats (read as data):**
-- **andikleen/simple-pt** (★359, read README + `sptdecode.c`): a full PT
-  tracer/decoder. README verbatim: **"Tracing JITed code is not supported."**
-  It decodes `ptev_ptwrite` payloads but uses them as opaque logged values,
-  **not** as code-version fences. Confirms the gap, does not kill.
-- **intel/libipt** (read `pt_image_set_callback.3.md`): the decoder reads
-  instruction bytes through an image callback — i.e. from live memory or a
-  static image; there is no versioned-image-over-time facility. LLDB's
-  wrapper (per web search) "does not handle self-modified code… only signals
-  the anomaly as a trace error". Confirms gap.
-- **JPortal** (PLDI'21, web): recovers JVM JIT control flow from PT but via
-  **side-band** jitdump-style maps, not in-band PTWRITE version fences.
-  hase-project/hase, OctopusTakopi/trace-mcp, ptgraph2 (read/greased):
-  function-call timelines / record-replay, none version-aware for SMC.
-- `gh search repos intel pt self-modifying` → 0; `topic:intel-pt` → 5, none
-  SMC-aware (records C03-*.json). PTWRITE code hits are GCC/NASM tests and
-  PS4SDK intrinsics, not version fences.
+**Why the N3 claim FAILS — the reshape (REVIEW-01 §2.2, verified by the
+reviewer, re-confirmed by me against review/evidence/presearch/C03-priorart-excerpts.txt):**
+version-correct PT/stepper decoding of rewritten code already exists. The
+surviving delta is narrow and must be *shown* to matter.
+1. **wilvk/asm-test** (created 2026-06-23) ships `asmtest_codeimage` — a
+   userspace `PERF_RECORD_TEXT_POKE` that builds a **timestamped code-image
+   timeline** (soft-dirty + `PAGEMAP_SCAN`, bytes via `process_vm_readv`),
+   consumed by a *versioned* ptrace stepper `asmtest_ptrace_trace_attached_versioned`.
+   **This was in my own results** — query `"pt_image_add_cached" jit`
+   (`research/raw/gh/C03-code-81ba038c99.json`, total_count=1) returned exactly
+   `wilvk/asm-test/docs/internal/plans/hardware-trace-plan.md`, rendered at
+   APPENDIX:334, and I failed to disposition it. **That is the §2.1
+   selective-logging failure the reviewer flagged (P2-1).** Mea culpa:
+   a 1-hit count is the *most* important to read, not the least. (Note: wilvk's
+   own docs say the **hardware half — feeding the timeline into Intel PT/libipt
+   — is still forward-looking**, so the *PT-decode* of SMC is not shipped there;
+   the time-keyed *machinery* and the versioned *stepper* are.)
+2. **Linux perf** `tools/perf/util/intel-pt.c`: `intel_pt_text_poke()` +
+   `intel_pt_cache_invalidate()` version kernel SMC by time-ordered
+   `PERF_RECORD_TEXT_POKE`.
+3. **intel/libipt `sideband/`** (`pt_sb_pevent.c`): applies
+   `PERF_RECORD_MMAP/MMAP2/AUX/ITRACE_START` at TSC-converted times
+   (`time_shift/time_mult/time_zero`) — an **image-over-time facility at
+   mapping granularity**. ⇒ **my earlier claim "there is no
+   versioned-image-over-time facility" was FALSE** (it is true only that there
+   is no *TEXT_POKE-granularity* fence in libipt-sb). Corrected here.
+4. **FlowJIT** (tuxology/flowjit, LPC'17) + the 2018 Univ. Crete MSc thesis
+   "JIT Tracing using Intel Processor Trace" — PT reconstruction of JITed code.
+5. **DRAKVUF** (`src/plugins/ipt/ipt.cpp`): `emit_ptwrite64()` already
+   **injects synthetic PTW packets** (0x02 0x32 + payload) into the trace.
+   So "PTW as an annotation" is not itself novel.
 
-**N3, KEEP.** Novel observable: our decode is correct where gdb/libipt are
-wrong, verified instruction-for-instruction vs single-step ground truth.
-**Build risk (disclosed):** PT AUX capture + packet decode is the hardest
-build of the five; the gdb probe de-risks the *claim* even if the from-scratch
-decoder is reduced in scope. **C22 (TNT-bit barcode) rides this capture as a
-visualization bonus.**
+**What survives — N2 delta:** using an *executed* `PTWRITE <version>` as an
+**exact, in-band, control-flow-ordered fence for same-address byte rewrites**,
+versus the three **time-keyed** mechanisms above (which switch versions at
+TSC/MTC/CYC timestamps). This only counts if demonstrated **head-to-head**:
+find the patch→execute interval below which a time-keyed decode mis-attributes
+(at stated MTC/CYC settings), where the PTWRITE fence stays exact. If time-keyed
+decoding turns out exact even at cycle-accurate settings, the honest claim
+shrinks to "exact without timing packets" — still N2. "Naive bytes-as-now is
+wrong" is the **known baseline**, not the observable. (See SHORTLIST P2 for the
+rewritten observable; P2-1/2/3 are committed before any build.)
+**C22 (TNT-bit barcode) rides this capture as a visualization bonus, not a
+scoring criterion (REVIEW-01 §2.2 P2-5).**
 
-## C04 — P-core vs E-core differential scanner → **SHORTLIST #3** (N2)
+## C04 — P-core vs E-core differential scanner → **CUT at N1** (REVIEW-01 §2.3)
 
-**Pitch:** run identical instruction candidates pinned to a P-core and an
+**Verdict: CUT.** The phenomenon is real and reproduced (the reviewer re-ran
+my probe byte-identically across P/E/LP-E cores), but the *frame is published*:
+**libLISA** (Craaijo, Verbeek & Ravindran, *"libLISA: Instruction Discovery and
+Analysis on x86-64"*, OOPSLA 2024, PACMPL 8:283, DOI 10.1145/3689723) analyses
+the **Intel i9-13900's P-cores (Raptor Cove) and E-cores (Gracemont) as
+separate architectures** (~118k instruction groups each) and reports that the
+microarchitectural-difference groups "consist primarily of … **bit shifts,
+rotates, multiplication, division and bit manipulation** … that can exhibit
+undefined behavior", proposing **"fingerprinting programs"** from them. Its
+motivating example (Fig. 1) is exactly a rotate's undefined OF (`rcl` then
+`jno`) that "behave[s] benign on an AMD Ryzen … but … maliciously on an Intel
+Core i9-13900." (Reviewer verified the PDF, sha256 b3bee6a9; excerpts in
+`review/evidence/presearch/C04-liblisa-excerpts.txt`.) Panther Lake
+(Cougar Cove/Darkmont) is a newer generation of a *published* comparison —
+REVIEW-00 §2.1 ⇒ **N1 → CUT**. Also post-cutoff: `kmx00/ub86-pred` (undefined
+effects as opaque predicates, P/E split), `dominicolucci/dift86` (silicon-vs-
+model differential testing). libLISA appears in none of my 179 raw results —
+a **paper-search gap** (G-2), not selective logging; it is reachable only by
+academic-venue search, which my repo-name queries structurally missed.
+
+**Why not reshape to the migration hazard.** The one unpublished delta (a
+thread's flags changing after a scheduler move) requires building a
+**core-type-dependent predicate** — exactly the misuse libLISA
+("fingerprinting", "maliciously") and ub86-pred ("break analysis tools")
+document. REVIEW-01 §2.3 marks that reshape **[BLOCKING, safety]**. I accept
+that; no reshape.
+
+**Disposition of the probe.** `research/probes/hybrid-undefined-flags/` stays
+as honest **research evidence** and will be cited in SUMMARY.md as "the libLISA
+P/E finding re-confirmed on Panther Lake (Cougar Cove first-step vs Darkmont
+last-step OF rule)" — a true, useful sentence, not a part. The earlier
+Intel-GameDev-Guide / Wikipedia disclosure (below) stands; libLISA is the
+stronger, deciding prior art.
+
+**Superseded analysis (kept for the record — my pre-CUT reasoning):**
+run identical instruction candidates pinned to a P-core and an
 E-core and diff every observable — legality, length, result, *architecturally
 undefined* flags, CPUID — on one die with two microarchitectures behind one
 ISA.
 
-**A real divergence is already in hand** (research/probes/hybrid-undefined-flags/,
+**A real divergence is in hand** (research/probes/hybrid-undefined-flags/,
 probe-output.txt): for shift/rotate counts ≥ 2, the **architecturally
 undefined OF flag differs between core types** — P-cores (Cougar Cove)
 compute OF by a "first-step" rule, E-cores (Darkmont) by a "last-step" rule;
@@ -275,22 +374,30 @@ into a systematic scanner with the yufengzjj oracle as a tie-breaker for
 fact is documented (Intel/Wikipedia, above) — the scanner, the specific rule
 characterisation and the migration demo are the contribution.
 
-## C10 — program single-steps & renders itself → **SHORTLIST #5** (N3)
+## C10 — program single-steps & renders itself → **CUT at N1** (REVIEW-01 §2.5)
 
-**Pitch:** an x86-64 program that sets its own trap flag (no ptrace, no child),
-records every instruction from its SIGTRAP handler, and renders its own
-execution — including its own self-modification — as a terminal animation.
+**Verdict: CUT.** My claim ("TF single-stepping appears only as an attack
+mechanism or via ptrace") was **FALSE**. Benign in-process TF single-stepping
+is mainstream (reviewer evidence, `review/evidence/presearch/C10-priorart-excerpts.txt`,
+re-confirmed by me):
+- **gperftools** `src/base/single_stepper.{h,cc}` (@635500ed68, 2024): *"Start
+  intercepts SIGTRAP and enables single-stepping (in currently running thread).
+  On ~each instruction given callback will be invoked with signal's ucontext."*
+  Sets `gregs[REG_EFL] |= 0x100` (TF). In-process, benign, used by
+  `src/tests/tcmalloc_unittest.cc`. This is my exact mechanism and purpose.
+- **ERESI** `libe2dbg` (embedded in-process ELF debugger); **v8**
+  `src/sandbox/trap-fuzzer.cc`; the Linux selftest
+  `tools/testing/selftests/x86/single_step_syscall.c`. Code search
+  `"gregs[REG_EFL]" "0x100" SIGTRAP` → 356 hits.
+- Execution visualization is already well covered (Blinkenlights, gdb TUI).
+- **Technical limit the reviewer noted:** each TF step is an exception +
+  user-mode return (through FRED on this kernel), so a self-traced program
+  can observe only the *architectural* fact that its listing changed, never SMC
+  *cost* — the "payoff" was the trivial part.
 
-**Threats:** repo searches `trap flag single step tracer`, `self-tracing
-program`, `sigtrap single step in-process`, `eflags tf single step` →
-total_count 0 (records C10-*.json). Code search for the TF bit + SIGTRAP
-(`"REG_EFL" 0x100 SIGTRAP`) surfaces **sgx-step** and **rosenbridge** — TF
-single-stepping used for **enclave attacks / backdoor fuzzing**, a different
-purpose, and ptrace/driver-based besides. No benign *self*-tracing
-visualizer, and none that shows the listing mutating under SMC. **N3, KEEP.**
-Clean, low-risk, pure stdlib + inline asm; verifiable against gdb's trace as
-an independent oracle. ARM-neutral (x86), but balances the ARM64-heavy C01.
-Benign per REVIEW-00 §2.4 (own-process, educational).
+My C10 search record was also **below the §2.1 minimums** (REVIEW-01 §1.3: 6
+repo / 0 topic / 0 in:readme / 0 recency / 1 code). Two failures at once. **CUT
+accepted; no reshape.** Dispositions recorded here per P5-1.
 
 ---
 

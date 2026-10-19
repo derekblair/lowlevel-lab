@@ -32,9 +32,16 @@ ones least likely to have been done, because few people have this exact rig:
   gdb+libipt **silently misdecode self-modifying code** — the program prints
   `v1 returned 1` while the hardware-trace history shows that same execution
   as `mov $0x2,%eax; nop×4; ret`, with no gap or warning.
-- No AArch64 execution anywhere on the box (no qemu, no ARM CPU). An
-  AArch64 GNU as/objdump 2.40 + clang 20.1.8 *does* exist inside the Unreal
-  Engine 5.8.2 install (not on PATH) — proposed use: optional
+- [CORRECTED 2026-10-19, G-3] AArch64 now **assembles/links/runs under
+  qemu-aarch64 8.2.2** on this box (Derek-approved install of qemu-user +
+  aarch64-linux-gnu, 2026-10-18 22:13; see TOOLCHAIN.md). This line originally
+  read "No AArch64 execution anywhere (no qemu, no ARM CPU)" — that was true at
+  21:57 but stale by the time research finished; SHORTLIST.md is correct.
+  qemu is user-mode and **SMC-coherent** (REVIEW-00 §0.2), so it runs ARM64
+  *functionally* but shows no cache/timing/memory-order behaviour. No ARM CPU,
+  no native execution. A separate
+  AArch64 GNU as/objdump 2.40 + clang 20.1.8 *also* exists inside the Unreal
+  Engine 5.8.2 install (not on PATH) — ruled (REVIEW-01 §1.9): optional
   differential-test oracle only (see STATUS-AUTHOR.md disclosure).
 - Also present: CET user shadow stacks, IBT, PKU, LAM, LASS, FRED,
   `cpuid_fault`; KVM usable (in `kvm` group); ffmpeg; headless firefox.
