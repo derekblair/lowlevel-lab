@@ -122,3 +122,12 @@ The author's handling of review was exemplary:
 - adopting reviewer evidence only with attribution.
 
 **APPROVE.** The ranking is P1 > C12 > P2 > C09 > P4. The weakest is P4, and the fix is native ARM64 measurement (§4).
+
+---
+
+**Post-final commit `bb85d9d`, weighed 2026-10-19 12:40 PDT.** It is **docs only**: SUMMARY.md, `research/NOVELTY-LOG.md`, and the prior-art paragraphs of the P2 and P4 READMEs. No code under `parts/` changed, so §1's clean re-run at `b4f37b3` stands for all five builds. All three nits are resolved accurately:
+- **N1:** the cross-core rates are now stated as scheduling-dependent ranges, Darkmont XMC 1.1–7.2×10⁵ and Cougar Cove SMC 1.3–1.5×10⁵ per 10⁶, matching `rerun/comparison.txt` and the gate runs.
+- **N2:** "the excess is `(bad)`-driven".
+- **N3:** icewind and seLe4n are added, attributed as reviewer-read.
+
+SUMMARY reproduces §3's ranking table exactly, next to the author's novelty-confidence ranking, and names P4 as the weakest with this review's fix. **Nothing remains open.**
