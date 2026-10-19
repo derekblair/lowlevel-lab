@@ -1,21 +1,18 @@
 #!/usr/bin/env python3
-"""sanitize.py — the ifetch-sanitizer.
+"""sanitize.py — the ifetch-sanitizer (whole-program, program-driven).
 
-Given a self-modifying AArch64 kernel and a CTR_EL0 / line-size config, it runs
-the kernel through a small A64 interpreter whose instruction fetch goes through
-the modelled I/D cache hierarchy (icache_model.py), and reports whether the
-patched code executes FRESH or STALE and, if stale, EXACTLY which step of the
-architectural maintenance sequence
+A self-modifying AArch64 kernel is run through a small A64 interpreter whose
+self-modified slot is fetched THROUGH the cache model (icache_model.Machine).
+The interpreter decodes the STR / DC CVAU / IC IVAU / DSB / ISB the program
+actually executes and applies them to the model; the verdict (fresh vs stale,
+and which maintenance step is missing) therefore depends on the PROGRAM, not on
+any recipe (REVIEW-04 B1). The barrier rule matches the Arm requirement and the
+Linux implementation (B2); the architecture text is quoted below (B3); and the
+model's coherent mode is checked against qemu-aarch64 on every kernel (B4).
 
-    DC CVAU -> DSB ISH -> IC IVAU -> DSB ISH -> ISB
-
-is missing (or defeated by an I/D line-size mismatch). All staleness output is
-MODEL output (REVIEW-01 §2.4 P4-4 / R10); the same kernels run FRESH under
-qemu-aarch64 (SMC-coherent) and that is reported as qemu's coherence, not as
-evidence about silicon.
-
-Build order of the machine code is via a64asm.py (differential-tested vs
-aarch64-linux-gnu-as). Python stdlib only.
+All staleness is MODEL output (R10); the same kernels run FRESH under
+qemu-aarch64 (SMC-coherent). a64asm encoders are differential-tested vs
+aarch64-linux-gnu-as. Python stdlib only.
 """
 import struct
 import subprocess
@@ -26,209 +23,153 @@ import a64asm as A
 from icache_model import Config, Machine
 
 BASE = 0x400000
-CODEBASE = BASE + 64 + 56     # code loads after ehdr(64)+phdr(56); interp agrees
+CODEBASE = BASE + 64 + 56     # code loads after ehdr+phdr; interp uses the same base
 SLOT_OLD = 0x11
 SLOT_NEW = 0x22
 EXIT_NR = 93
 
-# The architecture reference the per-config verdicts cite (P4-3).
-ARM_REF = ("Arm ARM DDI 0487K.a, B2.7.4 'Instruction cache maintenance "
-           "requirements' and D23.2.35 CTR_EL0.{IDC,DIC}; the sequence DC CVAU; "
-           "DSB ISH; IC IVAU; DSB ISH; ISB")
+# B3 — verbatim architecture / reference text (fetched as data; see
+# research/raw and the REVIEW-04 evidence):
+ARM_REF = """\
+Arm CTR_EL0 (DDI 0487, AArch64-ctr_el0; Arm XML build 26/03/2024), verbatim:
+  IDC=1: "Data cache clean to the Point of Unification is not required for
+          instruction to data coherence."
+  DIC=1: "Instruction cache invalidation to the Point of Unification is not
+          required for data to instruction coherence."
+  "If CTR_EL0.DIC is 1 then the value reported in [IDC] must also be 1."
+Canonical modify-execute sequence (DDI 0487G.a B2.2.5, per Rutland/US11210222):
+  modifying PE: DC CVAU,Xn ; DSB ISH ; IC IVAU,Xn ; DSB ISH ; and each executing
+  PE: ISB.
+Linux arch/arm64/mm/cache.S caches_clean_inval_pou_macro: on ARM64_HAS_CACHE_IDC
+  the DC loop is skipped but a 'dsb ishst' is STILL issued; on ARM64_HAS_CACHE_DIC
+  the IC loop is skipped but an 'isb' is STILL issued. => the barriers are kept
+  even when IDC/DIC excuse the cache op; that is the rule this model applies."""
+
+A.svc = lambda: struct.pack("<I", 0xD4000001)   # SVC #0 (a64asm has no svc)
 
 
-# ---- kernel construction -------------------------------------------------
-# Memory layout (one region at BASE):
-#   entry: sets up, patches the slot word, does maintenance, blr slot, exit(x0)
-#   slot : movz x0, #OLD ; ret      (the self-modified code)
-# The patch overwrites the slot's movz-imm16 so it loads NEW instead of OLD.
+# ---- kernel construction ------------------------------------------------
+# A kernel is an A64 program: warm the slot (run it once -> caches OLD), patch
+# it (STR a new movz word), run the chosen maintenance instructions, then run
+# the slot again. `maint` selects which real instructions the kernel contains;
+# the verdict is read back from those EXECUTED instructions, not from `maint`.
+def build_kernel(maint, flush_off=0):
+    slot = A.movz("x0", SLOT_OLD) + A.ret()            # movz x0,#OLD ; ret
 
-def build_kernel(maint, wrong_line=False):
-    """maint: list of steps from {'dc','dsb1','ic','dsb2','isb'} to PERFORM.
-    Returns (image_bytes, slot_off, entry_off, maint_trace). maint_trace is the
-    ordered [(op, line_base)] the model evaluates."""
-    # assemble the slot first so we know its size/offset
-    slot = A.movz("x0", SLOT_OLD) + A.ret()           # 8 bytes
-    # entry code; we fill the slot address with movz/movk of (BASE+slot_off)
-    # placeholder, patched after we know slot_off.
-    def entry(slot_vaddr, slot_off):
-        c = b""
-        # x9 = slot vaddr (for maintenance + call); x10 = patch word
-        c += A.movz("x9", slot_vaddr & 0xFFFF) + A.movk("x9", (slot_vaddr >> 16) & 0xFFFF, 16)
-        # new slot word = movz x0,#NEW  (overwrites slot[0:4])
+    def entry(slot_vaddr):
+        c = A.movz("x9", slot_vaddr & 0xFFFF) + A.movk("x9", (slot_vaddr >> 16) & 0xFFFF, 16)
+        c += A.blr("x9")                               # warm: run slot once (caches OLD)
         patch_word = int.from_bytes(A.movz("x0", SLOT_NEW), "little")
         c += A.movz("x10", patch_word & 0xFFFF) + A.movk("x10", (patch_word >> 16) & 0xFFFF, 16)
-        c += A.strw_imm("w10", "x9", 0)               # STORE the new instruction word (SMC)
-        # maintenance, in the requested subset/order
-        for step in maint:
-            if step == "dc":   c += A.dc_cvau("x9")
-            elif step == "dsb1": c += A.dsb_ish()
-            elif step == "ic": c += A.ic_ivau("x9")
-            elif step == "dsb2": c += A.dsb_ish()
-            elif step == "isb": c += A.isb()
-        c += A.blr("x9")                              # call the (maybe patched) slot
-        c += A.movz("x8", EXIT_NR) + A.svc()          # exit(x0)
-        return c
-    # two-pass: compute entry size with a dummy, then place slot after it
-    dummy = entry(CODEBASE, 0)
-    entry_len = len(dummy)
-    slot_off = entry_len
-    slot_vaddr = CODEBASE + slot_off
-    code = entry(slot_vaddr, slot_off) + slot
-    assert len(code) == entry_len + len(slot)
-    # maint_trace: ops on the slot line, in order (addresses = slot_vaddr)
-    trace = [(s, slot_vaddr) for s in maint]
-    return code, slot_off, 0, trace, slot_vaddr
-
-
-# a64asm has no svc; add it here (SVC #0).
-A.svc = lambda: struct.pack("<I", 0xD4000001)
-
-
-# ---- tiny A64 interpreter -------------------------------------------------
-# Executes the kernel subset. Instruction fetch of the self-modified SLOT is
-# resolved by evaluate_maintenance (the DDI 0487 rule), which is the authority
-# for fresh-vs-stale and for naming the missing step. x[]/memory are a plain
-# register file + byte array (the cache model's data side is exercised by the
-# store but the staleness DECISION is the sequence rule, so the two can't
-# disagree).
-def interp(code, entry_off, slot_vaddr, cfg, maint_trace, patched_line_size_ok):
-    x = [0] * 32
-    pc = CODEBASE + entry_off
-    link = 0
-    for _ in range(1000):
-        off = pc - CODEBASE
-        w = int.from_bytes(code[off:off + 4], "little")
-        op, dec = decode(w)
-        if pc == slot_vaddr:        # fetch of the self-modified slot
-            fresh, _ = evaluate_maintenance(maint_trace, cfg, slot_vaddr, patched_line_size_ok)
-            x[0] = SLOT_NEW if fresh else SLOT_OLD   # slot = movz x0,#imm ; ret
-            pc = link
-            continue
-        if op == "movz":
-            x[dec[0]] = dec[1] << dec[2]
-        elif op == "movk":
-            x[dec[0]] = (x[dec[0]] & ~(0xFFFF << dec[2])) | (dec[1] << dec[2])
-        elif op in ("dc", "ic", "dsb", "isb", "strw"):
-            pass                    # store + maintenance effects are in maint_trace
-        elif op == "blr":
-            link = pc + 4
-            pc = x[dec[0]]
-            continue
-        elif op == "ret":
-            pc = x[dec[0]]
-            continue
-        elif op == "svc":
-            return x[0] & 0xFF      # exit(x0)
+        c += A.strw_imm("w10", "x9", 0)                # STR new instruction word (SMC)
+        if flush_off:                                  # maintenance targets x11 = slot + wrong stride
+            fa = slot_vaddr + flush_off
+            c += A.movz("x11", fa & 0xFFFF) + A.movk("x11", (fa >> 16) & 0xFFFF, 16)
+            maddr = "x11"
         else:
-            raise RuntimeError(f"interp: unhandled {op} @ {pc:#x} word={w:#010x}")
-        pc += 4
-    raise RuntimeError("interp: ran away")
+            maddr = "x9"
+        for step in maint:
+            if step == "dc":    c += A.dc_cvau(maddr)
+            elif step == "dsb": c += A.dsb_ish()
+            elif step == "ic":  c += A.ic_ivau(maddr)
+            elif step == "isb": c += A.isb()
+        c += A.blr("x9")                               # re-run slot -> NEW or OLD
+        c += A.movz("x8", EXIT_NR) + A.svc()           # exit(x0)
+        return c
+
+    entry_len = len(entry(CODEBASE))
+    slot_vaddr = CODEBASE + entry_len
+    code = entry(slot_vaddr) + slot
+    return code, 0, slot_vaddr      # entry is at offset 0; slot follows at entry_len
 
 
+# ---- decoder for the subset ----
 def decode(w):
-    if (w & 0xFF800000) == 0xD2800000:
-        return "movz", (w & 31, (w >> 5) & 0xFFFF, ((w >> 21) & 3) * 16)
-    if (w & 0xFF800000) == 0xF2800000:
-        return "movk", (w & 31, (w >> 5) & 0xFFFF, ((w >> 21) & 3) * 16)
-    if (w & 0xFFC00000) == 0xB9000000:
-        return "strw", (w & 31, (w >> 5) & 31, ((w >> 10) & 0xFFF) * 4)
-    if (w & 0xFFFFFC1F) == 0xD63F0000:
-        return "blr", ((w >> 5) & 31,)
-    if (w & 0xFFFFFC1F) == 0xD65F0000:
-        return "ret", ((w >> 5) & 31,)
-    if w == 0xD4000001:
-        return "svc", ()
-    if (w & 0xFFFFF000) == 0xD50B7000 and (w & 0x1F) < 31:  # dc/ic SYS
-        return ("ic" if (w & 0xFE0) == 0x520 else "dc"), ((w & 31),)
-    if (w & 0xFFFFF0FF) == 0xD503309F:  # DSB
-        return "dsb", ()
-    if w == 0xD5033FDF:
-        return "isb", ()
+    if (w & 0xFF800000) == 0xD2800000: return "movz", (w & 31, (w >> 5) & 0xFFFF, ((w >> 21) & 3) * 16)
+    if (w & 0xFF800000) == 0xF2800000: return "movk", (w & 31, (w >> 5) & 0xFFFF, ((w >> 21) & 3) * 16)
+    if (w & 0xFFC00000) == 0xB9000000: return "strw", (w & 31, (w >> 5) & 31, ((w >> 10) & 0xFFF) * 4)
+    if (w & 0xFFFFFC1F) == 0xD63F0000: return "blr", ((w >> 5) & 31,)
+    if (w & 0xFFFFFC1F) == 0xD65F0000: return "ret", ((w >> 5) & 31,)
+    if w == 0xD4000001: return "svc", ()
+    if (w & 0xFFFFFFE0) == 0xD50B7B20: return "dc", (w & 31,)     # DC CVAU, Xt
+    if (w & 0xFFFFFFE0) == 0xD50B7520: return "ic", (w & 31,)     # IC IVAU, Xt
+    if w in (0xD5033B9F, 0xD5033A9F): return "dsb", ()
+    if w == 0xD5033FDF: return "isb", ()
     return "?", (w,)
 
 
-# ---- the architectural staleness decision (the heart of the diagnosis) ----
-STEP_LABEL = {
-    "dc": "DC CVAU (clean D-cache to PoU)",
-    "dsb1": "DSB ISH (after DC CVAU)",
-    "ic": "IC IVAU (invalidate I-cache to PoU)",
-    "dsb2": "DSB ISH (after IC IVAU)",
-    "isb": "ISB (context-synchronize the fetch)",
-}
+# ---- interpreter: executes the kernel THROUGH the model ----
+def interp(code, entry_off, slot_vaddr, cfg, coherent=False):
+    m = Machine(code, cfg, coherent=coherent)
+    slot_off = slot_vaddr - CODEBASE
+    x = [0] * 32
+    pc = CODEBASE + entry_off
+    link = 0
+    warmed = False
+    for _ in range(2000):
+        off = pc - CODEBASE
+        w = int.from_bytes(code[off:off + 4], "little")
+        op, d = decode(w)
+        if pc == slot_vaddr:                   # executing the slot (movz x0,#imm ; ret)
+            if not warmed:
+                m.warm(slot_off)               # first run caches OLD
+                warmed = True
+            sw = m.fetch_word(slot_off)        # fetch THROUGH the model (old or new)
+            sop, sd = decode(sw)
+            x[0] = (sd[1] << sd[2]) if sop == "movz" else (sw & 0xFF)
+            pc = link
+            continue
+        if op == "movz": x[d[0]] = d[1] << d[2]
+        elif op == "movk": x[d[0]] = (x[d[0]] & ~(0xFFFF << d[2])) | (d[1] << d[2])
+        elif op == "strw":
+            addr = x[d[1]] + d[2]
+            word = x[d[0]] & 0xFFFFFFFF
+            for i in range(4):
+                m.store(addr - CODEBASE + i, (word >> (8 * i)) & 0xFF)
+        elif op == "dc": m.dc(x[d[0]] - CODEBASE)
+        elif op == "ic": m.ic(x[d[0]] - CODEBASE)
+        elif op == "dsb": m.dsb()
+        elif op == "isb": m.isb()
+        elif op == "blr": link = pc + 4; pc = x[d[0]]; continue
+        elif op == "ret": pc = x[d[0]]; continue
+        elif op == "svc": return x[0] & 0xFF, m
+        else: raise RuntimeError(f"interp: unhandled {op} @ {pc:#x} {w:#010x}")
+        pc += 4
+    raise RuntimeError("interp ran away")
 
 
-def required_steps(cfg):
-    """The ordered steps required to make the store visible to fetch, given
-    CTR_EL0.{IDC,DIC}."""
-    req = []
-    if cfg.idc == 0:
-        req += ["dc", "dsb1"]
-    if cfg.dic == 0:
-        req += ["ic", "dsb2"]
-    req += ["isb"]
-    return req
+STEP_LABEL = {"dc": "DC CVAU (clean D-cache to PoU)", "dsb": "DSB (barrier)",
+              "ic": "IC IVAU (invalidate I-cache to PoU)", "isb": "ISB (synchronize fetch)"}
 
 
-def evaluate_maintenance(trace, cfg, slot_vaddr, line_size_ok):
-    """Return (fresh: bool, missing_step: str|None). The performed steps are the
-    ops in `trace` whose line (under the config's line sizes) covers the patched
-    slot. A line-size mismatch means DC/IC did not cover the slot's line."""
-    performed = []
-    for op, addr in trace:
-        if op in ("dc", "ic") and not line_size_ok:
-            continue  # wrong-stride maintenance misses the patched line
-        performed.append(op)
-    req = required_steps(cfg)
-    # req must appear as an in-order SUBSEQUENCE of performed (extra, unneeded
-    # steps in performed are harmless and skipped).
-    i = 0
-    for p in performed:
-        if i < len(req) and p == req[i]:
-            i += 1
-    if i == len(req):
-        return True, None
-    return False, req[i]   # first still-missing required step
-
-
-# ---- qemu oracle (P4-2): coherent-mode end state must equal qemu ----------
+# ---- qemu semantic oracle ----
 def elf_wrap(code, entry_off):
     EHDR, PHDR = 64, 56
     total = EHDR + PHDR + len(code)
     e = struct.pack("<4sBBBBB7xHHIQQQIHHHHHH", b"\x7fELF", 2, 1, 1, 0, 0,
-                    2, 183, 1, BASE + EHDR + PHDR + entry_off, EHDR, 0, 0,
-                    EHDR, PHDR, 1, 0, 0, 0)
-    # RWX: the kernel self-modifies its own slot, so the page must be writable
-    # AND executable. (qemu-aarch64 is SMC-coherent, so the patch is visible.)
-    p = struct.pack("<IIQQQQQQ", 1, 7, 0, BASE, BASE, total, total, 0x10000)
+                    2, 183, 1, CODEBASE + entry_off, EHDR, 0, 0, EHDR, PHDR, 1, 0, 0, 0)
+    p = struct.pack("<IIQQQQQQ", 1, 7, 0, BASE, BASE, total, total, 0x10000)  # RWX (self-modifies)
     return e + p + code
 
 
 def run_qemu(code, entry_off):
     d = tempfile.mkdtemp()
     path = os.path.join(d, "k")
-    with open(path, "wb") as f:
-        f.write(elf_wrap(code, entry_off))
+    open(path, "wb").write(elf_wrap(code, entry_off))
     os.chmod(path, 0o755)
-    r = subprocess.run(["qemu-aarch64", path], capture_output=True)
-    return r.returncode
+    return subprocess.run(["qemu-aarch64", path], capture_output=True).returncode
 
 
-# ---- the kernels and the sweep -------------------------------------------
 KERNELS = {
-    "correct":      ["dc", "dsb1", "ic", "dsb2", "isb"],
-    "omit-DC":      ["dsb1", "ic", "dsb2", "isb"],
-    "omit-DSB1":    ["dc", "ic", "dsb2", "isb"],
-    "omit-IC":      ["dc", "dsb1", "dsb2", "isb"],
-    "omit-DSB2":    ["dc", "dsb1", "ic", "isb"],
-    "omit-ISB":     ["dc", "dsb1", "ic", "dsb2"],
-    "none":         [],
+    "correct":   ["dc", "dsb", "ic", "dsb", "isb"],
+    "omit-DC":   ["dsb", "ic", "dsb", "isb"],
+    "omit-DSB1": ["dc", "ic", "dsb", "isb"],
+    "omit-IC":   ["dc", "dsb", "dsb", "isb"],
+    "omit-DSB2": ["dc", "dsb", "ic", "isb"],
+    "omit-ISB":  ["dc", "dsb", "ic", "dsb"],
+    "none":      [],
 }
-
-# Only architecturally-valid CTR_EL0 combinations. Per the Arm ARM, "if
-# CTR_EL0.DIC is 1 then IDC must also be 1", so {IDC=0, DIC=1} is IMPOSSIBLE and
-# is deliberately absent (DDI 0487K.a D23.2.35).
-CONFIGS = {
+CONFIGS = {   # only architecturally-valid combinations ({IDC=0,DIC=1} is impossible)
     "IDC=0,DIC=0": Config(idc=0, dic=0),
     "IDC=1,DIC=0": Config(idc=1, dic=0),
     "IDC=1,DIC=1": Config(idc=1, dic=1),
@@ -237,10 +178,9 @@ CONFIGS = {
 
 def main():
     print("=" * 78)
-    print("ifetch-sanitizer: which cache-maintenance step is missing, per CTR_EL0 config")
-    print("(ALL staleness output is MODEL output; the same kernels run FRESH under")
-    print(" qemu-aarch64, which is SMC-coherent -- that is qemu's coherence, R10)")
-    print("Arch ref:", ARM_REF)
+    print("ifetch-sanitizer (program-driven): which cache-maintenance step is missing")
+    print("Staleness is MODEL output (R10); every kernel runs FRESH under qemu-aarch64.")
+    print(ARM_REF)
     print("=" * 78)
     fail = 0
 
@@ -250,75 +190,72 @@ def main():
             fail = 1
         print(f"VERDICT {'PASS' if cond else 'FAIL'}: {name}" + (f"  [{detail}]" if detail else ""))
 
-    # ---- P4-2 encoder oracle: a64asm vs aarch64-linux-gnu-as ----
     p, t, fails = A.selftest()
-    v(f"encoder oracle: a64asm matches aarch64-linux-gnu-as ({p}/{t})", p == t,
-      f"mismatches: {fails}" if fails else "all encoders byte-identical")
+    v(f"encoder oracle: a64asm matches aarch64-linux-gnu-as ({p}/{t})", p == t, str(fails))
 
-    # ---- P4-2 semantic oracle: coherent-mode model == qemu for EVERY kernel ----
-    print("\n-- semantic oracle (coherent config IDC=0,DIC=0; correct kernel vs qemu) --")
-    code, slot_off, entry_off, trace, slot_vaddr = build_kernel(KERNELS["correct"])
-    qret = run_qemu(code, entry_off)
-    mret = interp(code, entry_off, slot_vaddr, CONFIGS["IDC=0,DIC=0"], trace, True)
-    print(f"correct kernel: qemu exit={qret}  model(coherent) x0={mret}  (both must be NEW={SLOT_NEW})")
-    v("semantic oracle: model coherent-mode result == qemu == NEW", qret == SLOT_NEW and mret == SLOT_NEW,
-      f"qemu={qret} model={mret} new={SLOT_NEW}")
-    # qemu runs every kernel FRESH regardless of maintenance (it is coherent):
-    qall = {k: run_qemu(build_kernel(m)[0], 0) for k, m in KERNELS.items()}
-    v("qemu runs EVERY kernel fresh (NEW) -- so qemu cannot show the stale cases",
-      all(r == SLOT_NEW for r in qall.values()),
-      f"qemu exits: {qall}")
+    # ---- B4 semantic oracle: model COHERENT mode == qemu on EVERY kernel ----
+    print("\n-- semantic oracle: model(coherent) end-state vs qemu exit, every kernel --")
+    oracle_ok = True
+    for kname, maint in KERNELS.items():
+        code, eoff, slot = build_kernel(maint)
+        q = run_qemu(code, eoff)
+        mc, _ = interp(code, eoff, slot, CONFIGS["IDC=0,DIC=0"], coherent=True)
+        same = (q == SLOT_NEW == mc)
+        oracle_ok = oracle_ok and same
+        print(f"  {kname:9} qemu={q:3}  model(coherent)={mc:3}  {'ok' if same else 'MISMATCH'}")
+    v("B4 semantic oracle: model coherent-mode == qemu == NEW for every kernel", oracle_ok)
+
+    # ---- B1 program-dependence: verdict must follow the executed instructions ----
+    code_a, eoff_a, slot_a = build_kernel(["dsb", "dsb", "dsb", "dsb", "dsb"])
+    xa, _ = interp(code_a, eoff_a, slot_a, CONFIGS["IDC=0,DIC=0"])
+    v("B1(a): a kernel whose maintenance is only DSBs is diagnosed STALE (reads the program)",
+      xa == SLOT_OLD, f"x0={xa}")
+    code_c, eoff_c, slot_c = build_kernel(KERNELS["correct"])
+    xc, _ = interp(code_c, eoff_c, slot_c, CONFIGS["IDC=0,DIC=0"])
+    v("B1(c): the correct kernel is FRESH", xc == SLOT_NEW, f"x0={xc}")
 
     # ---- the diagnosis matrix ----
-    print("\n-- diagnosis matrix: x0 after calling the patched slot (NEW=fresh, OLD=stale) --")
-    hdr = f"{'kernel':12}" + "".join(f"{c:>22}" for c in CONFIGS)
-    print(hdr)
-    results = {}
+    print("\n-- diagnosis matrix: x0 after re-running the patched slot --")
+    print(f"{'kernel':10}" + "".join(f"{c:>16}" for c in CONFIGS))
+    res = {}
     for kname, maint in KERNELS.items():
-        code, slot_off, entry_off, trace, slot_vaddr = build_kernel(maint)
-        row = f"{kname:12}"
+        code, eoff, slot = build_kernel(maint)
+        row = f"{kname:10}"
         for cname, cfg in CONFIGS.items():
-            fresh, missing = evaluate_maintenance(trace, cfg, slot_vaddr, True)
-            x0 = interp(code, entry_off, slot_vaddr, cfg, trace, True)
-            tag = "NEW" if x0 == SLOT_NEW else f"OLD!{STEP_LABEL[missing].split()[0] if missing else ''}"
-            results[(kname, cname)] = (fresh, missing, x0)
-            row += f"{tag:>22}"
+            x0, mach = interp(code, eoff, slot, cfg)
+            fresh, missing = mach.diagnose(slot - CODEBASE)
+            res[(kname, cname)] = (x0, missing)
+            row += f"{('NEW' if x0 == SLOT_NEW else 'OLD!' + (missing or '?')):>16}"
         print(row)
 
-    # ---- verdicts on the diagnosis ----
-    print()
-    # correct kernel is fresh in every config
-    v("the correct full sequence executes FRESH in every config",
-      all(results[("correct", c)][2] == SLOT_NEW for c in CONFIGS),
-      "")
-    # each omission is stale in both0 and the sanitizer names the omitted step
-    for kname, step in [("omit-DC", "dc"), ("omit-IC", "ic"), ("omit-ISB", "isb")]:
-        fresh, missing, x0 = results[(kname, "IDC=0,DIC=0")]
-        v(f"{kname}: stale under IDC=0/DIC=0, sanitizer names '{STEP_LABEL[step]}'",
-          x0 == SLOT_OLD and missing == step,
-          f"missing={missing} x0={x0}")
-    # IDC=1 excuses the DC omission; DIC=1 excuses the IC omission
-    v("omit-DC becomes FRESH when IDC=1 (D-cache clean to PoU not required)",
-      results[("omit-DC", "IDC=1,DIC=0")][2] == SLOT_NEW and results[("omit-DC", "IDC=0,DIC=0")][2] == SLOT_OLD,
-      "config-sensitive, as the architecture specifies")
-    v("omit-IC becomes FRESH when DIC=1 (requires IDC=1; config IDC=1,DIC=1)",
-      results[("omit-IC", "IDC=1,DIC=1")][2] == SLOT_NEW and results[("omit-IC", "IDC=0,DIC=0")][2] == SLOT_OLD,
-      "DIC=1 implies IDC=1 per DDI 0487 D23.2.35; {IDC=0,DIC=1} is impossible and omitted")
-    # ISB is always required
-    v("omit-ISB is stale in EVERY config (ISB is never excused by IDC/DIC)",
-      all(results[("omit-ISB", c)][2] == SLOT_OLD for c in CONFIGS), "")
+    v("correct sequence is FRESH in every valid config",
+      all(res[("correct", c)][0] == SLOT_NEW for c in CONFIGS))
+    for k, step in [("omit-DC", "dc"), ("omit-IC", "ic"), ("omit-ISB", "isb")]:
+        x0, miss = res[(k, "IDC=0,DIC=0")]
+        v(f"{k}: STALE under IDC=0,DIC=0 and the sanitizer names '{STEP_LABEL[step]}'",
+          x0 == SLOT_OLD and miss == step, f"missing={miss} x0={x0}")
+    v("omit-DC becomes FRESH under IDC=1 (DC excused) but omit-ISB stays STALE",
+      res[("omit-DC", "IDC=1,DIC=0")][0] == SLOT_NEW and
+      all(res[("omit-ISB", c)][0] == SLOT_OLD for c in CONFIGS),
+      "IDC=1 excuses DC (barrier kept); ISB never excused")
+    v("omit-IC becomes FRESH only under DIC=1 (=>IDC=1), else STALE",
+      res[("omit-IC", "IDC=1,DIC=1")][0] == SLOT_NEW and
+      res[("omit-IC", "IDC=0,DIC=0")][0] == SLOT_OLD and
+      res[("omit-IC", "IDC=1,DIC=0")][0] == SLOT_OLD, "")
 
-    # ---- line-size mismatch class (the big.LITTLE JIT bug) ----
-    print("\n-- I/D line-size mismatch: correct sequence, but the maintenance loop")
-    print("   strides by the wrong line size so it misses the patched line --")
-    code, slot_off, entry_off, trace, slot_vaddr = build_kernel(KERNELS["correct"])
-    mism = Config(idc=0, dic=0, dminline=64, iminline=128)  # loop assumed 64, I-line is 128
-    x0_ok = interp(code, entry_off, slot_vaddr, mism, trace, True)   # stride correct
-    x0_bad = interp(code, entry_off, slot_vaddr, mism, trace, False)  # stride wrong (misses line)
-    print(f"   correct-stride x0={x0_ok} (NEW)   wrong-stride x0={x0_bad} (OLD, stale)")
-    v("line-size mismatch: a correct-looking sequence with the wrong stride goes STALE",
-      x0_ok == SLOT_NEW and x0_bad == SLOT_OLD,
-      "the classic big.LITTLE mismatched-cache-line JIT bug, caught by the model")
+    # ---- B1 line-size class: a REAL wrong flush stride in the program ----
+    print("\n-- line-size mismatch: a kernel that flushes the WRONG line (stride bug) --")
+    cfg = Config(idc=0, dic=0, iminline=64, dminline=64)
+    good, eg, sg = build_kernel(KERNELS["correct"], flush_off=0)   # flush the slot's line
+    bad, eb, sb = build_kernel(KERNELS["correct"], flush_off=64)   # flush one line too far
+    xg, _ = interp(good, eg, sg, cfg)
+    xb, mb = interp(bad, eb, sb, cfg)
+    fb, missb = mb.diagnose(sb - CODEBASE)
+    print(f"  correct stride  -> x0={xg} ({'NEW' if xg == SLOT_NEW else 'OLD'})")
+    print(f"  wrong stride    -> x0={xb} ({'NEW' if xb == SLOT_NEW else 'OLD'}); first missing: {missb}")
+    v("line-size: the program's flush misses the slot's line -> STALE, from the actual addresses",
+      xg == SLOT_NEW and xb == SLOT_OLD and missb in ("dc", "ic"),
+      "wrong stride detected from the executed flush addresses, not a flag")
 
     print("\n" + ("ALL VERDICTS PASS" if fail == 0 else "SOME VERDICTS FAILED"))
     return fail

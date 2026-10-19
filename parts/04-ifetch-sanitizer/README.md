@@ -14,14 +14,19 @@ reports whether the patched code runs **fresh or stale** and, if stale, **exactl
 which maintenance step is missing**.
 
 ```
-kernel         IDC=0,DIC=0   IDC=1,DIC=0   IDC=1,DIC=1
-correct                NEW           NEW           NEW
-omit-DC             OLD!DC           NEW           NEW     <- IDC=1 excuses DC; step named
-omit-IC             OLD!IC        OLD!IC           NEW     <- DIC=1 (=>IDC=1) excuses IC
-omit-ISB           OLD!ISB       OLD!ISB       OLD!ISB     <- ISB is never excused
+kernel        IDC=0,DIC=0   IDC=1,DIC=0   IDC=1,DIC=1
+correct             NEW           NEW           NEW
+omit-DC          OLD!dc           NEW           NEW   <- IDC=1 excuses DC; step named
+omit-DSB1        OLD!ic        OLD!ic           NEW   <- no DSB before IC => IC ineffective
+omit-IC          OLD!ic        OLD!ic           NEW   <- DIC=1 (=>IDC=1) excuses IC
+omit-DSB2       OLD!dsb       OLD!dsb           NEW
+omit-ISB        OLD!isb       OLD!isb       OLD!isb   <- ISB is never excused (kept even if DIC=1)
+none             OLD!dc       OLD!dsb       OLD!dsb
 ```
 (Only the three architecturally-valid CTR_EL0 combinations are swept:
-`{IDC=0,DIC=1}` is impossible — DDI 0487K.a D23.2.35 says DIC=1 implies IDC=1.)
+`{IDC=0,DIC=1}` is impossible — Arm CTR_EL0 says DIC=1 implies IDC=1. The
+barriers (`DSB`, final `ISB`) are **kept even when IDC/DIC excuse the cache op**,
+matching Linux `cache.S` — see B2 below.)
 
 ## Why this is novel (see ../../research/NOVELTY-LOG.md C01; REVIEW-01 §2.4)
 
@@ -51,23 +56,34 @@ covers the **I/D line-size-mismatch** (big.LITTLE JIT) class.
   differential-tests all 22 encoders against `aarch64-linux-gnu-as` (R6 / P4-2
   encoder oracle): GNU binutils is the authority, not this file.
 - `icache_model.py` — the modelled I/D cache hierarchy + `Config(IDC,DIC,Dline,
-  Iline)`. All staleness is **model output** (R10 / P4-4).
-- `sanitize.py` — the interpreter, the kernels, the per-config diagnosis, the
-  qemu semantic oracle, and the grep-able VERDICTs.
+  Iline)`. It is **driven by the instructions the interpreter executes**: the
+  interpreter calls `store/dc/ic/dsb/isb` as it decodes `STR / DC CVAU / IC IVAU
+  / DSB / ISB`, and reads the slot back through `fetch_word`, which returns the
+  patched bytes only if the executed maintenance satisfies the rule (`diagnose`)
+  and otherwise the pre-patch snapshot the stale I-cache / un-synchronized
+  prefetch still holds. All staleness is **model output** (R10 / P4-4).
+- `sanitize.py` — the interpreter (executes each kernel **through** the model:
+  warm the slot, patch it with a real `STR`, run the kernel's maintenance
+  instructions, re-run the slot), the kernels, the per-config diagnosis, the
+  qemu semantic oracle, and the grep-able VERDICTs. The verdict depends on the
+  program's instructions, not on any recipe (REVIEW-04 B1).
 
 ## Oracles (P4-2) and architecture citation (P4-3)
 
 - **Encoder oracle:** 22/22 a64asm encoders are byte-identical to
   `aarch64-linux-gnu-as` (RUN.md). The reviewer may add instructions to
   `a64asm._CASES` at the gate.
-- **Semantic oracle:** the `correct` kernel's end state (`x0`) under the model's
-  **coherent** config equals its exit code under **qemu-aarch64 8.2.2** (both
-  `NEW`=0x22). qemu runs **every** kernel fresh (it is SMC-coherent), so qemu
-  **cannot** show the stale cases — those are model output, and that is stated
-  (R10). "Runs fine under qemu" means qemu's coherence, never silicon evidence.
-- **Architecture citation:** every per-config rule cites **Arm ARM DDI 0487K.a,
-  B2.7.4** ("Instruction cache maintenance requirements") and **D23.2.35
-  CTR_EL0.{IDC,DIC}** — see `ARM_REF` in `sanitize.py`.
+- **Semantic oracle (P4-2, B4):** **every** kernel's end state under the model's
+  **coherent** mode equals its exit code under **qemu-aarch64 8.2.2** (all
+  `NEW`=0x22) — not just the `correct` kernel. qemu runs every kernel fresh (it
+  is SMC-coherent), so qemu **cannot** show the stale cases — those are model
+  output (R10). "Runs fine under qemu" means qemu's coherence, never silicon.
+- **Architecture citation (P4-3, B3):** `ARM_REF` in `sanitize.py` **quotes
+  verbatim** the Arm CTR_EL0 IDC/DIC definitions (incl. "if DIC=1 then IDC must
+  also be 1") and the Linux `cache.S` fact that the **barriers are kept** when
+  IDC/DIC skip a cache op — which is why `omit-ISB` is stale even under
+  `IDC=1,DIC=1`, and `omit-DSB*` are stale. The canonical sequence is placed at
+  DDI 0487G.a §B2.2.5 (per Rutland / US11210222).
 - **herdtools7 cross-check (data, not run):** the published litmus test
   `SM.udf+dc.cvau+dsb.ish-ic.vau-dsb.ish-isb.litmus`
   (`research/raw/repos/herd__herdtools7-ifetch/`, fetched from herd/herdtools7
@@ -98,10 +114,18 @@ python3 sanitize.py   # just the sanitizer
 - **Single-thread (SM-style).** The kernels are store-modify-execute on one
   thread (matching the herdtools7 `SM.*` tests); cross-thread (`MP.*`) ifetch
   is out of scope and noted for v2.
-- **The maintenance-sequence rule is modelled as an ordered subsequence** (DC,
-  DSB, IC, DSB, ISB with IDC/DIC skips); the two `DSB ISH` are required
-  positions, and a wrong-stride maintenance is modelled as not covering the
-  patched line. This is the architectural requirement, not a cycle-level cache
-  simulation.
+- **The maintenance rule is modelled as an ordered subsequence of the EXECUTED
+  instructions** (DC, DSB, IC, DSB, ISB; the cache ops skippable per IDC/DIC but
+  the DSB/ISB barriers kept); DC/IC count only where their actual target address
+  covers the slot's line, so a wrong flush stride is caught from the program.
+  Fresh ⇒ the slot fetches the patched word; otherwise it fetches the pre-patch
+  snapshot (stale I-cache / un-synchronized prefetch). This is the architectural
+  requirement, not a cycle-level cache simulation.
+- **herdtools7 cross-check covers only the full sequence** (N1): the `SM.udf`
+  litmus test corroborates `correct ⇒ fresh`, not the per-config skips, which
+  rest on the quoted Arm/Linux rule.
+- **Linux mitigates the line-size class** (N2): the `ARM64_MISMATCHED_CACHE_TYPE`
+  CTR_EL0 trap makes the kernel advertise the smallest line across cores, so the
+  big.LITTLE stride bug this part models is mitigated in practice on Linux.
 - **Safety:** benign — a cache-maintenance teaching/diagnostic tool; the qemu
   runs are tiny own-built kernels; no network, no writes outside the dir.

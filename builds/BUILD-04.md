@@ -69,3 +69,34 @@ Removed it: the matrix now sweeps only the three valid configs
 {IDC=0,DIC=0}, {IDC=1,DIC=0}, {IDC=1,DIC=1}, and a comment + the "omit-IC fresh
 when DIC=1" verdict both note that DIC=1 implies IDC=1. All 11 VERDICTs still
 PASS. The impossibility is cited where the configs are defined.
+
+## Fix round 1 (REVIEW-04-build, CHANGES REQUESTED @6530c51)
+
+All four blockers fixed; the sanitizer is now genuinely program-driven.
+
+- **B1 (verdict read a recipe, not the program) — FIXED.** `interp` now executes
+  each kernel **through** `icache_model.Machine`: it decodes the actual
+  `STR/DC CVAU/IC IVAU/DSB/ISB` it runs and applies them to the model, warms the
+  slot (caches the OLD word), patches with a real `STR`, and **re-fetches the
+  slot through `Machine.fetch_word`** (fresh ⇒ patched word, else the pre-patch
+  snapshot). The recipe-as-verdict is gone. New test B1(a): a kernel whose
+  maintenance is replaced by only `DSB`s is now diagnosed **STALE** (was FRESH).
+  The line-size class is a **real wrong flush address** in the program
+  (`flush_off`), detected from the executed DC/IC target vs the slot's line, not
+  a boolean. `icache_model.Machine` is instantiated and used.
+- **B2 (rule diverged; impossible config) — FIXED.** `Machine.required()` keeps
+  the `DSB`/`ISB` barriers even when IDC/DIC skip the cache op (matching Linux
+  `cache.S`), so `omit-ISB` is STALE even under `IDC=1,DIC=1` and the
+  `omit-DSB*` kernels are STALE. The impossible `{IDC=0,DIC=1}` config is gone;
+  only the 3 valid combinations are swept.
+- **B3 (cited, not quoted) — FIXED.** `ARM_REF` now **quotes verbatim** the Arm
+  CTR_EL0 IDC/DIC text (incl. "if DIC=1 then IDC must also be 1") and the Linux
+  `cache.S` barrier-kept fact; places the sequence at DDI 0487G.a §B2.2.5 (per
+  Rutland/US11210222). The quote settles B2's DSB question.
+- **B4 (semantic oracle on one kernel) — FIXED.** The oracle now compares the
+  model's **coherent-mode** end state against qemu for **every** kernel (all NEW).
+- **N1/N2** disclosed in README (herdtools7 covers only the full sequence; Linux
+  mitigates the line-size class via the `ARM64_MISMATCHED_CACHE_TYPE` trap).
+
+Re-verified: 11/11 VERDICTs PASS, encoder 22/22, semantic oracle all kernels ==
+qemu; reproduced under `env -i`. RUN.md re-captured.

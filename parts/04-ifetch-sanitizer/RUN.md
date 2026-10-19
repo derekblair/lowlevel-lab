@@ -1,59 +1,74 @@
-# RUN.md — ifetch-sanitizer, verbatim build+run on nibbles
+# RUN.md — ifetch-sanitizer, verbatim build+run on nibbles (fix round 1)
 
-Captured 2026-10-19 09:03:25 PDT on nibbles, user derekblair. Verbatim, from clean.
-Fully deterministic (no timing/sampling).
+Captured 2026-10-19 09:23:31 PDT on nibbles, user derekblair. Deterministic; verbatim.
 
 ## Environment
 ```
 $ python3 --version
 Python 3.12.3
-$ aarch64-linux-gnu-as --version | head -1
+$ aarch64-linux-gnu-as --version|head -1
 GNU assembler (GNU Binutils for Ubuntu) 2.42
-$ qemu-aarch64 --version | head -1
+$ qemu-aarch64 --version|head -1
 qemu-aarch64 version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)
 ```
 
-## make (encoder oracle + semantic oracle + diagnosis matrix + VERDICTs)
+## make (encoder oracle + qemu semantic oracle + program-dependence tests + matrix + line-size)
 ```
 $ make
 python3 a64asm.py          # encoder differential test vs aarch64-linux-gnu-as
 a64asm differential test vs aarch64-linux-gnu-as: 22/22 encoders match
 python3 sanitize.py        # semantic oracle + the diagnosis matrix + VERDICTs
 ==============================================================================
-ifetch-sanitizer: which cache-maintenance step is missing, per CTR_EL0 config
-(ALL staleness output is MODEL output; the same kernels run FRESH under
- qemu-aarch64, which is SMC-coherent -- that is qemu's coherence, R10)
-Arch ref: Arm ARM DDI 0487K.a, B2.7.4 'Instruction cache maintenance requirements' and D23.2.35 CTR_EL0.{IDC,DIC}; the sequence DC CVAU; DSB ISH; IC IVAU; DSB ISH; ISB
+ifetch-sanitizer (program-driven): which cache-maintenance step is missing
+Staleness is MODEL output (R10); every kernel runs FRESH under qemu-aarch64.
+Arm CTR_EL0 (DDI 0487, AArch64-ctr_el0; Arm XML build 26/03/2024), verbatim:
+  IDC=1: "Data cache clean to the Point of Unification is not required for
+          instruction to data coherence."
+  DIC=1: "Instruction cache invalidation to the Point of Unification is not
+          required for data to instruction coherence."
+  "If CTR_EL0.DIC is 1 then the value reported in [IDC] must also be 1."
+Canonical modify-execute sequence (DDI 0487G.a B2.2.5, per Rutland/US11210222):
+  modifying PE: DC CVAU,Xn ; DSB ISH ; IC IVAU,Xn ; DSB ISH ; and each executing
+  PE: ISB.
+Linux arch/arm64/mm/cache.S caches_clean_inval_pou_macro: on ARM64_HAS_CACHE_IDC
+  the DC loop is skipped but a 'dsb ishst' is STILL issued; on ARM64_HAS_CACHE_DIC
+  the IC loop is skipped but an 'isb' is STILL issued. => the barriers are kept
+  even when IDC/DIC excuse the cache op; that is the rule this model applies.
 ==============================================================================
-VERDICT PASS: encoder oracle: a64asm matches aarch64-linux-gnu-as (22/22)  [all encoders byte-identical]
+VERDICT PASS: encoder oracle: a64asm matches aarch64-linux-gnu-as (22/22)  [[]]
 
--- semantic oracle (coherent config IDC=0,DIC=0; correct kernel vs qemu) --
-correct kernel: qemu exit=34  model(coherent) x0=34  (both must be NEW=34)
-VERDICT PASS: semantic oracle: model coherent-mode result == qemu == NEW  [qemu=34 model=34 new=34]
-VERDICT PASS: qemu runs EVERY kernel fresh (NEW) -- so qemu cannot show the stale cases  [qemu exits: {'correct': 34, 'omit-DC': 34, 'omit-DSB1': 34, 'omit-IC': 34, 'omit-DSB2': 34, 'omit-ISB': 34, 'none': 34}]
+-- semantic oracle: model(coherent) end-state vs qemu exit, every kernel --
+  correct   qemu= 34  model(coherent)= 34  ok
+  omit-DC   qemu= 34  model(coherent)= 34  ok
+  omit-DSB1 qemu= 34  model(coherent)= 34  ok
+  omit-IC   qemu= 34  model(coherent)= 34  ok
+  omit-DSB2 qemu= 34  model(coherent)= 34  ok
+  omit-ISB  qemu= 34  model(coherent)= 34  ok
+  none      qemu= 34  model(coherent)= 34  ok
+VERDICT PASS: B4 semantic oracle: model coherent-mode == qemu == NEW for every kernel
+VERDICT PASS: B1(a): a kernel whose maintenance is only DSBs is diagnosed STALE (reads the program)  [x0=17]
+VERDICT PASS: B1(c): the correct kernel is FRESH  [x0=34]
 
--- diagnosis matrix: x0 after calling the patched slot (NEW=fresh, OLD=stale) --
-kernel                 IDC=0,DIC=0           IDC=1,DIC=0           IDC=1,DIC=1
-correct                        NEW                   NEW                   NEW
-omit-DC                     OLD!DC                   NEW                   NEW
-omit-DSB1                  OLD!DSB                   NEW                   NEW
-omit-IC                     OLD!IC                OLD!IC                   NEW
-omit-DSB2                  OLD!DSB               OLD!DSB                   NEW
-omit-ISB                   OLD!ISB               OLD!ISB               OLD!ISB
-none                        OLD!DC                OLD!IC               OLD!ISB
+-- diagnosis matrix: x0 after re-running the patched slot --
+kernel         IDC=0,DIC=0     IDC=1,DIC=0     IDC=1,DIC=1
+correct                NEW             NEW             NEW
+omit-DC             OLD!dc             NEW             NEW
+omit-DSB1           OLD!ic          OLD!ic             NEW
+omit-IC             OLD!ic          OLD!ic             NEW
+omit-DSB2          OLD!dsb         OLD!dsb             NEW
+omit-ISB           OLD!isb         OLD!isb         OLD!isb
+none                OLD!dc         OLD!dsb         OLD!dsb
+VERDICT PASS: correct sequence is FRESH in every valid config
+VERDICT PASS: omit-DC: STALE under IDC=0,DIC=0 and the sanitizer names 'DC CVAU (clean D-cache to PoU)'  [missing=dc x0=17]
+VERDICT PASS: omit-IC: STALE under IDC=0,DIC=0 and the sanitizer names 'IC IVAU (invalidate I-cache to PoU)'  [missing=ic x0=17]
+VERDICT PASS: omit-ISB: STALE under IDC=0,DIC=0 and the sanitizer names 'ISB (synchronize fetch)'  [missing=isb x0=17]
+VERDICT PASS: omit-DC becomes FRESH under IDC=1 (DC excused) but omit-ISB stays STALE  [IDC=1 excuses DC (barrier kept); ISB never excused]
+VERDICT PASS: omit-IC becomes FRESH only under DIC=1 (=>IDC=1), else STALE
 
-VERDICT PASS: the correct full sequence executes FRESH in every config
-VERDICT PASS: omit-DC: stale under IDC=0/DIC=0, sanitizer names 'DC CVAU (clean D-cache to PoU)'  [missing=dc x0=17]
-VERDICT PASS: omit-IC: stale under IDC=0/DIC=0, sanitizer names 'IC IVAU (invalidate I-cache to PoU)'  [missing=ic x0=17]
-VERDICT PASS: omit-ISB: stale under IDC=0/DIC=0, sanitizer names 'ISB (context-synchronize the fetch)'  [missing=isb x0=17]
-VERDICT PASS: omit-DC becomes FRESH when IDC=1 (D-cache clean to PoU not required)  [config-sensitive, as the architecture specifies]
-VERDICT PASS: omit-IC becomes FRESH when DIC=1 (requires IDC=1; config IDC=1,DIC=1)  [DIC=1 implies IDC=1 per DDI 0487 D23.2.35; {IDC=0,DIC=1} is impossible and omitted]
-VERDICT PASS: omit-ISB is stale in EVERY config (ISB is never excused by IDC/DIC)
-
--- I/D line-size mismatch: correct sequence, but the maintenance loop
-   strides by the wrong line size so it misses the patched line --
-   correct-stride x0=34 (NEW)   wrong-stride x0=17 (OLD, stale)
-VERDICT PASS: line-size mismatch: a correct-looking sequence with the wrong stride goes STALE  [the classic big.LITTLE mismatched-cache-line JIT bug, caught by the model]
+-- line-size mismatch: a kernel that flushes the WRONG line (stride bug) --
+  correct stride  -> x0=34 (NEW)
+  wrong stride    -> x0=17 (OLD); first missing: dc
+VERDICT PASS: line-size: the program's flush misses the slot's line -> STALE, from the actual addresses  [wrong stride detected from the executed flush addresses, not a flag]
 
 ALL VERDICTS PASS
 $ echo make_exit=$?
