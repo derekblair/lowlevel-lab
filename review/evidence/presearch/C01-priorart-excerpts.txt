@@ -44,3 +44,25 @@ as follows:
             mcontext->pc = get_fcache_target(dcontext);
 ## https://www.cl.cam.ac.uk/~pes20/iflat/ (RMEM instructions, step 8; fetched via WebFetch, verbatim fragments)
   "These options default to the strongest." / "Select "Out-of-Order Fetching" and uncheck the "IDC=1" and "DIC=1" checkboxes" / "to get the weakest semantics discussed in the paper."
+## torvalds/linux arch/arm64/kernel/cpu_errata.c (gh api, 2026-10-19 07:28:59 PDT, HEAD c03c1a1450)
+static bool
+has_mismatched_cache_type(const struct arm64_cpu_capabilities *entry,
+			  int scope)
+{
+	u64 mask = arm64_ftr_reg_ctrel0.strict_mask;
+	u64 sys = arm64_ftr_reg_ctrel0.sys_val & mask;
+	u64 ctr_raw, ctr_real;
+
+	WARN_ON(scope != SCOPE_LOCAL_CPU || preemptible());
+
+	/*
+	 * We want to make sure that all the CPUs in the system expose
+	 * a consistent CTR_EL0 to make sure that applications behaves
+	 * correctly with migration.
+	 *
+		.desc = "Mismatched cache type (CTR_EL0)",
+		.capability = ARM64_MISMATCHED_CACHE_TYPE,
+		.matches = has_mismatched_cache_type,
+		.type = ARM64_CPUCAP_LOCAL_CPU_ERRATUM,
+		.cpu_enable = cpu_enable_trap_ctr_access,
+	},

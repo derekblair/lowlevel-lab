@@ -140,3 +140,11 @@ total_count=171 incomplete=false
   ARMSX2/ARMSX3  rpcs3/Emu/Cell/SPUCommonRecompiler.cpp
   openjdk/valhalla  src/hotspot/cpu/aarch64/vm_version_aarch64.cpp
 
+### 2026-10-19T14:28:42Z code q=ARM64_MISMATCHED_CACHE_TYPE repo:torvalds/linux
+exit=0
+total_count=4 incomplete=false
+  torvalds/linux  arch/arm64/kvm/sys_regs.c
+  torvalds/linux  arch/arm64/kvm/hyp/nvhe/pkvm.c
+  torvalds/linux  arch/arm64/kernel/cpu_errata.c
+  torvalds/linux  arch/arm64/include/asm/assembler.h
+
