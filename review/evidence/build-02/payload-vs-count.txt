@@ -1,0 +1,26 @@
+== captures .work4 ==
+coarse delay=0        execs=24  author count-based time-keyed ok/wrong=0/24   reviewer PAYLOAD-based time-keyed ok/wrong=18/6
+coarse delay=100      execs=24  author count-based time-keyed ok/wrong=1/23   reviewer PAYLOAD-based time-keyed ok/wrong=16/8
+coarse delay=1000     execs=24  author count-based time-keyed ok/wrong=1/23   reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+coarse delay=10000    execs=24  author count-based time-keyed ok/wrong=1/23   reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+coarse delay=100000   execs=24  author count-based time-keyed ok/wrong=1/23   reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+coarse delay=1000000  execs=24  author count-based time-keyed ok/wrong=1/23   reviewer PAYLOAD-based time-keyed ok/wrong=1/23
+fine   delay=0        execs=24  author count-based time-keyed ok/wrong=24/0    reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+fine   delay=100      execs=24  author count-based time-keyed ok/wrong=24/0    reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+fine   delay=1000     execs=24  author count-based time-keyed ok/wrong=24/0    reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+fine   delay=10000    execs=24  author count-based time-keyed ok/wrong=24/0    reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+fine   delay=100000   execs=24  author count-based time-keyed ok/wrong=24/0    reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+fine   delay=1000000  execs=24  author count-based time-keyed ok/wrong=24/0    reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+== captures .work5 ==
+coarse delay=0        execs=24  author count-based time-keyed ok/wrong=1/23   reviewer PAYLOAD-based time-keyed ok/wrong=19/5
+coarse delay=100      execs=24  author count-based time-keyed ok/wrong=0/24   reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+coarse delay=1000     execs=24  author count-based time-keyed ok/wrong=1/23   reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+coarse delay=10000    execs=24  author count-based time-keyed ok/wrong=0/24   reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+coarse delay=100000   execs=24  author count-based time-keyed ok/wrong=1/23   reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+coarse delay=1000000  execs=24  author count-based time-keyed ok/wrong=1/23   reviewer PAYLOAD-based time-keyed ok/wrong=1/23
+fine   delay=0        execs=24  author count-based time-keyed ok/wrong=24/0    reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+fine   delay=100      execs=24  author count-based time-keyed ok/wrong=24/0    reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+fine   delay=1000     execs=24  author count-based time-keyed ok/wrong=24/0    reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+fine   delay=10000    execs=24  author count-based time-keyed ok/wrong=24/0    reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+fine   delay=100000   execs=24  author count-based time-keyed ok/wrong=24/0    reviewer PAYLOAD-based time-keyed ok/wrong=24/0
+fine   delay=1000000  execs=24  author count-based time-keyed ok/wrong=24/0    reviewer PAYLOAD-based time-keyed ok/wrong=24/0

@@ -1,0 +1,5 @@
+coarse-0         raw-scan PTW events=48  order F0,E0,...,F23,E23: YES
+coarse-1000000   raw-scan PTW events=48  order F0,E0,...,F23,E23: YES
+fine-0           raw-scan PTW events=48  order F0,E0,...,F23,E23: YES
+fine-10000       raw-scan PTW events=48  order F0,E0,...,F23,E23: YES
+fine-1000000     raw-scan PTW events=48  order F0,E0,...,F23,E23: YES

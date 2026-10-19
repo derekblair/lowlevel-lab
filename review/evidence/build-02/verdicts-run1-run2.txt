@@ -1,0 +1,16 @@
+run1: VERDICTS
+run1: VERDICT PASS: PTW-fenced attribution is exact at every delay & timing (0 wrong)  [total fenced wrong across 12 runs = 0; no-preceding-fence = 0]
+run1: VERDICT FAIL: capture is loss-free across the sweep (no OVF packets)  [total OVF packets across 12 runs = 44]
+run1: VERDICT PASS: COARSE timing: TSC+MTC time-keyed mis-attributes at EVERY delay, while PTW-fenced is exact  [coarse time-keyed wrong per delay = [24, 23, 24, 23, 23, 23]; fenced wrong = [0, 0, 0, 0, 0, 0]]
+run1: VERDICT PASS: FINE timing (CYC on): TSC+MTC time-keyed is exact -- so the PTW win is specifically at coarse timing; the fence needs NO timing packets either way  [fine time-keyed wrong per delay = [0, 0, 0, 0, 0, 0]]
+run1: VERDICT PASS: at coarse+delay0: PTW-fenced correct on all, time-keyed correct on almost none  [fenced 24/24 correct; time-keyed 0/24 correct]
+run1: SOME VERDICTS FAILED
+run1: make_exit=2
+run2: VERDICTS
+run2: VERDICT PASS: PTW-fenced attribution is exact at every delay & timing (0 wrong)  [total fenced wrong across 12 runs = 0; no-preceding-fence = 0]
+run2: VERDICT PASS: capture is loss-free across the sweep (no OVF packets)  [total OVF packets across 12 runs = 0]
+run2: VERDICT PASS: COARSE timing: TSC+MTC time-keyed mis-attributes at EVERY delay, while PTW-fenced is exact  [coarse time-keyed wrong per delay = [24, 23, 23, 23, 23, 23]; fenced wrong = [0, 0, 0, 0, 0, 0]]
+run2: VERDICT PASS: FINE timing (CYC on): TSC+MTC time-keyed is exact -- so the PTW win is specifically at coarse timing; the fence needs NO timing packets either way  [fine time-keyed wrong per delay = [0, 0, 0, 0, 0, 0]]
+run2: VERDICT PASS: at coarse+delay0: PTW-fenced correct on all, time-keyed correct on almost none  [fenced 24/24 correct; time-keyed 0/24 correct]
+run2: ALL VERDICTS PASS
+run2: make_exit=0

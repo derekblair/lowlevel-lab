@@ -1,0 +1,28 @@
+strace audit of /home/derekblair/projects/lowlevel-lab/tasks/reviewer-repro/build-02-r1/.evidence/strace.log
+  allowed write roots: /home/derekblair/projects/lowlevel-lab/tasks/reviewer-repro/build-02-r1, /tmp, /dev/null, /dev/tty, /dev/pts, /dev/shm, /proc/self, /proc/thread-self
+  relative-path write-mode opens (resolved against cwd): 1
+  WRITE              0  [none]
+  FS-MUTATE          0  [none]
+  CHDIR-OUT         12  [BLOCKING]
+      1786760 chdir("/home")                  = 0
+      1786770 chdir("/home")                  = 0
+      1786776 chdir("/home")                  = 0
+      1786782 chdir("/home")                  = 0
+      1786788 chdir("/home")                  = 0
+      1786794 chdir("/home")                  = 0
+      1786800 chdir("/home")                  = 0
+      1786807 chdir("/home")                  = 0
+  NETWORK            0  [none]
+  EXEC-PRIV/NET      0  [none]
+  PTRACE-ATTACH      0  [none]
+  FOREIGN-WRITE      0  [none]
+  UNIX-SOCKET        8  [info]
+      1786753 socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, 0) = 3
+      1786753 connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+      1786753 socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, 0) = 3
+      1786753 connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+      1786756 socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, 0) = 3
+      1786756 connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+      1786756 socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, 0) = 3
+      1786756 connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+  RESULT: FINDINGS (see above)

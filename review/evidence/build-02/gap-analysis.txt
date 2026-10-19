@@ -1,0 +1,6 @@
+coarse delay=0        bytes=524      totals: mtc=31 tsc=1 cyc=0 psb=1 ovf=0 | between FENCE_i..EXEC_i: mtc min/med/max=0/0/1  tsc max=0  cyc med=0
+coarse delay=10000    bytes=568      totals: mtc=53 tsc=1 cyc=0 psb=1 ovf=0 | between FENCE_i..EXEC_i: mtc min/med/max=1/1/2  tsc max=0  cyc med=0
+coarse delay=1000000  bytes=1160     totals: mtc=328 tsc=1 cyc=0 psb=1 ovf=0 | between FENCE_i..EXEC_i: mtc min/med/max=11/12/15  tsc max=0  cyc med=0
+fine   delay=0        bytes=2664     totals: mtc=526 tsc=2 cyc=581 psb=2 ovf=0 | between FENCE_i..EXEC_i: mtc min/med/max=0/0/3  tsc max=0  cyc med=1
+fine   delay=10000    bytes=16800    totals: mtc=3978 tsc=9 cyc=4047 psb=9 ovf=0 | between FENCE_i..EXEC_i: mtc min/med/max=143/145/151  tsc max=1  cyc med=146
+fine   delay=1000000  bytes=1294660  totals: mtc=316180 tsc=631 cyc=317491 psb=631 ovf=0 | between FENCE_i..EXEC_i: mtc min/med/max=12100/12726/14651  tsc max=29  cyc med=12777

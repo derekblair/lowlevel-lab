@@ -1,0 +1,6 @@
+coarse period=3 delay=0        first TMA(ctc16,fc)=(6195, 34)  MTC payload deltas (mod 256), most common: Δ3:15, Δ2:7, Δ1:4, Δ4:2, Δ26:1
+coarse period=3 delay=10000    first TMA(ctc16,fc)=(61036, 54)  MTC payload deltas (mod 256), most common: Δ1:22, Δ18:21, Δ2:3, Δ19:2, Δ3:1
+coarse period=3 delay=1000000  first TMA(ctc16,fc)=(44246, 18)  MTC payload deltas (mod 256), most common: Δ0:232, Δ2:13, Δ1:6, Δ3:6, Δ6:2
+fine   period=0 delay=0        first TMA(ctc16,fc)=(59682, 60)  MTC payload deltas (mod 256), most common: Δ1:525
+fine   period=0 delay=10000    first TMA(ctc16,fc)=(1092, 4)  MTC payload deltas (mod 256), most common: Δ1:3977
+fine   period=0 delay=1000000  first TMA(ctc16,fc)=(10994, 50)  MTC payload deltas (mod 256), most common: Δ1:316179
