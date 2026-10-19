@@ -1,0 +1,58 @@
+### 2026-10-19T09:38:04Z repos q=self-tracing "trap flag" in:readme
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T09:38:10Z repos q=in-process single step tracer sigtrap
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T09:38:16Z code q="REG_EFL" "0x100" SIGTRAP sigaction
+exit=0
+total_count=1156 incomplete=false
+  managarm/mlibc  abis/linux/signal.h
+  badgeteam/BadgerOS-Kernel  misc/abi/abi-bits/signal.h
+  omen-osdev/omen  progs/mlibc/abis/linux/signal.h
+  hnsl/librcd  include/musl.h
+  kot-org/Kot  sources/core/libs/mlibc/abis/linux/signal.h
+  Stoozy/Prometheus  kernel/include/abi-bits/signal.h
+  thatmagicalcat/magicalos-mlibc  abis/linux/signal.h
+  TretornESP/bloodmoon  libtest/usr/include/abi-bits/signal.h
+  Alessandro-Salerno/SalernOS  mlibc-salernos/abi/signal.h
+  TretornESP/bloodmoon  libs/mlibc/src/mlibc/abis/linux/signal.h
+
+### 2026-10-19T09:40:52Z code q="gregs[REG_EFL]" "0x100" SIGTRAP
+exit=0
+total_count=356 incomplete=false
+  v8/v8  src/sandbox/trap-fuzzer.cc
+  gperftools/gperftools  src/base/single_stepper.cc
+  jovanbulck/sgx-step  app/tracer/main.c
+  RPCS3/rpcs3  Utilities/Thread.cpp
+  jovanbulck/sgx-step  app/memcmp/main.c
+  xoreaxeaxeax/rosenbridge  fuzz/wrap/fuzz_wrapper.c
+  std-microblock/chromatic  src/core/bindings/native_exception_handler.cc
+  wine-mirror/wine  dlls/ntdll/unix/signal_x86_64.c
+  endrazine/wcc  src/wsh/wsh.c
+  droogie/bbhost  src/main.cpp
+
+### 2026-10-19T09:41:00Z code q="REG_EFL" "|= 0x100"
+exit=0
+total_count=93 incomplete=false
+  thorkill/eresi  libe2dbg/user/dbg-amd64.c
+  endrazine/wcc  src/wsh/wsh.c
+  thorkill/eresi  libe2dbg/user/dbg-ia32.c
+  thorkill/eresi  libe2dbg/user/dbg-sparc32.c
+  std-microblock/chromatic  src/core/bindings/native_exception_handler.cc
+  EEEEhex/RevokeHook  Linux/injector_so/sigbp.c
+  legitbs/quals-2016  int3/int3rupt.c
+  sbcl/sbcl  src/runtime/x86-arch.c
+  Force67/prosperity  delta/kern/probe/probe_trap.cc
+  Unchiga/Yu-Gi-Oh-Forbidden-Memories-Recompiled  src/pc/guest/image.c
+
+### 2026-10-19T09:41:09Z repos q=single step trace own process trap flag
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T09:41:10Z repos q=instruction tracer signal handler x86
+exit=0
+total_count=0 incomplete=false
+
