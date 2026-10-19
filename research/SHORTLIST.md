@@ -168,7 +168,7 @@ ARM64+x64 machine-code theme. **Gated:** a §2.1-complete + ≥2 paper/web adden
 must be posted as `ADDENDUM READY (C12)` and cleared by the reviewer **before
 its build**. Safety (reviewer §5): each stage writes the next stage to **stdout
 only**; the harness redirects it and runs it under qemu; nothing writes or execs
-itself. Addendum to follow (written alongside the P1 build per §5.6).
+itself. **Addendum written** — see NOVELTY-LOG "Replacement addenda" (C12): §2.1-complete (repo 11/topic/ in:readme/ created/ code 2) + G-2 paper/web, dispositions, novel observable, prototype plan. `ADDENDUM READY (C12)` posted; build gated on the reviewer's §6 verdict.
 
 ## P4 — ifetch-sanitizer (reshaped C01) · ARM64 · **N2**
 
@@ -240,9 +240,11 @@ zero, REVIEW-01 §2.5 / §3). Two candidates, decided in the addendum:
   x86 truth (why disassembly is hard).
 - **C22 — PT TNT-bit control-flow barcode**: render PT taken/not-taken bits as a
   per-algorithm texture; rides P2's capture (couples to P2's risk).
-Leaning **C09** (independent, robust). **Gated** like C12: `ADDENDUM READY`
-(§2.1-complete + ≥2 paper/web + dispositions + observable + plan) cleared before
-build. Addendum to follow.
+Chose **C09** (independent of P2, robust). **Addendum written** — see
+NOVELTY-LOG "Replacement addenda" (C09): §2.1-complete + G-2, dispositions,
+novel observable (superset lattice + measured resync-length histogram vs
+`objdump`), prototype plan. C22 benched as fallback. `ADDENDUM READY (C09)`
+posted; build gated on the reviewer's §6 verdict.
 
 ---
 

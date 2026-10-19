@@ -1,0 +1,13 @@
+{
+ "repo": "utds3lab/multiverse",
+ "description": "A static binary rewriter that does not use heuristics",
+ "stars": 310,
+ "created_at": "2018-02-20T07:21:08Z",
+ "pushed_at": "2018-05-17T01:28:17Z",
+ "default_branch": "master",
+ "head_sha": "180819859758adb0e37ae255e9d41f05f3f8e516",
+ "fetched_at_utc": "2026-10-19T14:34:19Z",
+ "files": [
+  "README.md"
+ ]
+}

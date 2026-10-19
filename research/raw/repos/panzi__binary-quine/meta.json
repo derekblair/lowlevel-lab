@@ -1,0 +1,13 @@
+{
+ "repo": "panzi/binary-quine",
+ "description": null,
+ "stars": 0,
+ "created_at": "2023-01-02T04:01:19Z",
+ "pushed_at": "2023-01-02T04:07:26Z",
+ "default_branch": "main",
+ "head_sha": "4d684b5b9ebe583f68c4fd7a134e1a0cd21d78b9",
+ "fetched_at_utc": "2026-10-19T14:34:23Z",
+ "files": [
+  "README.md"
+ ]
+}

@@ -1,0 +1,11 @@
+{
+ "candidate": "C09",
+ "kind": "repos",
+ "query": "superset disassembler created:>2026-04-01",
+ "executed_at": "2026-10-19T07:34:54-0700",
+ "api_call": "gh api -X GET search/repositories -f q='superset disassembler created:>2026-04-01' -f per_page=10",
+ "replay": "gh search repos 'superset disassembler created:>2026-04-01' --limit 10",
+ "total_count": 0,
+ "incomplete_results": false,
+ "items": []
+}

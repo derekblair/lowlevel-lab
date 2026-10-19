@@ -1,0 +1,72 @@
+{
+ "candidate": "C12",
+ "kind": "code",
+ "query": "quine aarch64 x86-64 elf",
+ "executed_at": "2026-10-19T07:36:38-0700",
+ "api_call": "gh api -X GET search/code -f q='quine aarch64 x86-64 elf' -f per_page=10",
+ "replay": "gh search code 'quine aarch64 x86-64 elf' --limit 10",
+ "total_count": 68,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "lkml-likexu/kde",
+   "path": "github/demo",
+   "url": "https://github.com/lkml-likexu/kde/blob/da288d6c569a5b7353bc43a442688db0f6bf87cf/github/demo",
+   "description": "\u8bb0\u5f55\u6211\u7684\u5185\u6838\u6210\u957f\u8d21\u732e\u4e4b\u8def\u3002IMO, fork or clone this repo would be very stupid.  If you have any questions, just send me an email."
+  },
+  {
+   "full_name": "tyfkda/tyfkda.github.io",
+   "path": "blog/2020/04/20/elf-obj.html",
+   "url": "https://github.com/tyfkda/tyfkda.github.io/blob/134d9c68ab9b31965fce536588c8174391aa361d/blog/2020/04/20/elf-obj.html",
+   "description": "Blog using Hexo"
+  },
+  {
+   "full_name": "ash/rakupp",
+   "path": "t/run.raku",
+   "url": "https://github.com/ash/rakupp/blob/80a92d50595473c6572d05276c995e915d766f45/t/run.raku",
+   "description": "Raku++ \u2014 a Raku language interpreter, compiler and toolchain written from scratch in C++"
+  },
+  {
+   "full_name": "nikivdev/github-stars",
+   "path": "readme.md",
+   "url": "https://github.com/nikivdev/github-stars/blob/e352adbbc376c5b624da099fa1b9107cf29698ea/readme.md",
+   "description": "Curated list of my GitHub stars"
+  },
+  {
+   "full_name": "tyfkda/tyfkda.github.io",
+   "path": "blog/2019/07/14/self-hosting-c.html",
+   "url": "https://github.com/tyfkda/tyfkda.github.io/blob/134d9c68ab9b31965fce536588c8174391aa361d/blog/2019/07/14/self-hosting-c.html",
+   "description": "Blog using Hexo"
+  },
+  {
+   "full_name": "medvednikov/v2_old",
+   "path": "doc/docs.md",
+   "url": "https://github.com/medvednikov/v2_old/blob/f3f7f874e3a0d9665158a282287e9c441e98786f/doc/docs.md",
+   "description": "V fork where I test upcoming features and fixes."
+  },
+  {
+   "full_name": "damiant3/Cobblestone",
+   "path": "docs/PM/Done/Stories/THE-ASCENT.md",
+   "url": "https://github.com/damiant3/Cobblestone/blob/fd7a9a38d74d42fa1a62c1e7c50570123c1c4552/docs/PM/Done/Stories/THE-ASCENT.md",
+   "description": "Cobblestone Project built with the Codex Programming Language"
+  },
+  {
+   "full_name": "aien-dev/omega-mv",
+   "path": "docs/osc/audit/language-compiler.md",
+   "url": "https://github.com/aien-dev/omega-mv/blob/a8ffd2b912c84197d08f963b05f9c7d8b30a3f8a/docs/osc/audit/language-compiler.md",
+   "description": "OMEGA: Canonical Sovereign Semantic Substrate & Graph of Meaning"
+  },
+  {
+   "full_name": "tripleo1/awesome",
+   "path": "README.md",
+   "url": "https://github.com/tripleo1/awesome/blob/0087c8c2c607f8c1935ffd4762cf344e8fcfe16e/README.md",
+   "description": "Bunch of stuff I found"
+  },
+  {
+   "full_name": "MenkeTechnologies/zshrs",
+   "path": "README.md",
+   "url": "https://github.com/MenkeTechnologies/zshrs/blob/ca7259f166c05e167b9230b044b5a9e09b74f6b0/README.md",
+   "description": "zshrs => zsh Superset"
+  }
+ ]
+}

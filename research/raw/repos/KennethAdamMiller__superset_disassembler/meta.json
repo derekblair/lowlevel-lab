@@ -1,0 +1,13 @@
+{
+ "repo": "KennethAdamMiller/superset_disassembler",
+ "description": "Disassemblers with various trimming methodologies",
+ "stars": 17,
+ "created_at": "2016-03-02T13:41:55Z",
+ "pushed_at": "2026-03-22T03:08:51Z",
+ "default_branch": "master",
+ "head_sha": "556359c7af6a124d333ba360db7cfd27c98b0dc7",
+ "fetched_at_utc": "2026-10-19T14:34:21Z",
+ "files": [
+  "README.md"
+ ]
+}

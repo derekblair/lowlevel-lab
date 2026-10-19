@@ -653,6 +653,46 @@
   - [KennethAdamMiller/superset_disassembler](https://github.com/KennethAdamMiller/superset_disassembler) ★17 (2026-03-22) — Disassemblers with various trimming methodologies
   - [SoftwareLanguagesSecurityLab/RenewCFI-SupersetDisassembler](https://github.com/SoftwareLanguagesSecurityLab/RenewCFI-SupersetDisassembler) ★0 (2023-08-10) — superset disassembler for RenewCFI
 
+- `gh search repos 'superset disassembly' --limit 10` — **total_count=0** (run 2026-10-18T22:23:04-0700)
+  - (no hits)
+
+- `gh search repos 'overlapping instructions disassembly' --limit 10` — **total_count=1** (run 2026-10-19T07:34:42-0700)
+  - [vikrant-vikram/disasm](https://github.com/vikrant-vikram/disasm) ★5 (2025-11-15) — a Python-based disassembler inspired by the Hex-Rays Decompiler (XHydra) in IDA Pro. It disassembles x86/x64 b
+
+- `gh search repos 'disassembly drift' --limit 10` — **total_count=1** (run 2026-10-19T07:34:45-0700)
+  - [scottschram/apple_ii_genetic_drift_disassembly](https://github.com/scottschram/apple_ii_genetic_drift_disassembly) ★2 (2026-02-17) — Using Claude Code to disassemble my old Apple II game Genetic Drift
+
+- `gh search repos 'superset disassembly in:readme' --limit 10` — **total_count=269** (run 2026-10-19T07:34:48-0700)
+  - [GrammaTech/ddisasm](https://github.com/GrammaTech/ddisasm) ★877 (2026-10-13) — A fast and accurate disassembler
+  - [Storyyeller/Krakatau](https://github.com/Storyyeller/Krakatau) ★2261 (2026-09-25) — Java decompiler, assembler, and disassembler
+  - [utds3lab/multiverse](https://github.com/utds3lab/multiverse) ★310 (2018-05-17) — A static binary rewriter that does not use heuristics
+  - [SystemSecurityStorm/Awesome-Binary-Rewriting](https://github.com/SystemSecurityStorm/Awesome-Binary-Rewriting) ★276 (2022-04-04) — An awesome & curated list of binary rewriting papers
+  - [EpicGames/raddebugger](https://github.com/EpicGames/raddebugger) ★8600 (2026-10-18) — A native, user-mode, multi-process, graphical debugger.
+
+- `gh search repos 'topic:disassembler' --limit 10` — **total_count=931** (run 2026-10-19T07:34:51-0700)
+  - [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) ★91344 (2026-10-19) — Ghidra is a software reverse engineering (SRE) framework
+  - [WerWolv/ImHex](https://github.com/WerWolv/ImHex) ★55442 (2026-10-09) — 🔍 A Hex Editor for Reverse Engineers, Programmers and people who value their retinas when working at 3 AM.
+  - [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) ★49950 (2026-10-18) — An open-source user mode debugger for Windows. Optimized for reverse engineering and malware analysis.
+  - [radareorg/radare2](https://github.com/radareorg/radare2) ★25098 (2026-10-19) — UNIX-like reverse engineering framework and command-line toolset
+  - [horsicq/Detect-It-Easy](https://github.com/horsicq/Detect-It-Easy) ★11757 (2026-10-19) — Program for determining types of files for Windows, Linux and MacOS.
+
+- `gh search repos 'superset disassembler created:>2026-04-01' --limit 10` — **total_count=0** (run 2026-10-19T07:34:54-0700)
+  - (no hits)
+
+- `gh search code '"superset" disassembler every offset' --limit 10` — **total_count=1984** (run 2026-10-19T07:35:09-0700)
+  - [KennethAdamMiller/superset_disassembler/plugin/superset_disassembler.ml](https://github.com/KennethAdamMiller/superset_disassembler/blob/556359c7af6a124d333ba360db7cfd27c98b0dc7/plugin/superset_disassembler.ml) — Disassemblers with various trimming methodologies
+  - [v8/v8/BUILD.bazel](https://github.com/v8/v8/blob/185c56f0aa15e74aab2f06c67ac0fdeba043065b/BUILD.bazel) — The official mirror of the V8 Git repository
+  - [wilvk/asm-test/bindings/python/asmtest/core.py](https://github.com/wilvk/asm-test/blob/6ab09b91395f771591515b419f279aba3acdc6f0/bindings/python/asmtest/core.py) — A C-hosted unit-testing framework for assembly language.
+  - [nxp-archive/adl-tools_adl/fe/Data.h](https://github.com/nxp-archive/adl-tools_adl/blob/f446c5a83454b81f21cb83a0b67ed5988299e1be/fe/Data.h) — ADL codebase
+  - [colbymchenry/codegraph/src/resolution/c-fnptr-synthesizer.ts](https://github.com/colbymchenry/codegraph/blob/0d33925aa3ac4d34ba9f425b24029332597f1941/src/resolution/c-fnptr-synthesizer.ts) — Pre-indexed code knowledge graph, auto syncs on code changes, for Claude Code, Codex, Gemi
+
+- `gh search code 'resynchronization disassembly x86 offset' --limit 10` — **total_count=131** (run 2026-10-19T07:35:23-0700)
+  - [wireshark/wireshark/epan/dissectors/packet-iax2.c](https://github.com/wireshark/wireshark/blob/920ada9f214a0876b2ee14f2dd4a2b5cce89da08/epan/dissectors/packet-iax2.c) — Read-only mirror of Wireshark's Git repository at https://gitlab.com/wireshark/wireshark. 
+  - [UlteSoft/uwvm2/src/uwvm2/uwvm/debugger/native_disassembly_window.h](https://github.com/UlteSoft/uwvm2/blob/47dddc3db289c7a9411be9fb5e800bf3ed2ad3fc/src/uwvm2/uwvm/debugger/native_disassembly_window.h) — UlteSoft WebAssembly Virtual Machine 2
+  - [intelxed/xed/docsrc/xed-doc-top.txt](https://github.com/intelxed/xed/blob/0bcb6237345c5066726dcc08b3d87928df3b5b26/docsrc/xed-doc-top.txt) — The X86 Encoder Decoder (XED), is a software library for encoding and decoding X86 (IA32 a
+  - [open-telemetry/opentelemetry-ebpf-profiler/support/ebpf/types.h](https://github.com/open-telemetry/opentelemetry-ebpf-profiler/blob/950af0974ac8a36324b0ff0e18cedefbeea07c36/support/ebpf/types.h) — The production-scale datacenter profiler (C/C++, Go, Rust, Python, Java, NodeJS, .NET, PHP
+  - [yao8839836/text_gcn/data/corpus/dblp_vocab.txt](https://github.com/yao8839836/text_gcn/blob/962223652e9bb164ac2d83cd09fc7b8845ce860b/data/corpus/dblp_vocab.txt) — Graph Convolutional Networks for Text Classification. AAAI 2019
+
 #### GitHub search record — C10
 
 - `gh search repos 'trap flag single step tracer' --limit 10` — **total_count=0** (run 2026-10-18T22:23:16-0700)
@@ -724,6 +764,42 @@
   - [quine-build/quine-target-aarch64](https://github.com/quine-build/quine-target-aarch64) ★0 (2025-04-14) — Quine compiler backend for ARM64 architecture
 
 - `gh search repos 'arm64 elf quine' --limit 10` — **total_count=0** (run 2026-10-19T02:23:59-0700)
+  - (no hits)
+
+- `gh search repos 'cross-architecture quine' --limit 10` — **total_count=0** (run 2026-10-18T22:23:55-0700)
+  - (no hits)
+
+- `gh search repos 'multi-architecture quine' --limit 10` — **total_count=0** (run 2026-10-19T07:34:02-0700)
+  - (no hits)
+
+- `gh search repos 'polyglot elf executable' --limit 10` — **total_count=1** (run 2026-10-19T07:34:05-0700)
+  - [latedeployment/oci2bin](https://github.com/latedeployment/oci2bin) ★15 (2026-10-11) — Convert OCI images into polyglot ELF+tar executables that run without Docker
+
+- `gh search repos 'quine relay in:readme' --limit 10` — **total_count=208** (run 2026-10-19T07:34:09-0700)
+  - [mame/quine-relay](https://github.com/mame/quine-relay) ★14610 (2026-09-01) — An uroboros program with 100+ programming languages
+  - [MinhasKamal/CreepyCodeCollection](https://github.com/MinhasKamal/CreepyCodeCollection) ★2400 (2024-05-02) — A Nonsense Collection of Disgusting Codes
+  - [rvantonder/pentaquine](https://github.com/rvantonder/pentaquine) ★51 (2013-08-15) — 5-way multiquine
+  - [mame/quine-clique](https://github.com/mame/quine-clique) ★45 (2026-09-01) — 51 quines in 51 languages, every one able to print every other
+  - [kirjavascript/quine-howto](https://github.com/kirjavascript/quine-howto) ★44 (2025-06-01) — how to write lots of quines
+
+- `gh search repos 'topic:quine' --limit 10` — **total_count=201** (run 2026-10-19T07:34:12-0700)
+  - [mame/quine-relay](https://github.com/mame/quine-relay) ★14610 (2026-09-01) — An uroboros program with 100+ programming languages
+  - [MinhasKamal/CreepyCodeCollection](https://github.com/MinhasKamal/CreepyCodeCollection) ★2400 (2024-05-02) — A Nonsense Collection of Disgusting Codes
+  - [mossr/BeautifulAlgorithms.jl](https://github.com/mossr/BeautifulAlgorithms.jl) ★1430 (2025-03-04) — Concise and beautiful algorithms written in Julia
+  - [gfredericks/quinedb](https://github.com/gfredericks/quinedb) ★579 (2017-07-29) — QuineDB is a quine that is also a key-value store.
+  - [makenowjust/quine](https://github.com/makenowjust/quine) ★347 (2026-09-27) — Quine Museum
+
+- `gh search repos 'elf quine created:>2026-04-01' --limit 10` — **total_count=0** (run 2026-10-19T07:34:15-0700)
+  - (no hits)
+
+- `gh search code 'quine aarch64 x86-64 elf' --limit 10` — **total_count=68** (run 2026-10-19T07:36:38-0700)
+  - [lkml-likexu/kde/github/demo](https://github.com/lkml-likexu/kde/blob/da288d6c569a5b7353bc43a442688db0f6bf87cf/github/demo) — 记录我的内核成长贡献之路。IMO, fork or clone this repo would be very stupid.  If you have any questions
+  - [tyfkda/tyfkda.github.io/blog/2020/04/20/elf-obj.html](https://github.com/tyfkda/tyfkda.github.io/blob/134d9c68ab9b31965fce536588c8174391aa361d/blog/2020/04/20/elf-obj.html) — Blog using Hexo
+  - [ash/rakupp/t/run.raku](https://github.com/ash/rakupp/blob/80a92d50595473c6572d05276c995e915d766f45/t/run.raku) — Raku++ — a Raku language interpreter, compiler and toolchain written from scratch in C++
+  - [nikivdev/github-stars/readme.md](https://github.com/nikivdev/github-stars/blob/e352adbbc376c5b624da099fa1b9107cf29698ea/readme.md) — Curated list of my GitHub stars
+  - [tyfkda/tyfkda.github.io/blog/2019/07/14/self-hosting-c.html](https://github.com/tyfkda/tyfkda.github.io/blob/134d9c68ab9b31965fce536588c8174391aa361d/blog/2019/07/14/self-hosting-c.html) — Blog using Hexo
+
+- `gh search code '"EM_AARCH64" "EM_X86_64" quine' --limit 10` — **total_count=0** (run 2026-10-19T07:35:16-0700)
   - (no hits)
 
 #### GitHub search record — C13

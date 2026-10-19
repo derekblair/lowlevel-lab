@@ -1,0 +1,141 @@
+{
+ "candidate": "C09",
+ "kind": "repos",
+ "query": "superset disassembly in:readme",
+ "executed_at": "2026-10-19T07:34:48-0700",
+ "api_call": "gh api -X GET search/repositories -f q='superset disassembly in:readme' -f per_page=10",
+ "replay": "gh search repos 'superset disassembly in:readme' --limit 10",
+ "total_count": 269,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "GrammaTech/ddisasm",
+   "url": "https://github.com/GrammaTech/ddisasm",
+   "description": "A fast and accurate disassembler",
+   "stars": 877,
+   "language": "C++",
+   "created_at": "2018-09-13T13:19:08Z",
+   "pushed_at": "2026-10-13T15:07:50Z",
+   "topics": [
+    "analysis",
+    "binary",
+    "binary-analysis",
+    "binary-rewriting",
+    "disassembler",
+    "gtirb",
+    "intermediate-representation",
+    "reverse-engineering"
+   ]
+  },
+  {
+   "full_name": "Storyyeller/Krakatau",
+   "url": "https://github.com/Storyyeller/Krakatau",
+   "description": "Java decompiler, assembler, and disassembler",
+   "stars": 2261,
+   "language": "Rust",
+   "created_at": "2012-10-20T01:36:08Z",
+   "pushed_at": "2026-09-25T02:26:47Z",
+   "topics": []
+  },
+  {
+   "full_name": "utds3lab/multiverse",
+   "url": "https://github.com/utds3lab/multiverse",
+   "description": "A static binary rewriter that does not use heuristics",
+   "stars": 310,
+   "language": "Python",
+   "created_at": "2018-02-20T07:21:08Z",
+   "pushed_at": "2018-05-17T01:28:17Z",
+   "topics": []
+  },
+  {
+   "full_name": "SystemSecurityStorm/Awesome-Binary-Rewriting",
+   "url": "https://github.com/SystemSecurityStorm/Awesome-Binary-Rewriting",
+   "description": "An awesome & curated list of binary rewriting papers",
+   "stars": 276,
+   "language": null,
+   "created_at": "2020-05-20T03:23:53Z",
+   "pushed_at": "2022-04-04T03:03:51Z",
+   "topics": []
+  },
+  {
+   "full_name": "EpicGames/raddebugger",
+   "url": "https://github.com/EpicGames/raddebugger",
+   "description": "A native, user-mode, multi-process, graphical debugger.",
+   "stars": 8600,
+   "language": "C",
+   "created_at": "2024-01-10T19:24:08Z",
+   "pushed_at": "2026-10-18T19:29:30Z",
+   "topics": []
+  },
+  {
+   "full_name": "gbdev/awesome-gbdev",
+   "url": "https://github.com/gbdev/awesome-gbdev",
+   "description": "A curated list of Game Boy development resources such as tools, docs, emulators, related projects and open-source ROMs.",
+   "stars": 4532,
+   "language": "JavaScript",
+   "created_at": "2016-02-23T09:35:47Z",
+   "pushed_at": "2026-10-16T23:32:05Z",
+   "topics": [
+    "assembler",
+    "awesome",
+    "awesome-list",
+    "cartridge",
+    "dmg",
+    "documentation",
+    "game-boy-development",
+    "game-development",
+    "gameboy",
+    "gameboy-color",
+    "gameboy-color-emulator",
+    "gameboy-emulator",
+    "gamedev",
+    "gbdk",
+    "list",
+    "nintendo",
+    "resources",
+    "retrogaming",
+    "tools"
+   ]
+  },
+  {
+   "full_name": "yapengye/D-ARM",
+   "url": "https://github.com/yapengye/D-ARM",
+   "description": null,
+   "stars": 28,
+   "language": "Python",
+   "created_at": "2022-08-13T09:18:51Z",
+   "pushed_at": "2024-08-28T08:48:23Z",
+   "topics": []
+  },
+  {
+   "full_name": "tomverbeure/panologic-g2",
+   "url": "https://github.com/tomverbeure/panologic-g2",
+   "description": "Pano Logic G2 Reverse Engineering Project",
+   "stars": 154,
+   "language": "Verilog",
+   "created_at": "2018-12-02T23:58:10Z",
+   "pushed_at": "2021-05-13T23:18:59Z",
+   "topics": []
+  },
+  {
+   "full_name": "KennethAdamMiller/superset_disassembler",
+   "url": "https://github.com/KennethAdamMiller/superset_disassembler",
+   "description": "Disassemblers with various trimming methodologies",
+   "stars": 17,
+   "language": "OCaml",
+   "created_at": "2016-03-02T13:41:55Z",
+   "pushed_at": "2026-03-22T03:08:51Z",
+   "topics": []
+  },
+  {
+   "full_name": "cubanismo/jaguar-sdk",
+   "url": "https://github.com/cubanismo/jaguar-sdk",
+   "description": "A Complete SDK Environment for the Atari Jaguar",
+   "stars": 49,
+   "language": "Assembly",
+   "created_at": "2020-06-24T05:19:33Z",
+   "pushed_at": "2026-03-30T06:44:06Z",
+   "topics": []
+  }
+ ]
+}

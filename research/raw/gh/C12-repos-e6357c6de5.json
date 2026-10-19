@@ -1,0 +1,130 @@
+{
+ "candidate": "C12",
+ "kind": "repos",
+ "query": "quine relay in:readme",
+ "executed_at": "2026-10-19T07:34:09-0700",
+ "api_call": "gh api -X GET search/repositories -f q='quine relay in:readme' -f per_page=10",
+ "replay": "gh search repos 'quine relay in:readme' --limit 10",
+ "total_count": 208,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "mame/quine-relay",
+   "url": "https://github.com/mame/quine-relay",
+   "description": "An uroboros program with 100+ programming languages",
+   "stars": 14610,
+   "language": "Ruby",
+   "created_at": "2013-07-15T13:29:20Z",
+   "pushed_at": "2026-09-01T19:09:14Z",
+   "topics": [
+    "quine"
+   ]
+  },
+  {
+   "full_name": "MinhasKamal/CreepyCodeCollection",
+   "url": "https://github.com/MinhasKamal/CreepyCodeCollection",
+   "description": "A Nonsense Collection of Disgusting Codes",
+   "stars": 2400,
+   "language": "C",
+   "created_at": "2016-08-28T08:43:19Z",
+   "pushed_at": "2024-05-02T10:12:21Z",
+   "topics": [
+    "code-golf",
+    "creepy-codes",
+    "esoteric",
+    "esoteric-language",
+    "golf",
+    "golfing",
+    "mandelbrot",
+    "obfuscated",
+    "polyglot",
+    "programming",
+    "programming-language",
+    "quine",
+    "signature"
+   ]
+  },
+  {
+   "full_name": "rvantonder/pentaquine",
+   "url": "https://github.com/rvantonder/pentaquine",
+   "description": "5-way multiquine",
+   "stars": 51,
+   "language": "Python",
+   "created_at": "2013-08-14T10:53:14Z",
+   "pushed_at": "2013-08-15T11:49:57Z",
+   "topics": []
+  },
+  {
+   "full_name": "mame/quine-clique",
+   "url": "https://github.com/mame/quine-clique",
+   "description": "51 quines in 51 languages, every one able to print every other",
+   "stars": 45,
+   "language": "Makefile",
+   "created_at": "2026-08-30T08:20:55Z",
+   "pushed_at": "2026-09-01T15:08:22Z",
+   "topics": []
+  },
+  {
+   "full_name": "kirjavascript/quine-howto",
+   "url": "https://github.com/kirjavascript/quine-howto",
+   "description": "how to write lots of quines",
+   "stars": 44,
+   "language": "JavaScript",
+   "created_at": "2022-09-28T21:16:54Z",
+   "pushed_at": "2025-06-01T23:34:59Z",
+   "topics": []
+  },
+  {
+   "full_name": "SilasX/QuineRelayFiles",
+   "url": "https://github.com/SilasX/QuineRelayFiles",
+   "description": "Intermedate files from mame's quine relay",
+   "stars": 3,
+   "language": "Shell",
+   "created_at": "2013-07-15T22:39:13Z",
+   "pushed_at": "2013-07-16T09:38:52Z",
+   "topics": []
+  },
+  {
+   "full_name": "rabidgremlin/vagrant-quine-relay",
+   "url": "https://github.com/rabidgremlin/vagrant-quine-relay",
+   "description": "Vagrant config to run https://github.com/mame/quine-relay",
+   "stars": 5,
+   "language": "Shell",
+   "created_at": "2013-07-16T03:59:51Z",
+   "pushed_at": "2015-06-24T08:52:29Z",
+   "topics": []
+  },
+  {
+   "full_name": "webyrd/stranger-loops-talk",
+   "url": "https://github.com/webyrd/stranger-loops-talk",
+   "description": "Code from 'Strange Dreams of Stranger Loops' keynote for Strange Leoop 2021 (https://www.youtube.com/watch?v=AffW-7ika0E)",
+   "stars": 10,
+   "language": "Scheme",
+   "created_at": "2021-12-06T00:31:41Z",
+   "pushed_at": "2021-12-06T08:22:16Z",
+   "topics": []
+  },
+  {
+   "full_name": "coolwanglu/quine-chameleon",
+   "url": "https://github.com/coolwanglu/quine-chameleon",
+   "description": "Dancing Quine Chameleon",
+   "stars": 45,
+   "language": "Python",
+   "created_at": "2015-05-17T14:37:39Z",
+   "pushed_at": "2015-05-27T08:03:38Z",
+   "topics": []
+  },
+  {
+   "full_name": "Kernel-Dirichlet/QuineGen",
+   "url": "https://github.com/Kernel-Dirichlet/QuineGen",
+   "description": "A repository which includes a toolkit to generate an n-line quine that remains a quine for all N in as many languages as possible. The goal is to explore under what conditions can we make arbitrarily large quines",
+   "stars": 3,
+   "language": "Python",
+   "created_at": "2024-03-11T23:15:00Z",
+   "pushed_at": "2024-03-12T00:02:53Z",
+   "topics": [
+    "quines"
+   ]
+  }
+ ]
+}

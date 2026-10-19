@@ -1,0 +1,13 @@
+{
+ "repo": "meithecatte/mips-quine",
+ "description": "MIPS Quine that disassembles its own code and parses its own ELF symbol table",
+ "stars": 2,
+ "created_at": "2023-06-08T22:17:48Z",
+ "pushed_at": "2023-06-08T22:20:09Z",
+ "default_branch": "master",
+ "head_sha": "372e67a72977d216824cf50d2f6e52b0d4470633",
+ "fetched_at_utc": "2026-10-19T14:34:17Z",
+ "files": [
+  "README.md"
+ ]
+}

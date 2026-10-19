@@ -1,0 +1,22 @@
+{
+ "candidate": "C09",
+ "kind": "repos",
+ "query": "disassembly drift",
+ "executed_at": "2026-10-19T07:34:45-0700",
+ "api_call": "gh api -X GET search/repositories -f q='disassembly drift' -f per_page=10",
+ "replay": "gh search repos 'disassembly drift' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "scottschram/apple_ii_genetic_drift_disassembly",
+   "url": "https://github.com/scottschram/apple_ii_genetic_drift_disassembly",
+   "description": "Using Claude Code to disassemble my old Apple II game Genetic Drift",
+   "stars": 2,
+   "language": "Assembly",
+   "created_at": "2026-02-01T17:35:19Z",
+   "pushed_at": "2026-02-17T15:37:19Z",
+   "topics": []
+  }
+ ]
+}

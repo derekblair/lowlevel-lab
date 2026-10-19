@@ -1,0 +1,72 @@
+{
+ "candidate": "C09",
+ "kind": "code",
+ "query": "resynchronization disassembly x86 offset",
+ "executed_at": "2026-10-19T07:35:23-0700",
+ "api_call": "gh api -X GET search/code -f q='resynchronization disassembly x86 offset' -f per_page=10",
+ "replay": "gh search code 'resynchronization disassembly x86 offset' --limit 10",
+ "total_count": 131,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "wireshark/wireshark",
+   "path": "epan/dissectors/packet-iax2.c",
+   "url": "https://github.com/wireshark/wireshark/blob/920ada9f214a0876b2ee14f2dd4a2b5cce89da08/epan/dissectors/packet-iax2.c",
+   "description": "Read-only mirror of Wireshark's Git repository at https://gitlab.com/wireshark/wireshark. You're welcome to submit pull requests there."
+  },
+  {
+   "full_name": "UlteSoft/uwvm2",
+   "path": "src/uwvm2/uwvm/debugger/native_disassembly_window.h",
+   "url": "https://github.com/UlteSoft/uwvm2/blob/47dddc3db289c7a9411be9fb5e800bf3ed2ad3fc/src/uwvm2/uwvm/debugger/native_disassembly_window.h",
+   "description": "UlteSoft WebAssembly Virtual Machine 2"
+  },
+  {
+   "full_name": "intelxed/xed",
+   "path": "docsrc/xed-doc-top.txt",
+   "url": "https://github.com/intelxed/xed/blob/0bcb6237345c5066726dcc08b3d87928df3b5b26/docsrc/xed-doc-top.txt",
+   "description": "The X86 Encoder Decoder (XED), is a software library for encoding and decoding X86 (IA32 and Intel64) instructions"
+  },
+  {
+   "full_name": "open-telemetry/opentelemetry-ebpf-profiler",
+   "path": "support/ebpf/types.h",
+   "url": "https://github.com/open-telemetry/opentelemetry-ebpf-profiler/blob/950af0974ac8a36324b0ff0e18cedefbeea07c36/support/ebpf/types.h",
+   "description": "The production-scale datacenter profiler (C/C++, Go, Rust, Python, Java, NodeJS, .NET, PHP, Ruby, Perl, ...)"
+  },
+  {
+   "full_name": "yao8839836/text_gcn",
+   "path": "data/corpus/dblp_vocab.txt",
+   "url": "https://github.com/yao8839836/text_gcn/blob/962223652e9bb164ac2d83cd09fc7b8845ce860b/data/corpus/dblp_vocab.txt",
+   "description": "Graph Convolutional Networks for Text Classification. AAAI 2019"
+  },
+  {
+   "full_name": "YuriPlanet/vera20k",
+   "path": "tools/native_inspect.md",
+   "url": "https://github.com/YuriPlanet/vera20k/blob/28615d91bdbf0f9581ef06470bc92f156fe4d375/tools/native_inspect.md",
+   "description": "Red Alert 2: Yuri's Revenge rebuilt in Rust / \u7528 Rust \u91cd\u5199\u7684\u300a\u7ea2\u8b662\uff1a\u5c24\u91cc\u7684\u590d\u4ec7\u300b"
+  },
+  {
+   "full_name": "irsdl/webhacklist",
+   "path": "archived-references/md/2015/too-lejit-quit-extending-jit-spraying-arm.md",
+   "url": "https://github.com/irsdl/webhacklist/blob/4ad8937442bfb3f05fd5a197006492cce32be370/archived-references/md/2015/too-lejit-quit-extending-jit-spraying-arm.md",
+   "description": "Archive of the Top 10 Web Hacking Techniques - every nominee since 2006, preserved"
+  },
+  {
+   "full_name": "YuriPlanet/vera20k",
+   "path": "tools/native_inspect.py",
+   "url": "https://github.com/YuriPlanet/vera20k/blob/28615d91bdbf0f9581ef06470bc92f156fe4d375/tools/native_inspect.py",
+   "description": "Red Alert 2: Yuri's Revenge rebuilt in Rust / \u7528 Rust \u91cd\u5199\u7684\u300a\u7ea2\u8b662\uff1a\u5c24\u91cc\u7684\u590d\u4ec7\u300b"
+  },
+  {
+   "full_name": "andreitsy/lhiew",
+   "path": "FEATURES.md",
+   "url": "https://github.com/andreitsy/lhiew/blob/ea5759e8fe9c16587e1366c097dd4183849bfe70/FEATURES.md",
+   "description": "Linux clone of hiew editor"
+  },
+  {
+   "full_name": "TASEmulators/mednafen",
+   "path": "TODO",
+   "url": "https://github.com/TASEmulators/mednafen/blob/740d63996fc7cebffd39ee253a29ee434965db21/TODO",
+   "description": "a manual copy of mednafen code, because mednafen is too cool for git"
+  }
+ ]
+}

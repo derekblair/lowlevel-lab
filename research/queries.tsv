@@ -221,3 +221,22 @@ C05	repos	"core war" native in:readme
 C05	repos	corewar created:>2026-04-01
 C05	code	corewar sched_setaffinity
 C05	code	"PROT_EXEC" warrior arena
+# ---- addenda round (2026-10-19): replacements C12 (P3 slot) + C09 (P5 slot) — meet REVIEW-01 G-1 (§2.1 minimums) ----
+# C12 cross-ISA machine-code quine relay (x86-64 ELF -> AArch64 ELF -> back, byte-exact)
+C12	repos	cross-architecture quine
+C12	repos	multi-architecture quine
+C12	repos	polyglot elf executable
+C12	repos	quine relay in:readme
+C12	repos	topic:quine
+C12	repos	elf quine created:>2026-04-01
+C12	code	quine aarch64 x86-64 elf
+C12	code	"EM_AARCH64" "EM_X86_64" quine
+# C09 x86 superset-decode lattice + resynchronisation statistics (visualization)
+C09	repos	superset disassembly
+C09	repos	overlapping instructions disassembly
+C09	repos	disassembly drift
+C09	repos	superset disassembly in:readme
+C09	repos	topic:disassembler
+C09	repos	superset disassembler created:>2026-04-01
+C09	code	"superset" disassembler every offset
+C09	code	resynchronization disassembly x86 offset

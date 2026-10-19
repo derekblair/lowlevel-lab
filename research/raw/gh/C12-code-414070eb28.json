@@ -1,0 +1,9 @@
+{
+ "candidate": "C12",
+ "kind": "code",
+ "query": "\"e_machine\" quine elf",
+ "executed_at": "2026-10-19T07:35:09-0700",
+ "api_call": "gh api -X GET search/code -f q='\"e_machine\" quine elf' -f per_page=10",
+ "replay": "gh search code '\"e_machine\" quine elf' --limit 10",
+ "error": "gh: too many shards failed (HTTP 503)\n{\"message\":\"too many shards failed\",\"documentation_url\":\"https://docs.github.com/rest/search/search#search-code\",\"status\":\"503\"}"
+}

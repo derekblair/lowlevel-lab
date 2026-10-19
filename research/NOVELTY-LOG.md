@@ -429,3 +429,136 @@ are N0/N1 (idea already implemented) or safety:
 
 Full per-query records: [NOVELTY-LOG-APPENDIX.md](NOVELTY-LOG-APPENDIX.md)
 and `research/raw/`.
+
+---
+
+# Replacement addenda (post-REVIEW-01, for the P3 and P5 slots)
+
+Each addendum meets REVIEW-01 G-1 (§2.1 minimums: ≥3 repo incl. ≥1 topic, ≥1
+in:readme, ≥1 created:>; ≥2 code) and G-2 (≥2 paper/web). Query records are in
+`research/raw/gh/C12-*.json` / `C09-*.json` and rendered in
+NOVELTY-LOG-APPENDIX.md; dispositions below. No build starts before the reviewer
+appends a verdict to REVIEW-01 §6.
+
+## ADDENDUM — C12 cross-ISA machine-code quine relay (P3-slot replacement) — N2–N3
+
+**Concept.** A 2-cycle machine-code quine *relay*: a native **x86-64 ELF** that,
+run, writes a complete **AArch64 ELF** to stdout; that AArch64 ELF (run under
+qemu-aarch64), writes the original x86-64 ELF back, **byte-for-byte**. Each stage
+is a distinct single-ISA executable; together they form a fixed point across two
+ISAs. Mission-central (ARM64 *and* x86-64 machine code), now runnable here
+(x86-64 native + AArch64 under qemu-aarch64 8.2.2).
+
+**Search record (§2.1 met: repo 11, topic 1, in:readme 1, created 1, code 2).**
+- `topic:quine` (201) and `quine relay in:readme` (208): top hits are
+  **mame/quine-relay** (★14610) and **mame/quine-clique**, **rvantonder/pentaquine**
+  — all **source-level** relays/multiquines across high-level languages, read as
+  data earlier; none emits *machine code*, let alone across ISAs. Disposition:
+  the "relay" idea is famous at source level; the machine-code-across-ISA version
+  is not these.
+- `cross-architecture quine` (0), `multi-architecture quine` (0),
+  `elf quine created:>2026-04-01` (0): no hits.
+- `polyglot elf executable` (1): `latedeployment/oci2bin` — an OCI-image→ELF+tar
+  packer, not a quine.
+- code `quine aarch64 x86-64 elf` (68, top hits are blogs / a Raku toolchain /
+  kernel notes — none a relay) and `"EM_AARCH64" "EM_X86_64" quine` (0).
+- Single-ISA binary quines read as data (do **not** kill — none is cross-ISA or a
+  relay): **panzi/binary-quine** (x86-64 ELF writes itself to stdout without
+  reading its code), **meithecatte/mips-quine** (MIPS ELF that disassembles
+  itself), 42-DrQuine (elf64 asm quine).
+
+**Paper/web (G-2).** No binary quine *relay* across x86-64↔ARM64 found. The
+closest multi-arch artifacts are **Actually Portable Executables** (Tunney —
+one self-rewriting binary with per-arch code blocks + a dispatcher, runs on
+x86-64 and Arm64) and **ixty/xarch_shellcode** (a polyglot dispatcher with one
+block per arch), and Microsoft **Arm64X** (loader-level dual-arch PE). **The
+distinction that makes C12 novel:** those are *one* polyglot/self-rewriting
+binary choosing an arch at run time; a relay is a *chain of distinct single-ISA
+binaries*, each generating the *next* ISA's binary, cycling back to the original
+— no dispatcher, no polyglot header, each stage a clean ELF for exactly one ISA.
+
+**Novel observable.** `x86 ELF → (run native) → AArch64 ELF → (run qemu) →
+x86 ELF'`, and `sha256(x86 ELF) == sha256(x86 ELF')`, i.e. a verified cross-ISA
+fixed point. Shown with `cmp`/`sha256sum` and `aarch64-linux-gnu-objdump` on the
+emitted ELF. Level **N2–N3** (reviewer independently leveled N2–N3).
+
+**Prototype plan.** Hand-written x86-64 and AArch64 freestanding ELF emitters
+(GNU `as`/`ld`; no libc), each carrying the *other* stage's bytes as data and
+reconstructing itself from a template + its own data table (the classic quine
+split), extended across the ISA boundary. Files:
+`parts/NN-quine-relay/{AGENTS.md,README.md,RUN.md,Makefile,stage_x64.s,
+stage_a64.s,build_fixpoint.py,verify.sh}`. Oracle: byte-exact `cmp` round trip +
+independent `objdump` decode of each stage; `verify.sh` is the machine-checkable
+pass/fail. Effort: Medium–High (quine construction across two ISAs is fiddly).
+**Safety (REVIEW-01 §5):** each stage writes the next stage to **stdout only**;
+`verify.sh` redirects it and runs it under qemu; **nothing writes itself to disk
+or execs itself**. Risk: getting a true byte-exact fixed point (not just
+"runs") is the hard part; if a full 2-cycle fixed point proves infeasible in the
+time, the honest fallback (stated in README) is a verified one-way
+x86→AArch64 self-describing emitter + a separate AArch64→x86 emitter with the
+round-trip `cmp` shown, short of a single self-contained fixed point.
+
+## ADDENDUM — C09 x86 superset-decode lattice + resync statistics (P5-slot replacement, visualization) — N2
+
+**Concept.** Decode x86-64 at **every byte offset** of a code region, render the
+resulting overlapping-instruction **lattice**, and **measure how quickly**
+misaligned decode paths **resynchronise** with the compiler-intended stream
+across real `/usr/bin` binaries — a visual + statistical explainer of *why x86
+is self-synchronising and disassembly is hard*. Restores the visualization theme
+(REVIEW-01 §2.5/§3). Independent of P2.
+
+**Search record (§2.1 met: repo 11, topic 1, in:readme 1, created 1, code 2).**
+- `superset disassembly` (0 as exact repo name), `superset disassembly in:readme`
+  (269): top hits **GrammaTech/ddisasm** (Datalog reassembleable disassembler),
+  and the superset/probabilistic tools below. `topic:disassembler` (931): ghidra,
+  capstone, etc. — general disassemblers.
+- `superset disassembler created:>2026-04-01` (0); `disassembly drift` (1, an
+  unrelated Apple II repo); `overlapping instructions disassembly` (1,
+  `vikrant-vikram/disasm`, a teaching x86 disassembler, not superset/resync).
+- code `"superset" disassembler every offset` (1984; top hit is
+  **KennethAdamMiller/superset_disassembler**) and
+  `resynchronization disassembly x86 offset` (131; top hits are network-protocol
+  dissectors, unrelated).
+- Read as data (do **not** kill — all are *rewriting techniques/tools*, none a
+  resync-statistics visualization): **utds3lab/multiverse** (superset-disasm
+  static rewriter, NDSS'18; needs capstone/pwntools/pyelftools — external deps I
+  don't have), **KennethAdamMiller/superset_disassembler** (OCaml probabilistic
+  superset disassembler, "no false negatives").
+
+**Paper/web (G-2).** Superset disassembly = "disassemble every byte offset,
+no false negatives, many false positives"; a single decode error "cascades" —
+**disassembly drift** (arXiv 2506.09426). Foundational: **Multiverse**
+(Bauman, Lin & Hamlen, NDSS 2018), **Linn & Debray** (CCS 2003, anti-disassembly
+via overlapping instructions), **Andriesse et al.** (USENIX Security 2016 SoK +
+ground truth). These are disassembly *techniques / SoKs / rewriters*; **none is
+a visualization of the superset lattice with measured resynchronisation-length
+statistics** as a pedagogical artifact. The "~a handful of instructions to
+resync" figure is folklore/patent-level, not a measured visual explainer. That
+gap is the N2 delta.
+
+**Novel observable.** For a real binary: (1) a rendered lattice (ANSI or emitted
+SVG/HTML) showing, per byte offset, the instruction decoded there and where each
+misaligned stream **merges** into the true one; (2) a measured distribution of
+**resync length** (bytes/instructions until a misaligned decode rejoins the true
+stream) over many `/usr/bin` functions — a histogram with median/tail. Machine-
+checkable: the true-stream decode must match `objdump -d` exactly; the resync
+statistics are emitted as data a grep/parse can check.
+
+**Prototype plan.** A small x86-64 **length decoder** in C (enough of the
+encoding to advance correctly — prefixes, ModRM, SIB, disp/imm; it need not
+name instructions, only size them), used to decode from every offset; Python
+stdlib for the lattice render + resync histogram. `objdump -d` is the
+independent oracle for the aligned stream. Files:
+`parts/NN-x86-lattice/{AGENTS.md,README.md,RUN.md,Makefile,lendec.c,lattice.py,
+resync_stats.py,oracle_objdump.sh}`. Effort: Medium. Risk: the length decoder
+must be correct enough that the aligned decode matches objdump on the sampled
+functions (differential-tested, R6); scope it to the instruction forms the
+sampled binaries actually use, and report coverage honestly.
+
+## Alternate for the P5 slot (benched): C22 — PT TNT-bit control-flow barcode
+
+Kept as the fallback visualization if C09 is rejected: render Intel-PT
+taken/not-taken bits as a per-algorithm texture. It **rides P2's capture**
+(couples to P2's build risk), which is why C09 (independent) is proposed first.
+Reviewer leveled C22 N3 with a short record; a full §2.1+G-2 addendum would
+precede any C22 build.

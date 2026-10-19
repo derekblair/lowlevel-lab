@@ -1,0 +1,22 @@
+{
+ "candidate": "C09",
+ "kind": "repos",
+ "query": "overlapping instructions disassembly",
+ "executed_at": "2026-10-19T07:34:42-0700",
+ "api_call": "gh api -X GET search/repositories -f q='overlapping instructions disassembly' -f per_page=10",
+ "replay": "gh search repos 'overlapping instructions disassembly' --limit 10",
+ "total_count": 1,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "vikrant-vikram/disasm",
+   "url": "https://github.com/vikrant-vikram/disasm",
+   "description": "a Python-based disassembler inspired by the Hex-Rays Decompiler (XHydra) in IDA Pro. It disassembles x86/x64 binaries, generates C-like pseudocode, and detects advanced anti-disassembly techniques such as junk code, overlapping instructions, opaque predicates, self-modifying code, ",
+   "stars": 5,
+   "language": "Python",
+   "created_at": "2025-05-19T12:36:27Z",
+   "pushed_at": "2025-11-15T12:12:00Z",
+   "topics": []
+  }
+ ]
+}

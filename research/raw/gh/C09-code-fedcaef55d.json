@@ -1,0 +1,72 @@
+{
+ "candidate": "C09",
+ "kind": "code",
+ "query": "\"superset\" disassembler every offset",
+ "executed_at": "2026-10-19T07:35:09-0700",
+ "api_call": "gh api -X GET search/code -f q='\"superset\" disassembler every offset' -f per_page=10",
+ "replay": "gh search code '\"superset\" disassembler every offset' --limit 10",
+ "total_count": 1984,
+ "incomplete_results": false,
+ "items": [
+  {
+   "full_name": "KennethAdamMiller/superset_disassembler",
+   "path": "plugin/superset_disassembler.ml",
+   "url": "https://github.com/KennethAdamMiller/superset_disassembler/blob/556359c7af6a124d333ba360db7cfd27c98b0dc7/plugin/superset_disassembler.ml",
+   "description": "Disassemblers with various trimming methodologies"
+  },
+  {
+   "full_name": "v8/v8",
+   "path": "BUILD.bazel",
+   "url": "https://github.com/v8/v8/blob/185c56f0aa15e74aab2f06c67ac0fdeba043065b/BUILD.bazel",
+   "description": "The official mirror of the V8 Git repository"
+  },
+  {
+   "full_name": "wilvk/asm-test",
+   "path": "bindings/python/asmtest/core.py",
+   "url": "https://github.com/wilvk/asm-test/blob/6ab09b91395f771591515b419f279aba3acdc6f0/bindings/python/asmtest/core.py",
+   "description": "A C-hosted unit-testing framework for assembly language."
+  },
+  {
+   "full_name": "nxp-archive/adl-tools_adl",
+   "path": "fe/Data.h",
+   "url": "https://github.com/nxp-archive/adl-tools_adl/blob/f446c5a83454b81f21cb83a0b67ed5988299e1be/fe/Data.h",
+   "description": "ADL codebase"
+  },
+  {
+   "full_name": "colbymchenry/codegraph",
+   "path": "src/resolution/c-fnptr-synthesizer.ts",
+   "url": "https://github.com/colbymchenry/codegraph/blob/0d33925aa3ac4d34ba9f425b24029332597f1941/src/resolution/c-fnptr-synthesizer.ts",
+   "description": "Pre-indexed code knowledge graph, auto syncs on code changes, for Claude Code, Codex, Gemini, Cursor, OpenCode, AntiGravity, Kiro, CoPilot, and Hermes Agent \u2014 fewer tokens, fewer tool calls, 100% local"
+  },
+  {
+   "full_name": "caiorss/Functional-Programming",
+   "path": "scheme/README.org",
+   "url": "https://github.com/caiorss/Functional-Programming/blob/ef3526898e3014e9c99bf495033ff36a4530503d/scheme/README.org",
+   "description": "Functional Programming concepts, examples and patterns illustrated in Haskell, Ocaml and Python"
+  },
+  {
+   "full_name": "terralang/terra",
+   "path": "docs/api.md",
+   "url": "https://github.com/terralang/terra/blob/97e179138ce69ff61f3cabff55b43ca08e4500d3/docs/api.md",
+   "description": "Terra is a low-level system programming language that is embedded in and meta-programmed by the Lua programming language."
+  },
+  {
+   "full_name": "gmh5225/awesome-game-security",
+   "path": "archive/GunshipPenguin/kiteshield.txt",
+   "url": "https://github.com/gmh5225/awesome-game-security/blob/db5b25e19bf3beaf41664ac436b8c09d06398c28/archive/GunshipPenguin/kiteshield.txt",
+   "description": "awesome game security [Welcome to PR]"
+  },
+  {
+   "full_name": "perl11/potion",
+   "path": "doc/INTERNALS.md",
+   "url": "https://github.com/perl11/potion/blob/4add461d4c13fe8b58cd6164857586d4369ea6d9/doc/INTERNALS.md",
+   "description": "_why the lucky stiff's little language (the official repo... until _why returns)"
+  },
+  {
+   "full_name": "riscv-non-isa/riscv-elf-psabi-doc",
+   "path": "riscv-elf.adoc",
+   "url": "https://github.com/riscv-non-isa/riscv-elf-psabi-doc/blob/3095deae52ae3feecc54b5e185d14eb177e05d04/riscv-elf.adoc",
+   "description": "A RISC-V ELF psABI Document"
+  }
+ ]
+}
