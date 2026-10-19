@@ -1,0 +1,32 @@
+# REVIEW-FINAL fresh prior-art reads (kill rule: README + source read as data), 2026-10-19 12:23:38 PDT. Downloads kept outside the repo; hashes below.
+
+## avisi-group/icewind (GitHub; 'Hardware-accelerated dynamic binary translation system for Sail ISA models'; created 2024-05-27, pushed 2026-08-11; 9 stars) — found by F06 'ptwrite perf_event_attr'
+brig/brig/src/guest/models.rs (sha256 5db63dbea2f1946e…) lines 470-477:
+            TracingMode::PtWrite => {
+                // insert ptwrite
+                let pc = Operand::vreg_general(Width::_64, emitter.next_vreg());
+                emitter.push_instruction(
+                    Instruction::mov(Operand::imm(Width::_64, block_start_pc), pc).unwrap(),
+                );
+                emitter.push_instruction(Instruction::ptwrite(pc));
+            }
+common/src/lib.rs: 'pub const TRACING_MODE: TracingMode = TracingMode::None;' (PtWrite is an opt-in mode)
+brig-cli/src/ptwrite/{reader,decoder}: perf_event_open intel_pt reader + a PT packet decoder that extracts PTW payloads.
+=> the DBT emits PTWRITE(block_start_pc) at each translated guest block to trace guest PCs: in-band PTW annotation from JIT-generated code, the same class REVIEW-01 §2.2 item 5 already recorded (DRAKVUF emit_ptwrite64). No self-modifying-code version attribution, no time-keyed comparison, no ground truth. P2's narrow N2 delta is unchanged; add icewind as a second instance of the class.
+
+## hatter6822/seLe4n (GitHub; 'A capability-based microkernel written in Lean 4'; created 2026-02-14, pushed 2026-10-19) — found by F12 'IC IVAU DC CVAU model stale'
+SeLe4n/Kernel/Architecture/CacheModel.lean (sha256 8824c61ca36872af…), 397 lines, 29 theorems; lines 13, 29, 50-57, 68:
+# AG8-B: Cache Coherency Model (H3-ARCH-07)
+DC CVAC / DC IVAC / DC ZVA / IC IALLU / IC IALLUIS / IC IVAU instructions. This
+* **I-cache (SM7.D.1)** — instruction caches are *not* coherent, neither with
+  the data side nor across PEs.  `icInvalidateAll` below models `IC IALLU`,
+  which reaches **only the executing PE**; under SMP the kernel must issue the
+  Inner Shareable broadcast variant (`IC IALLUIS`) or the by-VA form
+  (`IC IVAU`, likewise broadcast within the domain).  A stale line on a remote
+  core is the instruction-side twin of the SMP-C4 stale-TLB hazard, so SM7.D
+  mounts a genuine per-core model (`SystemState.perCoreICache`) with
+  `icacheCoherent_perCore` as the 14th `proofLayerInvariantBundle` conjunct.
+- For self-modifying code (DC CVAC + IC IALLU + ISB) — on ARMv8-A this is
+  *user* software's obligation (seL4 exposes it as an explicit
+grep CTR_EL0|IminLine|DminLine|IDC|DIC|line size|sanitiz|diagnos: no hits (one 'missing barrier' comment, line 370).
+=> a proof-level (Lean) per-core I-cache coherence model with invariants for the kernel's own maintenance obligations. Not a whole-program sanitizer of user JIT code, no CTR_EL0 IDC/DIC configs, no line-size class, no step naming. P4's N2 delta is unchanged; it is a new formal-model neighbour, to cite alongside herdtools7/RMEM.

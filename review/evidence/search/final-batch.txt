@@ -1,0 +1,15 @@
+F01  repos rc=0 total_count=27 incomplete=false self-modifying code created:>2026-09-15
+F02  repos rc=0 total_count=4631 incomplete=false smc machine clear in:readme
+F03  code  rc=0 total_count=16448 incomplete=false machine_clears.smc
+F04  repos rc=0 total_count=0 incomplete=false ptwrite created:>2026-09-15
+F05  repos rc=0 total_count=2 incomplete=false intel processor trace pushed:>2026-10-01
+F06  code  rc=0 total_count=2720 incomplete=false ptwrite perf_event_attr
+F07  repos rc=0 total_count=0 incomplete=false quine relay machine code
+F08  repos rc=0 total_count=0 incomplete=false quine aarch64 created:>2026-09-15
+F09  repos rc=0 total_count=0 incomplete=false polyglot elf aarch64 x86
+F10  repos rc=0 total_count=0 incomplete=false icache coherence aarch64 created:>2026-09-15
+F11  repos rc=0 total_count=0 incomplete=false cache maintenance sanitizer arm64
+F12  code  rc=0 total_count=724 incomplete=false IC IVAU DC CVAU model stale
+F13  repos rc=0 total_count=0 incomplete=false disassembly resynchronization created:>2026-09-15
+F14  repos rc=0 total_count=0 incomplete=false superset disassembler pushed:>2026-10-01
+BATCH_DONE

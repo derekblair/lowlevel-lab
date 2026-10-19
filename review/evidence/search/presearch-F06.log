@@ -1,0 +1,14 @@
+### 2026-10-19T17:28:34Z code q=ptwrite perf_event_attr
+exit=0
+total_count=2720 incomplete=false
+  avisi-group/icewind  brig-cli/src/ptwrite/reader.rs
+  EOS-team/EOS  src/RROS/tools/perf/util/event.h
+  zhovner/OneFileLinux  linux-4.14.22/tools/perf/util/event.h
+  zhovner/OneFileLinux  linux-4.14.22/tools/perf/Documentation/intel-pt.txt
+  QQxiaoming/quard_star_tutorial  linux-6.1.11/tools/perf/util/event.h
+  EOS-team/EOS  src/RROS/tools/perf/util/intel-pt.c
+  sslab-gatech/janus  lkl/tools/perf/util/event.h
+  sslab-gatech/janus  lkl/tools/perf/Documentation/intel-pt.txt
+  EOS-team/EOS  src/RROS/tools/perf/builtin-script.c
+  bouffalolab/bl808_linux  linux-5.10.4-808/tools/perf/util/event.h
+

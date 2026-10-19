@@ -1,0 +1,14 @@
+### 2026-10-19T17:28:10Z code q=machine_clears.smc
+exit=0
+total_count=16448 incomplete=false
+  Maratyszcza/NNPACK  bench/perf_counter.c
+  gamozolabs/falkervisor_grilled_cheese  srcs/perf/perf.c
+  NVIDIA/cuda-gdb  gprofng/src/hwc_intel_icelake.h
+  MoatLab/Pond  clx-2s-events.txt
+  MoatLab/Pond  cpu2017/clx-2s-events.txt
+  sslab-gatech/Sense  perf
+  TACC/perfexpert  modules/vtune/vtune_event.h
+  STMicroelectronics/gnu-tools-for-stm32  src/gdb/gprofng/common/core_pcbe.c
+  jasonblog/note  linux_system/src/羅習五/ch12/perflist.txt
+  MegEngine/mperf  eca/tma/arch_ratios/adl_grt_ratios.cpp
+

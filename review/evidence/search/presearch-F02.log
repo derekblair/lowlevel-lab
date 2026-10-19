@@ -1,0 +1,14 @@
+### 2026-10-19T17:28:04Z repos q=smc machine clear in:readme
+exit=0
+total_count=4631 incomplete=false
+  zrlio/disni  *194  created=2016-07-26  pushed=2023-03-09  DiSNI: Direct Storage and Networking Interface
+  DustinBrett/daedalOS  *13056  created=2020-08-09  pushed=2026-10-10  Desktop environment in the browser
+  bkuhlmann/mac_os  *520  created=2016-10-06  pushed=2026-09-17  Shell scripts for automated macOS machine setup.
+  metaspartan/mactop  *1683  created=2024-05-31  pushed=2026-09-30  mactop - Apple Silicon Monitor Top
+  jart/blink  *7597  created=2022-11-03  pushed=2025-12-10  tiniest x86-64-linux emulator
+  CMU-SAFARI/DRAM-Bender  *142  created=2022-09-25  pushed=2026-09-04  DRAM Bender is the first open source DRAM testing infrastructure that can be used to easily and comprehensively test sta
+  ryyansafar/MacMonitor  *107  created=2026-03-28  pushed=2026-10-17  Real-time Apple Silicon system monitor — menu bar app + desktop widget for macOS
+  machine-drivers/docker-machine-driver-xhyve  *883  created=2015-09-14  pushed=2021-04-25  docker-machine/minikube/minishift driver plugin for xhyve/hyperkit (native macOS hypervisor.framework)
+  ProducerGuy/ThermalForge  *147  created=2026-03-22  pushed=2026-10-05  Free Apple fan control, open source, for Apple Silicon Macs (M1, M2, M3, M4, M5, M6): Mac mini, MacBook, MacBook Pro, Ma
+  Azure/migration  *194  created=2022-09-06  pushed=2025-06-05  
+

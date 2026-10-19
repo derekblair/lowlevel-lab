@@ -1,0 +1,15 @@
+# REVIEW-FINAL fresh web searches (WebSearch tool, standard mode), 2026-10-19 10:28:36 PDT. Result summaries are tool-generated, recorded as data.
+W1 P1  q="self-modifying code detection granularity P-core E-core hybrid Intel machine clear 64-byte 1KB measurement 2026"
+   -> no source measures SMC detection granularity per hybrid core class. Hits: arXiv 2604.12407 "Tamper-Proofing with Self-Modifying Code" (lists MACHINE_CLEARS.SMC), arXiv 2509.18909 "Obelix" (SMC detection "barely documented"), Intel patents US6594734 (TLB FINE HIT bits), US9798669/US9798675 (1 KB ownership granularity). None per core class; none 2026 measurement.
+W2 P2  q="PTWRITE fence self-modifying code version attribution Intel Processor Trace decoder JIT 2026"
+   -> nothing on PTWRITE fences or version attribution; only perf-intel-pt docs ("self-modified code ... a challenge").
+W3 C12 q="cross-ISA quine relay machine code x86-64 AArch64 ELF byte-identical fixed point"
+   -> nothing matching a cross-ISA machine-code quine relay; only ELF/ABI background (linksem, LLVM AArch64 ELF writer, Arm aaelf64).
+W4 P4  first attempt 10:28 failed (WebSearch: "You've hit your session limit · resets 11am"); RE-RUN after the reset:
+       q="AArch64 JIT cache maintenance checker missing \"IC IVAU\" \"DC CVAU\" ISB stale instruction detection tool"
+   -> no dedicated checker/sanitizer found. Hits: Arm community blog "caches & self-modifying code: implementing clear cache", Android ART "ARM64: More JIT Code Cache maintenance", wasmtime PR #3426 (ISB needed per core), V8 cpu-arm64.cc, Firefox vixl MozCpu, LKML "arm64: Add support for new control bits CTR_EL0.DIC and CTR_EL0.IDC". All implement or explain the sequence; none diagnoses an omitted step in a program.
+W5 C09 first attempt 10:28 failed (same session limit); RE-RUN after the reset:
+       q="x86 superset disassembly resynchronization length distribution measured misaligned offsets"
+   -> no measured resync-length distribution found. Hits: arXiv 2506.09426 (CET disassembly; "disassembly drift", no resync statistics), Debray et al. link-time disassembly paper, LLVM MCDisassembler resync policy commit, docs.rs lde (length-disassembler crate), FDTC2025 talk 2.1 slides (not a resync measurement per the result summary).
+
+# re-run stamp: 2026-10-19 12:23:21 PDT
