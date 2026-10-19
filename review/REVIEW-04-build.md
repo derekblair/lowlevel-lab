@@ -1,4 +1,4 @@
-GATE: build-04 | VERDICT: CHANGES REQUESTED | ROUND: 2 | AT: 2026-10-19 09:40 PDT | COMMIT: 3e1ca1e (round 1: CHANGES REQUESTED @6530c51)
+GATE: build-04 | VERDICT: APPROVE | ROUND: 3 | AT: 2026-10-19 10:04 PDT | COMMIT: a980f38 (round 1: CHANGES REQUESTED @6530c51; round 2: CHANGES REQUESTED @3e1ca1e)
 
 # REVIEW-04-build — P4 ifetch-sanitizer (`parts/04-ifetch-sanitizer/`, ARM64)
 
@@ -142,3 +142,70 @@ Fix B5, add the ordering kernels to the VERDICTs, re-capture RUN.md, add "Fix ro
 I'll re-run `round2_tests.py` unchanged. T1–T3 must come out STALE, and T0 and T5 must keep their current results.
 
 Everything else is now sound. The encoder, the barrier rule, the qemu oracle and program dependence all check out on my own evidence.
+
+## Round 3: fix round 2 @ `a980f38`, APPROVE (2026-10-19 10:04 PDT)
+
+**Reviewed:** commit `a980f38`, named in the GATE line at 09:59.
+
+**Reproduced in:** a fresh clone at `tasks/reviewer-repro/build-04-r3`, under `env -i`.
+
+**Evidence:** `review/evidence/build-04/r3/`.
+
+### Blockers
+
+**B5 is FIXED.** Store ordering now decides freshness. Each STR resets that word's progress through `required()` (`icache_model.py:109`). Ops count only in program order, after the latest store, and for DC/IC only when they cover the word's line (`:82–99`). `fetch_word` returns the instruction side's guaranteed view, `iview` (`:175–185`), so the fetch now reads model state.
+
+My **round-2 tests, run unchanged** (`rerun-round2-tests.txt`):
+
+| Test | Round 2 | Round 3 |
+|---|---|---|
+| T1 flush, then write | NEW | **OLD, missing dc** |
+| T2 second, unmaintained store | NEW2 | **NEW, not NEW2, missing dc** |
+| T3 DC before the STR | NEW | **OLD, missing dc** |
+| T4 omit-DSB1 | named `ic` | **named `dsb`** (N3 fixed) |
+| T0 control / T5 stride 64 / stride 128 | NEW / NEW / OLD | unchanged |
+
+My **new probes** (`round3_tests.py`, `round3-tests-output.txt`), on kernels the author has never seen, all give the architecturally right answer:
+
+| Probe | Result |
+|---|---|
+| P1 an unrelated store after full maintenance | **FRESH** (no false positive) |
+| P2 a store to another word in the slot's line | **FRESH** |
+| P4 ISB before the IC's DSB | **STALE, isb** |
+| P5 an interim run before the ISB | final run **FRESH** |
+| P6 IC before DC | **STALE, ic** |
+| P7 full maintenance twice | **FRESH** |
+| P8 never warmed, maintained | **FRESH** |
+| P9 never warmed, unmaintained | **STALE** |
+| P10 IDC=DIC=1, STR; DSB; ISB (the Linux path) | **FRESH** |
+| P11 IDC=DIC=1, STR; ISB; DSB | **STALE, isb** |
+| P12 IDC=1, STR; DSB; IC; DSB; ISB | **FRESH** |
+| P13 IDC=1, IC with no DSB before it | **STALE, dsb** |
+| P14 DC/IC at another address in the slot's line | **FRESH** |
+| P15 re-patch, then maintain again | **FRESH with NEW2** |
+| **P3** I-line 32 B, D-line 64 B (the mismatched line-size class proper), slot in an odd 32-B I-line | IC stride 64 → **STALE, ic**. IC stride 32 → **FRESH** |
+
+In coherent mode, every probe equals qemu.
+
+### Reproduction
+
+| Test | Result | Evidence |
+|---|---|---|
+| `make` ×2 (clean clone) | `make_exit=0`, **16/16 PASS** both runs. Output is **identical to RUN.md's make block** | `make-run1.txt` |
+| strace | **CLEAN**. Temp directories: 57 created, **57 removed** (N6 fixed) | `strace-audit.txt`, `tmp-accounting.txt` |
+| encoder sample (seeds 404, 4042) | **120/120** byte-identical to GNU `as` | `rerun-round2-tests.txt` |
+| patched kernel (a′)/(b′) | STALE / STALE | `rerun-round2-tests.txt` |
+
+### Nits (not blocking)
+
+- **N7:** under IDC=1 there is no clean, but `explain()` still says "IC IVAU issued before a DSB completed the clean" (`icache_model.py:99`, P13). Say "…completed the store".
+- **N8:** `DSB ISHST` and `DSB ISH` decode to the same barrier (`sanitize.py:125`). Linux uses ISHST only on the IDC path. Whether ISHST suffices after `DC CVAU` on the IDC=0 path isn't established here: UNVERIFIED either way. Disclose that ISHST is accepted wherever a DSB is required.
+- **N5 is resolved by labelling:** the sequence citation is marked SECONDARY.
+
+### Why APPROVE
+
+The part now delivers the approved observable: a program-driven model that names the omitted maintenance step. "Program" here means straight-line kernels in its A64 subset; the README's Limits disclose that the subset, the single PE and the unrolled loops are deliberate scope.
+
+The verdict comes from the executed instructions and their order. The barrier rule matches Linux `cache.S`, and the CTR_EL0 text is quoted verbatim. Coherent mode equals qemu on all 13 of its kernels and on all of mine. It catches the mismatched line-size class from real flush addresses, including different I- and D-line sizes.
+
+Every result above is from my own kernels or my own tests. **Gate BUILD-04 is CLEARED.**

@@ -1,0 +1,3 @@
+# temp-dir accounting from the traced make (a980f38)
+mkdir(/tmp/tmp*) = 0: 57
+rmdir(/tmp/tmp*) = 0: 57

@@ -1,0 +1,19 @@
+probe                                                      cfg          architecture                     | model x0 fresh/missing | explain | qemu | coherent
+P1 unrelated store (+2048, other line) after full maint    IDC=0,DIC=0  FRESH                            | NEW fresh | fresh | qemu=34 | coh=34
+P2 same-line other-word store (+8) after full maint        IDC=0,DIC=0  FRESH (slot word maintained)     | NEW fresh | fresh | qemu=34 | coh=34
+P4 ISB before the IC's DSB: DC;DSB;IC;ISB;DSB              IDC=0,DIC=0  STALE (ISB must follow DSB2)     | OLD STALE!isb | no isb after the latest store | qemu=34 | coh=34
+P5 interim run before ISB, then ISB, run                   IDC=0,DIC=0  final FRESH                      | NEW fresh | fresh | qemu=34 | coh=34
+P6 IC before DC: IC;DSB;DC;DSB;ISB                         IDC=0,DIC=0  STALE (IC must follow the clean) | OLD STALE!ic | no ic after the latest store | qemu=34 | coh=34
+P7 full maintenance twice                                  IDC=0,DIC=0  FRESH                            | NEW fresh | fresh | qemu=34 | coh=34
+P8 never warmed: STR; full; run                            IDC=0,DIC=0  FRESH                            | NEW fresh | fresh | qemu=34 | coh=34
+P9 never warmed, no maintenance: STR; run                  IDC=0,DIC=0  STALE (not guaranteed)           | OLD STALE!dc | no dc after the latest store | qemu=34 | coh=34
+P10 IDC=DIC=1: STR; DSB; ISB                               IDC=1,DIC=1  FRESH (Linux IDC+DIC path)       | NEW fresh | fresh | qemu=34 | coh=34
+P11 IDC=DIC=1: STR; ISB; DSB                               IDC=1,DIC=1  STALE (ISB before the DSB)       | OLD STALE!isb | no isb after the latest store | qemu=34 | coh=34
+P12 IDC=1,DIC=0: STR; DSB; IC; DSB; ISB                    IDC=1,DIC=0  FRESH (Linux IDC path)           | NEW fresh | fresh | qemu=34 | coh=34
+P13 IDC=1,DIC=0: STR; IC; DSB; ISB (no DSB before IC)      IDC=1,DIC=0  STALE (dsb missing before IC)    | OLD STALE!dsb | IC IVAU issued before a DSB completed the clean | qemu=34 | coh=34
+P14 DC/IC on a different address in the slot's line (+32)  IDC=0,DIC=0  FRESH (same 64-B line)           | NEW fresh | fresh | qemu=34 | coh=34
+P15 re-patch then full maint again (NEW2 maintained)       IDC=0,DIC=0  FRESH with NEW2                  | NEW2 fresh | fresh | qemu=51 | coh=51
+
+P3 Iline=32 < Dline=64, IDC=0,DIC=0: DC stride 64; IC stride 64 vs 32, slot in an ODD 32-B I-line
+   IC stride 64: slot @+0xa0 in 32-B I-line +0xa0 (odd); IC lines hit ['0x40', '0x80', '0xc0', '0x100'] -> OLD STALE!ic | no ic after the latest store | qemu=34
+   IC stride 32: slot @+0xe0 in 32-B I-line +0xe0 (odd); IC lines hit ['0x80', '0xa0', '0xc0', '0xe0', '0x100', '0x120', '0x140', '0x160'] -> NEW fresh | fresh | qemu=34
