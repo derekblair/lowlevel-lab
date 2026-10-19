@@ -30,3 +30,63 @@ total_count=205 incomplete=false
   ADevWithAnIdea/agx-re  experiments/EXP-0205-g17p-simd-subgroup/pinned/isadb.py
   RyanCodrai/turbovec  benchmarks/hillclimb/LOG_2bit.md
 
+### 2026-10-19T14:26:01Z repos q=disassembly desynchronization in:readme
+exit=0
+total_count=50 incomplete=false
+  yellowbyte/analysis-of-anti-analysis  *295  created=2018-02-21  pushed=2021-11-13  writings on anti-reverse engineering.
+  yellowbyte/opaque-predicates-detective  *32  created=2020-01-21  pushed=2021-04-10  An approach to detect opaque predicates by identifying the damage caused by the obfuscation.
+  whyliuxing/reverse-engineering-journal  *23  created=2017-05-07  pushed=2017-05-07  anything I find interesting regarding reverse engineering
+  UlfKargen/desync-cc  *16  created=2021-11-21  pushed=2022-04-14   Automatic Disassembly Desynchronization Obfuscator
+  expend20/shifting-codes-python-port  *30  created=2026-02-14  pushed=2026-02-21  Shifting.Codes
+  dzaima/grr  *37  created=2024-02-22  pushed=2026-08-29  GUI for gdb, rr, perf, and more
+  dechamps/RudeWindowFixer  *179  created=2022-02-04  pushed=2023-01-31  Fix Windows taskbar always-on-top issues
+  ConsciousCode/i2cec  *13  created=2019-09-06  pushed=2022-04-22  ATtiny10 firmware to act as a bridge between the i2c and CEC buses on an HDMI cable
+  adamvalves/easyanticheat-kernel-driver-re  *5  created=2026-08-01  pushed=2026-10-19  In-depth technical reverse engineering breakdown of EasyAntiCheat.sys kernel driver (Import obfuscation, stack walking, 
+  C5Hackr/Polycheat  *3  created=2026-05-19  pushed=2026-05-22  An open source Polytoria 2.0 LuaU Executor
+
+### 2026-10-19T14:26:07Z repos q=instruction boundary visualization x86
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T14:26:12Z repos q=overlapping instructions in:readme x86 disassembler
+exit=0
+total_count=217 incomplete=false
+  dsasmblr/game-hacking  *5616  created=2017-12-10  pushed=2024-06-20  Tutorials, tools, and more as related to reverse engineering video games.
+  chip-red-pill/uCodeDisasm  *382  created=2021-05-18  pushed=2024-01-18  
+  danielplohmann/smda  *264  created=2018-07-01  pushed=2026-10-16  SMDA is a minimalist recursive disassembler library that is optimized for accurate Control Flow Graph (CFG) recovery fro
+  google/silifuzz  *418  created=2022-01-05  pushed=2026-10-12  
+  junxzm1990/x86-sok  *154  created=2020-07-02  pushed=2024-10-26  
+  abenkhadra/spedi  *109  created=2015-11-09  pushed=2018-07-08  Speculative disassembly, CFG recovery, and call-graph recovery from stripped binaries.
+  whyliuxing/reverse-engineering-journal  *23  created=2017-05-07  pushed=2017-05-07  anything I find interesting regarding reverse engineering
+  mandiant/flare-emu  *956  created=2018-07-11  pushed=2025-08-14  
+  shanytc/PVDasm  *27  created=2015-04-01  pushed=2026-04-01  This is the Public Source Code to the PVDasm Disassembler
+  sp00nznet/ps3recomp  *512  created=2026-03-11  pushed=2026-10-19  Static recompilation runtime libraries for PlayStation 3 titles. 
+
+### 2026-10-19T14:26:18Z repos q=topic:disassembler created:>2026-04-01
+exit=0
+total_count=189 incomplete=false
+  2akouwu/reverify  *1306  created=2026-08-31  pushed=2026-10-01  Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth w
+  morluto/awesome-reverse-engineering  *899  created=2026-10-09  pushed=2026-10-18  Curated reverse-engineering tools and learning resources for binaries, apps, firmware, formats, and protocols.
+  Zfinix/eleven  *779  created=2026-10-13  pushed=2026-10-18  Agent-first reverse engineering for macOS, Windows and Linux: any ACP agent reads, renames and patches binaries, Android
+  lkimuk/ReArk  *700  created=2026-05-29  pushed=2026-10-15  An intelligent reverse engineering and AI-assisted analysis tool for HarmonyOS NEXT (HAP/APP/ABC), Android (APK/AAB), iO
+  bl4ckr0ss3/knife  *382  created=2026-08-08  pushed=2026-10-15  A terminal-first reverse engineering toolkit in Rust: PE/ELF/Mach-O analysis through CLI, TUI, and MCP. Installs as knif
+  Sidenai/hyperion-disassembler  *228  created=2026-05-10  pushed=2026-06-23  Native multi-arch disassembler & decompiler - PE/ELF/Mach-O, x86/x64/ARM64, Lua scripting, RTTI recovery
+  Ablation-Tool/ablation  *222  created=2026-09-23  pushed=2026-10-19  Ablation is an autonomous reverse engineering system.
+  NeverSight/NeverD  *93  created=2026-05-20  pushed=2026-10-19  The AI-friendly binary analysis & decompilation engine — 1:1 lift, built on LLVM [WIP]
+  sarb2u/luau-bytecode-lens  *68  created=2026-09-22  pushed=2026-10-19  Best Open-Source Luau Obfuscator and Decompiler Suite 2026
+  BinaryHardening/cfgrip  *61  created=2026-06-29  pushed=2026-07-02  PE/ELF x86/x64 CFG extractor
+
+### 2026-10-19T14:26:24Z code q="self-synchroniz" disassembly x86
+exit=0
+total_count=96 incomplete=false
+  pwndbg/pwndbg  pwndbg/aglib/disasm/disassembly.py
+  n64decomp/007  tools/diff.py
+  williballenthin/lancelot  core/src/analysis/pe/call_targets.rs
+  VetriTheRetri/ssb-decomp-re  diff.py
+  simonlindholm/asm-differ  diff.py
+  parappadev/parappa2  tools/diff/diff.py
+  zeldaret/oot-gc  diff.py
+  ethteck/pokemonsnap  diff.py
+  ethteck/kh1  diff.py
+  zeldaret/oot-vc  diff.py
+

@@ -1,0 +1,9 @@
+# Reviewer pre-search round 4 (replacement candidates announced by author 07:24: C12 cross-ISA relay, C09 x86-lattice)
+C09	repos	disassembly desynchronization in:readme
+C09	repos	instruction boundary visualization x86
+C09	repos	overlapping instructions in:readme x86 disassembler
+C09	repos	topic:disassembler created:>2026-04-01
+C09	code	"self-synchroniz" disassembly x86
+C12	repos	"quine" in:readme aarch64 x86-64
+C12	repos	ouroboros binary architectures
+C12	code	quine "EM_AARCH64" "EM_X86_64"

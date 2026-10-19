@@ -34,3 +34,25 @@ total_count=1 incomplete=false
 exit=0
 total_count=0 incomplete=false
 
+### 2026-10-19T14:26:41Z repos q="quine" in:readme aarch64 x86-64
+exit=0
+total_count=27 incomplete=false
+  Panzerschrek/U-00DC-Sprache  *116  created=2016-04-30  pushed=2026-10-19  "Ü" programming language
+  printfn/quines  *0  created=2022-11-12  pushed=2022-11-13  Quines!
+  nikivdev/github-stars  *70  created=2019-10-11  pushed=2020-07-05  Curated list of my GitHub stars
+  acompany-develop/NixReflect  *2  created=2026-07-28  pushed=2026-10-06  A transpiler for mutually-referential reflective programming in Nix
+  xvolks/brainfuck-rs  *1  created=2026-09-21  pushed=2026-10-02  Brainfuck interpreter
+  qubeworlds/quine  *0  created=2026-06-02  pushed=2026-07-24  Quine Game Engine
+  cyrushmh/wordbuddy-1gongkai  *0  created=2026-10-19  pushed=2026-10-19  另外开启公开
+  jamesgober/macro-lang  *0  created=2026-06-19  pushed=2026-10-09  Hygienic macro expansion: pattern match + template substitution.
+  haskovec/privateer  *0  created=2026-03-14  pushed=2026-09-04  
+  dhilipsiva/nibli  *6  created=2026-02-19  pushed=2026-10-19  A zero-hallucination symbolic reasoning engine.
+
+### 2026-10-19T14:26:47Z repos q=ouroboros binary architectures
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T14:26:53Z code q=quine "EM_AARCH64" "EM_X86_64"
+exit=0
+total_count=0 incomplete=false
+
