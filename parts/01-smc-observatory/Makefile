@@ -4,6 +4,10 @@ CFLAGS ?= -O2 -Wall -Wextra -pthread
 REPEATS ?= 5
 CPUS ?= 0 5 13
 
+# `make` with no target builds and runs the full sweep + report, as the README
+# "How to run" describes (REVIEW-01-build B2).
+.DEFAULT_GOAL := run
+
 smcobs: smcobs.c
 	$(CC) $(CFLAGS) -o $@ $<
 

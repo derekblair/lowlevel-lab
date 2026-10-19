@@ -188,33 +188,65 @@ static int do_xcore(int writer_cpu, int exec_cpu, const char *ev) {
 }
 
 /* ---- torn-fetch probe -------------------------------------------------- */
-struct torn_ctx { int writer_cpu, exec_cpu; unsigned char *code; int straddle; _Atomic int stop; };
+/*
+ * A torn instruction fetch is one where the two cache lines that hold a single
+ * instruction are fetched from DIFFERENT code versions, yielding bytes that were
+ * never coherently in memory. To make that detectable, put `mov eax, imm32`
+ * (B8 + 4 imm bytes) with the imm32 STRADDLING a 64-byte line: opcode at
+ * off=61, imm32 at 62..65, so the low 16 bits (62,63) sit in line 0 and the
+ * high 16 bits (64,65) sit in line 1.
+ *   A = 0x11112222  (low16=0x2222 @62/63, high16=0x1111 @64/65)
+ *   B = 0x33334444  (low16=0x4444,        high16=0x3333)
+ * The writer updates each half with ONE aligned 2-byte store, and orders them so
+ * memory only ever holds A, B or the intermediate 0x33332222 (A->B: high half
+ * first; B->A: low half first). On x86-TSO stores are not reordered, so
+ * 0x11114444 (high from A, low from B) is never written. An executor that reads
+ * eax == 0x11114444 therefore fetched the two lines from different versions:
+ * a genuine torn fetch. (On this Intel part the expected result is 0 — strong
+ * I-fetch coherence — but the probe now HAS the power to detect a tear; see
+ * README.) The ret (C3) lives safely in line 1 at off=66.
+ */
+#define TORN_A 0x11112222u
+#define TORN_B 0x33334444u
+#define TORN_TORN 0x11114444u   /* high(A) | low(B): never coherently in memory */
+#define TORN_MID 0x33332222u    /* high(B) | low(A): the legitimate intermediate */
+#define TORN_OFF 61
+struct torn_ctx { int writer_cpu, exec_cpu; unsigned char *code; _Atomic int stop; };
 static void *torn_writer(void *arg) {
     struct torn_ctx *c = arg;
     pin(c->writer_cpu);
-    volatile unsigned char *imm = c->code + c->straddle + 1; /* imm8 of mov al,imm */
+    volatile uint16_t *lo = (uint16_t *)(c->code + TORN_OFF + 1);      /* imm bytes 62,63 */
+    volatile uint16_t *hi = (uint16_t *)(c->code + TORN_OFF + 3);      /* imm bytes 64,65 */
     while (!atomic_load_explicit(&c->stop, memory_order_relaxed)) {
-        *imm = 0; *imm = 1;
+        /* A -> B: write high half first (A, 0x33332222, B) */
+        *hi = (uint16_t)(TORN_B >> 16); *lo = (uint16_t)(TORN_B & 0xffff);
+        /* B -> A: write low half first (B, 0x33332222, A) */
+        *lo = (uint16_t)(TORN_A & 0xffff); *hi = (uint16_t)(TORN_A >> 16);
     }
     return 0;
 }
 static int do_torn(int writer_cpu, int exec_cpu) {
     struct torn_ctx c; memset(&c, 0, sizeof c);
     c.writer_cpu = writer_cpu; c.exec_cpu = exec_cpu; c.code = make_code_page();
-    /* Place "mov al,imm8 ; ret" so the 2-byte mov straddles a 64B boundary. */
-    c.straddle = 64 - 1;
-    c.code[c.straddle] = 0xb0;     /* mov al, imm8 */
-    c.code[c.straddle + 1] = 0x00; /* imm8 (written 0/1 by the other core) */
-    c.code[c.straddle + 2] = 0xc3; /* ret */
+    c.code[TORN_OFF] = 0xb8;                              /* mov eax, imm32 */
+    *(uint32_t *)(c.code + TORN_OFF + 1) = TORN_A;        /* imm32 @62..65 */
+    c.code[TORN_OFF + 5] = 0xc3;                          /* ret @66 (line 1) */
     pin(exec_cpu);
-    int (*fn)(void) = (int (*)(void))(c.code + c.straddle);
-    pthread_t wt; pthread_create(&wt, 0, torn_writer, &c);
-    const long N = 5 * 1000 * 1000; long torn = 0, ones = 0, zeros = 0;
-    for (long i = 0; i < N; i++) { int v = fn() & 0xff; if (v == 0) zeros++; else if (v == 1) ones++; else torn++; }
+    unsigned (*fn)(void) = (unsigned (*)(void))(c.code + TORN_OFF);
+    pthread_t wt;
+    if (pthread_create(&wt, 0, torn_writer, &c)) { perror("pthread"); return 1; }
+    const long N = 5 * 1000 * 1000;
+    long torn = 0, legit = 0, other = 0;
+    for (long i = 0; i < N; i++) {
+        unsigned v = fn();
+        if (v == TORN_A || v == TORN_B || v == TORN_MID) legit++;
+        else if (v == TORN_TORN) torn++;
+        else other++;  /* any other value is also a tear (half-store non-atomicity) */
+    }
     atomic_store(&c.stop, 1); pthread_join(wt, 0);
     printf("torn,%d,%s,%d,%s,-,%ld,%ld,%ld\n",
            exec_cpu, core_class(exec_cpu), writer_cpu, core_class(writer_cpu),
-           torn, zeros, ones);
+           torn + other, legit, torn);  /* field7 = all torn (incl 'other'), field9 = exact 0x11114444 */
     munmap(c.code, MAPSZ);
     return 0;
 }

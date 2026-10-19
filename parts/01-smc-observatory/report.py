@@ -74,12 +74,21 @@ def main():
         hdr = "  store@ |" + "".join(f"{o:>6}" for o in offs)
         print(hdr)
         print("  " + "-" * (len(hdr) - 2))
+        worst_spread = 0.0
         for cls in classes:
             nums = []
             for o in offs:
                 vals = sweep.get((cls, code_off, o))
-                nums.append(f"{median(vals):>6.2f}" if vals else "   NA")
+                if vals:
+                    nums.append(f"{median(vals):>6.2f}")
+                    worst_spread = max(worst_spread, max(vals) - min(vals))
+                else:
+                    nums.append("   NA")
             print(f"  {cls:>5} |" + "".join(nums))
+        # REVIEW-00 §1.18: median AND spread. Clears are deterministic across
+        # repeats here, so the worst per-cell (max-min) is 0.00.
+        print(f"  (worst per-cell spread max-min over {code_off and 'B' or 'A'} repeats: "
+              f"{worst_spread:.2f} clears/iter)")
 
     # ---- machine-checkable verdicts -------------------------------------
     print("\n" + "=" * 72)
@@ -154,10 +163,17 @@ def main():
         for (ecls, wcls, ev), xs in sorted(xcore.items()):
             print(f"  exec={ecls:<4} writer={wcls:<4} {ev.upper():<5} "
                   f"median={median(xs):.1f} (n={len(xs)})")
-        # XMC observability is asymmetric: Darkmont has the counter, P does not.
-        xmc_e = any(k[0] in ("E", "LP-E") and k[2] == "xmc" for k in xcore)
-        check("XMC counter present on Darkmont executor (asymmetric observability)", xmc_e,
-              "P-core cross-modifying clears fold into SMC/COUNT; only Darkmont exposes XMC")
+        # Asymmetric booking (REVIEW-01-build N3): a Darkmont executor books
+        # cross-core modification as XMC with SMC~=0; a P executor books it as
+        # SMC (it has no XMC counter at all).
+        def xc(ecls, ev):
+            return median(xcore.get((ecls, "P", ev), []) or xcore.get((ecls, "E", ev), []) or [float("nan")])
+        e_smc, e_xmc, p_smc = xc("E", "smc"), xc("E", "xmc"), xc("P", "smc")
+        darkmont_books_xmc = (e_xmc == e_xmc and e_xmc > 0) and (e_smc == e_smc and e_smc < 1.0)
+        p_books_smc = (p_smc == p_smc and p_smc > 0)
+        check("cross-core mod: Darkmont books XMC (SMC~=0), P books SMC (no XMC counter)",
+              darkmont_books_xmc and p_books_smc,
+              f"E executor SMC={e_smc:.1f}/1e6 XMC={e_xmc:.1f}/1e6; P executor SMC={p_smc:.1f}/1e6")
     if torn:
         print("\ntorn-fetch probe (reads that were neither old nor new value):")
         tot = 0

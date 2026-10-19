@@ -83,14 +83,27 @@ reference so clear-counts compare directly.
 
 ## Precision note (REVIEW-00 §1.18)
 
-Clears/iteration is reported from `count / NITER` with `NITER=200000`. The
-in-window counts are 2 (P) and 1 (Darkmont) per iteration **minus a fixed ~2-count
-loss at the counter ENABLE/DISABLE boundary**, so P prints `1.9999`
-(= 399998/200000) rather than `2.0000`. The reviewer's reference probe printed
-`%.3f`, which rounds this to `"2.000"`; VERDICT 8 compares at that same 3-decimal
-precision. Timings (`tsc/iter`) are reported but only used as order-of-magnitude
-context (they vary with frequency/thermal state); the **clear counts** are the
-deterministic, load-bearing numbers (identical across all repeats here).
+Clears/iteration is reported from `count / NITER` with `NITER=200000`. In-window
+the count is **2 (P) / 1 (Darkmont) per iteration minus a small, variable
+shortfall** — measured (by the reviewer's `deficit_probe.c`, 54 runs) at **2–42
+counts per 2×10⁵ iterations, varying run to run, not removed by a warm-up**, so
+the **cause is not established** (interrupts landing inside the loop are one
+untested candidate; it is *not* a fixed counter-boundary artefact — an earlier
+version of this note claimed that and was wrong). The shortfall is why P prints
+e.g. `1.9999` rather than `2.0000`. It is always < ~100 counts, so VERDICT 8's
+3-decimal comparison against the reviewer reference is robust to it, and nothing
+load-bearing changes. Timings (`tsc/iter`) vary with frequency/thermal state and
+are order-of-magnitude context only; the **clear counts** are the load-bearing
+numbers (the detection-window boundaries are identical across all repeats).
+
+## A teaching detail: the sweep's store is *silent*
+
+In the distance sweep the store writes `0xcc` onto the page's existing `0xcc`
+`int3` fill — the byte does not change — yet the machine clears still fire. So
+**SMC detection here is address-based, not value-based**: the core nukes because
+an address it is fetching was *written*, regardless of whether the bytes
+changed. (The cross-modifying and torn probes do change bytes; only the sweep is
+silent.)
 
 ## Limits / honesty
 

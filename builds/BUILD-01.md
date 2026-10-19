@@ -69,9 +69,12 @@ in-window clear magnitude is 2/iteration on P, 1/iteration on Darkmont.
 - **Timings are noisy.** `tsc/iter` swings with frequency/thermal state (e.g.
   LP-E first-touch spikes); only the clear *counts* are load-bearing.
 - **Representative-CPU sampling.** The default samples one CPU per class
-  (0/5/13). The reviewer reproduced the probe across 0/2/3, 4/9/11, 12/15; the
-  class generalisation rests on that + the shared-PMU/topology evidence, not on
-  sweeping all 16 here (kept fast + reproducible, P1 risk note).
+  (0/5/13). The class generalisation rests on the reviewer's reproduction across
+  **all 16 CPUs** (`review/evidence/build-01/F-all-cpus.txt`, every core matches
+  its class) plus the shared-PMU/topology evidence, not on sweeping all 16 here
+  (kept fast + reproducible, P1 risk note). [Fixed N2: an earlier draft here
+  mis-cited the 0/2/3,4/9/11,12/15 reproduction, which was the C04
+  undefined-flags probe, not this SMC sweep.]
 - **Cross-modifying magnitudes** (clears per 1e6 executes) are reported for
   context; they depend on the writer/executor scheduling and are not pinned to
   a tolerance (the SMC *granularity* is the claim, not the XMC rate).
@@ -80,3 +83,42 @@ in-window clear magnitude is 2/iteration on P, 1/iteration on Darkmont.
 
 `parts/01-smc-observatory/`: AGENTS.md, README.md, RUN.md, Makefile, smcobs.c,
 run.sh, report.py (+ generated data.csv, smcobs — `make clean`-able).
+
+## Fix round 1 (REVIEW-01-build, CHANGES REQUESTED @2949d40)
+
+Both blockers fixed; both are local to this part and do not touch the headline
+finding (which the reviewer reproduced byte-identically across all 16 CPUs).
+
+- **B1 (torn-fetch probe had zero power) — FIXED by redesign (option a).**
+  The old probe flipped a single byte at offset 64, so the opcode never changed
+  and a tear was impossible to observe. Rewritten (`smcobs.c` `do_torn`/`torn_writer`):
+  `mov eax, imm32` with the imm32 straddling the 64-byte line (opcode@61,
+  imm32@62..65, ret@66). The writer changes **both** halves with ordered aligned
+  2-byte stores — A→B writes the high half first, B→A the low half first — so on
+  x86-TSO memory only ever holds A=0x11112222, B=0x33334444 or the intermediate
+  0x33332222. An executor reading **0x11114444** (or any other non-legit value)
+  is a genuine torn fetch the probe now reports. Result on this part: **0 torn**
+  (strong I-fetch coherence), now an OBSERVATION with a probe that could have
+  shown otherwise, not a vacuous guarantee. RUN.md §3 demonstrates it.
+- **B2 (false `make` instruction) — FIXED.** Added `.DEFAULT_GOAL := run` to the
+  Makefile, so `make` now builds + sweeps + reports exactly as the README "How
+  to run" and AGENTS.md describe. RUN.md §4 captures `make` doing this
+  (make_exit=0, ALL VERDICTS PASS).
+
+Nits addressed (requested, not required):
+- **N1:** the precision note's "fixed ~2-count boundary" explanation was false;
+  replaced with the reviewer's measured range (2–42 counts/2e5, variable,
+  warm-up doesn't remove it, cause not established) in README.
+- **N2:** fixed the mis-cited reproduction above (was the C04 probe).
+- **N3:** VERDICT 9 strengthened — it now asserts the asymmetric booking
+  (Darkmont executor: XMC>0 with SMC≈0; P executor: SMC>0, no XMC counter),
+  not mere presence.
+- **N4:** RUN.md now declares its nondeterministic fields (new header section).
+- **N5:** report.py prints the worst per-cell spread (max−min) per placement
+  (0.00 — clears are deterministic across repeats).
+- **N6:** `do_torn` now checks `pthread_create`'s return.
+- **N7:** README adds the "silent store" teaching point (sweep writes 0xcc over
+  0xcc, clears still fire → address-based detection).
+
+Re-verified: clean build warning-free under `-Wall -Wextra`; `make` runs the
+full sweep; all 10 VERDICTs PASS; torn probe non-vacuous. RUN.md re-captured.

@@ -1,7 +1,15 @@
 # RUN.md — smc-observatory, verbatim build+run on nibbles
 
-Captured 2026-10-19 07:30:46 PDT on nibbles. Commands run exactly
-as shown, from a clean state. No paraphrase. perf_event_paranoid=2, unprivileged user derekblair.
+Captured 2026-10-19 07:42:56 PDT on nibbles, unprivileged user derekblair,
+perf_event_paranoid=2. Commands run exactly as shown, from clean. No paraphrase.
+
+## Nondeterministic fields (R3)
+Load-bearing and DETERMINISTIC across repeats: the sweep `clears_per_iter`
+values (0 / ~1 / ~2) and hence the detection-window boundaries and all 10
+VERDICTs. NONDETERMINISTIC (vary run to run, not asserted byte-exactly):
+`tsc_per_iter` everywhere (frequency/thermal); the in-window clears shortfall
+below 2.0/1.0 (2-42 counts/2e5, see README precision note); the `xcore`
+clears-per-million medians (scheduling-dependent). torn counts are expected 0.
 
 ## 0. Environment (informational)
 ```
@@ -12,8 +20,6 @@ Python 3.12.3
 $ grep -m1 "model name" /proc/cpuinfo; nproc
 model name	: Intel(R) Core(TM) Ultra X7 358H
 16
-$ cat /proc/sys/kernel/perf_event_paranoid
-2
 ```
 
 ## 1. Clean build
@@ -21,31 +27,40 @@ $ cat /proc/sys/kernel/perf_event_paranoid
 $ make clean && make smcobs
 rm -f smcobs data.csv
 cc -O2 -Wall -Wextra -pthread -o smcobs smcobs.c
-$ echo exit=$?
-exit=0
 ```
 
-## 2. Smoke test (must reproduce the reviewer c02-probe reference)
+## 2. Smoke test (reproduces the reviewer c02-probe reference)
 ```
 $ make smoke
-sweep,0,P,cpu_core,0,8,smc,1.9999,710.7,0
-sweep,0,P,cpu_core,0,64,smc,0.0000,4.9,0
-sweep,5,E,cpu_atom,0,512,smc,1.0000,149.2,0
-sweep,5,E,cpu_atom,0,1024,smc,0.0000,5.8,0
-sweep,13,LP-E,cpu_atom,0,512,smc,0.9999,270.3,0
+sweep,0,P,cpu_core,0,8,smc,1.9999,702.1,0
+sweep,0,P,cpu_core,0,64,smc,0.0000,5.0,0
+sweep,5,E,cpu_atom,0,512,smc,1.0000,151.7,0
+sweep,5,E,cpu_atom,0,1024,smc,0.0000,5.9,0
+sweep,13,LP-E,cpu_atom,0,512,smc,0.9999,268.3,0
 ```
-Reference (review/evidence/presearch/c02-probe/sweep.txt): P@same-line=2.000,
-P@next-line=0; E/LP-E@same-1KiB=1.000, @next-1KiB=0. Reproduced above
-(P prints 1.9999 = 399998/200000; the reviewer probe printed %.3f -> "2.000";
-same measurement, see VERDICT 8 and the README "Precision" note).
+Reference (review/evidence/presearch/c02-probe/sweep.txt): P same-line=2.000,
+next-line=0; E/LP-E same-1KiB=1.000, next-1KiB=0. Reproduced (P prints ~1.9999
+from the small variable shortfall; VERDICT 8 compares at the reference %.3f).
 
-## 3. Full sweep + report
+## 3. Torn-fetch probe is non-vacuous (REVIEW-01-build B1 fix)
+mov eax,imm32 straddles a 64B line; writer changes BOTH halves with ordered
+aligned 2-byte stores so memory never holds 0x11114444. An executor reading
+0x11114444 (or any non-{A,B,0x33332222} value) is a genuine torn fetch.
 ```
-$ CPUS="0 5 13" REPEATS=5 ./run.sh > data.csv; echo run_exit=$?
-run_exit=0
-$ wc -l data.csv
-423 data.csv
-$ python3 -I report.py data.csv; echo report_exit=$?
+$ ./smcobs torn 0 5     # writer P-core, executor E-core
+torn,5,E,0,P,-,0,5000000,0
+$ ./smcobs torn 4 0     # writer E-core, executor P-core
+torn,0,P,4,E,-,0,5000000,0
+# CSV: torn,exec_cpu,exec_cls,writer_cpu,writer_cls,-,TORN+other,legit,TORN_exact
+# field 7 (TORN+other) = 0 here: no torn fetch observed on this part (OBSERVED,
+# not guaranteed); field 8 legit = 5000000 confirms the classifier counted reads.
+```
+
+## 4. Full sweep + report (this is what `make` runs by default, B2 fix)
+```
+$ make        # .DEFAULT_GOAL := run  -> builds, sweeps, reports
+CPUS="0 5 13" REPEATS=5 ./run.sh > data.csv
+python3 -I report.py data.csv
 ========================================================================
 SMC machine-clear detection window — median clears/iteration vs store offset
 (~2.0 = P-core nuke, ~1.0 = Darkmont nuke, 0 = no clear; code is 6 bytes)
@@ -57,6 +72,7 @@ placement: code at byte 0 (line 0, 1KiB-subpage 0)
       P |  2.00  2.00  2.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00
       E |  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00
    LP-E |  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00
+  (worst per-cell spread max-min over A repeats: 0.00 clears/iter)
 
 placement: code at byte 1536 (line 24, 1KiB-subpage 1)
   store@ |     8   512  1023  1024  1472  1543  1600  2000  2047  2048  3072
@@ -64,6 +80,7 @@ placement: code at byte 1536 (line 24, 1KiB-subpage 1)
       P |  0.00  0.00  0.00  0.00  0.00  2.00  0.00  0.00  0.00  0.00  0.00
       E |  0.00  0.00  0.00  1.00  1.00  1.00  1.00  1.00  1.00  0.00  0.00
    LP-E |  0.00  0.00  0.00  1.00  1.00  1.00  1.00  1.00  1.00  0.00  0.00
+  (worst per-cell spread max-min over B repeats: 0.00 clears/iter)
 
 ========================================================================
 VERDICTS (grep-able)
@@ -79,12 +96,12 @@ VERDICT PASS: in-window clears/iter: P==2.000, Darkmont==1.000 at reviewer %.3f 
 
 cross-modifying code (executor counts, clears per 1e6 executes):
   exec=E    writer=P    SMC   median=0.0 (n=5)
-  exec=E    writer=P    XMC   median=113314.2 (n=5)
+  exec=E    writer=P    XMC   median=114523.4 (n=5)
   exec=LP-E writer=P    SMC   median=0.0 (n=5)
-  exec=LP-E writer=P    XMC   median=36710.6 (n=5)
-  exec=P    writer=E    SMC   median=207992.8 (n=5)
-  exec=P    writer=P    SMC   median=143105.6 (n=5)
-VERDICT PASS: XMC counter present on Darkmont executor (asymmetric observability)  [P-core cross-modifying clears fold into SMC/COUNT; only Darkmont exposes XMC]
+  exec=LP-E writer=P    XMC   median=37304.8 (n=5)
+  exec=P    writer=E    SMC   median=119154.6 (n=5)
+  exec=P    writer=P    SMC   median=147297.8 (n=5)
+VERDICT PASS: cross-core mod: Darkmont books XMC (SMC~=0), P books SMC (no XMC counter)  [E executor SMC=0.0/1e6 XMC=114523.4/1e6; P executor SMC=147297.8/1e6]
 
 torn-fetch probe (reads that were neither old nor new value):
   exec=E    writer=P    torn=0 over 5 runs
@@ -93,5 +110,6 @@ torn-fetch probe (reads that were neither old nor new value):
 VERDICT PASS: no torn instruction fetch observed on this part (OBSERVED, not guaranteed)  [total torn reads=0]
 
 ALL VERDICTS PASS
-report_exit=0
+$ echo make_exit=$?
+make_exit=0
 ```
