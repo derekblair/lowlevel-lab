@@ -6,7 +6,7 @@ usage: python3 -I review/tools/objdump_lengths.py BINARY START END [STEP]
 
 For each address A in [START, END) (every byte by default), asks GNU objdump to
 decode the single instruction that STARTS at A
-(`objdump -d --start-address=A --stop-address=A+1`), and prints one TSV line:
+(`objdump -d --start-address=A --stop-address=A+16`, first insn only), and prints one TSV line:
     <addr-hex> <length> <bytes-hex> <mnemonic/operands or "(bad)">
 This is the ground truth an author-written superset/length decoder must match
 at every offset of the sampled region (REVIEW-01 §6.2 C09-3).
@@ -20,8 +20,11 @@ LINE = re.compile(r"^\s*([0-9a-f]+):\t((?:[0-9a-f]{2} )+)\s*\t?(.*)$")
 
 def decode_at(binary, addr):
     out = subprocess.run(
+        # stop at A+16, not A+1: objdump stops *reading bytes* at --stop-address,
+        # so A+1 truncates every multi-byte instruction to `.byte` (found by
+        # self-test). 16 > the x86 maximum instruction length (15).
         ["objdump", "-d", "-w",
-         f"--start-address={addr:#x}", f"--stop-address={addr + 1:#x}", binary],
+         f"--start-address={addr:#x}", f"--stop-address={addr + 16:#x}", binary],
         capture_output=True, text=True, check=True).stdout
     for ln in out.splitlines():
         m = LINE.match(ln)

@@ -1,0 +1,26 @@
+# objdump_lengths.py self-test on /usr/bin/true .text 0x1480..0x1498, 2026-10-19 07:53:47 PDT
+# v1 used --stop-address=A+1 and was WRONG (truncated multi-byte insns to .byte); fixed to A+16. Aligned offsets below match objdump's linear sweep (0x1480 call/5, 0x1485 cs nopw/10, 0x148f nop/1, 0x1490 endbr64/4).
+0x1480	5	e8dbfdffff	call   1260 <abort@plt>
+0x1481	2	dbfd	(bad)
+0x1482	1	fd	std
+0x1483	1	ff	(bad)
+0x1484	3	ff662e	jmp    *0x2e(%rsi)
+0x1485	10	662e0f1f840000000000	cs nopw 0x0(%rax,%rax,1)
+0x1486	9	2e0f1f840000000000	cs nopl 0x0(%rax,%rax,1)
+0x1487	8	0f1f840000000000	nopl   0x0(%rax,%rax,1)
+0x1488	1	1f	(bad)
+0x1489	2	8400	test   %al,(%rax)
+0x148a	2	0000	add    %al,(%rax)
+0x148b	2	0000	add    %al,(%rax)
+0x148c	2	0000	add    %al,(%rax)
+0x148d	2	0000	add    %al,(%rax)
+0x148e	6	0090f30f1efa	add    %dl,-0x5e1f00d(%rax)
+0x148f	1	90	nop
+0x1490	4	f30f1efa	endbr64
+0x1491	3	0f1efa	nop    %edx
+0x1492	1	1e	(bad)
+0x1493	1	fa	cli
+0x1494	1	55	push   %rbp
+0x1495	3	4889e5	mov    %rsp,%rbp
+0x1496	2	89e5	mov    %esp,%ebp
+0x1497	2	e541	in     $0x41,%eax
