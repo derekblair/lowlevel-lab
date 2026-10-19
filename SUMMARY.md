@@ -137,21 +137,29 @@ independent trap-flag single-step ground truth:
   its exact code version.** That holds on **every core class**, across the
   whole patch→execute range, with **no timing packets**.
 - **The strong time-keyed decoder** (TMA-anchored, MTC-*payload* clock, the way
-  perf/libipt reconstruct time) **is exact only over an interval band.**
-  - It fails at short intervals on every class.
-  - **At long gaps it fails on Darkmont (E, LP-E) but not on Cougar Cove (P).**
-    With branch tracing off, Darkmont's trace carries only ~250–400 MTC packets
-    and a single TSC per capture. So the 8-bit MTC payload wraps unobserved, and
-    failures start at the **predicted** 2^(mtc_period+8) CTC × 192/2 = **196,608
-    TSC ticks**. The edge falls between LP-E's last exact rows (1.6–1.8×10⁵) and
-    E's first failing rows (2.2–2.8×10⁵).
-  - Cougar Cove's trace carries an MTC **every period** (~3×10⁵ per capture), so
-    it stays exact to ~1×10⁷ TSC.
+  perf/libipt reconstruct time) **behaves per core class**:
+  - **Darkmont (E, LP-E): exact only over an interval band.**
+    - It fails at the shortest intervals.
+    - It fails at long gaps from the **predicted** 2^(mtc_period+8) CTC × 192/2
+      = **196,608 TSC ticks**, the 8-bit MTC payload wrap.
+    - With branch tracing off, Darkmont's trace carries only ~200–400 MTCs and
+      a single TSC per capture, and 43–77% of consecutive MTC steps are a
+      whole payload wrap (Δ0). So the clock cannot see the wraps that elapsed.
+  - **Cougar Cove (P): exact at every interval ≥ 2 MTC periods**, out to
+    ~10⁷ TSC, because its trace carries an MTC **every period**. Its lower
+    edge sits at about one MTC period (768 TSC), the clock's resolution. A
+    dedicated probe found failures only for median intervals below ~1.2
+    periods. The price is a trace ~230–510× larger.
+  - So the fence's **accuracy** advantage is on Darkmont (both regimes), and
+    on P only near or below one MTC period. On every class it needs no timing
+    packets and no particular emission density.
 
 **Why it was re-opened.** This per-class split surfaced *after* P2 cleared,
 when I applied the reviewer's nit to pin the captures. The cleared runs were
 unpinned. Because it changes a cleared claim, I re-opened the gate rather than
-fold it in.
+fold it in. Review then caught me over-generalizing the short-interval failure
+to every class (REVIEW-02 round 3, B3). The statement above is the corrected
+one.
 
 **Limits:**
 - The delta is narrow and stated as such: "exact without timing packets, and
@@ -212,7 +220,7 @@ every arc's geometry, every merge and the histogram from the embedded data.
 | part | rounds | what review caught |
 |---|---|---|
 | P1 | 2 | torn-fetch probe had zero power (vacuous VERDICT); a false run instruction |
-| P2 | 2 + re-open | time-keyed baseline was a packet-counting strawman; non-reproducible `make` (OVF); later, my own pinning split the long-gap result by core class |
+| P2 | 2 + re-open (+1) | time-keyed baseline was a packet-counting strawman; non-reproducible `make` (OVF); later, my own pinning split the long-gap result by core class, and review then caught me over-generalizing the short-interval failure to every class |
 | C12 | 1 + nits | a false "64 KiB alignment required" claim (the real cause was a missing `+x`); fail-open safety checks |
 | P4 | 3 | verdict read a recipe, not the program; IDC=1 dropped a barrier and an impossible config; citation unquoted; then freshness ignored store order |
 | C09 | 2 | objdump parsed without `-w`/`-z` (false boundaries, lengths capped at 7); a one-function anecdote; no lattice actually drawn |
