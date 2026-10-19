@@ -137,3 +137,7 @@ total_count=2 incomplete=false
   tuxology/flowjit  *3  created=2016-11-18  pushed=2016-11-18  Kernel patch for hardware trace reconstruction of runtime compiled code
   siddharthriyer/FlowJitsu  *4  created=2026-03-17  pushed=2026-08-03  
 
+### 2026-10-19T14:22:46Z issues q=ptwrite repo:intel/libipt (see stdout capture in REVIEW notes)
+### 2026-10-19T14:22:50Z issues q=ptwrite jit (see stdout capture in REVIEW notes)
+### 2026-10-19T14:22:54Z issues q=ptwrite "self-modifying" (see stdout capture in REVIEW notes)
+### 2026-10-19T14:22:58Z issues q=ptwrite version code (see stdout capture in REVIEW notes)
