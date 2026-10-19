@@ -1,0 +1,13 @@
+# pt-truth head-to-head  2026-10-19T08:25:36-0700  host=nibbles
+# timing,delay,execs,median_interval_tsc,fenced_ok,fenced_wrong,fenced_nofence,tk_ok,tk_wrong,ovf
+coarse,0,24,1320,24,0,0,4,20,0
+coarse,100,24,340,24,0,0,10,14,0
+coarse,1000,24,2882,24,0,0,24,0,0
+coarse,10000,24,13912,24,0,0,24,0,0
+coarse,100000,24,116674,24,0,0,24,0,0
+coarse,1000000,24,1154788,24,0,0,3,21,0
+fine,0,24,634,24,0,0,24,0,0
+fine,100,24,364,24,0,0,24,0,0
+fine,1000,24,1352,24,0,0,24,0,0
+fine,10000,24,17098,24,0,0,24,0,0
+# workdir: /home/derekblair/projects/lowlevel-lab/tasks/reviewer-repro/build-02-r2/parts/02-pt-truth/.work3

@@ -1,0 +1,44 @@
+./verify_singlestep 24
+verify_singlestep: 24 versions, 24 single-stepped ret-points, ground truth CONFIRMED (EAX-at-ret == EXEC_TAG+i for all i)
+VERSIONS=24 ./run.sh > data.csv
+python3 report.py data.csv
+==================================================================================
+pt-truth: version attribution of self-modifying code, PTW-fenced vs time-keyed
+(time-keyed = TMA-anchored MTC-payload TSC clock; intervals in TSC ticks)
+==================================================================================
+timing     delay interval(TSC)  ovf | fenced ok/wrong | time-keyed ok/wrong
+---------------------------------------------------------------------------
+coarse         0          1388    0 |       24/0      |          7/17      
+coarse       100           352    0 |       24/0      |         16/8       
+coarse      1000          2404    0 |       24/0      |         24/0       
+coarse     10000         19780    0 |       24/0      |         24/0       
+coarse    100000        285136    0 |       24/0      |          1/23      
+coarse   1000000       2871372    0 |       24/0      |          1/23      
+fine           0          1598    0 |       24/0      |         24/0       
+fine         100           764    0 |       24/0      |         24/0       
+fine        1000          3326    0 |       24/0      |         24/0       
+fine       10000         29592    0 |       24/0      |         24/0       
+
+==================================================================================
+VERDICTS
+==================================================================================
+VERDICT PASS: PTW-fenced attribution is exact on every row (0 wrong), needs no timing packets  [fenced wrong total = 0; no-preceding-fence = 0 over 10 rows]
+VERDICT PASS: OVF rows excluded from accuracy scoring (lossy trace != method result)  [0 of 10 rows had OVF (excluded): none]
+VERDICT PASS: coarse time-keyed is EXACT in a middle interval band  [exact at intervals(TSC) = [2404, 19780]]
+INFO: coarse time-keyed at short intervals (<band): [(352, 8), (1388, 17)]
+VERDICT PASS: coarse time-keyed MIS-attributes above the band (MTC 8-bit payload wrap, one TSC anchor)  [wrong at long intervals(TSC) = [(285136, 23), (2871372, 23)]]
+VERDICT PASS: reported time-keyed accuracy window (TSC ticks)  [exact band ~[2404, 19780] TSC ticks; fails below and above]
+VERDICT PASS: FINE timing: time-keyed is exact on all OVF-free rows (dense timing closes the short-interval gap)  [fine time-keyed wrong = [0, 0, 0, 0] (OVF-free rows)]
+VERDICT PASS: wherever time-keyed mis-attributes, PTW-fenced is exact  [rows with time-keyed wrong: 4; of those, fenced wrong: 0]
+
+Interpretation: an executed in-band PTWRITE fence pins each traced
+execution to its exact self-modified version in packet order, needing no
+timestamps. The strong time-keyed decoder (TMA + MTC payloads) is exact
+only for a middle band of patch->execute intervals: below it there are too
+few CTC ticks to place the exec after its patch; above it the 8-bit MTC
+payload wraps between the sparse TSC anchors (BranchEn=0), losing the high
+CTC bits. Fine (dense) timing closes the low end but risks AUX overflow at
+long intervals. Ground truth is the EXEC payload the executed bytes
+produced, confirmed independently of PT by verify_singlestep.
+
+ALL VERDICTS PASS

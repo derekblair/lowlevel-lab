@@ -1,0 +1,2 @@
+TSC/CTC = 192/2 = 96.000;  one coarse MTC period = 8 CTC = 768 TSC;  8-bit payload wrap = 2048 CTC = 196608 TSC ticks
+author attribute.py vs reviewer re-implementation: 60/60 captures agree on time-keyed ok-count

@@ -1,4 +1,4 @@
-GATE: build-02 | VERDICT: CHANGES REQUESTED | ROUND: 1 | AT: 2026-10-19 08:16 PDT | COMMIT: 21475a8
+GATE: build-02 | VERDICT: APPROVE | ROUND: 2 | AT: 2026-10-19 08:27 PDT | COMMIT: cc7e74d (round 1: CHANGES REQUESTED @21475a8)
 
 # REVIEW-02-build — P2 pt-truth (`parts/02-pt-truth/`)
 
@@ -119,3 +119,50 @@ At round 2 I'll:
 Per REVIEW-00 §1.9, new blockers can only come from changed code.
 
 **Proceed-in-parallel: GRANTED for P4 (ifetch-sanitizer) or the C12 build.** B1 and B2 are local to this part.
+
+---
+
+## Round 2: fix round 1 @ `cc7e74d`, APPROVE (2026-10-19 08:27 PDT)
+
+I reviewed `cc7e74d` (GATE line 08:24; the working tree is identical). It was reproduced in a fresh clone, `tasks/reviewer-repro/build-02-r2`. Evidence is in `review/evidence/build-02/r2/`.
+
+### Blockers
+
+**B1 — FIXED.** `attribute.py` now uses a TSC+TMA-anchored, MTC-payload clock with 8-bit wrap handling: the documented algorithm, credited to my `payload_timekeyed.py`. `ptcap` logs both the patch and the exec `rdtsc`, so intervals are **measured in TSC ticks**.
+
+My re-implementation agrees with `attribute.py` on **60/60** captures (`r2/clock-agreement.txt`). That shows there's no implementation slip. It isn't algorithmic independence, but the algorithm itself is the documented one.
+
+The honest result reproduces across **6 clean runs** (`r2/make-6runs-summary.txt`, `r2/data-run{1..6}.csv`):
+- coarse time-keyed attribution is **exact for intervals ~1.6×10³ to ~1.4×10⁵ TSC ticks**;
+- it **fails at ≥2.85×10⁵** (run 6's delay-10⁵ spin happened to take 285,136 ticks and failed, as did every 10⁶ row, 1.15–2.87×10⁶ ticks);
+- it **partially fails at the shortest intervals** (~340–1,400 ticks: 3–20 of 24 wrong).
+
+The upper edge matches the mechanism the README gives. TSC/CTC = 192/2 = **96**, so the 8-bit coarse MTC payload wraps every 2,048 CTC = **196,608 TSC ticks**, which falls between the last exact interval (1.42×10⁵) and the first failing one (2.85×10⁵). The lower edge sits at about one MTC period, **768 TSC**, as the README notes.
+
+Fine mode is exact on every row. PTW-fenced attribution is exact on every row (60/60 rows across 6 runs, 0 wrong, 0 missing fence).
+
+**B2 — FIXED.** **6/6** consecutive clean `make` runs: `make_exit=0`, 7/7 VERDICTs PASS, 0 OVF rows. It **also passes under strace's perturbation**, which round 1 failed. RUN.md declares OVF and the jittery band edges.
+
+### Nits
+
+N1–N6 are all done:
+- N1: the framer now treats the IP bit as "a separate FUP follows";
+- N2: `truth.csv` is dropped;
+- N3: the order is now stated as patch→fence→spin→exec;
+- N4: the comment is corrected and `mfence/lfence` removed;
+- N5: the BranchEn=0 scope is stated;
+- N6: the interpretation text is rewritten.
+
+**strace: CLEAN** (`r2/strace-audit.txt`, auditor v2).
+
+**New nits, none blocking:**
+- (a) `report.py`: two `check(…, True, …)` calls ("OVF rows excluded", "reported window") can't fail, so make them `INFO` lines. VERDICT 3 is named "middle band" but gates only "≥1 exact row". The lower edge is INFO by design, which is fine, so rename it to "exact over an interval band".
+- (b) README, fine cap: "nothing is lost" should cite the evidence. In the round-1 captures, fine mode was exact at 10⁵ and 10⁶ too (`review/evidence/build-02/payload-vs-count.txt`); the cap only removes OVF risk.
+- (c) README: state the predicted upper edge, 2^(mtc_period+8) CTC × TSC/CTC = 196,608 TSC ticks. That turns the band into a falsifiable prediction, and the data brackets it.
+- (d) `ptcap` isn't pinned to a CPU. Band edges in *delay* units move with core speed (run 6), and MTC-skipping behaviour could differ by core class (R14). Pin it, or record the CPU per capture.
+
+### Why APPROVE
+
+The part now does what P2-3 asked for. It runs an exact in-band executed-PTWRITE fence head-to-head against the **strongest** time-keyed baseline the trace supports, scored against independent ground truth, and it reports a **real, mechanism-explained interval band** where time-keyed decoding fails below and above. It reproduces cleanly six times, and the safety audit is clean. It's an honest N2 contribution, and the corrected result is more interesting than the original claim.
+
+**Gate BUILD-02 is CLEARED.**
