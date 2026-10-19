@@ -1,0 +1,21 @@
+# Arm CTR_EL0 field definitions — verbatim fragments (fetched 2026-10-19 08:53:49 PDT via WebFetch)
+# source: https://df.lth.se/~getz/ARM/SysReg/AArch64-ctr_el0.html (Arm XML-generated register pages;
+#         build "26/03/2024 09:49; 67c0ae5282a7629ba0ea0ba7267b43cd4f7939f6", (C) 2010-2024 Arm Limited)
+DIC, bit [29]: "Instruction cache invalidation requirements for data to instruction coherence."
+  0b0: "Instruction cache invalidation to the Point of Unification is required for data to instruction coherence."
+  0b1: "Instruction cache invalidation to the Point of Unification is not required for data to instruction coherence."
+  "All PEs in the same Inner Shareable shareability domain must have a common value of this field."
+IDC, bit [28]: "Data cache clean requirements for instruction to data coherence."
+  0b0: "Data cache clean to the Point of Unification is required for instruction to data coherence, unless
+        CLIDR_EL1.LoC == 0b000 or (CLIDR_EL1.LoUIS == 0b000 and CLIDR_EL1.LoUU == 0b000)."
+  0b1: "Data cache clean to the Point of Unification is not required for instruction to data coherence."
+  "If CTR_EL0.DIC is 1 then the value reported in this field must also be 1."
+  "All PEs in the same Inner Shareable shareability domain must have a common Effective value of IDC."
+IminLine, bits [3:0]: "Log2 of the number of words in the smallest cache line of all the instruction caches that are controlled by the PE."
+DminLine, bits [19:16]: "Log2 of the number of words in the smallest cache line of all the data caches and unified caches that are controlled by the PE."
+# Reviewer consequences for BUILD-04 (pre-registered here, before the gate):
+#  - {IDC=0, DIC=1} is architecturally PROHIBITED; a config matrix must not diagnose it as a real machine
+#    (label it impossible or omit it).
+#  - IDC/DIC are common across the Inner Shareable domain; IminLine/DminLine are per-PE with no
+#    commonality rule -> the line-size-mismatch class is architecturally possible (mitigated on Linux by the
+#    ARM64_MISMATCHED_CACHE_TYPE CTR_EL0 trap; see ../presearch/C01-priorart-excerpts.txt).
