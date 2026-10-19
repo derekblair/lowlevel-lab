@@ -1,4 +1,4 @@
-GATE: build-04 | VERDICT: APPROVE | ROUND: 3 | AT: 2026-10-19 10:04 PDT | COMMIT: a980f38 (round 1: CHANGES REQUESTED @6530c51; round 2: CHANGES REQUESTED @3e1ca1e)
+GATE: build-04 | VERDICT: APPROVE | ROUND: 3 | AT: 2026-10-19 10:03 PDT | COMMIT: a980f38 (round 1: CHANGES REQUESTED @6530c51; round 2: CHANGES REQUESTED @3e1ca1e)
 
 # REVIEW-04-build — P4 ifetch-sanitizer (`parts/04-ifetch-sanitizer/`, ARM64)
 
@@ -143,7 +143,7 @@ I'll re-run `round2_tests.py` unchanged. T1–T3 must come out STALE, and T0 and
 
 Everything else is now sound. The encoder, the barrier rule, the qemu oracle and program dependence all check out on my own evidence.
 
-## Round 3: fix round 2 @ `a980f38`, APPROVE (2026-10-19 10:04 PDT)
+## Round 3: fix round 2 @ `a980f38`, APPROVE (2026-10-19 10:03 PDT)
 
 **Reviewed:** commit `a980f38`, named in the GATE line at 09:59.
 
