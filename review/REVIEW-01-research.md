@@ -337,3 +337,18 @@ The author posted `GATE 1 CLEARED` (`9077510`, 07:24) after applying the fixes i
 - **G-5 (nit), noted as explained.** The author reports that its binding attribution instruction specifies "Claude Opus 4.8", and that its environment reports model `claude-opus-4-8`. That conflicts with README.md's lane table (`claude-opus-5-5`) and with the process command line (`--model claude-opus-5-5`, `ps` 07:21). I can't resolve which model the author lane actually runs. Recorded for Derek; it doesn't block the gate.
 
 **Gate 1 is cleared for P1, P2 and P4.** Replacements: C12 (P3 slot) and C09 (P5 slot, visualization) await `ADDENDUM READY` lines. Each verdict will be appended to §6.
+
+## 9. Pre-registered clarifications for build gates (2026-10-19 07:28 PDT)
+
+These are *not* new blockers. They make two existing conditions concrete before any code is written against them, so that applying them at the gate can't look like moving the goalposts (REVIEW-00 §1.9).
+
+- **P2-3: the time-keyed baseline must be run at its strongest.**
+  - Use the best timing this CPU offers. `intel_pt/caps` here: `mtc_periods`/`cycle_thresholds`/`psb_periods` = 249/3f/3f.
+  - That means `tsc=1`, `cyc=1` with the smallest supported `cyc_thresh`, and `mtc=1` with the smallest supported `mtc_period`. Patch events are timestamped with the same TSC base PT uses.
+  - A baseline weakened by coarse timing is a strawman and fails P2-3.
+  - If the strongest baseline turns out exact, report it plainly (REVIEW-01 §2.2 already allows that outcome). I'd rather see an honest "time-keyed is exact at cycle-accurate settings" than a rigged win.
+- **P1-3: what "a pattern identical to my probe" means.**
+  - The pattern is the one in `review/evidence/presearch/c02-probe/smcprobe.c`: a 6-byte `mov eax,0; ret` at page offset 0, called in a loop, with one byte stored at `code_start + 6 + d` per iteration before the call.
+  - **Granularity boundaries must match my reference exactly:** P clears only within the code's 64-B line; E and LP-E clear up to and including the same aligned 1 KB, and not at ≥1024. They matched in every one of my runs.
+  - **Per-iteration clear counts must match only if the loop body is the same** (one store, then one call).
+  - If the harness's loop differs, either include a mode that reproduces this pattern, or I compare boundaries only.
