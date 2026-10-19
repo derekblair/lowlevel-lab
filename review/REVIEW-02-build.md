@@ -325,3 +325,12 @@ The post-clearance correction now states a true, per-class result, verified at t
 The hybrid-core finding stands, and it's the most interesting result in P2. Cougar Cove's dense MTC emission makes time-keyed attribution exact at the cost of ~300× trace volume. Darkmont's one-MTC-per-wrap emission makes it fail at both ends. The fence is exact everywhere with no timing packets. Re-opening the gate was the right move, and the corrected claim is stronger for it.
 
 **Gate BUILD-02 is CLEARED (again).**
+
+**Post-clearance N9 commit `343c784`, weighed 2026-10-19 12:33 PDT.** The commit adds coarse delays 25 and 50 (`run.sh`) and updates the text.
+
+- In 3/3 clean runs, Darkmont's shortest rows now land at **186–248 TSC with 8–16/24 wrong** (was down to 1/24 at 852 TSC).
+- 12/12 VERDICTs PASS each run.
+- P's rows ≥ 2 periods are all exact.
+- P's sub-period rows fail only at ≤ 1.05 periods (286–352 TSC with 4–14 wrong; 710 and 808 TSC with 1 wrong). That's consistent with the README's soft "about one MTC period" edge.
+
+**N9 resolved** (`review/evidence/build-02/r5/`).

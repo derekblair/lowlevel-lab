@@ -1,0 +1,6 @@
+run1 make_exit=0 PASS=12 FAIL=0 | E short: 186 TSC: wrong 13/24 | LP-E short: 224 TSC: wrong 9/24 | P>=2per: 4/4 rows exact, intervals 7340..3792144
+run2 make_exit=0 PASS=12 FAIL=0 | E short: 192 TSC: wrong 15/24 | LP-E short: 248 TSC: wrong 10/24 | P>=2per: 3/3 rows exact, intervals 74874..3625070
+run3 make_exit=0 PASS=12 FAIL=0 | E short: 186 TSC: wrong 16/24 | LP-E short: 216 TSC: wrong 8/24 | P>=2per: 4/4 rows exact, intervals 7100..3786198
+run1 P<2 periods: [(286, 4), (300, 14), (710, 1), (742, 0)]
+run2 P<2 periods: [(298, 4), (306, 0), (760, 0), (860, 0), (1264, 0)]
+run3 P<2 periods: [(288, 4), (352, 6), (808, 1), (824, 0)]
