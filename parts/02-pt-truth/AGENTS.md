@@ -16,12 +16,16 @@ vs time-keyed, for Intel-PT decoding of self-modifying code.
   with PTW. No root, no libipt, no perf binary, no installs.
 - **Novel observable (R4):** PTW-fenced attribution is exact at every timing,
   delay and core class, and needs no timing packets. The strongest TSC+MTC-
-  payload time-keyed decoder is exact only over an interval band (at coarse
-  timing). It fails at short intervals on every class. At long gaps it fails on
-  Darkmont (E, LP-E), starting at the predicted 196,608-TSC MTC-payload wrap,
-  because that trace carries sporadic MTCs; on Cougar Cove (P), whose trace
-  carries an MTC every period, it does not. Fine timing is exact. Proven by the
-  `VERDICT PASS` lines in RUN.md §3; ground truth confirmed in §2.
+  payload time-keyed decoder, at coarse timing, behaves per class:
+  - **Darkmont (E, LP-E):** exact only over a band. It fails at the shortest
+    intervals, and at long gaps from the predicted 196,608-TSC MTC-payload wrap,
+    because its MTCs arrive about one per payload wrap (Δ0 steps).
+  - **Cougar Cove (P):** its trace carries an MTC every period, at ~300× the
+    trace volume. It is exact at every interval ≥ 2 MTC periods, with a lower
+    edge at about one period (RUN.md §5).
+
+  Fine timing is exact on every class. Proven by the `VERDICT PASS` lines in
+  RUN.md §3 and the §5 probe; ground truth confirmed in §2.
 - **Oracle (R6):** independent of PT — `verify_singlestep` (EAX-at-ret ==
   EXEC_TAG+i) confirms which self-modified bytes ran; the PT framer self-checks
   by consuming the whole buffer and recovering every PTW.

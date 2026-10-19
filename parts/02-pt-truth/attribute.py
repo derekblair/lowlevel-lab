@@ -86,10 +86,16 @@ def payload_clocked_execs(buf, period, numer, denom):
 
 def attribute(outdir):
     buf = open(f"{outdir}/trace.pt", "rb").read()
-    kinds = {}
-    for _, k, _ in ptdecode.iter_packets(buf):
+    kinds, mtc_payloads = {}, []
+    for _, k, p in ptdecode.iter_packets(buf):
         kinds[k] = kinds.get(k, 0) + 1
+        if k == "mtc":
+            mtc_payloads.append(p)
     ovf = kinds.get("ovf", 0)
+    # consecutive MTC payload deltas that are 0 mod 256: the next MTC repeats the
+    # previous payload, i.e. it arrived a whole 8-bit payload wrap later (or
+    # more), which the payload clock cannot see (REVIEW-02 round 3, N7)
+    mtc_d0 = sum(1 for a, b in zip(mtc_payloads, mtc_payloads[1:]) if (b - a) & 0xFF == 0)
     ev = ptdecode.events(buf)
     patches = read_patchlog(f"{outdir}/patchlog.csv")
     sb = read_sideband_raw(f"{outdir}/sideband.txt")
@@ -136,6 +142,8 @@ def attribute(outdir):
         "ovf": ovf,
         "mtc": kinds.get("mtc", 0),      # timing-packet density: the core-class
         "tsc": kinds.get("tsc", 0),      # mechanism behind the long-gap result
+        "mtc_d0": mtc_d0,                # MTCs a whole payload wrap apart
+        "bytes": len(buf),               # trace volume: the price of dense MTC
         "median_interval_tsc": median_interval,
         "fenced": (fenced_ok, fenced_bad, fenced_nofence),
         "timekeyed": (tk_ok, tk_bad, tk_noclock),
@@ -149,7 +157,8 @@ if __name__ == "__main__":
     if len(sys.argv) >= 5 and sys.argv[2] == "--csv":
         timing, delay = sys.argv[3], sys.argv[4]
         print(f"{timing},{delay},{r['n']},{r['median_interval_tsc']},"
-              f"{fo},{fb},{fn},{to},{tb},{r['ovf']},{r['mtc']},{r['tsc']}")
+              f"{fo},{fb},{fn},{to},{tb},{r['ovf']},{r['mtc']},{r['tsc']},"
+              f"{r['mtc_d0']},{r['bytes']}")
     else:
         print(f"execs={r['n']}  median patch->exec interval={r['median_interval_tsc']} TSC ticks  ovf={r['ovf']}")
         print(f"  ptw-fenced : correct={fo} wrong={fb} no-preceding-fence={fn}")

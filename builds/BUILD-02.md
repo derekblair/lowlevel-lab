@@ -152,10 +152,63 @@ am re-opening this gate for review rather than folding it in silently.
 Also: `run.sh`'s `mktemp -d` workdir is now removed on exit unless `WORK` is
 given. This is the same litter class as P4/C09's N6.
 
-**Unchanged:** PTW-fenced is exact on every row of every class; time-keyed
-fails at short intervals everywhere; fine timing is exact on every class. The
-N2 claim stands. It is now stated per core class, with a predicted edge and
-the mechanism measured.
+**Unchanged:** PTW-fenced is exact on every row of every class; fine timing is
+exact on every class. The N2 claim stands. It is now stated per core class,
+with a predicted edge and the mechanism measured. *[Corrected at REVIEW-02
+round 3, B3: this line originally also said "time-keyed fails at short
+intervals everywhere". That is false for Cougar Cove, which is exact down to
+about one MTC period. See the round-2 correction below.]*
 
 Re-verified: 3/3 consecutive `make` runs under `env -i`, each covering all
 three classes, give 10/10 VERDICTs PASS. RUN.md re-captured.
+
+## Post-clearance correction, round 2 (REVIEW-02 round 3: CHANGES REQUESTED @71bb650 — B3, N7, N8)
+
+- **B3 (the short-interval failure was over-generalized) — FIXED.** Time-keyed
+  does **not** fail at short intervals on every class:
+  - **Cougar Cove:** exact at every tested interval ≥ 2 MTC periods, from
+    ~2×10³ TSC up to the longest gap.
+  - **Darkmont:** fails at the shortest interval in every run, and at long gaps.
+
+  Corrected in README (the result section, the claim paragraph and the fence
+  advantages), AGENTS.md, this file's "Unchanged" line (marked in place), and
+  `report.py` (docstring, VERDICTs, Interpretation). The fence's accuracy
+  advantage is now stated as Darkmont at short and long gaps, and P only near
+  or below one MTC period. (b) and (c) hold on every class.
+- **P's lower edge, measured rather than asserted.** The reviewer asked me to
+  either reach a P lower edge or say it wasn't reached. My first re-capture
+  happened to put P rows below one MTC period, and some failed. So I added a
+  dedicated short-delay probe on CPU 0 (RUN.md §5, verbatim, 5 repeats):
+  - the 8 of 20 coarse rows that mis-attribute (1–4 of 24) all have median
+    intervals below ~1.2 periods (298–914 TSC);
+  - every row at ≥ 970 TSC is exact;
+  - all 20 fine rows are exact, including 4 below one coarse period.
+
+  So P's lower edge sits at about one MTC period, the resolution of a clock
+  that ticks every period. Because `interval` is a *median* of 24 per-exec
+  intervals, P's VERDICT requires exactness only from **2 periods** (1,536 TSC)
+  up. That margin is physical, not fitted: the worst failing median observed
+  is 914. Rows below it are INFO.
+- **N7 — FIXED, and measured in my own pipeline.** `attribute.py` now records,
+  per capture, the number of consecutive MTC payload steps that are 0 mod 256
+  (Δ0), and the trace bytes.
+  - Darkmont at the longest gap: 43–77% Δ0 across today's pinned runs (chance
+    level 1/256).
+  - Cougar Cove: zero Δ0; every step is +1.
+
+  The text now says "about one per payload wrap (Δ0 dominates)", not
+  "sporadic". The mechanism VERDICT requires P's zero Δ0 and Darkmont's ≥ 10%
+  share (~25× chance). My first threshold (≥ 50%) was set from too few runs:
+  E measured 43–50% when its long gap was shorter, so I re-anchored it to the
+  chance level rather than to observations.
+- **N8 — FIXED.** The onset VERDICT detail now states how far below and above
+  the edge the bracketing rows lie, and which side is tight within 2× in that
+  run. E usually brackets from the failure side, LP-E often from the exact
+  side.
+- **Price, now reported:** at the longest gap Cougar Cove's trace is ~230–340×
+  larger than Darkmont's (the reviewer measured ~475× in their runs). This is
+  INFO in the report and stated in the README.
+
+Re-verified: 3/3 consecutive `make` runs under `env -i`, each covering all
+three classes, give 12/12 VERDICTs PASS; the §5 probe is appended verbatim.
+RUN.md re-captured.

@@ -28,34 +28,52 @@ P-core, CPU 4 a Darkmont E-core, and CPU 12 a Darkmont LP-E core (R14).
   packets**, and it is exact *by construction*, since the cooperative fence
   immediately precedes the exec in packet order.
 - **The strong time-keyed baseline** (a real TMA-anchored MTC-**payload** TSC
-  clock, the way perf / libipt-sb reconstruct time, *not* a packet count) is
-  exact only **over an interval band**. Below the band it mis-attributes on
-  every class: there are too few CTC ticks to place the exec after its patch.
-  **Above the band, the outcome depends on the core class:**
-  - **Darkmont (E, LP-E): it mis-attributes at long gaps, starting at the
-    predicted edge.** The 8-bit MTC payload CTC[period+7:period] wraps every
-    2^(mtc_period+8) CTC ticks, which is 2¹¹ × 96 (CPUID.15H TSC/CTC = 192/2) =
-    **196,608 TSC ticks**. This is a prediction, not a fit. The E-core fails
-    from ~2.2–2.8×10⁵ TSC. The LP-E core is still exact at ~1.6–1.8×10⁵ and fails
-    by ~1.6–1.8×10⁶. So the edge falls between LP-E's last exact rows (10–18%
-    below it) and E's first failing rows (11–45% above it). A VERDICT requires
-    the onset to match the prediction within 2×.
-  - **Cougar Cove (P): no long-gap failure.** It stays exact out to ~1×10⁷ TSC,
-    the longest gap swept and over 45× the edge.
-- **Mechanism, read from the packets:** with BranchEn=0, at the longest gap,
-  Cougar Cove's trace carries an MTC packet **every MTC period** (≈2.7–3.4×10⁵
-  MTC and ~300 TSC packets per capture). Darkmont's carries only **sporadic**
-  MTCs (~250–400) and a **single** TSC. So on Darkmont the payload wraps
-  unobserved and the high CTC bits are lost; on Cougar Cove it never wraps
-  unseen. A VERDICT checks the ≥100× density gap.
-- **Fine PT timing** (dense MTC + CYC) closes the low end: time-keyed is exact
-  on all OVF-free rows of every class.
+  clock, the way perf / libipt-sb reconstruct time, *not* a packet count)
+  behaves **per core class** (REVIEW-02 round 3, B3):
+  - **Darkmont (E, LP-E): exact only over an interval band.**
+    - It mis-attributes at the **shortest** tested interval in every run (E at
+      350–546 TSC, 4–11 wrong of 24; LP-E at 548–594, 6–13 wrong), and at some
+      rows up to ~950 TSC, above one MTC period (768 TSC).
+    - It mis-attributes at **long gaps**, from the **predicted edge**. The 8-bit
+      MTC payload CTC[period+7:period] wraps every 2^(mtc_period+8) CTC ticks:
+      2¹¹ × 96 (CPUID.15H TSC/CTC = 192/2) = **196,608 TSC ticks**. This is a
+      prediction, not a fit.
+    - In RUN.md the first failing long rows land at 2.3–2.5×10⁵ TSC (or by
+      1.5–1.8×10⁶ when a sweep step lands below the edge), and the last exact
+      long rows reach 1.85×10⁵. The edge lies between. A VERDICT requires the
+      onset to match the prediction within 2×. Its detail names which side was
+      tight in that run (N8): E usually brackets from the failure side, LP-E
+      often from the exact side.
+  - **Cougar Cove (P): exact at every tested interval ≥ 2 MTC periods**
+    (1,536 TSC), from ~2×10³ TSC up to the longest gap swept (~4–5×10⁶ TSC,
+    ≥ 19× the edge). No long-gap failure ever appeared.
+    - Its **lower edge sits at about one MTC period**, the resolution of a
+      clock that ticks once per period. A dedicated short-delay probe (RUN.md
+      §5) ran 20 coarse rows. The 8 that mis-attribute (1–4 of 24 executions)
+      all have median intervals below ~1.2 periods (298–914 TSC), and every
+      row at ≥ 970 TSC is exact. (`interval` is a median, so a row just above
+      one period still holds executions inside it.)
+- **Mechanism, read from the packets** (BranchEn=0, at the longest gap):
+  - Cougar Cove's trace carries an MTC **every period**: ~1.2–1.6×10⁵ MTCs per
+    capture, every payload step +1, **zero** whole-wrap (Δ0) steps.
+  - Darkmont's carries ~230–290 MTCs and a **single** TSC, and **43–70%** of its
+    consecutive MTC steps are **Δ0**: the next MTC came a whole 8-bit payload
+    wrap later. A random delta would be 0 with probability only 1/256.
+  - So on Darkmont the clock cannot see the wraps that elapsed. That is the
+    long-gap failure, and the sparse MTCs are also why Darkmont's short-interval
+    edge sits above one period. A VERDICT checks the ≥100× density gap, P's
+    zero Δ0, and Darkmont's ≥10% Δ0 share (~25× chance). The reviewer's own
+    SDM-table framer found the same.
+  - **The price of Cougar Cove's exactness:** its trace is **~230–340× larger**
+    at the longest gap (~2.5–3.4×10⁵ bytes vs ~1×10³).
+- **Fine PT timing** (dense MTC + CYC) is exact on all OVF-free rows of every
+  class, including four P fine rows below one coarse period (318–710 TSC, §5).
 - **So the PTW-fence advantages are specifically:**
-  - (a) it holds across the *entire* interval range, through both failure
-    regimes;
+  - (a) **accuracy where time-keyed fails**: on Darkmont through both failure
+    regimes; on Cougar Cove only near or below one MTC period;
   - (b) it needs **no** timing packets, where time-keyed always does;
-  - (c) it does not depend on how densely a given core class happens to emit
-    them.
+  - (c) it does not depend on how densely a given core class emits them, or on
+    paying ~300× trace volume for that density.
 - Ground truth is independent of the PT decode path: `verify_singlestep` TF-
   single-steps the same self-modifying target with **no** perf/PT and confirms
   the byte that executed at each step (EAX-at-`ret` == `EXEC_TAG+i`).
@@ -63,17 +81,23 @@ P-core, CPU 4 a Darkmont E-core, and CPU 12 a Darkmont LP-E core (R14).
 So the honest, surviving N2 claim (see ../../research/NOVELTY-LOG.md C03): an
 *executed* `PTWRITE` fence gives exact, in-band, packet-ordered version
 boundaries for same-address rewrites. Even a correctly implemented time-keyed
-correlation (perf/libipt-sb/wilvk) has a bounded window of correctness. It
-fails below that window everywhere, and above it wherever the trace's timing
-packets are sparse, which on this part is Darkmont.
+correlation (perf/libipt-sb/wilvk) has a bounded window of correctness:
+- On **Darkmont**, whose BranchEn=0 trace carries few MTCs, the window is a band
+  that fails at short intervals and at long gaps.
+- On **Cougar Cove**, which emits an MTC every period, the window covers every
+  tested interval from about one MTC period up, at ~300× the trace volume.
 
-Two corrections are on record:
+Three corrections are on record:
 - **REVIEW-02-build B1:** an earlier version used a packet-*counting* MTC clock
   and wrongly reported time-keyed as failing at every coarse interval.
-- **After clearance, at REVIEW-02 nit d:** pinning each sweep showed that the
+- **After clearance (REVIEW-02 nit d):** pinning each sweep showed that the
   long-gap failure is **Darkmont-specific**. The cleared runs were unpinned,
   and evidently ran their long-gap captures on Darkmont cores; a Cougar Cove
   capture is exact there.
+- **REVIEW-02 round 3 (B3):** the first per-class text said time-keyed fails at
+  short intervals on *every* class. In fact Cougar Cove is exact down to about
+  one MTC period, an edge that only the dedicated short-delay probe (§5)
+  reliably reaches.
 
 ## Why this is novel / what it is NOT
 
@@ -145,7 +169,8 @@ python3 report.py data.csv                         # VERDICTs; exit 0 iff all pa
 - **The time-keyed failure regimes are real, not decoder bugs.**
   - Short interval: too few CTC ticks between the patch and the exec.
   - Long interval, Darkmont only: the 8-bit MTC payload (CTC[period+7:period])
-    wraps between Darkmont's sporadic MTC packets, so the high CTC bits are
+    wraps between Darkmont's MTC packets, which at long gaps arrive about one
+    per payload wrap (Δ0 steps dominate), so the high CTC bits are
     lost. A branch-tracing capture emits timing packets more often and would
     push that threshold out; measuring it is a v2.
 - **The core-class difference is an observation on this part, in this
@@ -156,11 +181,16 @@ python3 report.py data.csv                         # VERDICTs; exit 0 iff all pa
 - **Packet-level, not a full PT instruction decoder.** The framer handles the
   packet subset these traces contain and self-checks by consuming the whole
   buffer; it is not a general libipt replacement.
-- The exact band *edges* jitter run to run; the lower edge sits near one MTC
-  tick, ≈768 TSC here. These results are stable across 3/3 pinned `make` runs
-  covering all three classes: the band's existence, Darkmont's long-gap
-  failure at the predicted edge, Cougar Cove's long-gap exactness, the
-  fine-exact result and PTW-fenced exactness.
+- The exact band *edges* jitter run to run, and measured intervals vary widely
+  (P's especially). So whether a P row lands near P's lower edge (about one
+  MTC tick, ≈768 TSC) is reported as INFO; the edge itself is characterized by
+  the dedicated probe in RUN.md §5. These results are stable across 3/3 pinned
+  `make` runs covering all three classes:
+  - Darkmont's band, its shortest-interval failure, and its long-gap failure
+    at the predicted edge;
+  - Cougar Cove's exactness at every interval ≥ 2 MTC periods;
+  - the mechanism (density, Δ0);
+  - the fine-exact result and PTW-fenced exactness.
 - **OVF handling:** a lossy trace (AUX overflow) is reported per row and
   excluded from time-keyed scoring; `make` passes regardless. The 8 MiB ring
   plus capping fine delays at 10⁴ keeps OVF at 0 in practice. **The cap loses no

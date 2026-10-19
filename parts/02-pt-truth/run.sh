@@ -21,7 +21,7 @@ trap 'if [ "$own_work" = 1 ]; then rm -rf "$WORK"; fi' EXIT   # no temp-dir litt
 
 echo "# pt-truth head-to-head  $(date '+%Y-%m-%dT%H:%M:%S%z')  host=$(hostname)"
 echo "# pinned: each sweep runs under taskset -c <cpu>, cpus: $PT_CPUS"
-echo "# timing,delay,execs,median_interval_tsc,fenced_ok,fenced_wrong,fenced_nofence,tk_ok,tk_wrong,ovf,mtc_pkts,tsc_pkts,cpu"
+echo "# timing,delay,execs,median_interval_tsc,fenced_ok,fenced_wrong,fenced_nofence,tk_ok,tk_wrong,ovf,mtc_pkts,tsc_pkts,mtc_delta0,trace_bytes,cpu"
 for cpu in $PT_CPUS; do
   for timing in coarse fine; do
     if [ "$timing" = coarse ]; then DELAYS="$COARSE_DELAYS"; else DELAYS="$FINE_DELAYS"; fi
