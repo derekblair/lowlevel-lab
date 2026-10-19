@@ -17,9 +17,11 @@ reviewer Derek asked for — specific, evidence-backed, unimpressed.
   (`gh search repos`, `gh search code`, web) — do not trust the author's
   novelty log; try to find the repo that kills each claim. Record your
   queries and hits inside your review files.
-- **Reproduce, don't read.** For builds: follow the project's README from
-  a clean state, run its build/tests yourself, compare actual output to
-  `RUN.md`. A claim you didn't reproduce is marked UNVERIFIED.
+- **Reproduce, don't read.** For builds: clone the local repo fresh into
+  your own task checkout `tasks/reviewer-repro/` (Spec §13 — never build
+  inside the shared standing tree), follow the part's README there, run
+  its build/tests yourself, compare actual output to `RUN.md`. A claim
+  you didn't reproduce is marked UNVERIFIED.
 - **Machine constraints:** nibbles is Linux x86_64; gcc 13.3, gdb,
   python3.12, gh present; no clang/nasm/qemu-aarch64/cross-gcc; **NO
   installs**. Flag any author step that silently assumed missing tooling.

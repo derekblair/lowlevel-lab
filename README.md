@@ -31,6 +31,11 @@ prototypes under adversarial review at every step.
 
 1. Research: ≥15 candidate frames → GitHub-evidenced novelty → proposed 5.
    Reviewer attacks novelty independently → **REVIEW-01** gate.
-2. Build each of the 5 (builds + runs captured). Reviewer reproduces and
-   verdicts **per build** → fix loop.
+2. Build each of the 5 under `parts/NN-<slug>/` (builds + runs captured).
+   Reviewer reproduces from its own task checkout (`tasks/reviewer-repro/`)
+   and verdicts **per build** → fix loop.
 3. Final: reviewer full re-check → **SUMMARY.md** with novelty confidence.
+
+Project anatomy per Spec §4/§12: `AGENTS.md` + `capabilities.yaml` at the
+root (desk & workshop), `state.yaml` on the desk (coordinator-written),
+concepts as `parts/`, strict one-writer-per-file discipline (see AGENTS.md).

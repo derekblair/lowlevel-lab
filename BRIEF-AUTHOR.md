@@ -67,8 +67,11 @@ and then build them out.
 
 ## Step 2 — Build the 5 (gate per build)
 
-For concept NN (01–05), in `projects/NN-<slug>/`:
+For concept NN (01–05), in `parts/NN-<slug>/` (Spec §4: the concepts are
+this project's parts):
 
+- An `AGENTS.md` for the part (what it is, how to run it, limits) — every
+  folder carries one, per the spec.
 - Source that **builds and runs on this machine** via a `Makefile` or
   `build.sh` using only present tools. Verbatim build+run output captured
   in that dir's `RUN.md` (commands, output, exit codes — no paraphrase).

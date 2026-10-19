@@ -1,0 +1,8 @@
+project: lowlevel-lab
+requires:
+  - capability: claude-code
+    need: required
+    notes: "Author + adversarial reviewer lanes on nibbles; subscription OAuth (claude-max-gmail pool); claude-opus-5-5 at max effort, interactive tmux sessions (Spec §13)"
+  - capability: dev-toolchain
+    need: required
+    notes: "Native x86_64 gcc/gdb/make/python3 for x64 + SMC work; aarch64 cross-gcc + qemu-user for ARM64 (install approved by Derek 2026-10-18); gh CLI for live GitHub novelty searches"
