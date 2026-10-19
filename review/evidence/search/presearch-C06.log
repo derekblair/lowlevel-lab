@@ -59,3 +59,35 @@ total_count=113 incomplete=false
   jart/cosmopolitan  tool/net/definitions.lua
   gmh5225/awesome-game-security  archive/Jordan231111/lsposed-universal-template.txt
 
+### 2026-10-19T09:28:40Z repos q=reversible jit
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T09:28:45Z repos q=janus reversible language
+exit=0
+total_count=11 incomplete=false
+  mbudde/jana  *15  created=2013-02-07  pushed=2020-06-07  An interpreter for Janus, the reversible programming language.
+  joristt/Hanus  *8  created=2017-11-14  pushed=2018-01-28  A much more powerful version of the reversible language Janus, built in Haskell
+  andrebfc/Janus-Parser-with-antlr4  *4  created=2019-05-12  pushed=2021-04-19  Janus reversible computing programming language with antlr4
+  Ekima/Reversible-Graph-Algorithms-Janus-  *5  created=2014-09-25  pushed=2015-07-04  Code files for my bachelor's project written in the Janus programming language. Fall/Winter 2014
+  evincarofautumn/Janus  *3  created=2017-05-31  pushed=2017-05-31  An implementation of the Janus reversible programming language
+  joule-lang/joule  *2  created=2016-04-10  pushed=2017-02-02  Reversible Object-Oriented Language: Janus Object-Oriented Language = JOOL = Joule
+  minifold/reversible-regression  *0  created=2022-12-11  pushed=2022-12-19  Regression algorithms using reversible programming language Janus
+  AdamSiddique/Reversible-Computing-Project  *0  created=2025-06-01  pushed=2025-08-01  An implementation of LZ77 in the reversible computing language Janus.
+  yokoyama-lab/PyJanus  *0  created=2026-03-16  pushed=2026-10-15  A Python interpreter for Janus, the reversible programming language
+  brkmnd/Jnsc  *1  created=2019-08-15  pushed=2021-01-18  A compiler that compiles the reversible programming language Janus to the reversible instructions set Bob
+
+### 2026-10-19T09:28:51Z repos q="reverse computation" in:readme
+exit=0
+total_count=50 incomplete=false
+  devitocodes/pyrevolve  *21  created=2017-03-08  pushed=2026-08-07  Python library to manage checkpointing for adjoints
+  SukhmeetSingh2002/Ecryption-Decryption-System  *5  created=2021-10-24  pushed=2021-12-18  Encryption Decryption System using Linear Feedback Shift Register
+  codes-org/codes  *49  created=2019-06-21  pushed=2026-07-19  The Co-Design of Exascale Storage Architectures (CODES) simulation framework builds upon the ROSS parallel discrete even
+  lorrainea/hCED  *0  created=2016-01-22  pushed=2019-06-12  hCED: heuristic for Cyclic Edit Distance computation
+  chris-al-brown/alchemy-random  *2  created=2016-06-23  pushed=2016-07-06  Swift package for random number generators and distributions
+  xiezy964/tes-phy-guide  *4  created=2026-08-29  pushed=2026-08-30  A project for Tesseract Hackathon - Track 1.
+  cryptix-network/cryptixhash-v2  *2  created=2025-03-01  pushed=2026-03-28  cryptixhash-v2
+  mkhan45/gg3z  *4  created=2025-12-15  pushed=2026-01-10  Relational language for gamedev
+  dpelacani/WienerLoss  *6  created=2021-06-28  pushed=2026-05-15  Implementation of an adaptive weiner filter as a loss function for autoencoders and variational autoencoders
+  AlabamaWaterInstitute/bmi_rainrate  *1  created=2024-06-11  pushed=2024-09-04  Compute `APCP_Surface` from `precip_rate`
+

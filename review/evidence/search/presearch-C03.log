@@ -93,3 +93,47 @@ total_count=2724 incomplete=false
   ANYCUBIC-3D/Kobra3  k3-kernel/tools/perf/util/intel-pt.c
   kendryte/k230_sdk  src/little/linux/tools/perf/util/intel-pt.c
 
+### 2026-10-19T09:24:38Z code q=ptwrite repo:tklengyel/drakvuf
+exit=0
+total_count=2 incomplete=false
+  tklengyel/drakvuf  src/plugins/ipt/ipt.cpp
+  tklengyel/drakvuf  src/plugins/ipt/ipt.h
+
+### 2026-10-19T09:24:39Z code q=PERF_RECORD_TEXT_POKE intel-pt
+exit=0
+total_count=706 incomplete=false
+  EOS-team/EOS  src/RROS/tools/perf/util/intel-pt.c
+  BUPT-OS/RROS  tools/perf/util/intel-pt.c
+  linux-surface/kernel  tools/perf/util/intel-pt.c
+  QQxiaoming/quard_star_tutorial  linux-6.1.11/tools/perf/util/intel-pt.c
+  bouffalolab/bl808_linux  linux-5.10.4-808/tools/perf/util/intel-pt.c
+  grate-driver/linux  tools/perf/util/intel-pt.c
+  ANYCUBIC-3D/Kobra3  k3-kernel/tools/perf/util/intel-pt.c
+  linuxkit/linux  tools/perf/util/intel-pt.c
+  maurossi/linux  tools/perf/util/intel-pt.c
+  ParrotSec/linux-parrot  tools/perf/util/intel-pt.c
+
+### 2026-10-19T09:24:41Z code q=pt_image_set_callback
+exit=0
+total_count=370 incomplete=false
+  HyperDbg/HyperDbg  hyperdbg/dependencies/libipt/intel-pt.h
+  intel/libipt  libipt/src/pt_image.c
+  intel/libipt  libipt/include/intel-pt.h.in
+  intel/libipt  doc/man/pt_image_set_callback.3.md
+  sslab-gatech/winnie  intel-libipt/include/intel-pt.h
+  intelpt/WindowsIntelPT  PtControlApp/decoder/intel-pt.h
+  HardenedBSD/hardenedBSD-stable  contrib/processor-trace/libipt/src/pt_image.c
+  HardenedBSD/hardenedBSD-stable  contrib/processor-trace/libipt/include/intel-pt.h
+  HardenedBSD/hardenedBSD-stable  contrib/processor-trace/libipt/include/intel-pt.h.in
+  carter-yagemann/ARCUS  tools/pt/libipt/libipt/src/pt_image.c
+
+### 2026-10-19T09:27:39Z repos q=jit tracing intel pt
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T09:27:45Z repos q=flowjit
+exit=0
+total_count=2 incomplete=false
+  tuxology/flowjit  *3  created=2016-11-18  pushed=2016-11-18  Kernel patch for hardware trace reconstruction of runtime compiled code
+  siddharthriyer/FlowJitsu  *4  created=2026-03-17  pushed=2026-08-03  
+

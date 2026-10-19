@@ -1,0 +1,67 @@
+# libLISA (Craaijo, Verbeek, Ravindran — OOPSLA 2024, PACMPL 8:283, DOI 10.1145/3689723) — verified excerpts
+# source: https://www.ssrg.ece.vt.edu/papers/oopsla24.pdf  sha256-prefix b3bee6a9f2b1bf82, pdftotext -layout, fetched 2026-10-19 02:34:24 PDT
+## lines 60,72
+                      6      b0 3c                mov     $0x3c ,% al
+                      7      0f 05                syscall
+                      8 skip :
+                      9      c3                   ret
+
+
+Fig. 1. An example of a function in an x86-64 binary. For convenience, the output of the objdump disassembler
+is listed next to the bytes. The function moves its first argument RDI into RAX, clears RDI with an XOR, then
+performs a rotate-with-carry (rcl) of 9 on RAX, and finally conditionally jumps (jno) to the end of the function
+if the overflow flag is unset, or executes a syscall before returning otherwise.
+
+
+accurately describe the behavior of this function. This is because the value of the overflow flag
+## lines 96,101
+semantics: these are executable bitstrings that are not in the AMD and Intel manuals and that are
+unknown to both assemblers and disassemblers. We mutually compare the five x86-64 machines
+by partitioning the set of encodings based on whether their semantics are equivalent. This allows
+one to construct instruction sequences that behave differently on different architectures, e.g., that
+behave benign on an AMD Ryzen R9 3900X but behave maliciously on an Intel Core i9-13900.
+   Natural questions to ask are: “Did we find all executable instructions?” and “Are the generated
+## lines 1000,1018
+5 Results
+We analyzed the x86-64 CPUs listed in Table 4. The AMD 3900X and AMD 7700X use the Zen 2 and
+Zen 4 microarchitecture respectively. The Intel i9-13900 has two different kinds of cores. Perfor-
+mance cores (𝐴2 ) use Raptor Cove, while efficiency cores (𝐴3 ) use the Gracemont microarchitecture.
+The Intel Xeon 4110 Silver uses the Skylake microarchitecture, a predecessor of Raptor Lake.
+
+                           Proc. ACM Program. Lang., Vol. 8, No. OOPSLA2, Article 283. Publication date: October 2024.
+283:20                                                                Jos Craaijo, Freek Verbeek, and Binoy Ravindran
+
+
+                                  Table 4. Overview of the CPUs we analyzed.
+
+
+                                             Name             Microarchitecture
+                                𝐴0    Ryzen R9 3900X              AMD - Zen 2
+                                𝐴1    Ryzen R7 7700X              AMD - Zen 4
+                                𝐴2    Core i9-13900 (p)       Intel - Raptor Cove
+                                𝐴3    Core i9-13900 (e)        Intel - Gracemont
+                                𝐴4    Xeon Silver 4110           Intel - Skylake
+## lines 1240,1262
+   • discovering and analyzing undocumented instructions
+   • emulating userspace binaries
+5.3.1 Comparing CPU Implementations. By comparing the semantics of different CPU microarchi-
+tectures, we can find interesting differences. We describe the differences between the semantics we
+found in Table 8.
+   Most encodings are part of group 0, which have identical semantics across all 5 architectures.
+All other groups show differences between architectures. Architecture 0 and 1 often share the
+same semantics. This is likely because architecture 1 is a successor of architecture 0. Similarly,
+architecture 2 and 4 also often share semantics, and architecture 2 is also a successor of architecture 4.
+   Group 1, 3, 5, 20 and 28 consist primarily of differences between microarchitectural implementa-
+tions. When manually inspecting these groups we find bit shifts, rotates, multiplication, division and
+bit manipulation instructions. These are common instructions that can exhibit undefined behavior.
+   Groups 2, 6-9 and 19 show differences in instruction support. Upon manual inspection, we found
+that group 2 contains the undocumented AMD-only instructions. Group 6 contains the SHA1 and
+SHA256 instructions, which were introduced after architecture 4 was released. Group 7, 8 and 9
+contain various other instructions introduced in x86-64 ISA extensions. Group 19 contains the
+VMCALL virtualization instructions, which are Intel-only.
+   We can also use this table to construct fingerprinting programs. Such a program can identify
+the architecture it is running on, among all the analyzed architectures. For example, to distinguish
+between the five architectures we analyzed, we could use group 1 and group 7. By observing an
+instruction from group 1, we can distinguish between 𝐴0 , 𝐴1 or 𝐴2 , 𝐴4 or 𝐴3 . Then, by also observing
+group 7, we can distinguish between 𝐴0 and 𝐴1 or 𝐴2 and 𝐴4 . This would require executing at most
+3 instructions and some logic to decode the result.

@@ -1,0 +1,153 @@
+# C04 pre-gate reproduction of author probe research/probes/hybrid-undefined-flags (uncommitted at time of run)
+# 2026-10-19 02:27:41 PDT — copied sources to reviewer scratch, gcc -O2, run pinned via the probe's own sched_setaffinity
+330f873c039b77db7881ae0f094587c061499971ab0b9f8bc3f52d91a1a18642  uflags.c
+b1bddcd864fc2031501cefdf593117097b3c5951724469afe9b9c0150dbfe444  rule.c
+## ./uflags 0
+mul      b2457222ce0dd06b
+imul     b2457222ce0dd06b
+bsf0     75fe3d30d54ff45b
+bsr0     75fe3d30d54ff45b
+shl      1591bb4e23f0896b
+shr8     e7ec29f6759043d3
+shld16   5b017ce3d59876f7
+shrd16   83721e1f92f22177
+rol      13e0302668a8fb97
+rcl8     3a99b9700ed10bf0
+and      85dfb7662b440743
+bt       bea055b554070eb7
+tzcnt    ffa3dab4f973704b
+lzcnt    eb184a2c23d5ffc3
+bswap16  5b4b04c0b2525983
+div      9d2f5e34aafbde3b
+## ./uflags 2
+mul      b2457222ce0dd06b
+imul     b2457222ce0dd06b
+bsf0     75fe3d30d54ff45b
+bsr0     75fe3d30d54ff45b
+shl      1591bb4e23f0896b
+shr8     e7ec29f6759043d3
+shld16   5b017ce3d59876f7
+shrd16   83721e1f92f22177
+rol      13e0302668a8fb97
+rcl8     3a99b9700ed10bf0
+and      85dfb7662b440743
+bt       bea055b554070eb7
+tzcnt    ffa3dab4f973704b
+lzcnt    eb184a2c23d5ffc3
+bswap16  5b4b04c0b2525983
+div      9d2f5e34aafbde3b
+## ./uflags 3
+mul      b2457222ce0dd06b
+imul     b2457222ce0dd06b
+bsf0     75fe3d30d54ff45b
+bsr0     75fe3d30d54ff45b
+shl      1591bb4e23f0896b
+shr8     e7ec29f6759043d3
+shld16   5b017ce3d59876f7
+shrd16   83721e1f92f22177
+rol      13e0302668a8fb97
+rcl8     3a99b9700ed10bf0
+and      85dfb7662b440743
+bt       bea055b554070eb7
+tzcnt    ffa3dab4f973704b
+lzcnt    eb184a2c23d5ffc3
+bswap16  5b4b04c0b2525983
+div      9d2f5e34aafbde3b
+## ./uflags 4
+mul      b2457222ce0dd06b
+imul     b2457222ce0dd06b
+bsf0     75fe3d30d54ff45b
+bsr0     75fe3d30d54ff45b
+shl      cb794c507d7a896b
+shr8     3c8b944f0266d3d3
+shld16   d86770088f95a6f7
+shrd16   5cb36c1154e89177
+rol      2152b735ffe83b97
+rcl8     3f1eb48059bd3bf0
+and      85dfb7662b440743
+bt       bea055b554070eb7
+tzcnt    ffa3dab4f973704b
+lzcnt    eb184a2c23d5ffc3
+bswap16  5b4b04c0b2525983
+div      9d2f5e34aafbde3b
+## ./uflags 9
+mul      b2457222ce0dd06b
+imul     b2457222ce0dd06b
+bsf0     75fe3d30d54ff45b
+bsr0     75fe3d30d54ff45b
+shl      cb794c507d7a896b
+shr8     3c8b944f0266d3d3
+shld16   d86770088f95a6f7
+shrd16   5cb36c1154e89177
+rol      2152b735ffe83b97
+rcl8     3f1eb48059bd3bf0
+and      85dfb7662b440743
+bt       bea055b554070eb7
+tzcnt    ffa3dab4f973704b
+lzcnt    eb184a2c23d5ffc3
+bswap16  5b4b04c0b2525983
+div      9d2f5e34aafbde3b
+## ./uflags 11
+mul      b2457222ce0dd06b
+imul     b2457222ce0dd06b
+bsf0     75fe3d30d54ff45b
+bsr0     75fe3d30d54ff45b
+shl      cb794c507d7a896b
+shr8     3c8b944f0266d3d3
+shld16   d86770088f95a6f7
+shrd16   5cb36c1154e89177
+rol      2152b735ffe83b97
+rcl8     3f1eb48059bd3bf0
+and      85dfb7662b440743
+bt       bea055b554070eb7
+tzcnt    ffa3dab4f973704b
+lzcnt    eb184a2c23d5ffc3
+bswap16  5b4b04c0b2525983
+div      9d2f5e34aafbde3b
+## ./uflags 12
+mul      b2457222ce0dd06b
+imul     b2457222ce0dd06b
+bsf0     75fe3d30d54ff45b
+bsr0     75fe3d30d54ff45b
+shl      cb794c507d7a896b
+shr8     3c8b944f0266d3d3
+shld16   d86770088f95a6f7
+shrd16   5cb36c1154e89177
+rol      2152b735ffe83b97
+rcl8     3f1eb48059bd3bf0
+and      85dfb7662b440743
+bt       bea055b554070eb7
+tzcnt    ffa3dab4f973704b
+lzcnt    eb184a2c23d5ffc3
+bswap16  5b4b04c0b2525983
+div      9d2f5e34aafbde3b
+## ./uflags 15
+mul      b2457222ce0dd06b
+imul     b2457222ce0dd06b
+bsf0     75fe3d30d54ff45b
+bsr0     75fe3d30d54ff45b
+shl      cb794c507d7a896b
+shr8     3c8b944f0266d3d3
+shld16   d86770088f95a6f7
+shrd16   5cb36c1154e89177
+rol      2152b735ffe83b97
+rcl8     3f1eb48059bd3bf0
+and      85dfb7662b440743
+bt       bea055b554070eb7
+tzcnt    ffa3dab4f973704b
+lzcnt    eb184a2c23d5ffc3
+bswap16  5b4b04c0b2525983
+div      9d2f5e34aafbde3b
+## ./rule
+== P core (CPU 0)
+  shl : [first-step rule]
+  shr : [MSB(src)^MSB(res) (sign-change)] [first-step rule]
+  rol : [first-step rule]
+  ror : [first-step rule]
+== E core (CPU 4)
+  shl : [MSB(res)^CF (last-step rule)]
+  shr : [OF=0] [MSB(res)^MSB2(res) (ror-style)]
+  rol : [MSB(res)^CF (last-step rule)]
+  ror : [MSB(res)^MSB2(res) (ror-style)]
+# RESULT: hashes for P CPUs {0,2,3} identical to each other and to author's CPU0/1; E {4,9,11} and LP-E {12,15} identical to each other and to author's CPU4/12;
+#   P vs E/LP-E differ on shl, shr8, shld16, shrd16, rol, rcl8; rule.c output byte-identical to author's probe-output.txt. VERIFIED (pre-gate).

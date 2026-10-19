@@ -10,3 +10,31 @@ total_count=0 incomplete=false
 exit=0
 total_count=0 incomplete=false
 
+### 2026-10-19T09:29:46Z repos q=processor trace visualization
+exit=0
+total_count=87 incomplete=false
+  bsc-performance-tools/paraver-kernel  *17  created=2016-09-28  pushed=2026-02-10  wxParaver is a trace-based visualization and analysis tool designed to study quantitative detailed metrics and obtain qu
+  bsc-performance-tools/wxparaver  *31  created=2016-09-28  pushed=2026-02-10  wxParaver is a trace-based visualization and analysis tool designed to study quantitative detailed metrics and obtain qu
+  std-microblock/etw-process-trace  *3  created=2025-10-20  pushed=2025-10-20  A Windows ETW-based process monitoring tool that tracks and visualizes process creation and termination in real-time.
+  karandesai2005/TraceProbe  *1  created=2025-08-24  pushed=2025-09-02  This project is a real-time data pipeline designed to ingest, process, and analyze massive volumes of IPDR (Internet Pro
+  amrrdev/distributed-log-tracing  *5  created=2025-04-14  pushed=2025-04-17  A high-performance distributed logging system built with NestJS, Kafka and gRPC. Captures, processes, and correlates log
+  kateinoigakukun/tracemake  *5  created=2025-04-15  pushed=2025-04-16  A tool to trace make command execution and convert it to Chrome Tracing format for visualizing build processes
+  jaiashwinisatish/TraceGraph  *4  created=2025-08-04  pushed=2025-08-04  Trace the Target – Full Digital Footprint Mapping Problem Statement: Given only a phone no and email build an OSINT tool
+  Francesco-Sch/trace_processing  *1  created=2020-12-05  pushed=2020-12-22  A running visualization app build with Processing & Processing for Android.
+  esumit/trace-fruits  *4  created=2021-06-27  pushed=2026-02-12  TraceFruits is a conceptual demonstration designed to visualize fruit supply chain events stored in an immutable ledger.
+  007Style/traceAnalyzer  *0  created=2026-08-06  pushed=2026-08-06  IBM PowerPC processor trace file analyzer — converts .TRACER simulator output to color-coded HTML pipeline visualization
+
+### 2026-10-19T09:29:52Z code q=intel pt TNT image png
+exit=0
+total_count=184452 incomplete=false
+  openMVG/awesome_3DReconstruction_list  readme.md
+  huawei-noah/bolt  README.md
+  lfranke/TRIPS  README.md
+  OpnTec/bodyapps-web  README.md
+  u1f383/fuzzing-learning-in-30-days  Day15.md
+  softwareunderground/awesome-open-geoscience  README.md
+  ofsoundof/LocalViT  README.md
+  TNTWEN/OpenVINO-YOLOV4  README.md
+  TimothyDJones/awesome-laravel  README.md
+  catofmrlu/MacApps  README.md
+

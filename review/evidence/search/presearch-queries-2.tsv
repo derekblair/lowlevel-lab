@@ -1,0 +1,31 @@
+# Reviewer pre-search round 2 (2026-10-19 ~02:40 PDT)
+C01	repos	icache sanitizer
+C01	repos	cache maintenance checker arm
+C01	repos	"self-modifying" aarch64 in:readme emulator
+C01	code	ifetch repo:herd/herdtools7
+C01	code	"cache_state_modelled"
+C01	code	"IC IVAU" "missing" detect
+C02	repos	self-modifying code cost in:readme
+C02	repos	code patching latency
+C02	repos	jit patching benchmark
+C02	code	"MACHINE_CLEARS.XMC"
+C03	repos	jit tracing intel pt
+C03	repos	flowjit
+C04	repos	"undefined flags" x86 in:readme
+C04	repos	p-core e-core instruction differences
+C04	code	"cpu_atom" "cpu_core" SIGILL sched_setaffinity
+C05	repos	"core war" native in:readme
+C05	repos	corewar x86-64
+C05	repos	codeguru corewars
+C06	repos	reversible jit
+C06	repos	janus reversible language
+C06	repos	"reverse computation" in:readme
+C07	repos	arm64ec
+C07	repos	qemu native library calls linux-user
+C07	repos	mixed isa execution single process
+C12	repos	quine aarch64
+C12	repos	binary quine x86-64 elf
+C15	repos	rep movsb microcode
+C15	code	"rep movsb" SIGSEGV guard page RCX
+C22	repos	processor trace visualization
+C22	code	intel pt TNT image png

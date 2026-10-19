@@ -91,3 +91,49 @@ total_count=82 incomplete=false
   cyberark/rdpfuzz  rdpfuzz-dynamorio/core/arch/arch_exports.h
   vgrichina/berrry-wine  docs/uop-tier-design.md
 
+### 2026-10-19T09:27:08Z repos q=self-modifying code cost in:readme
+exit=0
+total_count=1337 incomplete=false
+  marcusbotacin/Self-Modifying-Code  *28  created=2017-12-06  pushed=2020-02-20  Additional Material for the Self Modifying Code (SMC) paper
+  muratcankoylan/Agent-Skills-for-Context-Engineering  *18170  created=2025-12-21  pushed=2026-10-12  A comprehensive collection of Agent Skills for context engineering, multi-agent architectures, and production agent syst
+  algorithmicsuperintelligence/openevolve  *7594  created=2025-05-15  pushed=2026-10-13  Open-source implementation of AlphaEvolve
+  ParrotSec/shellter  *269  created=2020-03-04  pushed=2020-03-04  
+  jart/blink  *7595  created=2022-11-03  pushed=2025-12-10  tiniest x86-64-linux emulator
+  arthurcolle/agents.erl  *44  created=2025-05-01  pushed=2026-09-15  Agents are distributed systems, and in this repository, they are treated as such. arthur@distributed.systems for project
+  GW8RDI/uSDXOpen  *129  created=2023-04-10  pushed=2025-08-31  Open firmware for all versions of the uSDX transceiver
+  elder-plinius/ST3GG  *1825  created=2024-05-17  pushed=2026-06-15  All-in-one steganography suite
+  cogitator-ai/Cogitator-AI  *40  created=2025-12-29  pushed=2026-10-15  AI agents that survive production. Self-hosted TypeScript runtime: multi-provider LLMs, tools with approvals, memory & R
+  rohitg00/ai-engineering-from-scratch  *71213  created=2026-03-18  pushed=2026-10-19  Learn AI Engineering! Learn it. Build it. Ship it for others.
+
+### 2026-10-19T09:27:14Z repos q=code patching latency
+exit=0
+total_count=15 incomplete=false
+  facebookresearch/capi  *137  created=2025-02-13  pushed=2026-02-04  Code and weights for the paper "Cluster and Predict Latents Patches for Improved Masked Image Modeling"
+  Rajatraiiii/zero-latency  *0  created=2026-09-02  pushed=2026-09-08  Zero Latency — Real-Time Mobile AI Debugging Co-Pilot: Built a React, Electron, and WebSocket-based debugging system tha
+  Dyloong1/PPLC4ICDM  *2  created=2026-06-07  pushed=2026-08-20  PPLC: Patch-Pivot Latent Compression for Turbulence at 64x — code release for ICDM 2026 submission
+  ansumsingh/Circular-Pattern-Detection  *1  created=2017-11-02  pushed=2017-11-03  The is a code for low latency circular pattern detection. The pattern detection uses the concentric circular patches.
+  ahmadmozaik/patch-ldm-resource-constrained-face-generation  *0  created=2026-06-24  pushed=2026-06-24  Reproducible thesis code for patch-based latent diffusion under resource-constrained face image generation.
+  finom/openappa-replication  *0  created=2026-10-03  pushed=2026-10-19  Data, scripts and patches from a re-run of OpenAPPA's benchmarks: Bench-Corp on four models, the August build, AgentThre
+  govindjeevan/Cubic-TCP  *3  created=2018-09-29  pushed=2018-11-11  CUBIC is the default TCP used in the Linux kernel and recently, a patch has been made available for CUBIC implementation
+  syed-ahad13/Sentinel-Secure-Code-Optimization  *1  created=2026-01-29  pushed=2026-05-01  An autonomous AI agent that detects security vulnerabilities and performance bottlenecks in large codebases. Unlike stan
+  SoumyaRoy05/Aethelgard-SRE  *0  created=2026-02-07  pushed=2026-06-15  A local-first, closed-loop AI-SRE agent that autonomously detects backend latency anomalies, engineers non-blocking code
+  ejc3/upstash-to-ecs-valkey  *0  created=2026-10-15  pushed=2026-10-15  Move Upstash Redis (e.g. a Vercel Marketplace store) to Valkey on AWS ECS Fargate without changing app code: options and
+
+### 2026-10-19T09:27:20Z repos q=jit patching benchmark
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T09:27:26Z code q="MACHINE_CLEARS.XMC"
+exit=0
+total_count=236 incomplete=false
+  torvalds/linux  tools/perf/pmu-events/arch/x86/novalake/pipeline.json
+  torvalds/linux  tools/perf/pmu-events/arch/x86/pantherlake/pipeline.json
+  torvalds/linux  tools/perf/pmu-events/arch/x86/clearwaterforest/pipeline.json
+  intel/perfmon  CWF/events/clearwaterforest_core.json
+  intel/perfmon  NVL/events/novalake_arcticwolf_core.json
+  intel/perfmon  PTL/events/pantherlake_darkmont_core.json
+  CXWorld/CapFrameX  pmcreader-plugin/intel-perfmon/CWF/events/clearwaterforest_core.json
+  CXWorld/CapFrameX  pmcreader-plugin/intel-perfmon/PTL/events/pantherlake_darkmont_core.json
+  SELinuxProject/selinux-kernel  tools/perf/pmu-events/arch/x86/pantherlake/pipeline.json
+  SELinuxProject/selinux-kernel  tools/perf/pmu-events/arch/x86/clearwaterforest/pipeline.json
+

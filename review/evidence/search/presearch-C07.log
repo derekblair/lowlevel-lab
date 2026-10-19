@@ -1,0 +1,22 @@
+### 2026-10-19T09:28:57Z repos q=arm64ec
+exit=0
+total_count=51 incomplete=false
+  FFRI/ProjectChameleon  *57  created=2021-07-12  pushed=2023-11-02  Analyzing CHPEV2 ARM64EC and ARM64X
+  lacamar/wine-arm64ec-rpm  *36  created=2025-04-19  pushed=2026-10-17  Script for building Wine RPM packages on aarch64 with ARM64EC suppport
+  vimontgames/vgframework  *74  created=2020-08-25  pushed=2026-09-20  A pet game engine for fun, modern graphics APIs, and fast iteration.
+  buberlo/madeira-anyps5  *44  created=2026-10-05  pushed=2026-10-11  Research prototype: run AnyPS5-relinked PS5 titles on iPad via Madeira (Wine ARM64EC + FEX) with MoltenVK
+  lief-project/lief-binaryninja-arm64ec  *13  created=2025-02-15  pushed=2025-02-15  BinaryNinja plugin to enhance ARM64EC support
+  JLospinoso/gargoyle  *916  created=2017-03-04  pushed=2026-05-15  Historical Windows temporal memory-state research artifact for studying time-bound memory observations, validation limit
+  nostalgia296/FEX-DXVK-BUILD  *5  created=2026-04-05  pushed=2026-09-19  ARM64EC FEX/DXVK BUILD
+  LanZhan-Harmony/HuaweiThpService  *5  created=2026-01-26  pushed=2026-01-27  华为MateBook E Go触摸服务Arm64EC实现
+  leegao/winlator-internals  *10  created=2025-05-22  pushed=2026-07-28  Winlator Internals
+  Aloereed/whisper.cpp-arm64ec-opencl  *2  created=2024-06-29  pushed=2024-08-04  Prebuilt whisper.cpp on Windows arm64ec with CLBlast (GPU)
+
+### 2026-10-19T09:29:03Z repos q=qemu native library calls linux-user
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T09:29:09Z repos q=mixed isa execution single process
+exit=0
+total_count=0 incomplete=false
+

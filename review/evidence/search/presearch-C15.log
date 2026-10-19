@@ -1,0 +1,18 @@
+### 2026-10-19T09:29:26Z repos q=rep movsb microcode
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T09:29:31Z code q="rep movsb" SIGSEGV guard page RCX
+exit=0
+total_count=92 incomplete=false
+  jart/cosmopolitan  ape/ape.S
+  rr-debugger/rr  src/preload/syscallbuf.c
+  eclipse-omr/omr  include_core/omrport.h
+  vsergeev/apfcp  apfcp.tex
+  Jollu8/C-INTERVIEW-QUESTIONS  content/01_cpp/13_low_level.md
+  sidkshatriya/rr.soft  src/preload/syscallbuf.c
+  penberg/chimera  runtime/arch/x86/trampoline.rs
+  IanNorris/Brook  docs/user-copy.md
+  topkernel/Rux  kernel/src/arch/x86_64/trap.S
+  purplesyringa/autumn  log.md
+

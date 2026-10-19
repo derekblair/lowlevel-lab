@@ -1,0 +1,22 @@
+### 2026-10-19T09:27:50Z repos q="undefined flags" x86 in:readme
+exit=0
+total_count=84 incomplete=false
+  barotto/test386.asm  *69  created=2017-04-27  pushed=2026-04-19  x86 CPU tester for emulators
+  SingleStepTests/80386  *34  created=2025-07-23  pushed=2026-08-09  A Hardware-Generated CPU Test Suite for the Intel 80386
+  servo/libfontconfig  *11  created=2014-09-06  pushed=2023-02-17  Cargoified libfontconfig for Rust packages
+  vault/fontconfig  *7  created=2011-05-18  pushed=2011-05-18  android build for fontconfig
+  dominicolucci/dift86  *0  created=2026-09-23  pushed=2026-09-23  Differential testing of x86-64 silicon against an architectural reference model (Unicorn/QEMU)
+  kmx00/ub86-pred  *4  created=2026-06-07  pushed=2026-06-08  A toy project/CTF analyzing quirks on x86 CPUs
+  bigjosh/TSL  *22  created=2017-11-26  pushed=2024-04-29  CW&T Time Since Launch
+  ClaudioDaffra/fcpp  *1  created=2022-11-29  pushed=2022-11-29  Frexx CPP (C Preprocessor) Daniel Stenberg
+  behdad/fontconfig  *46  created=2014-07-04  pushed=2018-10-24  FontConfig
+  Yazan2314/x86-validation-tool  *0  created=2026-09-27  pushed=2026-09-27  Differential testing of x86-64 instructions: Unicorn emulator vs. native CPU execution (in progress)
+
+### 2026-10-19T09:27:56Z repos q=p-core e-core instruction differences
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T09:28:02Z code q="cpu_atom" "cpu_core" SIGILL sched_setaffinity
+exit=0
+total_count=0 incomplete=false
+

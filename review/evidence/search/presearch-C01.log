@@ -76,3 +76,67 @@ total_count=2168 incomplete=false
   QQxiaoming/quard_star_tutorial  linux-6.1.11/arch/arm64/kernel/traps.c
   CTSRD-CHERI/cheribsd  sys/arm64/arm64/identcpu.c
 
+### 2026-10-19T09:26:12Z repos q=icache sanitizer
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T09:26:17Z repos q=cache maintenance checker arm
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T09:26:23Z repos q="self-modifying" aarch64 in:readme emulator
+exit=0
+total_count=63 incomplete=false
+  jart/blink  *7595  created=2022-11-03  pushed=2025-12-10  tiniest x86-64-linux emulator
+  mmert11/vexa  *118  created=2025-10-16  pushed=2026-09-25  x86-64 Symbolic Execution & LLVM IR Lifting Framework for Deobfuscation
+  ghaerr/blink16  *80  created=2023-02-18  pushed=2024-05-30  Tiny visual 8086 emulator based on Blink
+  JayGLXR/CPP-NOPmask  *11  created=2025-06-25  pushed=2025-06-25  A blazing-fast C++20 implementation of the NOPmask shellcode obfuscation utility, featuring platform-adaptive SIMD optim
+  Inokinoki/attesor  *87  created=2026-02-23  pushed=2026-08-18  AI-powered reverse-engineering of Rosetta (2 for Linux). Disclaimer: due to the user agreement, I will not touch the cod
+  andrewtimmins/rpcemu-extended  *21  created=2025-10-21  pushed=2026-10-04  RPCEmu Extened, the Acorn Risc PC/A7000 emulator, now with working Acorn Access/ShareFS support, fixed IDE emulation, US
+  carlosrmz009/arwing  *25  created=2026-10-11  pushed=2026-10-17  Star Fox recompilation / PC port with quality of life improvements
+  carlosrmz009/arwing2  *20  created=2026-10-10  pushed=2026-10-17  PROJECT ARWING 2 - StarFox 2 recomp with quality of life improvements
+  geeksniper/reverse-engineering-toolkit  *388  created=2021-09-01  pushed=2021-09-01  
+  StonkGuy/eac-arm64-emulation-poc  *28  created=2026-10-07  pushed=2026-10-18  Patches to FEX-Emu that make aarch64 emulation faithful enough to run an x86-64 EAC game under Proton. Not affiliated.
+
+### 2026-10-19T09:26:29Z code q=ifetch repo:herd/herdtools7
+exit=0
+total_count=166 incomplete=false
+  herd/herdtools7  tools/dot2desc.ml
+  herd/herdtools7  catalogue/aarch64-ifetch/README.md
+  herd/herdtools7  catalogue/aarch64-ifetch/shelf.py
+  herd/herdtools7  catalogue/aarch64-ifetch/ci-shelf.py
+  herd/herdtools7  dirs-and-confs.txt
+  herd/herdtools7  Makefile
+  herd/herdtools7  Makefile.aarch64
+  herd/herdtools7  herd/explicit.ml
+  herd/herdtools7  catalogue/aarch64-ifetch/cfgs/new-web.cfg
+  herd/herdtools7  herd/explicit.mli
+
+### 2026-10-19T09:26:42Z code q="cache_state_modelled"
+exit=0
+total_count=2284 incomplete=false
+  littlekernel/lk  docs/fvp-base/how_to_run.md
+  zephyrproject-rtos/zephyr  boards/arm/fvp_base_revc_2xaem/board.cmake
+  islet-project/islet  scripts/.config
+  nrfconnect/sdk-zephyr  boards/arm/fvp_corstone1000/atomic.c
+  islet-project/islet  scripts/.config_aosp
+  nrfconnect/sdk-zephyr  boards/arm/fvp_base_revc_2xaem/board.cmake
+  opencomputeproject/OCP-HM-MegaRAC_Community_Edition  meta-arm/meta-arm-bsp/documentation/fvp-base.md
+  OP-TEE/build  fvp.mk
+  bao-project/bao-demos  platforms/fvp-r/README.md
+  SpaceExplorationTechnologies/starlink-wifi-gen2  ATF/docs/plat/arm/fvp/index.rst
+
+### 2026-10-19T09:26:55Z code q="IC IVAU" "missing" detect
+exit=0
+total_count=171 incomplete=false
+  erlang/otp  erts/configure.ac
+  seL4/seL4  CHANGES.md
+  erlang/otp  make/autoconf/otp.m4
+  DynamoRIO/dynamorio  core/dispatch.c
+  netoneko/akuma  docs/archive/BUN_MISSING_SYSCALLS.md
+  openjdk/valhalla  src/hotspot/cpu/aarch64/vm_version_aarch64.hpp
+  SAP/SapMachine  src/hotspot/cpu/aarch64/vm_version_aarch64.hpp
+  ARMSX2/ARMSX3  Utilities/JITLLVM.cpp
+  ARMSX2/ARMSX3  rpcs3/Emu/Cell/SPUCommonRecompiler.cpp
+  openjdk/valhalla  src/hotspot/cpu/aarch64/vm_version_aarch64.cpp
+

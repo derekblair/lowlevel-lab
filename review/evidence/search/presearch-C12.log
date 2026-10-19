@@ -25,3 +25,12 @@ total_count=1 incomplete=false
 exit=0
 total_count=0 incomplete=false
 
+### 2026-10-19T09:29:14Z repos q=quine aarch64
+exit=0
+total_count=1 incomplete=false
+  quine-build/quine-target-aarch64  *0  created=2025-04-13  pushed=2025-04-14  Quine compiler backend for ARM64 architecture
+
+### 2026-10-19T09:29:20Z repos q=binary quine x86-64 elf
+exit=0
+total_count=0 incomplete=false
+
