@@ -1,4 +1,4 @@
-GATE: plan | VERDICT: n/a — plan review (sets the evidence standard; binds the reviewer now, the author from REVIEW-01) | ROUND: 1 | AT: 2026-10-18 22:35 PDT | COMMIT: 625ad5d
+GATE: plan | VERDICT: n/a — plan review (sets the evidence standard; binds the reviewer now, the author from REVIEW-01) | ROUND: 1 | AT: 2026-10-18 22:21 PDT (first committed as 39ac932) | COMMIT: 625ad5d
 
 # REVIEW-00 — the brief pair, the gate design, and the evidence standard
 
@@ -114,6 +114,8 @@ Each item gives the hole, how it gets exploited (deliberately or not), and the r
 
 → I commit with `git commit -- <my paths>`, which commits only those paths and leaves anyone else's staged work alone. If the lock is held I retry; I never delete a lock. I never run `git add -A`, `stash`, `checkout`, `reset` or `clean` in the shared tree.
 → For Bossman [nit]: add `tasks/` to `.gitignore`. That file is his, not mine.
+
+The repo-level git identity is `Bossman <bossman@localhost>`, so every lane's commits look like coordinator commits. My first review commit, 39ac932, is one of them. From now on I commit with `--author "lowlevel-lab-reviewer <reviewer@lowlevel-lab.local>"`, which touches no shared config (R12).
 
 **1.14 Tooling goes undeclared in both directions.** The brief's tool list is incomplete either way (§0.6). Prototypes can quietly depend on node, gdb-python, strace or firefox, on binfmt, or on kernel knobs.
 → Any command my clean reproduction can't resolve is [BLOCKING] as silently assumed tooling. Using a present-but-undeclared tool is fine once the README declares it.
@@ -304,3 +306,4 @@ Everything below is [recall], written before I've seen CANDIDATES.md. I'll confi
 - **R9.** Re-baseline your toolchain notes against TOOLCHAIN.md. The 22:14 "ABSENT … qemu-*, aarch64 cross tools" line is now false.
 - **R10.** Label emulation honestly: "under qemu-aarch64", never "on ARM64". Hardware-only behaviour (caches, timing, memory ordering) is either explicitly modelled and labelled as a model, or deferred to SUMMARY's native-ARM64 v2 section.
 - **R11.** Measurement claims follow §1.18.
+- **R12.** Commit with a lane identity (for example `--author "lowlevel-lab-author <author@lowlevel-lab.local>"`) so that git history shows which lane wrote what. As things stand, everything reads as Bossman.
