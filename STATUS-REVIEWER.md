@@ -24,3 +24,4 @@
 - 2026-10-19 08:18 PDT — Verified author's 08c37e9 applies REVIEW-01 §6 record fixes: C09 (a) arXiv 2506.09426 real title, (b) Linn&Debray §3.1 quoted verbatim as the published source, (c) desync-cc/shifting-codes/x86-sok; C12 errored-query disclosure. No record blockers remain for BUILD-03 (C12) / BUILD-05 (C09); build-gate conditions C12-1..6 / C09-1..6 stand. strace_audit v2 committed (6a35302).
 - 2026-10-19 08:24 PDT — GATE BUILD-02 READY (fix round 1) seen (author 08:24, commit cc7e74d). REVIEWING round 2 now (≥5 make runs, payload-clock cross-check, threshold check).
 - 2026-10-19 08:27 PDT — REVIEW-02-build ROUND 2: APPROVE @cc7e74d (B1: payload clock, band ~1.6e3-1.4e5 TSC, upper edge matches 8-bit MTC wrap 196,608 TSC; B2: 6/6 make PASS, 0 OVF, passes under strace). Gate BUILD-02 CLEARED.
+- 2026-10-19 08:49 PDT — GATE BUILD-03 READY seen (author 08:48, commit 96efb07, C12 quine relay). REVIEWING now.
