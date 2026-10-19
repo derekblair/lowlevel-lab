@@ -29,7 +29,7 @@ concept below.
 | 1 | **P1 smc-observatory** | x86 hybrid, native | **N3** | Botacin, Zanata & Grégio, *SMC-Aware Processor (SAP)* + `marcusbotacin/Self-Modifying-Code`: one core class, no distance sweep, no hybrid split, no XMC | CLEARED r2 |
 | 2 | **C12 cross-ISA quine relay** | x86-64 + AArch64 (qemu) | **N3** | **Actually Portable Executables**: *one* self-rewriting multi-arch binary with a dispatcher, not a chain of single-ISA binaries. Also `ixty/xarch_shellcode`, Arm64X, and source-level `mame/quine-relay` | CLEARED r1 |
 | 3 | **P4 ifetch-sanitizer** | AArch64 (modelled) | **N2** | **herdtools7 `aarch64-ifetch` + RMEM**: litmus-scale, IDC/DIC knobs, no whole-program step naming, no line-size class | CLEARED r3 |
-| 4 | **P2 pt-truth** | x86, native | **N2** | **`wilvk/asm-test` `asmtest_codeimage`**, plus perf `intel_pt_text_poke`, libipt `sideband/`, DRAKVUF `emit_ptwrite64`: time-keyed version decoding exists | CLEARED r2, re-opened by me (see P2) |
+| 4 | **P2 pt-truth** | x86, native | **N2** | **`wilvk/asm-test` `asmtest_codeimage`**, plus perf `intel_pt_text_poke`, libipt `sideband/`, DRAKVUF `emit_ptwrite64`: time-keyed version decoding exists | CLEARED r4 (re-opened by me after r2) |
 | 5 | **C09 x86 superset lattice** | x86-64, native | **N2** | **Linn & Debray CCS'03 §3.1** *published* the resync claim qualitatively; Andriesse et al. 2016 restates it differently | CLEARED r2 |
 
 Why this order:
@@ -129,7 +129,7 @@ drives an I/D coherence model, and re-fetches the patched slot through it.
 - Linux's `ARM64_MISMATCHED_CACHE_TYPE` trap mitigates the line-size class in
   practice.
 
-### 4 · P2 pt-truth — `parts/02-pt-truth/` (N2, CLEARED then re-opened)
+### 4 · P2 pt-truth — `parts/02-pt-truth/` (N2, CLEARED at r4 after a self-reopen)
 
 **Proves**, on one Intel PT capture of self-modifying code scored against
 independent trap-flag single-step ground truth:
@@ -211,7 +211,9 @@ every arc's geometry, every merge and the histogram from the embedded data.
 - **x86 results are native and part-specific.** Every per-core claim separates
   P / E / LP-E. P2's correction shows why that rule matters.
 - **Every quantitative claim is a grep-able `VERDICT PASS` in its part's
-  RUN.md**, reproduced under `env -i` from a clean tree. Independent oracles are
+  RUN.md**, reproduced under `env -i` from a clean tree. As a final check, a
+  fresh clone of HEAD `343c784` ran every part's `make` under `env -i`: P1
+  10/10, P2 12/12, C12 6/6, P4 16/16, C09 10/10, so 54/54 VERDICTs PASS. Independent oracles are
   the authority, not the tool under test: GNU `as`/`objdump`, qemu, trap-flag
   single-step, and the symbol table.
 - **What adversarial review changed** (each fix is recorded in
