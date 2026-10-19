@@ -53,7 +53,7 @@ The claim (CANDIDATES.md:96–117): decoders misdecode SMC. The proposed fix is 
 - Without that observable it's N1: one more versioning mechanism.
 - Also required: cite all of the above in NOVELTY-LOG and the README.
 
-## C04 hybrid-diff — UPDATE 02:55: published prior art found (libLISA), novelty collapses to N1
+## C04 hybrid-diff — UPDATE ~02:33 PDT (from gh-log UTC stamps): published prior art found (libLISA), novelty collapses to N1
 
 **libLISA**: Craaijo, Verbeek, Ravindran, *"libLISA: Instruction Discovery and Analysis on x86-64"*, OOPSLA 2024 (PACMPL 8:283, DOI 10.1145/3689723). I read the PDF itself (sha256 prefix b3bee6a9f2b1bf82); excerpts are in `review/evidence/presearch/C04-liblisa-excerpts.txt`.
 
@@ -101,7 +101,7 @@ Neighbours (2026, all post-cutoff):
   - `code "IC IVAU" stale emulator` → 83 results: real JIT flush code (erlang BEAM JIT, dynarmic users), no adversarial models.
   - `isla ifetch` → 0 (repo search).
 - **Pre-gate position:** N2 → RESHAPE, which the author already plans ("sanitizer framing"). The delta: a lightweight whole-program user-mode emulator that runs a real JIT pattern and names the missing maintenance step. Litmus-scale tools and the full-system proprietary FVP don't cover that. My batch 2 checks for an existing "icache sanitizer".
-- **Batch 2 (02:4x):**
+- **Batch 2 (02:26–02:30 PDT; log stamps 09:26–09:30Z):**
   - `icache sanitizer` → 0 and `cache maintenance checker arm` → 0 (repo search). No sanitizer found.
   - **herdtools7 @ 12690a83da** has `catalogue/aarch64-ifetch/` (README: "`herd7 -variant ifetch`" simulates the tests, and "`litmus7 -variant self`" runs them on hardware at EL0, or EL1 via kvm-unit-tests). So the Arm/Inria tooling both simulates and *hardware-tests* ifetch, at litmus scale.
   - **DynamoRIO** `core/dispatch.c:958–968` (AArch64): "Software cache consistency: we are handling an IC IVAU instruction". In that mode DynamoRIO's code-cache invalidation is keyed on the app's IC IVAU, so a missing IC IVAU leaves stale translated code. That's a real tool that behaves "adversarially" by accident, though it diagnoses nothing.
@@ -152,7 +152,7 @@ Neighbours (2026, all post-cutoff):
 ## C22 tnt-barcode
 - `branch trace image visualization`, `intel pt visualizer` and `control flow fingerprint image algorithm` → all 0 (repo search only — weak). Code/web search pending (batch 2).
 
-## Batch-2 additions for the remaining candidates (2026-10-19 ~02:50 PDT)
+## Batch-2 additions for the remaining candidates (2026-10-19 02:26–02:30 PDT per log stamps)
 
 - **C03:** `tuxology/flowjit`, created 2016-11-18: "Kernel patch for hardware trace reconstruction of runtime compiled code". FlowJIT exists on GitHub. `jit tracing intel pt` → 0.
 - **C05 silicon-corewar:**
