@@ -1,0 +1,69 @@
+# resync_survey.py (reviewer), 2026-10-19 09:31:26 PDT; REFERENCE DECODE (stripped /usr/bin, linear sweep of .text: not ground truth, C09-4 caveat)
+# /usr/bin/true sha256 8a63c98320173f79…
+# /usr/bin/ls sha256 2726eb35864608ff…
+# /usr/bin/grep sha256 20a35a4c18f2fe9e…
+# /usr/bin/cp sha256 95cdd604fdf0a292…
+# /usr/bin/sort sha256 0052ad741146f4c3…
+true .plt [ref] 560B insns=139
+   all chains: n=421 never=0 median=2 q1=1.0 q3=3.0 P(<=1)=0.42 P(<=2)=0.66 P(<=3)=0.81 max=7 byte_median=4
+   chains w/o (bad): n=215 never=0 median=1 q1=1.0 q3=1.0 P(<=1)=0.82 P(<=2)=0.96 P(<=3)=0.98 max=4 byte_median=3
+true .plt.sec [ref] 544B insns=102
+   all chains: n=441 never=1 median=1 q1=1.0 q3=2.0 P(<=1)=0.63 P(<=2)=0.91 P(<=3)=0.99 max=4 byte_median=3
+   chains w/o (bad): n=328 never=1 median=1.0 q1=1.0 q3=1.0 P(<=1)=0.85 P(<=2)=1.00 P(<=3)=1.00 max=2 byte_median=3.0
+true .text [ref] 10786B insns=2499
+   all chains: n=8279 never=8 median=2 q1=1.0 q3=5.0 P(<=1)=0.34 P(<=2)=0.51 P(<=3)=0.63 max=47 byte_median=7
+   chains w/o (bad): n=4642 never=8 median=1.0 q1=1.0 q3=2.0 P(<=1)=0.56 P(<=2)=0.78 P(<=3)=0.90 max=11 byte_median=5.0
+ls .plt [ref] 1680B insns=419
+   all chains: n=1261 never=0 median=2 q1=1.0 q3=3.0 P(<=1)=0.42 P(<=2)=0.63 P(<=3)=0.78 max=7 byte_median=4
+   chains w/o (bad): n=619 never=0 median=1 q1=1.0 q3=1.0 P(<=1)=0.85 P(<=2)=0.95 P(<=3)=0.97 max=5 byte_median=2
+ls .plt.got [ref] 64B insns=12
+   all chains: n=51 never=1 median=1 q1=1.0 q3=2.0 P(<=1)=0.55 P(<=2)=0.76 P(<=3)=0.92 max=4 byte_median=4
+   chains w/o (bad): n=31 never=1 median=1 q1=1.0 q3=1.0 P(<=1)=0.90 P(<=2)=1.00 P(<=3)=1.00 max=2 byte_median=3
+ls .plt.sec [ref] 1664B insns=312
+   all chains: n=1351 never=1 median=1 q1=1.0 q3=2.0 P(<=1)=0.54 P(<=2)=0.79 P(<=3)=0.87 max=5 byte_median=4
+   chains w/o (bad): n=858 never=1 median=1.0 q1=1.0 q3=1.0 P(<=1)=0.85 P(<=2)=1.00 P(<=3)=1.00 max=2 byte_median=3.0
+ls .text [ref] 82370B insns=20009
+   all chains: n=62354 never=7 median=2.0 q1=1.0 q3=4.0 P(<=1)=0.38 P(<=2)=0.57 P(<=3)=0.69 max=57 byte_median=6.0
+   chains w/o (bad): n=40183 never=7 median=1 q1=1.0 q3=2.0 P(<=1)=0.54 P(<=2)=0.77 P(<=3)=0.87 max=19 byte_median=4
+grep .plt [ref] 2048B insns=511
+   all chains: n=1537 never=0 median=2 q1=1.0 q3=3.0 P(<=1)=0.42 P(<=2)=0.64 P(<=3)=0.79 max=7 byte_median=4
+   chains w/o (bad): n=756 never=0 median=1.0 q1=1.0 q3=1.0 P(<=1)=0.85 P(<=2)=0.95 P(<=3)=0.97 max=5 byte_median=2.0
+grep .plt.got [ref] 32B insns=6
+   all chains: n=25 never=1 median=1 q1=1.0 q3=2.0 P(<=1)=0.56 P(<=2)=0.84 P(<=3)=1.00 max=3 byte_median=3
+   chains w/o (bad): n=19 never=1 median=1 q1=1.0 q3=2.0 P(<=1)=0.74 P(<=2)=0.89 P(<=3)=1.00 max=3 byte_median=3
+grep .plt.sec [ref] 2032B insns=381
+   all chains: n=1650 never=1 median=1.0 q1=1.0 q3=2.0 P(<=1)=0.54 P(<=2)=0.86 P(<=3)=0.98 max=5 byte_median=3.0
+   chains w/o (bad): n=1191 never=1 median=1 q1=1.0 q3=2.0 P(<=1)=0.75 P(<=2)=0.98 P(<=3)=1.00 max=3 byte_median=3
+grep .text [ref] 135922B insns=31933
+   all chains: n=103981 never=8 median=2 q1=1.0 q3=4.0 P(<=1)=0.38 P(<=2)=0.55 P(<=3)=0.67 max=59 byte_median=6
+   chains w/o (bad): n=67440 never=8 median=1.0 q1=1.0 q3=2.0 P(<=1)=0.54 P(<=2)=0.76 P(<=3)=0.86 max=19 byte_median=4.0
+cp .plt [ref] 2288B insns=571
+   all chains: n=1717 never=0 median=2 q1=1.0 q3=3.0 P(<=1)=0.42 P(<=2)=0.65 P(<=3)=0.79 max=7 byte_median=4
+   chains w/o (bad): n=874 never=0 median=1.0 q1=1.0 q3=1.0 P(<=1)=0.82 P(<=2)=0.94 P(<=3)=0.97 max=5 byte_median=3.0
+cp .plt.got [ref] 32B insns=6
+   all chains: n=25 never=1 median=1 q1=1.0 q3=2.0 P(<=1)=0.56 P(<=2)=0.80 P(<=3)=0.88 max=5 byte_median=4
+   chains w/o (bad): n=16 never=1 median=1.0 q1=1.0 q3=1.0 P(<=1)=0.88 P(<=2)=1.00 P(<=3)=1.00 max=2 byte_median=3.0
+cp .plt.sec [ref] 2272B insns=426
+   all chains: n=1845 never=1 median=1 q1=1.0 q3=2.0 P(<=1)=0.54 P(<=2)=0.79 P(<=3)=0.87 max=5 byte_median=4
+   chains w/o (bad): n=1175 never=1 median=1 q1=1.0 q3=1.0 P(<=1)=0.85 P(<=2)=1.00 P(<=3)=1.00 max=2 byte_median=3
+cp .text [ref] 92930B insns=21669
+   all chains: n=71253 never=8 median=2 q1=1.0 q3=5.0 P(<=1)=0.35 P(<=2)=0.52 P(<=3)=0.65 max=47 byte_median=6
+   chains w/o (bad): n=40986 never=8 median=1.0 q1=1.0 q3=2.0 P(<=1)=0.56 P(<=2)=0.78 P(<=3)=0.89 max=16 byte_median=5.0
+sort .plt [ref] 1904B insns=475
+   all chains: n=1429 never=0 median=2 q1=1.0 q3=3.0 P(<=1)=0.42 P(<=2)=0.63 P(<=3)=0.79 max=7 byte_median=4
+   chains w/o (bad): n=701 never=0 median=1 q1=1.0 q3=1.0 P(<=1)=0.85 P(<=2)=0.95 P(<=3)=0.97 max=5 byte_median=2
+sort .plt.got [ref] 48B insns=9
+   all chains: n=38 never=1 median=1.0 q1=1.0 q3=2.0 P(<=1)=0.55 P(<=2)=0.84 P(<=3)=1.00 max=3 byte_median=3.0
+   chains w/o (bad): n=26 never=1 median=1.0 q1=1.0 q3=1.0 P(<=1)=0.81 P(<=2)=1.00 P(<=3)=1.00 max=2 byte_median=3.0
+sort .plt.sec [ref] 1888B insns=354
+   all chains: n=1533 never=1 median=1 q1=1.0 q3=2.0 P(<=1)=0.54 P(<=2)=0.87 P(<=3)=0.99 max=4 byte_median=3
+   chains w/o (bad): n=1133 never=1 median=1 q1=1.0 q3=2.0 P(<=1)=0.73 P(<=2)=0.97 P(<=3)=1.00 max=3 byte_median=3
+sort .text [ref] 62930B insns=15081
+   all chains: n=47842 never=7 median=2.0 q1=1.0 q3=4.0 P(<=1)=0.39 P(<=2)=0.57 P(<=3)=0.70 max=44 byte_median=6.0
+   chains w/o (bad): n=30146 never=7 median=1.0 q1=1.0 q3=2.0 P(<=1)=0.57 P(<=2)=0.79 P(<=3)=0.89 max=17 byte_median=4.0
+POOLED [ref] all chains: n=307033 never=47 median=2 q1=1.0 q3=4.0 P(<=1)=0.38 P(<=2)=0.56 P(<=3)=0.68 max=59 byte_median=6
+POOLED [ref] chains w/o (bad): n=191339 never=47 median=1 q1=1.0 q3=2.0 P(<=1)=0.56 P(<=2)=0.78 P(<=3)=0.88 max=19 byte_median=4
+
+real	0m17.660s
+user	0m17.164s
+sys	0m1.457s

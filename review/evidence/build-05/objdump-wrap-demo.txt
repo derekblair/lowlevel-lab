@@ -1,0 +1,51 @@
+$ objdump -d -j .text /usr/bin/true --start-address=0x1480 --stop-address=0x14d0   # default (no -w), as superset.py parses it
+    1480:	e8 db fd ff ff       	call   1260 <abort@plt>
+    1485:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+    148c:	00 00 00 
+    148f:	90                   	nop
+    1490:	f3 0f 1e fa          	endbr64
+    1494:	55                   	push   %rbp
+    1495:	48 89 e5             	mov    %rsp,%rbp
+    1498:	41 56                	push   %r14
+    149a:	41 55                	push   %r13
+    149c:	41 54                	push   %r12
+    149e:	53                   	push   %rbx
+    149f:	48 81 ec 90 00 00 00 	sub    $0x90,%rsp
+    14a6:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+    14ad:	00 00 
+    14af:	48 89 45 d8          	mov    %rax,-0x28(%rbp)
+    14b3:	31 c0                	xor    %eax,%eax
+    14b5:	83 ff 02             	cmp    $0x2,%edi
+    14b8:	74 25                	je     14df <__ctype_b_loc@plt+0x6f>
+    14ba:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+    14be:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
+    14c5:	00 00 
+    14c7:	0f 85 e9 01 00 00    	jne    16b6 <__ctype_b_loc@plt+0x246>
+    14cd:	48                   	rex.W
+    14ce:	81                   	.byte 0x81
+    14cf:	c4                   	.byte 0xc4
+
+$ objdump -d -w ... (same range, one line per instruction)
+    1480:	e8 db fd ff ff       	call   1260 <abort@plt>
+    1485:	66 2e 0f 1f 84 00 00 00 00 00 	cs nopw 0x0(%rax,%rax,1)
+    148f:	90                   	nop
+    1490:	f3 0f 1e fa          	endbr64
+    1494:	55                   	push   %rbp
+    1495:	48 89 e5             	mov    %rsp,%rbp
+    1498:	41 56                	push   %r14
+    149a:	41 55                	push   %r13
+    149c:	41 54                	push   %r12
+    149e:	53                   	push   %rbx
+    149f:	48 81 ec 90 00 00 00 	sub    $0x90,%rsp
+    14a6:	64 48 8b 04 25 28 00 00 00 	mov    %fs:0x28,%rax
+    14af:	48 89 45 d8          	mov    %rax,-0x28(%rbp)
+    14b3:	31 c0                	xor    %eax,%eax
+    14b5:	83 ff 02             	cmp    $0x2,%edi
+    14b8:	74 25                	je     14df <__ctype_b_loc@plt+0x6f>
+    14ba:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+    14be:	64 48 2b 04 25 28 00 00 00 	sub    %fs:0x28,%rax
+    14c7:	0f 85 e9 01 00 00    	jne    16b6 <__ctype_b_loc@plt+0x246>
+    14cd:	48                   	rex.W
+    14ce:	81                   	.byte 0x81
+    14cf:	c4                   	.byte 0xc4
+8a63c98320173f79e263115e10cefc170155e47d1fd4b5a70e4429d2699cae28  /usr/bin/true

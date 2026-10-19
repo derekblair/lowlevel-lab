@@ -1,0 +1,14 @@
+### 2026-10-19T16:25:02Z code q=resynchronize disassembly language:python
+exit=0
+total_count=33 incomplete=false
+  cea-sec/miasm  miasm/core/asmblock.py
+  RUB-SysSec/loki  lokiattack/miasm/miasm/core/asmblock.py
+  buptsseGJ/VulSeeker  miasm2/core/asmblock.py
+  mateussmeneses/theorder1886-port  tools/make_signatures.py
+  RUB-SysSec/gadget_synthesis  lib/miasm/miasm/core/asmblock.py
+  kerimturak/level-v  script/python/makefile/compare_logs.py
+  bc160201983/Uncharted-The-Nathan-Drake-Collection-PC-port  gow3_pc/tools/make_signatures.py
+  DamonZS/PE-reverse-skill  reverse_analyzer/patch/planner.py
+  aximcode/axl-sdk-releases  scripts/rsod-decode.py
+  ntt-zerolab/Xunpack  elfpack/elfesteem/core/asmblock.py
+

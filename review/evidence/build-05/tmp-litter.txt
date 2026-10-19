@@ -1,0 +1,4 @@
+# /tmp litter per traced make (strace.log of the gate-commit clone, 2026-10-19 09:29:23 PDT)
+mkdir(/tmp/tmp*) succeeded: 290
+unlink/rmdir calls (any path): 2
+/tmp/tmp* dirs before 2 untraced runs: 1632; after: 2212

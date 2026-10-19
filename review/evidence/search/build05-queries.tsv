@@ -1,0 +1,12 @@
+# BUILD-05 (C09) reviewer novelty re-check, 2026-10-19 — own queries, not the author log
+B05-1	repos	superset disassembly
+B05-2	repos	superset disassembly created:>2026-04-01
+B05-3	repos	topic:superset-disassembly
+B05-4	repos	self-repairing disassembly
+B05-5	repos	disassembly resynchronization
+B05-6	repos	disassembly resync x86 in:readme
+B05-7	repos	x86 overlapping instructions visualization
+B05-8	repos	disassembly desynchronization created:>2026-04-01
+B05-9	code	resynchronize disassembly language:python
+B05-10	code	superset disassembly resync
+B05-11	code	self-repairing disassembly

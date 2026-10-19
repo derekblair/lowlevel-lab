@@ -1,0 +1,7 @@
+region work: N=126 insns=38; author region identical: True; author bounds identical: True
+per-offset objdump length, author (no -w) vs -w: 126/126 agree; differ at 0 offsets
+longest decode at any offset (-w): 7 bytes
+offsets objdump decodes as (bad): 6 ['0x2', '0x15', '0x5c', '0x64', '0x6c', '0x74']
+resync with author lengths:   resync=88 never=0 median=1.0 insns le2=0.81 max=5 byte_median=3.0
+resync with correct lengths:  resync=88 never=0 median=1.0 insns le2=0.81 max=5 byte_median=3.0
+correct-length resyncs whose chain passes through a (bad): 13; resyncs landing exactly on region end N: 1

@@ -1,0 +1,10 @@
+/usr/bin/true .text @ 0x1480, maxbytes=160: author N=163 bounds=49; -w N=163 bounds=46; same bytes: True
+  author 'true boundaries' NOT instruction starts (-w): [12, 45, 69]
+    off 12: inside the 'cs nopw 0x0(%rax,%rax,1)' at off 5 (10 bytes)
+    off 45: inside the 'mov    %fs:0x28,%rax' at off 38 (9 bytes)
+    off 69: inside the 'sub    %fs:0x28,%rax' at off 62 (9 bytes)
+  instruction starts missing from author's set: []
+  per-offset length author vs -w: 156/163 agree; differ at [(5, 7, 10), (6, 7, 9), (7, 7, 8), (38, 7, 9), (39, 7, 8), (62, 7, 9), (63, 7, 8)]
+  lendec vs -w on REAL instruction starts: 45/45; misses: []
+  author's resync (author bounds+lengths): resync=111 never=2 median=2 insns le2=0.68 max=10 byte_median=5
+  corrected (-w bounds+lengths):            resync=114 never=2 median=1.0 insns le2=0.68 max=10 byte_median=6.0

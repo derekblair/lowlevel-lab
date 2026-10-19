@@ -1,0 +1,15 @@
+# author's superset.region_from_symbol + analyze() on a SECOND self-built gcc -O2 function
+# (reviewer's trap.c: chk(), gcc -O2 -fno-reorder-blocks-and-partition -c -fno-asynchronous-unwind-tables)
+author bounds: [0, 4, 7, 9, 11, 13, 15, 18, 20, 24, 31, 32, 34, 38, 41, 43, 46, 48, 50, 51, 53]
+-w     bounds: [0, 4, 7, 9, 11, 13, 15, 18, 20, 24, 32, 34, 38, 41, 43, 46, 48, 50, 51, 53]
+author false boundaries: [31]  (0x18 is the 8-byte nopl 0f 1f 84 00 00 00 00 00 -> objdump wraps at 7)
+author: lendec on 'true boundaries' 18/20  -> VERDICT 1 would be FAIL
+   off 0x18: lendec=8 author-objdump=7 -w objdump=8
+   off 0x33: lendec=None author-objdump=2 -w objdump=2
+author resync: resync=33 never=0 median=1 insns le2=0.79 max=5 byte_median=3
+corrected    : resync=34 never=0 median=1.5 insns le2=0.71 max=5 byte_median=3.0
+# direct lendec unit checks (true lengths: ud2 = 0f 0b = 2, syscall = 0f 05 = 2):
+   lendec.decode_len(0f0b9090) = (None, 'runs past end')
+   lendec.decode_len(0f05483d) = (4, ('op', 15))
+   lendec.decode_len(0f0bc3) = (3, ('op', 15))
+   lendec.decode_len(0f05c3) = (3, ('op', 15))

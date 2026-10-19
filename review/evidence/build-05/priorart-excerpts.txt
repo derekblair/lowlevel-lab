@@ -1,0 +1,26 @@
+# BUILD-05 prior-art excerpts (reviewer, 2026-10-19 09:33:03 PDT). Downloads kept outside the repo (scratchpad); hashes below.
+
+## Andriesse, Chen, van der Veen, Slowinska, Bos — 'An In-Depth Analysis of Disassembly on Full-Scale x86/x64 Binaries', USENIX Security 2016
+URL: https://www.usenix.org/system/files/conference/usenixsecurity16/sec16_paper_andriesse.pdf  sha256 fdd895f87285c4bd…
+pdftotext -layout, right column lines 256-260 (Section 3):
+assembled code) for the x86 C++ tests at O3. The number
+of missed instructions (false negatives, due to desynchro-
+nization) is much lower, at a worst-case mean of 0.09%.
+This is because x86/x64 disassembly automatically resyn-
+chronizes within two or three instructions [21].
+reference [21] (line 1526, right column):
+        [21] L INN , C., AND D EBRAY, S. Obfuscation of Executable Code to
+             Improve Resistance to Static Disassembly. In Proceedings of the
+             10th ACM Conference on Computer and Communications Security
+
+## Kruegel, Robertson, Valeur, Vigna — 'Static Disassembly of Obfuscated Binaries', USENIX Security 2004, §4.2.1
+URL: https://static.usenix.org/events/sec04/tech/full_papers/kruegel/kruegel_html/disassemble.html  sha256 26aefe00588c9f28…
+- The reason is called self-repairing disassembly and relates to the fact that two instruction sequences that start at slightly different addresses (that is, shifted by a few bytes) synchronize quickly, often after a few instructions.
+- Therefore, when the disassembler starts at an address that does not correspond to a valid instruction, it can be expected to re-synchronize with the sequence of valid instructions after a few steps [ 13 ].
+
+## Program-Understanding/probdisasm (GitHub, created 2026-05-19, pushed 2026-07-09) — README sha256 97d16f13dbdbbc1e…
+probdisasm is a disassembler based on two concepts: superset disassembly and probabilistic analysis. Superset disassembly attempts to decode an instruction for each byte or offset in the binary or executable section. Probabilistic analysis then refines the results by assigning a probability to each decoded instruction based on "hints" such as control flow patterns and data flow edges. The goal for
+src/analysis.rs:1: //! Algorithm 1: fixpoint propagation of hints, occlusion competition,
+grep -i 'resync|synchron|converg|histogram|median' over README + src/superset.rs + src/analysis.rs: 0 hits (only 'occlusion' terms: Miller et al. Algorithm 1)
+
+## expend20/shifting-codes  -> gh api: HTTP 404 (README:39 names it). expend20/shifting-codes-python-port: created 2026-02-14 (the repo REVIEW-01 §6.2(c) cited).

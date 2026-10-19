@@ -1,0 +1,6 @@
+# lattice.html legend check (gate commit 9f1a7ae, clone build-05-r1)
+legend: red = 'undecodable-by-lendec'; code (superset.py:168): red iff objdump olen is None
+cells=289 class counts: {'bound': 86, 'mis': 201, 'undec': 2}
+lendec-undecodable cells (declen=None): 45; red: 1; grey/green: 44
+red cells (off, objlen, declen): [('161', 'None', '2'), ('162', 'None', 'None')]
+external refs (http/src=/href=/@import/url()): 0

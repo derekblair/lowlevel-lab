@@ -1,0 +1,14 @@
+### 2026-10-19T16:26:26Z repos q=linear sweep misaligned decode in:readme
+exit=0
+total_count=240 incomplete=false
+  MiaAI-Lab/Qwen3.8-Flash-Next-Dual-DGX-Sparks  *411  created=2026-08-26  pushed=2026-09-29  Qwen3.8-Flash-Next-NVFP4-vLLM-Dual-DGX-Spark
+  AtlasAnalyticsLab/MOOZY  *33  created=2026-02-27  pushed=2026-07-22  [ECCV 2026] A Patient-First Foundation Model for Computational Pathology
+  katopz/katgpt-rs  *140  created=2026-05-04  pushed=2026-10-19  A neuro-symbolic micro-Transformer with speculative decoding, constraint pruning, recurrent attention, and adaptive test
+  sp00nznet/xboxrecomp  *265  created=2026-03-06  pushed=2026-10-19  Turn any Xbox game binary into a native Windows executable. No emulation. No interpreter. Just raw, recompiled C.
+  h9-tec/AI-Glossary-Handbook  *128  created=2026-08-22  pushed=2026-08-22  
+  bernardladenthin/BitcoinAddressFinder  *249  created=2021-02-01  pushed=2026-10-19  A high performance bitcoin address finder.
+  daedalus/fuzzer  *45  created=2026-06-18  pushed=2026-10-19  Information-dense, coverage-guided binary fuzzer 
+  TencentYoutuResearch/Palm-Infra  *81  created=2026-07-13  pushed=2026-10-18  Palm on-device acceleration capabilities.
+  MinghuiChen43/awesome-deep-phenomena  *411  created=2020-06-23  pushed=2026-08-18  A curated list of papers of interesting empirical study and insight on deep learning. Continually updating...
+  zhulf0804/3D-PointCloud  *2942  created=2019-03-06  pushed=2024-08-30  Papers and Datasets  about Point Cloud.
+

@@ -1,0 +1,14 @@
+### 2026-10-19T16:24:45Z repos q=disassembly resync x86 in:readme
+exit=0
+total_count=21 incomplete=false
+  scc-tw/VMPilot  *309  created=2023-06-16  pushed=2026-04-24  VMPilot: A Modern C++ Virtual Machine SDK
+  sp00nznet/xboxrecomp  *265  created=2026-03-06  pushed=2026-10-19  Turn any Xbox game binary into a native Windows executable. No emulation. No interpreter. Just raw, recompiled C.
+  Veridiff/Veridiff  *8  created=2026-09-16  pushed=2026-10-01  Dynamic branch-divergence finder for native code -- traces two Frida executions and finds the exact instruction where th
+  gf958457-sys/BinaryAnalyzerCLI  *3  created=2026-08-27  pushed=2026-08-29  BinaryAnalyzerCLI — console static analysis tool for first-pass triage of PE/ELF/raw binaries. Streaming disassembly, se
+  gaul/x86lint  *17  created=2018-11-08  pushed=2026-09-27  Examine x86-64 machine code to find suboptimal encodings and sequences of instructions
+  Rat5ak/CORUNA_TECHNICAL_ANALYSIS  *62  created=2026-03-06  pushed=2026-03-09  A Complete Technical Teardown of a State-Grade iOS/macOS Watering-Hole Exploit Chain
+  mrdude2478/ArmConverter  *0  created=2026-09-17  pushed=2026-09-17  A program to convert Arm/Arm64/X86/X64 instructions to hex and vice versa.
+  gerwout/dosfid  *1  created=2026-07-21  pushed=2026-07-26  Ghidra FunctionID + p-code opcode naming for Microsoft BASIC DOS compilers (QuickBASIC 1-4.5, BASIC 5.x/6.0, PDS 7.x, VB
+  FiveTechSoft/OpenADS  *16  created=2026-05-03  pushed=2026-10-12  Free and open source code version of ADS
+  0-Bobo/Triage  *1  created=2026-10-16  pushed=2026-10-17  A local binary-analysis workbench for CTF reverse-engineering and pwn, with an autopwn recon + solver layer
+

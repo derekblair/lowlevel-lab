@@ -1,0 +1,6 @@
+# BUILD-05 (C09) reviewer novelty re-check, round 2 (disassembler wording + recency)
+B05-12	repos	superset disassembler
+B05-13	repos	superset disassembler created:>2026-04-01
+B05-14	repos	probabilistic disassembly
+B05-15	repos	disassembler resynchronization statistics
+B05-16	repos	linear sweep misaligned decode in:readme
