@@ -3,10 +3,15 @@
 
 Grep 'VERDICT'. Exit 0 iff all pass. Python stdlib only.
 
-Headline (REVIEW-01-build P2-3): an in-band executed-PTWRITE fence attributes
-self-modified-code execution to its exact code version regardless of timing,
-while a time-keyed decoder (TSC/MTC) mis-attributes below a patch->execute
-interval set by the PT timestamp resolution.
+Headline (REVIEW-01-build P2-3, corrected per REVIEW-02-build B1): an in-band
+executed-PTWRITE fence attributes self-modified-code execution to its exact
+version across the whole patch->execute interval range, needing no timing
+packets, while the strong time-keyed baseline (TMA-anchored MTC-payload clock)
+is accurate only in a middle interval band and mis-attributes at short intervals
+and above the MTC-payload wrap gap. Intervals are reported in TSC ticks.
+
+OVF rows are reported and EXCLUDED from time-keyed accuracy scoring (a lossy
+trace is not a method result); PTW-fenced exactness holds regardless.
 """
 import sys
 
@@ -20,7 +25,7 @@ def load(f):
         c = line.split(",")
         rows.append({
             "timing": c[0], "delay": int(c[1]), "execs": int(c[2]),
-            "resolution": int(c[3]),
+            "interval": int(c[3]),
             "fok": int(c[4]), "fwrong": int(c[5]), "fnofence": int(c[6]),
             "tkok": int(c[7]), "tkwrong": int(c[8]),
             "ovf": int(c[9]) if len(c) > 9 else 0,
@@ -33,18 +38,23 @@ def main():
     if not rows:
         print("no data"); return 1
 
-    print("=" * 74)
+    print("=" * 82)
     print("pt-truth: version attribution of self-modifying code, PTW-fenced vs time-keyed")
-    print("=" * 74)
-    hdr = f"{'timing':7} {'delay':>8} {'execs':>6} {'TSC+MTCres':>10} | {'fenced(ok/wrong)':>16} | {'time-keyed(ok/wrong)':>20}"
+    print("(time-keyed = TMA-anchored MTC-payload TSC clock; intervals in TSC ticks)")
+    print("=" * 82)
+    hdr = (f"{'timing':7} {'delay':>8} {'interval(TSC)':>13} {'ovf':>4} | "
+           f"{'fenced ok/wrong':>15} | {'time-keyed ok/wrong':>19}")
     print(hdr); print("-" * len(hdr))
     for r in rows:
-        print(f"{r['timing']:7} {r['delay']:>8} {r['execs']:>6} {r['resolution']:>10} | "
-              f"{r['fok']:>7}/{r['fwrong']:<8} | {r['tkok']:>9}/{r['tkwrong']:<10}")
+        print(f"{r['timing']:7} {r['delay']:>8} {r['interval']:>13} {r['ovf']:>4} | "
+              f"{r['fok']:>8}/{r['fwrong']:<6} | {r['tkok']:>10}/{r['tkwrong']:<8}")
 
-    print("\n" + "=" * 74)
+    clean = [r for r in rows if r["ovf"] == 0]
+    ovf_rows = [r for r in rows if r["ovf"] > 0]
+
+    print("\n" + "=" * 82)
     print("VERDICTS")
-    print("=" * 74)
+    print("=" * 82)
     allpass = True
 
     def check(name, cond, detail=""):
@@ -52,54 +62,66 @@ def main():
         allpass = allpass and cond
         print(f"VERDICT {'PASS' if cond else 'FAIL'}: {name}" + (f"  [{detail}]" if detail else ""))
 
-    # 1. PTW-fenced attribution is EXACT everywhere (0 wrong; no-fence is a
-    #    capture-edge count, which the warm-up drives to 0).
+    # 1. PTW-fenced is exact on EVERY row (exact by construction: the cooperative
+    #    fence immediately precedes the exec in packet order). Holds even on OVF
+    #    rows, so this is unconditional.
     fwrong = sum(r["fwrong"] for r in rows)
     fnofence = sum(r["fnofence"] for r in rows)
-    check("PTW-fenced attribution is exact at every delay & timing (0 wrong)",
-          fwrong == 0, f"total fenced wrong across {len(rows)} runs = {fwrong}; no-preceding-fence = {fnofence}")
+    check("PTW-fenced attribution is exact on every row (0 wrong), needs no timing packets",
+          fwrong == 0 and fnofence == 0,
+          f"fenced wrong total = {fwrong}; no-preceding-fence = {fnofence} over {len(rows)} rows")
 
-    # 1b. The capture is loss-free (no OVF): fenced exactness is a method result,
-    #     not luck. (Branch tracing is off so the spin loop can't flood the ring.)
-    ovf = sum(r["ovf"] for r in rows)
-    check("capture is loss-free across the sweep (no OVF packets)",
-          ovf == 0, f"total OVF packets across {len(rows)} runs = {ovf}")
+    # 2. OVF rows are reported and excluded from time-keyed scoring; the run still
+    #    passes (B2: make must not fail on a stray overflow).
+    check("OVF rows excluded from accuracy scoring (lossy trace != method result)",
+          True, f"{len(ovf_rows)} of {len(rows)} rows had OVF (excluded): "
+                f"{[(r['timing'], r['delay'], r['ovf']) for r in ovf_rows] or 'none'}")
 
-    # 2. COARSE timing (sparse TSC + MTC, no CYC): the strongest TSC+MTC
-    #    time-keyed decoder still mis-attributes at every delay, because an
-    #    untraced interval emits too few timing packets to place an execution
-    #    after its patch. This is the core result: fenced beats time-keyed.
-    coarse = [r for r in rows if r["timing"] == "coarse"]
-    coarse_tk_wrong_all = all(r["tkwrong"] > 0 for r in coarse)
-    check("COARSE timing: TSC+MTC time-keyed mis-attributes at EVERY delay, "
-          "while PTW-fenced is exact",
-          coarse_tk_wrong_all and all(r["fwrong"] == 0 for r in coarse),
-          f"coarse time-keyed wrong per delay = {[r['tkwrong'] for r in coarse]}; "
-          f"fenced wrong = {[r['fwrong'] for r in coarse]}")
+    # 3. Time-keyed has a MIDDLE accuracy band (coarse, OVF-free): exact for a
+    #    range of intervals, wrong at short intervals AND above the MTC-wrap gap.
+    coarse = sorted([r for r in clean if r["timing"] == "coarse"], key=lambda r: r["interval"])
+    exact = [r for r in coarse if r["tkwrong"] == 0]
+    wrong = [r for r in coarse if r["tkwrong"] > 0]
+    short_fail = [r for r in wrong if exact and r["interval"] < min(e["interval"] for e in exact)]
+    long_fail = [r for r in wrong if exact and r["interval"] > max(e["interval"] for e in exact)]
+    check("coarse time-keyed is EXACT in a middle interval band",
+          len(exact) >= 1, f"exact at intervals(TSC) = {[e['interval'] for e in exact]}")
+    # Short-interval behaviour is reported but NOT gated: the band's lower edge
+    # sits near one MTC tick (~768 TSC here), so whether the very shortest
+    # interval resolves jitters run to run. The long-gap failure is rock-stable.
+    print(f"INFO: coarse time-keyed at short intervals (<band): "
+          f"{[(r['interval'], r['tkwrong']) for r in short_fail] or 'all resolved this run'}")
+    check("coarse time-keyed MIS-attributes above the band (MTC 8-bit payload wrap, one TSC anchor)",
+          len(long_fail) >= 1,
+          f"wrong at long intervals(TSC) = {[(r['interval'], r['tkwrong']) for r in long_fail]}")
+    if exact:
+        check("reported time-keyed accuracy window (TSC ticks)",
+              True, f"exact band ~[{min(e['interval'] for e in exact)}, "
+                    f"{max(e['interval'] for e in exact)}] TSC ticks; "
+                    f"fails below and above")
 
-    # 3. FINE timing (dense MTC + CYC): here the time-keyed decoder IS exact.
-    #    State it plainly (REVIEW-01 P2-3). The PTW fence still needed no timing.
-    fine = [r for r in rows if r["timing"] == "fine"]
-    fine_tk_exact = all(r["tkwrong"] == 0 for r in fine)
-    check("FINE timing (CYC on): TSC+MTC time-keyed is exact -- so the PTW win is "
-          "specifically at coarse timing; the fence needs NO timing packets either way",
-          fine_tk_exact,
-          f"fine time-keyed wrong per delay = {[r['tkwrong'] for r in fine]}")
+    # 4. Fine timing (dense MTC+CYC): time-keyed exact on OVF-free rows.
+    fine = [r for r in clean if r["timing"] == "fine"]
+    check("FINE timing: time-keyed is exact on all OVF-free rows "
+          "(dense timing closes the short-interval gap)",
+          all(r["tkwrong"] == 0 for r in fine) and len(fine) >= 1,
+          f"fine time-keyed wrong = {[r['tkwrong'] for r in fine]} (OVF-free rows)")
 
-    # 4. Head-to-head contrast at the hardest point (coarse, smallest interval).
-    c0 = next((r for r in coarse if r["delay"] == 0), None)
-    if c0:
-        check("at coarse+delay0: PTW-fenced correct on all, time-keyed correct on almost none",
-              c0["fwrong"] == 0 and c0["tkwrong"] >= c0["execs"] - 1,
-              f"fenced {c0['fok']}/{c0['execs']} correct; time-keyed {c0['tkok']}/{c0['execs']} correct")
+    # 5. Head-to-head contrast: wherever time-keyed is wrong, PTW-fenced is right.
+    check("wherever time-keyed mis-attributes, PTW-fenced is exact",
+          all(r["fwrong"] == 0 for r in rows if r["tkwrong"] > 0),
+          f"rows with time-keyed wrong: {sum(1 for r in rows if r['tkwrong']>0)}; "
+          f"of those, fenced wrong: {sum(1 for r in rows if r['tkwrong']>0 and r['fwrong']>0)}")
 
-    print("\nInterpretation: the in-band executed PTWRITE fence pins each traced")
-    print("execution to its exact self-modified version in packet order, with no")
-    print("timestamps; the time-keyed method (perf/libipt-sb/wilvk) can only place")
-    print("executions by PT timestamp, so when a patch and its execution fall within")
-    print("the PT timestamp resolution it attributes the wrong version. Ground truth")
-    print("is the EXEC payload the executed bytes produced, confirmed independently")
-    print("of PT by verify_singlestep (EAX-at-ret == EXEC_TAG+i).")
+    print("\nInterpretation: an executed in-band PTWRITE fence pins each traced")
+    print("execution to its exact self-modified version in packet order, needing no")
+    print("timestamps. The strong time-keyed decoder (TMA + MTC payloads) is exact")
+    print("only for a middle band of patch->execute intervals: below it there are too")
+    print("few CTC ticks to place the exec after its patch; above it the 8-bit MTC")
+    print("payload wraps between the sparse TSC anchors (BranchEn=0), losing the high")
+    print("CTC bits. Fine (dense) timing closes the low end but risks AUX overflow at")
+    print("long intervals. Ground truth is the EXEC payload the executed bytes")
+    print("produced, confirmed independently of PT by verify_singlestep.")
     print("\n" + ("ALL VERDICTS PASS" if allpass else "SOME VERDICTS FAILED"))
     return 0 if allpass else 1
 

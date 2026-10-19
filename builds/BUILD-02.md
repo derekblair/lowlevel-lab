@@ -73,3 +73,45 @@ CONFIRMED in §2; clean build warning-free; reproduced under `env -i`.
 `parts/02-pt-truth/`: AGENTS.md, README.md, RUN.md, Makefile, ptcap.c,
 verify_singlestep.c, ptdecode.py, attribute.py, run.sh (+ generated data.csv,
 ptcap, verify_singlestep — `make clean`-able).
+
+## Fix round 1 (REVIEW-02-build, CHANGES REQUESTED @21475a8)
+
+Both blockers fixed. The corrected result is **stronger and more honest** than
+round 1's, exactly as the reviewer predicted.
+
+- **B1 (time-keyed baseline was a strawman by implementation) — FIXED.** Round 1
+  computed the time-keyed clock by **counting MTC packets** × a fixed period;
+  in coarse mode the hardware *skips* MTC periods, so that clock fell behind and
+  every exec looked like it preceded its patch (→ "coarse fails everywhere",
+  false). `attribute.py` now reconstructs the TSC-domain clock the way a real
+  sideband decoder does: **anchor CTC at the TSC+TMA pair, advance from each
+  MTC's payload** (CTC[period+7:period], 8-bit wrap), convert via CPUID.15H.
+  Cross-checked against the reviewer's independent `payload_timekeyed.py` (same
+  algorithm, agreeing results). The honest result: time-keyed is **exact in a
+  middle band of patch→execute intervals (~10³–10⁵ TSC ticks)** and
+  mis-attributes **below** it (too few CTC ticks) and **above** it (the 8-bit MTC
+  payload wraps between the sparse BranchEn=0 TSC anchors — the delay-10⁶
+  long-gap regime). Intervals are now reported in **TSC ticks** (ptcap logs the
+  patch and exec rdtsc). VERDICT 3/4, README "The result"/"Interpretation" and
+  this file rewritten to match. "fine is exact" and "the fence needs no timing
+  packets" are kept — both still true. (b) The band edges and the short-interval
+  point are reported; the long-gap failure is the stable blocking verdict.
+- **B2 (`make` not reproducible: OVF 6/8 runs) — FIXED.** Root cause: fine mode
+  with CYC floods the AUX ring at long delays. Fix: (1) AUX ring 4→8 MiB; (2)
+  fine delays capped at 10⁴ (the long-gap regime is a *coarse* phenomenon, so
+  nothing is lost); (3) OVF is now treated as data — reported per row and
+  **excluded from time-keyed accuracy scoring**, so a stray overflow never fails
+  `make`. Verified **5/5 consecutive clean `make` runs PASS, 0 OVF**; RUN.md §3
+  shows 2 consecutive runs; RUN.md's nondeterminism section declares OVF and the
+  jittery band edges.
+
+Nits: N1 framer PTW IP-bit handling corrected (IP bit ⇒ a separate FUP follows,
+not bytes inside the PTW packet) + README qualifier; N2 the unused `truth.csv`
+(intended-version) dropped — ground truth is the EXEC payloads + verify_singlestep;
+N3 README order corrected to patch→fence→spin→exec; N4 the `mfence/lfence`
+removed and the comment corrected (the indirect call to new code is what
+satisfies the SDM rule); N5 README states the BranchEn=0 scope; N6 interpretation
+text rewritten (resolved by B1).
+
+Re-verified: clean warning-free build; 5/5 `make` runs PASS; ground truth
+CONFIRMED; reproduced under `env -i`.

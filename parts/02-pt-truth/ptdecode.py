@@ -51,12 +51,12 @@ def iter_packets(buf):
             if e == 0x63: yield (i, "bbp", None); i += 3; continue
             if e == 0xA3:  # long TNT: 02 A3 + 6 payload bytes
                 yield (i, "tnt", None); i += 8; continue
-            if (e & 0x1F) == 0x12:  # PTW: payload len from bits[6:5] (0->4B,1->8B), bit7=IP
+            if (e & 0x1F) == 0x12:  # PTW: payload len from bits[6:5] (0->4B,1->8B)
                 plen = 8 if (e & 0x60) == 0x20 else 4
-                ip = 8 if (e & 0x80) else 0  # FUP-on-PTW adds an IP (handled as part of pkt)
-                off = i + 2
-                payload = int.from_bytes(buf[off:off + plen], "little")
-                yield (i, "ptw", payload); i += 2 + plen + ip; continue
+                # bit7 (header 0xb2) = IP: a SEPARATE FUP packet follows; it is NOT
+                # inside the PTW packet, so it is framed on its own next iteration.
+                payload = int.from_bytes(buf[i + 2:i + 2 + plen], "little")
+                yield (i, "ptw", payload); i += 2 + plen; continue
             raise PTError(f"unknown 02-ext opcode {e:#x} @{i}")
         if b == 0x19: yield (i, "tsc", int.from_bytes(buf[i+1:i+8], "little")); i += 8; continue
         if b == 0x59: yield (i, "mtc", buf[i + 1]); i += 2; continue

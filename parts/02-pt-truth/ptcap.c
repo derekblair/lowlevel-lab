@@ -78,7 +78,7 @@ int main(int argc, char **argv) {
     if (fd < 0) { perror("perf_event_open(intel_pt)"); return 1; }
 
     long pg = sysconf(_SC_PAGESIZE);
-    size_t data = (1 + 8) * pg, aux = 1024 * pg;  /* 4 MiB AUX ring: headroom vs OVF */
+    size_t data = (1 + 8) * pg, aux = 2048 * pg;  /* 8 MiB AUX ring: headroom vs OVF */
     struct perf_event_mmap_page *up = mmap(0, data, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
     if (up == MAP_FAILED) { perror("mmap data"); return 1; }
     up->aux_offset = data; up->aux_size = aux;
@@ -91,10 +91,10 @@ int main(int argc, char **argv) {
     memset(code, 0xcc, MAPSZ);
 
     char path[512];
+    /* patchlog: version, TSC just before the patch, and TSC just before the
+     * execution -> the real patch->execute interval in TSC ticks (B1(b)). */
     snprintf(path, sizeof path, "%s/patchlog.csv", outdir);
-    FILE *pl = fopen(path, "w"); fprintf(pl, "version,tsc_at_patch\n");
-    snprintf(path, sizeof path, "%s/truth.csv", outdir);
-    FILE *tr = fopen(path, "w"); fprintf(tr, "exec_seq,version\n");
+    FILE *pl = fopen(path, "w"); fprintf(pl, "version,tsc_at_patch,tsc_at_exec\n");
 
     /* mutable region layout, 12 bytes at code+0:
      *   b8 <imm32>        mov eax, EXEC_TAG+i
@@ -115,25 +115,27 @@ int main(int argc, char **argv) {
     for (int i = 0; i < versions; i++) {
         /* patch version i into the mutable region */
         uint32_t payload = (uint32_t)(EXEC_TAG + (unsigned)i);
-        uint64_t tsc = __rdtsc();
-        fprintf(pl, "%d,%llu\n", i, (unsigned long long)tsc);
+        uint64_t tsc_patch = __rdtsc();
         code[0] = 0xb8;                                 /* mov eax, imm32 */
         memcpy(code + 1, &payload, 4);
         memcpy(code + 5, PTWRITE_EAX, 4);               /* ptwrite eax */
         code[9] = 0xc3;                                 /* ret */
-        /* serialize so the new code is what executes (benign own-process SMC) */
-        __asm__ volatile("mfence; lfence" ::: "memory");
         /* in-band cooperative FENCE: a PTWRITE-aware JIT would emit this */
         uint64_t fence = FENCE_TAG + (unsigned)i;
         __asm__ volatile("ptwrite %0" :: "r"(fence));
         /* tunable patch->execute interval */
         for (volatile uint64_t d = 0; d < delay; d++) { }
-        /* execute version i: emits EXEC PTW with payload = EXEC_TAG+i (truth) */
+        uint64_t tsc_exec = __rdtsc();
+        /* execute version i. The indirect call to the freshly written bytes is
+         * what satisfies the SDM self-modifying-code rule ("jump to new code");
+         * verify_singlestep confirms the new byte runs. Emits EXEC PTW payload
+         * EXEC_TAG+i (ground truth, produced by the self-modified bytes). */
         fn();
-        fprintf(tr, "%d,%u\n", i, (unsigned)i);
+        fprintf(pl, "%d,%llu,%llu\n", i,
+                (unsigned long long)tsc_patch, (unsigned long long)tsc_exec);
     }
     ioctl(fd, PERF_EVENT_IOC_DISABLE, 0);
-    fclose(pl); fclose(tr);
+    fclose(pl);
 
     uint64_t head = __atomic_load_n(&up->aux_head, __ATOMIC_ACQUIRE);
     snprintf(path, sizeof path, "%s/trace.pt", outdir);

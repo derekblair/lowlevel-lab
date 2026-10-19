@@ -14,7 +14,7 @@ EXEC PTW payload, which the executing self-modified bytes produced):
 Ground truth is independent of the PT decode path (it is the value the executed
 code itself emitted), and is cross-checked by verify_singlestep.py.
 
-usage: attribute.py OUTDIR    (expects trace.pt, patchlog.csv, truth.csv there)
+usage: attribute.py OUTDIR    (expects trace.pt, patchlog.csv, sideband.txt there)
 """
 import os
 import sys
@@ -24,9 +24,9 @@ import ptdecode
 MASK56 = (1 << 56) - 1
 
 
-def read_sideband(path):
-    """Return (mtc_tick_in_tsc, mtc_period). One MTC = 2^mtc_period CTC ticks,
-    and TSC = CTC * numer/denom (CPUID.15H), so one MTC = that many TSC ticks."""
+def read_sideband_raw(path):
+    """Parse sideband.txt 'k=v' tokens into an int dict (mtc_period, the
+    CPUID.15H ratio fields, etc.)."""
     d = {}
     for ln in open(path):
         for tok in ln.split():
@@ -36,11 +36,7 @@ def read_sideband(path):
                     d[k] = int(v)
                 except ValueError:
                     pass
-    numer = d.get("cpuid15_ebx_numer", 0)
-    denom = d.get("cpuid15_eax_denom", 1) or 1
-    period = d.get("mtc_period", 0)
-    tick = (1 << period) * numer // denom if numer else 0
-    return tick, period
+    return d
 
 
 def read_patchlog(path):
@@ -49,9 +45,43 @@ def read_patchlog(path):
         ln = ln.strip()
         if not ln or ln.startswith("version"):
             continue
-        v, t = ln.split(",")
-        rows.append((int(v), int(t) & MASK56))
-    return rows  # [(version, tsc_at_patch_masked)] in version order
+        parts = ln.split(",")
+        v = int(parts[0]); tp = int(parts[1]) & MASK56
+        te = int(parts[2]) & MASK56 if len(parts) > 2 else tp
+        rows.append((v, tp, te))
+    return rows  # [(version, tsc_at_patch, tsc_at_exec)] in version order
+
+
+def payload_clocked_execs(buf, period, numer, denom):
+    """Reconstruct a TSC-domain timestamp for each EXEC PTW the way a real
+    sideband decoder (perf / libipt-sb) does: anchor CTC at the TSC+TMA pair and
+    advance it from each MTC's PAYLOAD (CTC[period+7:period], with 8-bit wrap),
+    NOT by counting MTC packets. Returns [(exec_version, tsc_or_None), ...] in
+    order. This is the strong time-keyed baseline (REVIEW-02-build B1).
+
+    Cross-checked against the reviewer's independent payload_timekeyed.py, which
+    implements the same documented algorithm."""
+    base_tsc = base_ctc = ctc = None
+    last_full_tsc = None
+    out = []
+    for off, k, p in ptdecode.iter_packets(buf):
+        if k == "tsc":
+            last_full_tsc = p
+        elif k == "tma" and last_full_tsc is not None:
+            ctc = p[0]                      # TMA carries CTC[15:0]
+            base_ctc = ctc
+            base_tsc = last_full_tsc
+        elif k == "mtc" and ctc is not None:
+            old = (ctc >> period) & 0xff
+            new = p & 0xff
+            ctc = (ctc & ~(0xff << period)) | (new << period)
+            if new < old:                   # CTC[period+7:period] wrapped
+                ctc += 1 << (period + 8)
+            ctc &= ~((1 << period) - 1)      # MTC marks a period boundary
+        elif k == "ptw" and (p & 0xFFFF0000) == ptdecode.EXEC_TAG:
+            t = None if ctc is None else base_tsc + (ctc - base_ctc) * numer // denom
+            out.append((p & 0xFFFF, t))
+    return out
 
 
 def attribute(outdir):
@@ -59,58 +89,49 @@ def attribute(outdir):
     ovf = sum(1 for _, k, _ in ptdecode.iter_packets(buf) if k == "ovf")
     ev = ptdecode.events(buf)
     patches = read_patchlog(f"{outdir}/patchlog.csv")
-    mtc_tick, _period = read_sideband(f"{outdir}/sideband.txt")
-    # ground truth per exec = the version its own EXEC payload carries
+    sb = read_sideband_raw(f"{outdir}/sideband.txt")
+    period = sb.get("mtc_period", 0)
+    numer = sb.get("cpuid15_ebx_numer", 1)
+    denom = sb.get("cpuid15_eax_denom", 1) or 1
+
     execs = [e for e in ev if e["type"] == "exec"]
+    n = len(execs)
 
-    def pt_time(e):
-        """Strongest TSC+MTC time-keyed clock in the TSC domain (CYC, enabled in
-        fine mode, is NOT decoded here, so fine time-keyed accuracy is a LOWER
-        bound — a CYC-using decoder would do at least as well)."""
-        return (e["tsc"] or 0) + e["mtc"] * mtc_tick
-
-    # ---- ptw-fenced: last preceding FENCE in packet order ----
+    # ---- ptw-fenced: last preceding FENCE in packet order (exact by construction) ----
     fenced_ok = fenced_bad = fenced_nofence = 0
     last_fence = None
-    fence_pred = {}
     for e in ev:
         if e["type"] == "fence":
             last_fence = e["ver"]
         elif e["type"] == "exec":
             if last_fence is None:
-                fenced_nofence += 1            # fence clipped at trace start
+                fenced_nofence += 1
             elif last_fence == e["ver"]:
                 fenced_ok += 1
             else:
                 fenced_bad += 1
 
-    # ---- time-keyed (strongest available: TSC + MTC, in the TSC domain) ----
-    # Patch events are rdtsc in the same TSC domain as PT TSC packets. Attribute
-    # each exec to the latest patch at or before the exec's PT time.
+    # ---- time-keyed: payload-reconstructed TSC clock (strong baseline) ----
+    clocked = payload_clocked_execs(buf, period, numer, denom)
     tk_ok = tk_bad = tk_noclock = 0
-    for e in execs:
-        if e["tsc"] is None:
+    for ver, t in clocked:
+        if t is None:
             tk_noclock += 1
             continue
-        t = pt_time(e)
         pred = None
-        for v, pt in patches:
-            if pt <= t:
+        for v, tp, te in patches:
+            if tp <= t:
                 pred = v
-        if pred == e["ver"]:
-            tk_ok += 1
-        else:
-            tk_bad += 1
+        tk_ok += (pred == ver)
+        tk_bad += (pred != ver)
 
-    n = len(execs)
-    # Resolution available to the TSC+MTC decoder = distinct (tsc, mtc) tuples
-    # among the execs. Pigeonhole: it must mis-attribute >= n - resolution execs.
-    resolution = len({(e["tsc"], e["mtc"]) for e in execs if e["tsc"] is not None})
+    # measured patch->execute interval (median TSC ticks), from the patchlog
+    intervals = sorted(te - tp for _v, tp, te in patches)
+    median_interval = intervals[len(intervals) // 2] if intervals else 0
     return {
         "n": n,
-        "resolution": resolution,
-        "mtc_tick": mtc_tick,
         "ovf": ovf,
+        "median_interval_tsc": median_interval,
         "fenced": (fenced_ok, fenced_bad, fenced_nofence),
         "timekeyed": (tk_ok, tk_bad, tk_noclock),
     }
@@ -122,10 +143,9 @@ if __name__ == "__main__":
     to, tb, tc = r["timekeyed"]
     if len(sys.argv) >= 5 and sys.argv[2] == "--csv":
         timing, delay = sys.argv[3], sys.argv[4]
-        print(f"{timing},{delay},{r['n']},{r['resolution']},"
+        print(f"{timing},{delay},{r['n']},{r['median_interval_tsc']},"
               f"{fo},{fb},{fn},{to},{tb},{r['ovf']}")
     else:
-        print(f"execs={r['n']}  TSC+MTC resolution (distinct timestamps across burst)={r['resolution']}"
-              f"  (1 MTC = {r['mtc_tick']} TSC ticks)")
+        print(f"execs={r['n']}  median patch->exec interval={r['median_interval_tsc']} TSC ticks  ovf={r['ovf']}")
         print(f"  ptw-fenced : correct={fo} wrong={fb} no-preceding-fence={fn}")
-        print(f"  time-keyed : correct={to} wrong={tb} no-clock={tc}  (TSC+MTC)")
+        print(f"  time-keyed : correct={to} wrong={tb} no-clock={tc}  (TMA+MTC-payload clock)")
