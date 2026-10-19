@@ -1,0 +1,19 @@
+# repro.sh + strace_audit.py self-test, 2026-10-19 02:57:11 PDT — deliberate known-positives: /var/tmp write+unlink, AF_INET socket
+label=selftest-025644 commit=HEAD head=569202e244c3329cffaece8c8ff0c7d5bf15c858 at=2026-10-19 02:56:44 PDT
+status: ?? .envrun
+status: ?? .evidence/
+strace audit of tasks/reviewer-repro/selftest-025644/.evidence/strace.log
+  allowed write roots: /home/derekblair/projects/lowlevel-lab/tasks/reviewer-repro/selftest-025644, /tmp, /dev/null, /dev/tty, /dev/pts, /dev/shm, /proc/self, /proc/thread-self
+  relative-path write-mode opens (resolved against cwd): 1
+  WRITE              1  [BLOCKING]
+      1751711 openat(AT_FDCWD, "/var/tmp/reviewer-audit-selftest", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+  FS-MUTATE          1  [BLOCKING]
+      1751814 unlinkat(AT_FDCWD, "/var/tmp/reviewer-audit-selftest", 0) = 0
+  CHDIR-OUT          0  [none]
+  NETWORK            1  [BLOCKING]
+      1751815 socket(AF_INET, SOCK_STREAM|SOCK_CLOEXEC, IPPROTO_IP) = 3
+  EXEC-PRIV/NET      0  [none]
+  PTRACE-ATTACH      0  [none]
+  FOREIGN-WRITE      0  [none]
+  UNIX-SOCKET        0  [none]
+  RESULT: FINDINGS (see above)
