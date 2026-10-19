@@ -1,0 +1,83 @@
+# C03 prior-art excerpts (read as data via gh api, 2026-10-19 02:49:00 PDT)
+## intel/libipt @907b908a50 README lines 35,37
+  sideband      A sideband correlation library
+  pevent        A library for reading/writing Linux perf event records
+## intel/libipt sideband/src/pt_sb_pevent.c — perf records handled (time-keyed via time_shift/time_mult/time_zero, pt_sb_pevent_fetch(&tsc)); no TEXT_POKE
+372:	priv->pev.time_shift = config->time_shift;
+373:	priv->pev.time_mult = config->time_mult;
+374:	priv->pev.time_zero = config->time_zero;
+394:static int pt_sb_pevent_fetch(uint64_t *ptsc, struct pt_sb_pevent_priv *priv)
+482:	case PERF_RECORD_MMAP: {
+507:	case PERF_RECORD_LOST: {
+526:	case PERF_RECORD_COMM: {
+549:	case PERF_RECORD_EXIT: {
+572:	case PERF_RECORD_THROTTLE: {
+594:	case PERF_RECORD_UNTHROTTLE: {
+616:	case PERF_RECORD_FORK: {
+639:	case PERF_RECORD_MMAP2: {
+674:	case PERF_RECORD_AUX: {
+700:	case PERF_RECORD_ITRACE_START: {
+719:	case PERF_RECORD_LOST_SAMPLES: {
+739:	case PERF_RECORD_SWITCH: {
+## torvalds/linux tools/perf/util/intel-pt.c — intel_pt_text_poke
+658:static void intel_pt_cache_invalidate(struct dso *dso, struct machine *machine,
+3667:static int intel_pt_text_poke(struct intel_pt *pt, union perf_event *event)
+3712:			intel_pt_cache_invalidate(dso, machine, offset);
+3797:	if (!err && event->header.type == PERF_RECORD_TEXT_POKE)
+## tklengyel/drakvuf @b2f64d8d73d4 src/plugins/ipt/ipt.cpp:120-132
+void emit_ptwrite64(std::ofstream& stream, uint64_t payload)
+{
+    // ptwrite packet
+    stream.put(0x02);
+    // no FUP, 8 bytes of payload
+    stream.put(0x32);
+    stream.write(reinterpret_cast<char*>(&payload), sizeof(payload));
+}
+
+void ipt_vcpu::annotate(uint64_t payload)
+{
+    emit_ptwrite64(this->output_stream, payload);
+}
+## wilvk/asm-test docs/internal/analysis/jit-runtime-tracing.md:15-44 (update notes)
+> **Update — approach #2's core has shipped.** The "time-aware code-image recorder"
+> (below, [§2](#2-general-case--ebpf--userfaultfd-time-aware-recorder-no-runtime-cooperation))
+> — the piece this document calls *"the innovative, buildable core of a generic tracer"* —
+> is now implemented as `asmtest_codeimage` ([include/asmtest_codeimage.h](../../../include/asmtest_codeimage.h),
+> `src/codeimage.c`): a userspace `PERF_RECORD_TEXT_POKE` that builds the timestamped
+> code-image timeline cross-process via **soft-dirty + `PAGEMAP_SCAN`** (the practical,
+> foreign-process-capable equivalent of the uffd-WP-async sketch below — note uffd-WP
+> needs the *owning* process to register, so it cannot watch a foreign JIT), with bytes
+> read via `process_vm_readv`. The W2 ptrace stepper consumes it
+> (`asmtest_ptrace_trace_attached_versioned`), and the **eBPF emission detector** (§2's
+> "detect emission" bullet — a CO-RE program on `mprotect`/`mmap`/`memfd_create`) ships as
+> the optional, container-validated acceleration layer. What remains forward-look is the
+> hardware half: feeding this byte timeline into the **Intel PT / libipt** decoder
+> ([hardware-trace plan Phase 2](../plans/hardware-trace-plan.md)), which needs PT
+> hardware (this dev host is AMD); the recorder is already paired with the on-host
+> ptrace stepper instead. Read the rest of this document as the design rationale; the
+> [CHANGELOG](../../../CHANGELOG.md) tracks the shipped surface.
+>
+> **Update 2026-07-21 — the "hardware half" has narrowed.** That feeding is now
+> decode-side complete: `asmtest_pt_decode_window` decodes PT with a
+> recorder-backed `pt_image_set_callback` (`src/pt_backend.c`), foreign-pid PT
+> capture ships as `asmtest_hwtrace_pt_attach_begin`
+> ([src/hwtrace.c](../../../src/hwtrace.c) ~:2570), and commit `c7b4ef7`
+> (2026-07-21) validated whole-window and foreign-pid decode on real silicon.
+> The residual forward-look is [hardware-trace plan
+> Phase 2](../plans/hardware-trace-plan.md)'s remaining **CoreSight** gate, not
+> "wire the decoder".
+
+## Question
+
+## wilvk/asm-test docs/internal/plans/hardware-trace-plan.md:126-136
+**The recorder-backed libipt decode has since been written too** (2026-07) —
+`asmtest_pt_decode_window(aux, aux_len, img, when, trace)`
+([src/pt_backend.c:221](../../../src/pt_backend.c)) builds a `pt_image` whose bytes come
+from the code-image recorder instead of a registered region, via
+`pt_image_set_callback(image, read_recorder, &ctx)`
+([pt_backend.c:239](../../../src/pt_backend.c)) keyed to the trace position `when`; its
+adapter `asmtest_pt_read_codeimage` ([pt_backend.c:47](../../../src/pt_backend.c)) is
+host-tested directly ([examples/test_hwtrace.c:3111-3130](../../../examples/test_hwtrace.c),
+the same-address-different-bytes case resolving to the version live at each `when`). So
+"feed the recorder's timeline to libipt" is **no longer the open item** — that entry
+point exists and is decoder-side complete.

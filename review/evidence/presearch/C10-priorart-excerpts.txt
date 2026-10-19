@@ -1,0 +1,25 @@
+# C10 prior-art excerpts (read as data via gh api, 2026-10-19 02:49:00 PDT)
+## gperftools/gperftools @635500ed68 src/base/single_stepper.h:41-55
+  using SteppingCallbackFn = void (*)(void* uc, SingleStepper* stepper);
+
+  // Start intercepts SIGTRAP and enables single-stepping (in
+  // currently running thread). On ~each instruction given callback
+  // will be invoked with signal's ucontext.
+  //
+  // NOTE: it Crashes if Start is invoked twice.
+  virtual void Start(SteppingCallbackFn callback) = 0;
+
+  virtual void Stop() = 0;
+
+  // To be called from stepping callback. Inspects pending instruction
+  // and returns true if it is some locking instruction. Uses lock
+  // prefix on x86.
+  virtual bool IsAtLockInstruction(void* uc) = 0;
+## src/base/single_stepper.cc:61,75,79
+  static constexpr uintptr_t kTF = 0x100;  // Trace flag in x86 FLAGS register.
+      uc->uc_mcontext.gregs[REG_EFL] &= ~kTF;
+    uc->uc_mcontext.gregs[REG_EFL] |= kTF;
+## users (code search SingleStepper repo:gperftools/gperftools): src/base/single_stepper.{h,cc}, src/tests/tcmalloc_unittest.cc
+## thorkill/eresi README (gh api, 2026-10-19 02:53:15 PDT) lines 36,46
+	. The Embedded ELF Debugging for Linux / IA32
+injections and memory injection, using the Embedded ELF Debugger (e2dbg)

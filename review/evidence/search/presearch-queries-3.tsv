@@ -1,0 +1,27 @@
+# Reviewer pre-search round 3 (2026-10-19, for the full-list cherry-picking assessment)
+C08	repos	armvis
+C08	repos	hilbert curve aarch64 encoding
+C09	repos	superset disassembly visualization
+C09	repos	"every offset" disassembly in:readme
+C09	code	superset disassemble "every byte"
+C10	repos	self-tracing "trap flag" in:readme
+C10	repos	in-process single step tracer sigtrap
+C10	code	"REG_EFL" "0x100" SIGTRAP sigaction
+C11	repos	arm64 to x86-64 recompiler
+C11	repos	aarch64 x86-64 binary translator educational
+C13	repos	fisim
+C13	repos	fault injection simulator unicorn
+C13	repos	bit flip fault injection machine code
+C14	repos	sampling skid
+C14	code	"precise_ip" skid measurement
+C17	repos	cpuid faulting
+C17	repos	ARCH_SET_CPUID in:readme
+C17	code	"ARCH_SET_CPUID" ptrace
+C18	repos	plt got visualizer
+C18	repos	dynamic linker visualizer
+C18	repos	"lazy binding" in:readme visual
+C19	repos	tierra native x86
+C19	repos	self-replicating x86 artificial life
+C23	repos	kvm page table visualizer
+C23	repos	kvm hello world
+C23	repos	page walk visualization

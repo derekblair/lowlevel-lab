@@ -1,0 +1,32 @@
+### 2026-10-19T09:40:12Z repos q=kvm page table visualizer
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T09:40:18Z repos q=kvm hello world
+exit=0
+total_count=15 incomplete=false
+  dpw/kvm-hello-world  *523  created=2016-06-09  pushed=2022-07-30  A minimal kvm example
+  Lenz-K/arm64-kvm-hello-world  *29  created=2021-07-28  pushed=2024-01-06  A bare metal AArch64 hello-world program, that is run in a KVM  AArch64 VM.
+  Lenz-K/android-kvm-hello-world  *9  created=2021-08-31  pushed=2022-03-28  An Android app, that runs a bare metal AArch64 hello-world program, in a KVM AArch64 VM.
+  loicpoulain/kvmrun  *6  created=2020-04-20  pushed=2022-09-14  Minimal VMM implementation - KVM hello world example (learning purpose)
+  chennupatianilkumar/KvmHelloWorld  *0  created=2020-01-21  pushed=2020-01-21  
+  NikoZHAI/khw-cpp  *0  created=2023-05-01  pushed=2023-05-01  kvm-hello world with c++
+  tpot/kvm-hello-world-rs  *0  created=2024-05-31  pushed=2024-06-03  Port of kvm-hello-world.c to Rust
+  shivam-1997/kvm-hello-world  *0  created=2020-02-12  pushed=2020-02-14  
+  eastmoutain/kvm_hello_world  *0  created=2018-03-05  pushed=2018-03-05  
+  JaewonHur/kvm-hello-world  *0  created=2021-05-04  pushed=2021-05-04  
+
+### 2026-10-19T09:40:24Z repos q=page walk visualization
+exit=0
+total_count=12 incomplete=false
+  DrunkEngineers/wiki-walk  *0  created=2013-02-02  pushed=2013-02-05  Fun Visualization for Wikipedia Page Links
+  hemindesai04/page-table-walker  *0  created=2026-02-27  pushed=2026-02-27  Simulator and Visualizer for 2-stage ARM v9 Page Table Walk.
+  davidgeamanu/Virtual-Memory-Simulator  *0  created=2026-01-22  pushed=2026-02-24  A JavaFX educational simulator visualizing virtual memory management, TLB lookups, page table walks, and page replacemen
+  Vivek2998/arachne-web-crawler  *2  created=2026-10-03  pushed=2026-10-05  Visual web crawler: every worker is a procedurally animated spider that walks, bites and tears links out of the pages it
+  3hungdc/How-to-Access-Hidden-Pages-in-Power-BI-Report-Services  *0  created=2024-07-18  pushed=2025-04-02  Power BI Report Services is a powerful tool for data visualization and business intelligence. Sometimes, reports have hi
+  nirholas/three-ws-portal  *3  created=2026-09-03  pushed=2026-10-11  Turn any website into a walkable 3D world. Reads a page's real structure and lays out a city from it: sections become bu
+  ryanjosephkamp/the-rubber-protein  *1  created=2026-02-21  pushed=2026-06-23  S26 AIRP: Interactive Freely Jointed Chain (FJC) polymer elasticity simulator — Langevin force–extension, Monte Carlo ra
+  Dhanushbabu22/Secure-file-sharing-  *0  created=2026-06-04  pushed=2026-06-04  This interactive single-page app visualizes E2EE file-sharing architectures. It features interactive threat modeling, an
+  shubhx32/E-commerce-AB-testing  *0  created=2025-07-07  pushed=2025-07-10  Analyze A/B test data from an e-commerce website to evaluate whether a redesigned landing page leads to significantly hi
+  nirholas/portal  *0  created=2026-10-10  pushed=2026-10-10  Turn any website into a walkable 3D world. Reads a page's real structure and lays out a city from it: sections become bu
+

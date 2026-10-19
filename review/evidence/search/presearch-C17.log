@@ -1,0 +1,38 @@
+### 2026-10-19T09:39:18Z repos q=cpuid faulting
+exit=0
+total_count=6 incomplete=false
+  loystonpais/linuwowo  *5  created=2026-07-19  pushed=2026-07-22  LinUwUx patched proton and cpuid_fault_emulation NixOS module
+  xXJSONDeruloXx/hv-installer-gtk  *4  created=2026-07-16  pushed=2026-07-30  GTK installer and manager for CPUID Fault Emulation
+  AscendXP/cpuid-fault-emulation-kmod  *2  created=2026-08-27  pushed=2026-10-01  Fedora AKMOD package for CPUID fault emulation, designed for Fedora, Universal Blue, Fedora Atomic, and Bazzite systems.
+  dnmodder/cpuid-fault-emulation  *0  created=2026-09-26  pushed=2026-09-27  Linux DKMS kernel module for CPUID fault emulation on AMD processors via SVM, with systemd service and polkit rules for 
+  Natselketi/hypervisor-desktop  *0  created=2026-07-15  pushed=2026-07-23  A bash script that install cpuid_fault_emulation hypervisor enabler/disabler scripts and desktop files
+  xLuXurx/hv-install-script-modification  *1  created=2026-08-07  pushed=2026-08-08  This is a personal mod that adds the ability to autoload the CPUID Fault Emulation module for HV on Linux with native St
+
+### 2026-10-19T09:39:24Z repos q=ARCH_SET_CPUID in:readme
+exit=0
+total_count=960 incomplete=false
+  pytorch/cpuinfo  *1189  created=2017-03-03  pushed=2026-07-30  CPU INFOrmation library (x86/x86-64/ARM/ARM64, Linux/Windows/Android/macOS/iOS)
+  klauspost/cpuid  *1219  created=2015-04-13  pushed=2026-10-16  CPU feature identification for Go
+  sickcodes/Docker-OSX  *52993  created=2020-06-04  pushed=2025-11-11  Run macOS VM in a Docker! Run near native OSX-KVM in Docker! X11 Forwarding! CI/CD for OS X Security Research! Docker ma
+  google/cpu_features  *2620  created=2018-01-31  pushed=2026-09-30  A cross platform C99 library to get cpu features at runtime.
+  RinHizakura/mini-gdbstub  *95  created=2022-08-05  pushed=2026-03-18  An implementation of the GDB Remote Serial Protocol to help you adding debug mode on emulator
+  darkb1rd/DarkGld  *106  created=2021-02-06  pushed=2021-09-23  A tool for quickly generating fishing Trojan horse.
+  ddcc/libcpuidoverride  *24  created=2019-04-24  pushed=2023-03-08  
+  freecableguy/v3x4  *169  created=2017-10-01  pushed=2023-04-06  Intel(R) Xeon(R) Processor Max Effort Turbo Boost UEFI DXE driver
+  sickcodes/dock-droid  *1384  created=2021-07-03  pushed=2022-04-22  Docker Android - Run QEMU Android in a Docker! X11 Forwarding! CI/CD for Android!
+  saileaxh/cpueaxh  *237  created=2026-03-16  pushed=2026-05-11  Lightweight, dependency-free x86-64 CPU emulation library with Unicorn-like guest mode and direct host-memory execution.
+
+### 2026-10-19T09:39:30Z code q="ARCH_SET_CPUID" ptrace
+exit=0
+total_count=1172 incomplete=false
+  google/gvisor  pkg/sentry/platform/ptrace/subprocess_amd64.go
+  google/gvisor  pkg/abi/linux/prctl.go
+  XLsn0w/Cydiapps  iSH/tools/ptutil.c
+  rr-debugger/rr  src/kernel_supplement.h
+  QGrain/SyzGPT  data/5.15_LFSC
+  rr-debugger/rr  src/Task.cc
+  google/gvisor  pkg/sentry/platform/systrap/subprocess_amd64.go
+  QGrain/SyzGPT  data/6.6_LFSC
+  google/syzkaller  sys/linux/sys.txt.const
+  QGrain/SyzGPT  data/builtin_variants.txt
+

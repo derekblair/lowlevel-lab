@@ -1,0 +1,32 @@
+### 2026-10-19T09:37:36Z repos q=superset disassembly visualization
+exit=0
+total_count=0 incomplete=false
+
+### 2026-10-19T09:37:42Z repos q="every offset" disassembly in:readme
+exit=0
+total_count=93 incomplete=false
+  igogo-x86/HexRaysPyTools  *1542  created=2016-10-17  pushed=2024-08-11  IDA Pro plugin which improves work with HexRays decompiler and helps in process of reconstruction structures and classes
+  hansbonini/psx_tomba  *28  created=2025-08-02  pushed=2026-10-18  This is a WIP decompilation project of the Tomba! game (known as Ore! Tomba in Japan and Tombi! in Europe) for the origi
+  zhangxinwu/ACE-ANTICHEAT  *2  created=2026-05-07  pushed=2026-04-26  As of 4/26/2026 a current record of everything TENCENT Based anticheat ACE does. 
+  scottcandy34/DramaticShapeVoxelMod-latest  *158  created=2026-08-10  pushed=2026-10-09  This is a faithful copy of the last update from DramaticShape's mod.
+  retro-foundry-games/Popcorn  *7  created=2026-08-23  pushed=2026-10-07  
+  DatanoiseTV/revenant  *9  created=2026-06-20  pushed=2026-07-05  LLM-powered automated reverse-engineering engine for vendor-abandoned hardware and software
+  blackwing182/DramaticShapeVoxelMod-test  *0  created=2026-08-07  pushed=2026-08-09  
+  smerss/Clausewitz-MCP  *17  created=2026-09-22  pushed=2026-09-22  
+  MagicOnioNn/ms45.1-4570LN00S-8hp-patch  *3  created=2026-07-07  pushed=2026-07-07  A python script that patches 4570LN00S firmware to make use of 8hp gearbox
+  TsyVM/portfolio  *2  created=2026-08-04  pushed=2026-08-04  It's me?
+
+### 2026-10-19T09:37:48Z code q=superset disassemble "every byte"
+exit=0
+total_count=205 incomplete=false
+  Open-BFME/Open-BFME-1  tools/zh_sweep.py
+  Open-BFME/Open-BFME-2  tools/zh_sweep.py
+  jorgegv/jnext  src/debug/debugger_inspect.cpp
+  ADevWithAnIdea/agx-re  tools/agx-isa/isadb.py
+  ranjithrajv/MachO-explorer  demo/macho.browser.mjs
+  ADevWithAnIdea/agx-re  experiments/EXP-0206-g17p-cf-scope/pinned/isadb.py
+  ADevWithAnIdea/agx-re  experiments/EXP-0219-named-dispatches/pinned_b/isadb.py
+  ADevWithAnIdea/agx-re  experiments/EXP-0187-g17p-rtword-census/pinned/isadb.py
+  ADevWithAnIdea/agx-re  experiments/EXP-0205-g17p-simd-subgroup/pinned/isadb.py
+  RyanCodrai/turbovec  benchmarks/hillclimb/LOG_2bit.md
+

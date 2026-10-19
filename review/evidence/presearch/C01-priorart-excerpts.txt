@@ -1,0 +1,46 @@
+# C01/P4 prior-art excerpts (read as data, 2026-10-19 02:53:15 PDT)
+## herd/herdtools7 @12690a83da catalogue/aarch64-ifetch/README.md:1-30
+ aarch64-ifetch: Catalogue for instruction fetch semantics
+=========================================================
+
+This catalogue contains artifacts from the work on the instruction
+fetch semantics of the AArch64 memory model. The tests in this
+catalogue concurrently execute:
+- Instructions that modify other instructions, and
+- The instructions that are affected by the modication.
+
+Simulating with herd7
+---------------------
+
+    % herd7 -variant ifetch tests/@all
+
+Running with litmus7
+--------------------
+
+ifetch tests need to be handled in a special way by litmus7. This is
+because ifetch litmus tests modify a memory location and execute the
+instructions held in that same memory location. As a result, litmus7
+needs to use memory that is both writable and executable. This is
+enabled with the command line argument `-variant self`.
+
+For operating systems (for example, Linux based) where it is
+possible to execute such binaries in EL0, the litmus tests can be run
+as follows:
+
+    # Assuming there exists a folder at the path ${TESTS_DIR}
+    % litmus7 -variant self -a 2 -o ${TESTS_DIR} tests/@all
+    % cd ${TESTS_DIR}
+## DynamoRIO/dynamorio core/dispatch.c:958-968
+#ifdef AARCH64
+        if (!INTERNAL_OPTION(hw_cache_consistency) &&
+            dcontext->last_exit == get_selfmod_linkstub()) {
+            /* Software cache consistency: we are handling an IC IVAU instruction. */
+            app_pc begin = (app_pc)dcontext->local_state->spill_space.r2;
+            app_pc end = (app_pc)dcontext->local_state->spill_space.r3;
+            dcontext->next_tag = (app_pc)dcontext->local_state->spill_space.r4;
+
+            /* XXX: This could probably be moved to the outer scope. */
+            priv_mcontext_t *mcontext = get_mcontext(dcontext);
+            mcontext->pc = get_fcache_target(dcontext);
+## https://www.cl.cam.ac.uk/~pes20/iflat/ (RMEM instructions, step 8; fetched via WebFetch, verbatim fragments)
+  "These options default to the strongest." / "Select "Out-of-Order Fetching" and uncheck the "IDC=1" and "DIC=1" checkboxes" / "to get the weakest semantics discussed in the paper."

@@ -1,0 +1,18 @@
+### 2026-10-19T09:37:25Z repos q=armvis
+exit=0
+total_count=19 incomplete=false
+  finallyjustice/armvisor  *10  created=2015-02-24  pushed=2015-02-24  Sample code for ARM hardware virtualization
+  hanok2/armvisor  *2  created=2022-08-27  pushed=2022-03-07  simple bare-metal armv8 (aarch64) hypervisor
+  zyedidia/armvis  *12  created=2024-03-02  pushed=2024-03-04  Visualizing the ARM64 instruction set
+  jack-and-his-ants/armvision  *1  created=2026-04-06  pushed=2026-04-22  Image processing library in C with performance-critical filters optimized in ARM64 assembly. Developed and benchmarked o
+  emreterzioglu/armvisio  *0  created=2025-04-29  pushed=2026-08-05  6-DoF Collaborative Robotic Arm Project
+  eggtgg/Armvisionconvey-System  *0  created=2024-12-11  pushed=2024-12-27  
+  Divesh2005/armVisualization  *0  created=2025-05-23  pushed=2025-05-24  Package of ROS2 to visualize robotic arm.
+  Langwedocjusz/ArmVis  *0  created=2023-01-13  pushed=2025-01-09  
+  iminthis/ArmVision  *0  created=2021-01-04  pushed=2021-04-11  ArmVision is an Object Detection program utilizing Artificial Intelligence (AI) concepts such as Convolutional Neural Ne
+  frc3197/ArmVisualizer  *0  created=2019-02-20  pushed=2021-07-29  
+
+### 2026-10-19T09:37:31Z repos q=hilbert curve aarch64 encoding
+exit=0
+total_count=0 incomplete=false
+

@@ -1,0 +1,28 @@
+### 2026-10-19T09:38:58Z repos q=sampling skid
+exit=0
+total_count=10 incomplete=false
+  pankoza2-pl/TrashMalwares  *29  created=2022-03-03  pushed=2023-10-12  $h!tty Skidded malwares I found online (warning - very cringe) Disclaimer: Most of them still dangerous. This repo is fo
+  brendangregg/skid-testing  *7  created=2017-07-28  pushed=2017-07-29  Processor PMC sample skid testing
+  DIRECTLab/SBMPO  *7  created=2021-08-17  pushed=2022-11-22  Source code and documentation to run SBMPO (Sampling-Based Model Predictive Optimizer).  Examples include energy-optimal
+  Siradankullanici/OpenSourceViruses  *4  created=2023-09-01  pushed=2025-08-25  39k virus samples code edit: I'm not skid anymore
+  himstar/skidos  *0  created=2021-10-18  pushed=2021-10-18  Skidos - sample
+  thexavier666/skid_data  *0  created=2019-05-24  pushed=2022-06-03  Sample Repository for Skidstorm related stuff
+  lolyV/Sample-Menu  *0  created=2022-08-11  pushed=2022-08-11  💚A Sample Menu for Skids
+  shashidharyd-shipron/SkiDayCounter  *0  created=2017-03-23  pushed=2017-03-23  Sample App for getting started with creating iPAL project.
+  gsoc2016/sample-group-homework-skid-row  *0  created=2016-06-23  pushed=2016-06-23  sample-group-homework-skid-row created by GitHub Classroom
+  lucastidy/axi-stream-skid-buffer  *0  created=2025-11-11  pushed=2026-01-09  Takes a stream of audio samples, computes per-frame peak and RMS, raises an IRQ if clipping or RMS exceeds a CSR-program
+
+### 2026-10-19T09:39:04Z code q="precise_ip" skid measurement
+exit=0
+total_count=1612 incomplete=false
+  jimblandy/perf-event  perf-event/src/builder.rs
+  influxdata/telegraf  plugins/inputs/intel_pmu/README.md
+  Phantomical/perf-event  perf-event/src/builder.rs
+  andikleen/pmu-tools  jevents/examples/addr.c
+  facebookexperimental/hermit  ai_docs/intel-pmu-analysis.md
+  async-profiler/async-profiler  src/perfEvents_linux.cpp
+  RMerl/asuswrt-merlin.ng  release/src-rt-5.04axhnd.675x/kernel/linux-4.19/arch/x86/events/core.c
+  RMerl/asuswrt-merlin.ng  release/src-rt-5.04behnd.4916/kernel/linux-4.19/arch/x86/events/core.c
+  RMerl/asuswrt-merlin.ng  release/src-rt-5.02axhnd/kernel/linux-4.1/arch/x86/kernel/cpu/perf_event.c
+  seahorn/seaurchin-bench  artifacts/perf-event/perf-event/src/builder.rs
+
