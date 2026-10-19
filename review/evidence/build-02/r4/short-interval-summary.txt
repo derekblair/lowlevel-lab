@@ -1,0 +1,5 @@
+run1: [(518, 0)] | E short: 426 TSC: wrong 6/24 | LP-E short: 374 TSC: wrong 8/24 | P rows>=2per: 5/5 rows exact, intervals 1958..4348948
+run2: [(338, 4), (1174, 0)] | E short: 314 TSC: wrong 12/24 | LP-E short: 610 TSC: wrong 7/24 | P rows>=2per: 4/4 rows exact, intervals 1696..3878556
+run3: [(712, 0), (1270, 0)] | E short: 490 TSC: wrong 9/24 | LP-E short: 852 TSC: wrong 1/24 | P rows>=2per: 4/4 rows exact, intervals 2028..3874494
+run4: [(800, 0)] | E short: 306 TSC: wrong 13/24 | LP-E short: 590 TSC: wrong 7/24 | P rows>=2per: 5/5 rows exact, intervals 1912..4558988
+run5: [(426, 1)] | E short: 448 TSC: wrong 5/24 | LP-E short: 672 TSC: wrong 8/24 | P rows>=2per: 5/5 rows exact, intervals 2046..3315062

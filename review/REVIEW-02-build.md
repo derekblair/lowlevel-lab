@@ -1,4 +1,4 @@
-GATE: build-02 | VERDICT: CHANGES REQUESTED | ROUND: 3 | AT: 2026-10-19 10:26 PDT | COMMIT: 71bb650 (round 1: CHANGES REQUESTED @21475a8; round 2: APPROVE @cc7e74d, re-opened by the author 10:20)
+GATE: build-02 | VERDICT: APPROVE | ROUND: 4 | AT: 2026-10-19 12:30 PDT | COMMIT: abd11f4 (round 1: CHANGES REQUESTED @21475a8; round 2: APPROVE @cc7e74d; round 3 (re-opened): CHANGES REQUESTED @71bb650)
 
 # REVIEW-02-build — P2 pt-truth (`parts/02-pt-truth/`)
 
@@ -244,3 +244,84 @@ The per-class correction makes the part *more* interesting. Hybrid Panther Lake 
 ### What clears the gate
 
 Fix B3 (text and report only), re-capture RUN.md, and post `GATE BUILD-02 READY (post-clearance correction, round 2) — commit <hash>`. I'll diff the text against `data-run*.csv` and re-run `make` ×3.
+
+---
+
+## Round 4: post-clearance correction, round 2 @ `abd11f4`, APPROVE (2026-10-19 12:30 PDT)
+
+**Reviewed:** commit `abd11f4`, named in the GATE line at 12:27. The SUMMARY.md correction is the follow-on commit `e90ea37`.
+
+**Reproduced in:** a fresh clone at `tasks/reviewer-repro/build-02-r4`, under `env -i`.
+
+**Evidence:** `review/evidence/build-02/r4/`.
+
+### B3: FIXED
+
+Every text and report statement is now per core class, and each one matches my data.
+
+**Darkmont (E, LP-E): exact over a band, failing at its shortest interval and at long gaps.** My 5 runs:
+
+| Run | E shortest interval | E wrong | LP-E shortest interval | LP-E wrong |
+|---|---|---|---|---|
+| 1 | 426 TSC | 6/24 | 374 TSC | 8/24 |
+| 2 | 314 TSC | 12/24 | 610 TSC | 7/24 |
+| 3 | 490 TSC | 9/24 | 852 TSC | **1/24** |
+| 4 | 306 TSC | 13/24 | 590 TSC | 7/24 |
+| 5 | 448 TSC | 5/24 | 672 TSC | 8/24 |
+
+The long-gap onset still brackets 196,608 TSC: LP-E's first failure in run 1 was 217,712 TSC, 1.11× the edge (`short-interval-summary.txt`, `make-run1.txt`).
+
+**Cougar Cove (P): exact at every tested interval ≥ 2 MTC periods, in every run.** Rows per run: 5/5, 4/4, 4/4, 5/5 and 5/5, at 1,696 to 4.56×10⁶ TSC. Below one MTC period it **sometimes** fails:
+- my runs: 338 TSC with 4 wrong, 426 TSC with 1 wrong;
+- the author's §5 probe: 298–914 TSC with 1–4 wrong.
+
+It is often exact there too: 518, 662, 712, 722 and 800 TSC in my runs, and my own three repeats of the §5 probe, 12/12 rows exact (`p-lower-edge-probe.txt`). No P row at ≥ 970 TSC has ever failed. So "lower edge about one MTC period" is a fair description of a **soft** resolution edge.
+
+**The fence advantage is restated correctly:**
+- (a) accuracy: on Darkmont in both regimes, and on P only near or below one period;
+- (b) and (c): on every class.
+
+The 'Unchanged' line in BUILD-02 is corrected in place, and so is SUMMARY's P2 section (`e90ea37`).
+
+### N7 and N8: done
+
+- **N7.** `attribute.py` now records Δ0 steps and trace bytes. The mechanism VERDICT requires:
+  - P to carry ≥100× Darkmont's MTCs;
+  - P to have **zero** Δ0 steps;
+  - Darkmont to have ≥10% Δ0 steps, about 25× the 1/256 chance level.
+
+  My 5 runs:
+
+  | Class | Δ0 share of MTC steps |
+  |---|---|
+  | E | 53–71% |
+  | LP-E | 65–72% |
+  | P | 0, in every run |
+
+  My own framer in round 3 found 77% (E) and 70% (LP-E).
+
+  The author **disclosed** that a first threshold of 50% proved too tight on E. Because that threshold was tuned after the data, the 10% floor is a pin, not a pre-registered test. That's fine, and it's stated.
+- **N8.** The onset VERDICT detail now says which side is tight. In run 1, E bracketed from the exact side (154,200) and LP-E from the failure side (217,712).
+
+### Reproduction
+
+| Test | Result | Evidence |
+|---|---|---|
+| `make` ×5 (clean clone) | **5/5** `make_exit=0`, **12/12 PASS** each | `make-5runs-summary.txt`, `data-run{1..5}.csv` |
+| `make` under strace | 12/12 PASS. Audit **CLEAN**: the only hits are failed nscd `connect`s, info only | `strace-audit.txt` |
+| P lower-edge probe ×3 (my runs of the §5 command) | 12/12 rows exact, including 662 and 722 TSC | `p-lower-edge-probe.txt` |
+
+### Nit (not blocking)
+
+**N9.** The gated "Darkmont mis-attributes at the shortest tested interval" can come down to a single execution. In my run 3, LP-E's shortest row landed at 852 TSC, above one period, with **1/24** wrong. Across the 11 runs I've seen, it has never reached 0. Still, RUN.md lists it as DETERMINISTIC/load-bearing, so either add a shorter Darkmont delay so that the shortest row sits well below one period, or note the thin margin.
+
+### Why APPROVE
+
+The post-clearance correction now states a true, per-class result, verified at three levels:
+- my own runs (5 clean, plus 1 under strace, plus 3 probe repeats);
+- my own packet framer (round 3);
+- the author's 3 RUN.md runs.
+
+The hybrid-core finding stands, and it's the most interesting result in P2. Cougar Cove's dense MTC emission makes time-keyed attribution exact at the cost of ~300× trace volume. Darkmont's one-MTC-per-wrap emission makes it fail at both ends. The fence is exact everywhere with no timing packets. Re-opening the gate was the right move, and the corrected claim is stronger for it.
+
+**Gate BUILD-02 is CLEARED (again).**

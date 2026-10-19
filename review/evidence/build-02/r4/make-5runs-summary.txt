@@ -1,0 +1,5 @@
+run1 make_exit=0 PASS=12 FAIL=0
+run2 make_exit=0 PASS=12 FAIL=0
+run3 make_exit=0 PASS=12 FAIL=0
+run4 make_exit=0 PASS=12 FAIL=0
+run5 make_exit=0 PASS=12 FAIL=0
