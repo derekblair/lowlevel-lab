@@ -1,0 +1,90 @@
+cc -O1 -Wall -Wextra -o ptcap ptcap.c
+cc -O1 -Wall -Wextra -o verify_singlestep verify_singlestep.c
+./verify_singlestep 24
+verify_singlestep: 24 versions, 24 single-stepped ret-points, ground truth CONFIRMED (EAX-at-ret == EXEC_TAG+i for all i)
+VERSIONS=24 ./run.sh > data.csv
+python3 report.py data.csv
+================================================================================================
+pt-truth: version attribution of self-modifying code, PTW-fenced vs time-keyed
+(time-keyed = TMA-anchored MTC-payload TSC clock; intervals in TSC ticks;
+ each sweep pinned to one CPU: P = Cougar Cove, E / LP-E = Darkmont)
+================================================================================================
+class timing     delay interval(TSC)  ovf     MTC  MTCd0   TSC    bytes | fenced ok/wrong | time-keyed ok/wrong
+---------------------------------------------------------------------------------------------------------------
+P     coarse         0          2064    0     142      0     1      848 |       24/0      |         24/0       
+P     coarse        25          1182    0      82      0     1      752 |       24/0      |         24/0       
+P     coarse        50           274    0      42      0     1      720 |       24/0      |         13/11      
+P     coarse       100           724    0     116      0     1      832 |       24/0      |         23/1       
+P     coarse      1000          1668    0     152      0     1     1008 |       24/0      |         24/0       
+P     coarse     10000        114284    0    3495      0     4     7872 |       24/0      |         24/0       
+P     coarse    100000       1085480    0   27338      0    28    57248 |       24/0      |         24/0       
+P     coarse   1000000       3914618    0  127524      0   130   265120 |       24/0      |         24/0       
+P     fine           0           706    0     411      0     2     2416 |       24/0      |         24/0       
+P     fine         100           588    0     728      0     2     3696 |       24/0      |         24/0       
+P     fine        1000          2708    0    2310      0     5    10160 |       24/0      |         24/0       
+P     fine       10000        123556    0   23205      0    48    96832 |       24/0      |         24/0       
+E     coarse         0           554    0      28      0     1      520 |       24/0      |         15/9       
+E     coarse        25           360    0      33      0     1      528 |       24/0      |         11/13      
+E     coarse        50           262    0      29      0     1      520 |       24/0      |          9/15      
+E     coarse       100           596    0      40      0     1      544 |       24/0      |         16/8       
+E     coarse      1000          1354    0      43      0     1      548 |       24/0      |         24/0       
+E     coarse     10000         20898    0      53      0     1      568 |       24/0      |         24/0       
+E     coarse    100000        112248    0      57      0     1      576 |       24/0      |         24/0       
+E     coarse   1000000       1339376    0     223    132     2      968 |       24/0      |          2/22      
+E     fine           0           518    0     408      0     2     2196 |       24/0      |         24/0       
+E     fine         100           446    0     526      0     2     2660 |       24/0      |         24/0       
+E     fine        1000          1418    0     613      0     2     3028 |       24/0      |         24/0       
+E     fine       10000         21092    0    5852      0    12    24392 |       24/0      |         24/0       
+LP-E  coarse         0           592    0      41      0     1      544 |       24/0      |         17/7       
+LP-E  coarse        25           660    0      46      0     1      556 |       24/0      |         21/3       
+LP-E  coarse        50           338    0      36      0     1      536 |       24/0      |         16/8       
+LP-E  coarse       100           448    0      36      0     1      536 |       24/0      |         17/7       
+LP-E  coarse      1000          2418    0      49      0     1      560 |       24/0      |         24/0       
+LP-E  coarse     10000         18868    0      53      0     1      568 |       24/0      |         24/0       
+LP-E  coarse    100000        185172    0      72      0     1      608 |       24/0      |         24/0       
+LP-E  coarse   1000000       1625266    0     257    177     1      988 |       24/0      |          1/23      
+LP-E  fine           0           814    0     947      0     3     4388 |       24/0      |         24/0       
+LP-E  fine         100           452    0     613      0     2     3004 |       24/0      |         24/0       
+LP-E  fine        1000          2728    0    1443      0     4     6380 |       24/0      |         24/0       
+LP-E  fine       10000         20284    0    6034      0    13    25188 |       24/0      |         24/0       
+
+================================================================================================
+VERDICTS
+================================================================================================
+VERDICT PASS: PTW-fenced attribution is exact on every row of every core class, needs no timing packets  [fenced wrong total = 0; no-preceding-fence = 0 over 36 rows, classes ['P', 'E', 'LP-E']]
+INFO: OVF rows excluded from time-keyed scoring (lossy trace != method result): 0 of 36: none
+INFO: one MTC period = 2^3 CTC x TSC/CTC = 768 TSC; one 8-bit payload wrap (predicted long-gap edge) = 2^(3+8) CTC x 192/2 = 196608 TSC
+VERDICT PASS: P: coarse time-keyed is exact at EVERY tested interval >= 2 MTC periods (clear of its one-period resolution edge), incl. every long gap  [5/5 rows exact, intervals 1668..3914618 TSC (one MTC period = 768)]
+INFO: P below 2 MTC periods (around its lower edge, ~1 period): [(274, 11), (724, 1), (1182, 0)]
+VERDICT PASS: P: NO long-gap mis-attribution: exact at the longest interval, >= 10x the predicted wrap edge (an MTC every period, so the payload never wraps unseen)  [longest coarse interval 3914618 TSC (= 20x the edge 196608): time-keyed wrong=0]
+VERDICT PASS: E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [1354, 20898, 112248]]
+VERDICT PASS: E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 262 TSC: wrong 15/24; all short failures (<band): [(262, 15), (360, 13), (554, 9), (596, 8)]]
+VERDICT PASS: E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 112248 (= 1.8x below the edge) <= 2x196608; smallest long-gap failure 1339376 (= 6.81x the edge) >= 196608/2; within 2x of the edge on: exact side]
+VERDICT PASS: LP-E: coarse time-keyed is exact over an interval band  [exact at intervals(TSC) = [2418, 18868, 185172]]
+VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at the shortest tested interval  [shortest interval 338 TSC: wrong 8/24; all short failures (<band): [(338, 8), (448, 7), (592, 7), (660, 3)]]
+VERDICT PASS: LP-E: coarse time-keyed MIS-attributes at long gaps, onset at the predicted MTC-payload wrap (within 2x)  [largest exact 185172 (= 1.1x below the edge) <= 2x196608; smallest long-gap failure 1625266 (= 8.27x the edge) >= 196608/2; within 2x of the edge on: exact side]
+VERDICT PASS: mechanism: at the longest gap Cougar Cove carries >= 100x Darkmont's MTCs with no delta-0 payload steps, while >= 10% of Darkmont's MTC steps are a whole payload wrap (delta 0 mod 256, ~25x the 1/256 chance level)  [MTC per capture: P 127524; E 223; LP-E 257; delta-0 share: E 59%; LP-E 69%; P delta-0 0 of 127523]
+INFO: the price of Cougar Cove's exactness at the longest gap: trace volume P 265120 B vs E 968 B (274x), LP-E 988 B (268x)
+VERDICT PASS: FINE timing: time-keyed is exact on all OVF-free rows of every class (dense timing closes Darkmont's short-interval gap; P had none)  [fine time-keyed wrong = [('P', 0), ('P', 0), ('P', 0), ('P', 0), ('E', 0), ('E', 0), ('E', 0), ('E', 0), ('LP-E', 0), ('LP-E', 0), ('LP-E', 0), ('LP-E', 0)]]
+VERDICT PASS: wherever time-keyed mis-attributes, PTW-fenced is exact  [rows with time-keyed wrong: 12; of those, fenced wrong: 0]
+
+Interpretation, per core class:
+* PTW-fenced: an executed in-band PTWRITE fence pins each traced execution to
+  its exact self-modified version in packet order, with no timestamps, on every
+  core class and at every tested interval.
+* Darkmont (E, LP-E): with BranchEn=0, the trace carries few MTCs, and at long
+  gaps they arrive about one per 8-bit payload wrap (delta 0 dominates). So the
+  payload clock fails at short intervals (too coarse to place the exec after
+  its patch) and at long gaps from the predicted 2^(mtc_period+8) CTC edge (the
+  wraps it cannot see). Dense (fine) timing closes the short-interval gap.
+* Cougar Cove (P): the trace carries an MTC every period, so time-keyed resolves
+  one MTC period: its lower edge sits at about one period. It is exact at every
+  tested interval >= 2 periods, including every long gap, at the price of a much
+  larger trace.
+* So the fence buys accuracy on Darkmont at short and long gaps, and on P only
+  near or below one MTC period. On every class it needs no timing packets and
+  does not depend on how densely the core emits them.
+Ground truth is the EXEC payload the executed bytes produced, confirmed
+independently of PT by verify_singlestep.
+
+ALL VERDICTS PASS

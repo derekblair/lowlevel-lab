@@ -1,0 +1,19 @@
+# C12 stages at b4f37b3 (final clone), reviewer's stage_syscalls.sh (FIXED to fail closed), 2026-10-19 12:36:42 PDT
+== stage0 (ce9a974b5ca80b3c…; Advanced Micro Devices X86-64; mode -rwxrwxr-x)
+binary=tasks/reviewer-repro/final-r1/parts/03-quine-relay/stage0 machine=Advanced Micro Devices X86-64 exit=0 stdout_bytes=664
+        1 exit
+        3 write
+ONLY-WRITE1-EXIT: yes
+== stage1 (d08b30297fd93b7b…; AArch64; mode -rwxrwxr-x)
+binary=tasks/reviewer-repro/final-r1/parts/03-quine-relay/stage1 machine=AArch64 exit=0 stdout_bytes=632
+        1 exit
+        3 write
+ONLY-WRITE1-EXIT: yes
+== stage2 (ce9a974b5ca80b3c…; Advanced Micro Devices X86-64; mode -rw-rw-r--)
+strace: exec: Permission denied
+binary=tasks/reviewer-repro/final-r1/parts/03-quine-relay/stage2 machine=Advanced Micro Devices X86-64 exit=1 stdout_bytes=0
+  
+ONLY-WRITE1-EXIT: no (run failed or traced nothing: exit=1 writes=0 exits=0)
+cmp stage0 stage2: identical  (stage2 is the relay's OUTPUT file, written without +x; it is byte-identical to stage0, whose syscalls are audited above)
+stage1 stdout == stage2: identical
+NOTE: the first audit at 12:36 printed ONLY-WRITE1-EXIT: yes for the non-executable stage2 (exec: Permission denied, empty trace): a FAIL-OPEN in the reviewer's tool, the same class as REVIEW-03 N2. Fixed in review/tools/stage_syscalls.sh; this file is the re-run.

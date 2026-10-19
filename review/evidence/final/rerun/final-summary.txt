@@ -1,0 +1,10 @@
+01-smc-observatory       run=1 exit=0 PASS=10 FAIL=0 secs=17
+01-smc-observatory       run=2 exit=0 PASS=10 FAIL=0 secs=13
+02-pt-truth              run=1 exit=0 PASS=12 FAIL=0 secs=2
+02-pt-truth              run=2 exit=0 PASS=12 FAIL=0 secs=1
+03-quine-relay           run=1 exit=0 PASS=6 FAIL=0 secs=0
+03-quine-relay           run=2 exit=0 PASS=6 FAIL=0 secs=0
+04-ifetch-sanitizer      run=1 exit=0 PASS=16 FAIL=0 secs=1
+04-ifetch-sanitizer      run=2 exit=0 PASS=16 FAIL=0 secs=0
+05-x86-lattice           run=1 exit=0 PASS=10 FAIL=0 secs=4
+05-x86-lattice           run=2 exit=0 PASS=10 FAIL=0 secs=4

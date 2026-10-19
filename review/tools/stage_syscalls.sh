@@ -18,5 +18,10 @@ case "$machine" in
 esac
 echo "binary=$bin machine=$machine exit=$rc stdout_bytes=$(wc -c < "$out" 2>/dev/null || echo 0)"
 echo "$calls" | sed 's/^/  /'
-if [ -z "$bad" ]; then echo "ONLY-WRITE1-EXIT: yes"; else echo "ONLY-WRITE1-EXIT: no"; echo "$bad" | head -5 | sed 's/^/  offending: /'; fi
+# FAIL CLOSED (fixed 2026-10-19 at REVIEW-FINAL): an empty trace (exec failed, tracer
+# failed) used to print "yes". Require a successful run that actually wrote and exited.
+nw=$(echo "$calls" | awk '$2=="write"{print $1}'); ne=$(echo "$calls" | awk '$2=="exit"||$2=="exit_group"{s+=$1} END{print s+0}')
+if [ "$rc" -ne 0 ] || [ -z "$nw" ] || [ "$ne" -lt 1 ]; then
+  echo "ONLY-WRITE1-EXIT: no (run failed or traced nothing: exit=$rc writes=${nw:-0} exits=$ne)"
+elif [ -z "$bad" ]; then echo "ONLY-WRITE1-EXIT: yes"; else echo "ONLY-WRITE1-EXIT: no"; echo "$bad" | head -5 | sed 's/^/  offending: /'; fi
 rm -f "$log"

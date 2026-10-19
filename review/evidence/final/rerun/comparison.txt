@@ -1,0 +1,4 @@
+# run1 vs run2 vs RUN.md (final clone b4f37b3)
+03-quine-relay, 04-ifetch-sanitizer, 05-x86-lattice: run1 == run2 == RUN.md make block (deterministic parts)
+01-smc-observatory: all 10 VERDICT names identical to RUN.md; granularity values identical across runs (P@63=2.00 P@64=0.00 E@1023=1.00 E@1024=0.00 E@512=1.00 P@512=0.00); cross-core rates vary (run1 E XMC=723192.6/1e6, P SMC=145947.8/1e6; run2 E XMC=124765.4/1e6, P SMC=132067.6/1e6; RUN.md declares xcore medians nondeterministic)
+02-pt-truth: 12/12 both runs; per-class structure as in REVIEW-02 r4/N9

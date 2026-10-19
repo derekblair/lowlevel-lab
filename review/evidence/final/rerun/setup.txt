@@ -1,0 +1,3 @@
+label=final-r1 commit=b4f37b3 head=b4f37b3f45afc59d2b8b4981593ed88e36e117aa at=2026-10-19 12:34:20 PDT
+status: ?? .envrun
+status: ?? .evidence/
