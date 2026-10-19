@@ -1,0 +1,9 @@
+gate-commit CONFIGS: ['both0 (DIC=0,IDC=0)', 'IDC=1', 'DIC=1', 'both1']
+  required_steps(both0 (DIC=0,IDC=0)) = ['dc', 'dsb1', 'ic', 'dsb2', 'isb']
+  required_steps(IDC=1) = ['ic', 'dsb2', 'isb']
+  required_steps(DIC=1) = ['dc', 'dsb1', 'isb']
+  required_steps(both1) = ['isb']
+  stores then ISB only (no DSB)                 under IDC=1: model says STALE
+  stores then ISB only (no DSB)                 under both1: model says FRESH
+  DC; IC; DSB; ISB (no DSB between DC and IC)   under IDC=1: model says FRESH
+  DC; IC; DSB; ISB (no DSB between DC and IC)   under both1: model says FRESH

@@ -1,0 +1,14 @@
+# torvalds/linux arch/arm64/mm/cache.S (gh api, 2026-10-19 09:06:05 PDT), lines 28-38: caches_clean_inval_pou_macro
+.macro	caches_clean_inval_pou_macro, fixup
+alternative_if ARM64_HAS_CACHE_IDC
+	dsb     ishst
+	b       .Ldc_skip_\@
+alternative_else_nop_endif
+	mov     x2, x0
+	mov     x3, x1
+	dcache_by_line_op cvau, ish, x2, x3, x4, x5, \fixup
+.Ldc_skip_\@:
+alternative_if ARM64_HAS_CACHE_DIC
+	isb
+# => with ARM64_HAS_CACHE_IDC the D-cache clean loop is skipped but a 'dsb ishst' is still issued;
+#    with ARM64_HAS_CACHE_DIC the I-cache invalidate loop is skipped but an 'isb' is still issued.

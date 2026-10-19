@@ -1,0 +1,4 @@
+(a) 'correct' code with its 3 DC/IC/ISB replaced by DSB ISH (no DC, no IC, no ISB left) + 'correct' recipe -> FRESH
+(b) 'none' kernel code + 'correct' recipe            -> FRESH
+(c) 'correct' kernel code + empty recipe             -> STALE
+(d) icache_model.Machine instantiated anywhere in sanitize.py: False

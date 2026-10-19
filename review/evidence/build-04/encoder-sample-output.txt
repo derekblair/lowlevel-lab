@@ -1,0 +1,2 @@
+seed=20261019 N=60: 60/60 a64asm encodings byte-identical to aarch64-linux-gnu-as
+seed=4242 N=60: 60/60 a64asm encodings byte-identical to aarch64-linux-gnu-as

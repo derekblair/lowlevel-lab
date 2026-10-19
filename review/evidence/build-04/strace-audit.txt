@@ -1,0 +1,12 @@
+strace audit of /home/derekblair/projects/lowlevel-lab/tasks/reviewer-repro/build-04-r1/.evidence/strace.log
+  allowed write roots: /home/derekblair/projects/lowlevel-lab/tasks/reviewer-repro/build-04-r1, /tmp, /dev/null, /dev/tty, /dev/pts, /dev/shm, /proc/self, /proc/thread-self
+  relative-path write-mode opens (resolved against cwd): 0
+  WRITE              0  [none]
+  REL-WRITE-OUT      0  [none]
+  FS-MUTATE          0  [none]
+  NETWORK            0  [none]
+  EXEC-PRIV/NET      0  [none]
+  PTRACE-ATTACH      0  [none]
+  FOREIGN-WRITE      0  [none]
+  UNIX-SOCKET        0  [none]
+  RESULT: CLEAN
