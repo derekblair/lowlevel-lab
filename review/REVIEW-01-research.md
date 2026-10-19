@@ -293,7 +293,49 @@ Reproduction will follow REVIEW-00 §2.2: a fresh clone in `tasks/reviewer-repro
 
 ## 6. Addenda verdicts
 
-(None yet. Appended below, timestamped, as `ADDENDUM READY` lines arrive.)
+### 6.1 ADDENDUM C12, cross-ISA machine-code quine relay (P3 slot) — APPROVE at N3 (commit 34b39f5, reviewed 2026-10-19 07:48 PDT)
+
+**Search record.** §2.1 is met; I counted it by script over the raw JSON at `34b39f5`: 11 repo queries, 1 `topic:`, 1 `in:readme`, 1 recency slice, and 2 valid code queries.
+- [nit] A third code query, `"e_machine" quine elf`, **errored** (total=None in its raw JSON). The addendum text doesn't mention it, so disclose it, per REVIEW-00 §1.3.
+- G-2 is met: Actually Portable Executable, ixty/xarch_shellcode and Arm64X are all found and correctly distinguished.
+
+**My independent evidence agrees.** I ran 6 round-3 repo queries, 3 round-4 queries and 2 web searches (`presearch-C12.log`; DOSSIER rounds 3–4). None found a cross-ISA *machine-code* relay. The nearest are:
+- single-ISA ELF quines (panzi/binary-quine, mips-quine);
+- source-level relays (mame/quine-relay, Zushah/quine);
+- one-file multi-arch polyglots (xarch_shellcode, APE).
+
+**Level: N3.** No implementation found, though the components are known. The observable `sha256(x86) == sha256(x86')` across x86-64 → AArch64 → x86-64 is crisp and machine-checkable.
+
+**Conditions at BUILD-03:**
+- **C12-1 [BLOCKING]** RUN.md shows the fixed point byte-exactly (`cmp` and `sha256sum` of stage 0 against stage 2). Each stage is shown to be a single-ISA ELF by `readelf -h` (Machine: X86-64, or AArch64) and `file`. The AArch64 stage is disassembled with `aarch64-linux-gnu-objdump`.
+- **C12-2 [BLOCKING, safety]** Each stage does nothing but `write(1, …)` and exit: no `open`/`creat`/`execve`/`fork`, no file-backed `mmap`, no network. I'll check the x86 stage with strace and the AArch64 stage with `qemu-aarch64 -strace`. The *harness* (Makefile/`verify.sh`) may write stages inside the tree and run them. A stage must never write or exec itself.
+- **C12-3 [BLOCKING]** It stays a relay, not a polyglot. The other ISA's code may sit in a stage only as **data** (payload), and no stage executes the other ISA's bytes. That's the line that keeps it apart from the xarch_shellcode technique (DOSSIER round 3).
+- **C12-4 [BLOCKING]** Label emulation per R10: "the AArch64 stage runs under qemu-aarch64".
+- **C12-5 [nit]** The README should explain the payload design. A stage that embeds the *whole* other stage verbatim regresses infinitely; a working relay carries one shared payload holding both code blobs and both header templates, and each stage emits *the other's* header and code plus the payload. The addendum's wording "each carrying the *other* stage's bytes as data" is ambiguous on this point.
+- **C12-6** If only the stated fallback ships (two one-way emitters), the README must not claim a fixed point. The observable would then change, and I'll re-level at the gate.
+
+### 6.2 ADDENDUM C09, x86 superset-decode lattice + resync statistics (P5 slot, visualization) — APPROVE WITH CONDITIONS at N2 (commit 34b39f5, reviewed 2026-10-19 07:48 PDT)
+
+**Search record.** §2.1 is met by script count: 11 repo queries, 1 `topic:`, 1 `in:readme`, 1 recency slice, 2 code queries, 0 errors. G-2 is met.
+
+**Record corrections, all [BLOCKING] before BUILD-05 starts.** Each one changes a novelty statement:
+- **(a) Title.** "disassembly drift (arXiv 2506.09426)" is actually *"Exploiting Control-flow Enforcement Technology for Sound and Precise Static Binary Disassembly"* (Zhao, Yang, Zheng & Quinn, 2025). Its abstract reports instrumentation speed, not resync statistics (abstract fetched). Cite it by its title.
+- **(b) Source of the resync claim.** "The '~a handful of instructions to resync' figure is folklore/patent-level" is inaccurate. **Linn & Debray, CCS 2003, §3.1 "Self-Repairing Disassembly"** publishes it, with a worked example (Figure 4: off by 1/2/3 bytes, back in sync within 1–3 instructions) and the statement *"In practice, however, we have found that disassembly errors usually resynchronize quite quickly—often within just one or two instructions beyond the point at which the disassembly error occurred."* I verified this from the PDF (`www2.cs.arizona.edu/~debray/Publications/disasm-resist.pdf`, sha256 prefix f59b0db844dd3be1). The claim is qualitative: there's no distribution and no dataset. **So C09's N2 delta is to *quantify* that 2003 qualitative claim on modern x86-64 binaries, plus the lattice visualization.** That's a fair N2, but it has to be stated as such.
+- **(c) Missing neighbours** (my round-4 pre-search, DOSSIER):
+  - offensive: `UlfKargen/desync-cc` (Kargén et al., SANER 2022 tool paper and SCP 2023), an "Automatic Disassembly Desynchronization Obfuscator", and `expend20/shifting-codes-python-port` (2026), which "desynchronizes linear-sweep disassemblers";
+  - ground truth: `junxzm1990/x86-sok` (the USENIX Security '22 artifact).
+
+**Conditions at BUILD-05:**
+- **C09-1 [BLOCKING]** The README's novelty section carries (a)–(c) accurately and quotes Linn & Debray §3.1.
+- **C09-2 [BLOCKING, safety]** Analysis only. No component may generate desynchronizing code, junk-byte insertion, opaque predicates or overlapping-instruction transforms (REVIEW-00 §2.4, hindering analysis). Reading `/usr/bin` binaries read-only is fine.
+- **C09-3 [BLOCKING, oracle]** The lattice *is* the product, so differential-test the length decoder at **every offset** of sampled regions, not just the aligned stream, against `objdump -d --start-address=X --stop-address=…` per offset. I'll pick the sample at the gate. Report the agreement rate and how `(bad)`/undecodable bytes are handled (it must match objdump's behaviour or be documented).
+- **C09-4 [BLOCKING]** State the ground-truth method. Most `/usr/bin` binaries are **stripped**, so there are no function boundaries, and linear-sweep `objdump` over `.text` isn't ground truth when data, padding or jump tables are present (that's x86-sok's whole point). Either use binaries the project builds itself with symbols, or call objdump's linear sweep the "reference decode" and state the caveat. Define resync length precisely: bytes *and* instructions, from the misaligned start to the first boundary shared with the reference stream.
+- **C09-5 [BLOCKING]** The visualization is machine-checkable (REVIEW-00 §2.3): emitted text, SVG or self-contained HTML that carries the data. If rendering is claimed, I'll render it headless with firefox.
+- **C09-6 [nit]** Report VEX/EVEX coverage, and whether those prefixes are decoded or skipped, honestly.
+
+### 6.3 C22 (benched fallback for the P5 slot)
+
+Noted. If it's ever proposed it needs its own complete addendum, including **HeNet** (arXiv 1801.02318, PT traces as images; DOSSIER), which caps it at N2.
 
 ## 7. Post-gate commits, weighed (2026-10-19 02:55 PDT)
 

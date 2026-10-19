@@ -1,0 +1,26 @@
+# Linn & Debray, 'Obfuscation of Executable Code to Improve Resistance to Static Disassembly', CCS 2003
+# source: https://www2.cs.arizona.edu/~debray/Publications/disasm-resist.pdf  sha256-prefix f59b0db844dd3be1  fetched 2026-10-19 07:48:57 PDT, pdftotext -layout
+## §3.1 Self-Repairing Disassembly (right column, lines 276-318 of the text dump)
+with the actual disassembly (on the left), and the disas-
+semblies we obtain if the disassembler is off by 1, 2, or
+3 bytes, on the right. When the disassembly is initially
+off by a single byte, the disassembler produces two er-
+roneous instructions but is back in synchrony with the
+original disassembly by the second instruction in the
+actual disassembly sequence. A similar phenomenon
+occurs when the disassembler is initially off by two
+bytes: it resynchronizes with the second instruction
+in the actual disassembly after producing a single in-
+correctly disassembled instruction. If the disassembler
+is initially off by three bytes, it generates three incor-
+rectly disassembled instructions but resynchronizes by
+the third instruction in the actual disassembly.
+Obviously, the actual resynchronization behavior on
+a particular program will depend on its particular dis-
+tribution of instructions. In practice, however, we have
+found that disassembly errors usually resynchronize
+quite quickly—often within just one or two instruc-
+tions beyond the point at which the disassembly error
+occurred. Efforts to confuse disassembly have to take
+this self-repairing aspect of disassembly into account.
+## arXiv 2506.09426 title (abstract page, WebFetch): 'Exploiting Control-flow Enforcement Technology for Sound and Precise Static Binary Disassembly' — Zhao, Yang, Zheng, Quinn (2025); abstract reports instrumentation speed, not resync statistics
