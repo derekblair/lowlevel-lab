@@ -1,0 +1,33 @@
+# strace_audit.py v2 self-test (synthetic log, 2026-10-19 08:17:25 PDT): expect WRITE, FS-MUTATE, REL-WRITE-OUT (pid 101 only), NETWORK, EXEC-PRIV/NET, PTRACE-ATTACH, FOREIGN-WRITE each 1; pid 102 relative write is inside -> not flagged
+  log: 100 openat(AT_FDCWD, "/var/tmp/x", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+  log: 100 unlinkat(AT_FDCWD, "/var/tmp/x", 0) = 0
+  log: 101 chdir("/home") = 0
+  log: 101 chdir("derekblair") = 0
+  log: 101 openat(AT_FDCWD, "evil.txt", O_WRONLY|O_CREAT, 0644) = 3
+  log: 102 chdir("/home") = 0
+  log: 102 chdir("derekblair/projects/lowlevel-lab/tasks/reviewer-repro/x") = 0
+  log: 102 openat(AT_FDCWD, "ok.txt", O_WRONLY|O_CREAT, 0644) = 3
+  log: 103 socket(AF_INET, SOCK_STREAM, IPPROTO_IP) = 3
+  log: 104 execve("/usr/bin/sudo", ["sudo"], 0x0) = 0
+  log: 105 ptrace(PTRACE_ATTACH, 4242) = 0
+  log: 106 process_vm_writev(4242, 0x1, 1, 0x2, 1, 0) = 8
+  log: 107 openat(AT_FDCWD, "/home/derekblair/projects/lowlevel-lab/tasks/reviewer-repro/x/a", O_WRONLY|O_CREAT, 0644) = 3
+strace audit of /tmp/claude-1000/-home-derekblair-projects-lowlevel-lab/87e90670-4823-4349-8a40-2341765a4ef8/scratchpad/audit-selftest.log
+  allowed write roots: /home/derekblair/projects/lowlevel-lab/tasks/reviewer-repro/x, /tmp, /dev/null, /dev/tty, /dev/pts, /dev/shm, /proc/self, /proc/thread-self
+  relative-path write-mode opens (resolved against cwd): 2
+  WRITE              1  [BLOCKING]
+      100 openat(AT_FDCWD, "/var/tmp/x", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+  REL-WRITE-OUT      1  [BLOCKING]
+      101 openat(AT_FDCWD, "evil.txt", O_WRONLY|O_CREAT, 0644) = 3
+  FS-MUTATE          1  [BLOCKING]
+      100 unlinkat(AT_FDCWD, "/var/tmp/x", 0) = 0
+  NETWORK            1  [BLOCKING]
+      103 socket(AF_INET, SOCK_STREAM, IPPROTO_IP) = 3
+  EXEC-PRIV/NET      1  [BLOCKING]
+      104 execve("/usr/bin/sudo", ["sudo"], 0x0) = 0
+  PTRACE-ATTACH      1  [BLOCKING]
+      105 ptrace(PTRACE_ATTACH, 4242) = 0
+  FOREIGN-WRITE      1  [BLOCKING]
+      106 process_vm_writev(4242, 0x1, 1, 0x2, 1, 0) = 8
+  UNIX-SOCKET        0  [none]
+  RESULT: FINDINGS (see above)

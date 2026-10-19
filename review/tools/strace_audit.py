@@ -3,7 +3,9 @@
 
 Flags, per REVIEW-00 §2.2/§2.4:
   WRITE / FS-MUTATE   write-mode open or path mutation outside ROOTs, /tmp, /dev/{null,tty,pts,shm}
-  CHDIR-OUT           chdir outside the allowed roots (relative writes after it would escape)
+  REL-WRITE-OUT       relative-path write-mode open resolved (via tracked per-pid cwd) outside the roots
+  (chdir itself is informational: shells walk /home/... and come straight back; v1 flagged
+   that as CHDIR-OUT, a false positive found on BUILD-02's capture)
   NETWORK             AF_INET/AF_INET6 socket/connect/sendto/sendmsg/bind
   EXEC-PRIV/NET       exec of sudo/su/pkexec/doas/curl/wget/ssh/scp/nc/socat
   PTRACE-ATTACH       PTRACE_ATTACH / PTRACE_SEIZE (attaching to a non-child)
@@ -15,7 +17,7 @@ import os
 import re
 import sys
 
-BLOCKING = ("WRITE", "FS-MUTATE", "CHDIR-OUT", "NETWORK", "EXEC-PRIV/NET",
+BLOCKING = ("WRITE", "REL-WRITE-OUT", "FS-MUTATE", "NETWORK", "EXEC-PRIV/NET",
             "PTRACE-ATTACH", "FOREIGN-WRITE")
 WRITE_FLAGS = re.compile(r"O_WRONLY|O_RDWR|O_CREAT|O_TRUNC|O_APPEND")
 MUTATORS = {"rename", "renameat", "renameat2", "unlink", "unlinkat", "mkdir",
@@ -38,11 +40,12 @@ def main():
 
     found = {}
     relative_writes = 0
+    cwd = {}  # pid -> tracked cwd (only for pids we saw chdir in)
     for ln in open(log, errors="replace"):
         m = LINE.match(ln)
         if not m:
             continue
-        _, call, rest = m.groups()
+        pid, call, rest = m.groups()
         failed = re.search(r"\)\s+=\s+-1\b", rest) is not None
         paths = re.findall(r'"([^"]*)"', rest)
         cls = None
@@ -52,12 +55,14 @@ def main():
                     cls = None if inside(paths[0]) else "WRITE"
                 else:
                     relative_writes += 1
+                    if pid in cwd and not inside(os.path.join(cwd[pid], paths[0])):
+                        cls = "REL-WRITE-OUT"
         elif call in MUTATORS and not failed:
             if any(p.startswith("/") and not inside(p) for p in paths):
                 cls = "FS-MUTATE"
         elif call == "chdir" and paths and not failed:
-            if paths[0].startswith("/") and not inside(paths[0]):
-                cls = "CHDIR-OUT"
+            new = paths[0] if paths[0].startswith("/") else os.path.join(cwd.get(pid, "/"), paths[0])
+            cwd[pid] = os.path.normpath(new)
         elif call in ("connect", "sendto", "sendmsg", "bind", "socket"):
             if re.search(r"AF_INET6?\b|PF_INET6?\b", rest):
                 cls = "NETWORK"
