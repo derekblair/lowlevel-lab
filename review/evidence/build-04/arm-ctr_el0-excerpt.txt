@@ -19,3 +19,13 @@ DminLine, bits [19:16]: "Log2 of the number of words in the smallest cache line 
 #  - IDC/DIC are common across the Inner Shareable domain; IminLine/DminLine are per-PE with no
 #    commonality rule -> the line-size-mismatch class is architecturally possible (mitigated on Linux by the
 #    ARM64_MISMATCHED_CACHE_TYPE CTR_EL0 trap; see ../presearch/C01-priorart-excerpts.txt).
+
+# Canonical instruction-modification sequence — location (fetched 2026-10-19 08:54:25 PDT, SECONDARY sources; verify against the manual at the gate)
+# - Mark Rutland (Linux arm64 maintainer, linux-arm-kernel 2021-06, membarrier SYNC_CORE thread): ARMv8-A DDI 0487G.a
+#   §B2.2.5 and §E2.3.5 "Concurrent modification and execution of instructions"; ARMv7-A DDI 0406C.d §A3.5.4.
+# - Patent US 11210222 quoting the manual: the modifying PE issues "DC CVAU, Xn; DSB ISH; IC IVAU, Xn; DSB ISH" and
+#   "each processing element that is executing the modified instructions must issue ... ISB".
+# Reviewer consequences for BUILD-04: (a) SHORTLIST's earlier "Arm ARM B2.7.4" cite is likely wrong (G.a: B2.2.5);
+#   (b) the ISB is required on EVERY PE that executes the modified code (single-PE model: the same PE) — a model that
+#   treats "ISB omitted" must say on which PE; (c) Rutland: in-flight fetched instructions are not affected by I-cache
+#   maintenance — the ISB is what discards them.
