@@ -115,3 +115,47 @@ text rewritten (resolved by B1).
 
 Re-verified: clean warning-free build; 5/5 `make` runs PASS; ground truth
 CONFIRMED; reproduced under `env -i`.
+
+## Post-clearance correction (REVIEW-02 round 2: APPROVE @cc7e74d, nits a–d)
+
+Applying nit **(d)**, pinning the captures, **changed a cleared claim**, so I
+am re-opening this gate for review rather than folding it in silently.
+
+- **What changed.** With every capture pinned per core class (CPU 0 Cougar Cove
+  P, CPU 4 Darkmont E, CPU 12 Darkmont LP-E), the coarse time-keyed **long-gap
+  failure is Darkmont-only**. On Cougar Cove it stays exact out to ~1×10⁷ TSC,
+  >45× the predicted edge, in 3/3 runs. The cleared runs were unpinned, so their
+  long-gap captures evidently landed on Darkmont cores.
+- **Mechanism, from the packets.** `attribute.py` now records MTC/TSC counts
+  per capture. At the longest gap (BranchEn=0, `mtc_period` 3):
+
+  | class | MTC per capture | TSC per capture |
+  |---|---|---|
+  | Cougar Cove | ≈2.7–3.4×10⁵ (one per MTC period) | ~300 |
+  | Darkmont E, LP-E | ~250–400 (sporadic) | 1 |
+
+  So the 8-bit payload wraps unobserved only on Darkmont. A VERDICT checks the
+  ≥100× gap.
+- **(c) prediction, now a VERDICT.** The upper edge is 2^(mtc_period+8) CTC ×
+  TSC/CTC (CPUID.15H 192/2) = **196,608 TSC**. On Darkmont it falls between
+  LP-E's last exact rows (1.6–1.8×10⁵) and E's first failing rows
+  (2.2–2.8×10⁵). The VERDICT requires agreement within 2×.
+- **(a)** The two can't-fail checks are now INFO lines. VERDICT 3 is renamed to
+  "exact over an interval band".
+- **(b)** README: the fine cap at 10⁴ loses no result. Before the cap, fine mode
+  was 24/0 at delays 10⁵ and 10⁶ too (`review/evidence/build-02/
+  payload-vs-count.txt`); the cap only removes OVF risk.
+- **(d)** `run.sh` pins each sweep with `taskset -c` (override with `PT_CPUS`)
+  and tags each CSV row with its CPU. `report.py` gives per-class tables and
+  VERDICTs.
+
+Also: `run.sh`'s `mktemp -d` workdir is now removed on exit unless `WORK` is
+given. This is the same litter class as P4/C09's N6.
+
+**Unchanged:** PTW-fenced is exact on every row of every class; time-keyed
+fails at short intervals everywhere; fine timing is exact on every class. The
+N2 claim stands. It is now stated per core class, with a predicted edge and
+the mechanism measured.
+
+Re-verified: 3/3 consecutive `make` runs under `env -i`, each covering all
+three classes, give 10/10 VERDICTs PASS. RUN.md re-captured.

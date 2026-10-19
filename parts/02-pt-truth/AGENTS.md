@@ -8,15 +8,20 @@ vs time-keyed, for Intel-PT decoding of self-modifying code.
   fences + exec markers), `ptdecode.py` (from-scratch PT packet framer, stdlib),
   `attribute.py` (the two decoders + CPUID.15H MTC→TSC conversion),
   `verify_singlestep.c` (independent, no-PT ground truth via TF single-step),
-  `run.sh` (delay × timing sweep), `report.py` (VERDICTs). README explains it;
-  RUN.md is the verbatim evidence.
+  `run.sh` (core class × timing × delay sweep, each class pinned with
+  `taskset`: CPU 0 P, 4 E, 12 LP-E), `report.py` (per-class VERDICTs). README
+  explains it; RUN.md is the verbatim evidence.
 - **Build/run:** `make` (ground-truth check + capture sweep + report). Present
   tools only: gcc, make, python3 stdlib, unprivileged `perf_event_open(intel_pt)`
   with PTW. No root, no libipt, no perf binary, no installs.
-- **Novel observable (R4):** PTW-fenced attribution is exact at every timing/
-  delay and needs no timing packets; the strongest TSC+MTC time-keyed decoder
-  mis-attributes at coarse PT timing and is exact at fine (CYC) timing. Proven
-  by the `VERDICT PASS` lines in RUN.md §3; ground truth confirmed in §2.
+- **Novel observable (R4):** PTW-fenced attribution is exact at every timing,
+  delay and core class, and needs no timing packets. The strongest TSC+MTC-
+  payload time-keyed decoder is exact only over an interval band (at coarse
+  timing). It fails at short intervals on every class. At long gaps it fails on
+  Darkmont (E, LP-E), starting at the predicted 196,608-TSC MTC-payload wrap,
+  because that trace carries sporadic MTCs; on Cougar Cove (P), whose trace
+  carries an MTC every period, it does not. Fine timing is exact. Proven by the
+  `VERDICT PASS` lines in RUN.md §3; ground truth confirmed in §2.
 - **Oracle (R6):** independent of PT — `verify_singlestep` (EAX-at-ret ==
   EXEC_TAG+i) confirms which self-modified bytes ran; the PT framer self-checks
   by consuming the whole buffer and recovering every PTW.

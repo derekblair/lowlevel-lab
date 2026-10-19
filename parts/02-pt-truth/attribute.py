@@ -86,7 +86,10 @@ def payload_clocked_execs(buf, period, numer, denom):
 
 def attribute(outdir):
     buf = open(f"{outdir}/trace.pt", "rb").read()
-    ovf = sum(1 for _, k, _ in ptdecode.iter_packets(buf) if k == "ovf")
+    kinds = {}
+    for _, k, _ in ptdecode.iter_packets(buf):
+        kinds[k] = kinds.get(k, 0) + 1
+    ovf = kinds.get("ovf", 0)
     ev = ptdecode.events(buf)
     patches = read_patchlog(f"{outdir}/patchlog.csv")
     sb = read_sideband_raw(f"{outdir}/sideband.txt")
@@ -131,6 +134,8 @@ def attribute(outdir):
     return {
         "n": n,
         "ovf": ovf,
+        "mtc": kinds.get("mtc", 0),      # timing-packet density: the core-class
+        "tsc": kinds.get("tsc", 0),      # mechanism behind the long-gap result
         "median_interval_tsc": median_interval,
         "fenced": (fenced_ok, fenced_bad, fenced_nofence),
         "timekeyed": (tk_ok, tk_bad, tk_noclock),
@@ -144,7 +149,7 @@ if __name__ == "__main__":
     if len(sys.argv) >= 5 and sys.argv[2] == "--csv":
         timing, delay = sys.argv[3], sys.argv[4]
         print(f"{timing},{delay},{r['n']},{r['median_interval_tsc']},"
-              f"{fo},{fb},{fn},{to},{tb},{r['ovf']}")
+              f"{fo},{fb},{fn},{to},{tb},{r['ovf']},{r['mtc']},{r['tsc']}")
     else:
         print(f"execs={r['n']}  median patch->exec interval={r['median_interval_tsc']} TSC ticks  ovf={r['ovf']}")
         print(f"  ptw-fenced : correct={fo} wrong={fb} no-preceding-fence={fn}")
