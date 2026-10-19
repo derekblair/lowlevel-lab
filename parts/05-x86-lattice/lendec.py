@@ -8,9 +8,17 @@ EVERY byte offset against `objdump` and reports the agreement rate
 (REVIEW-01 §6.2 C09-3). This decoder is ANALYSIS ONLY: it never emits or
 transforms code (C09-2).
 
-Covers the common 64-bit encodings gcc/clang emit. Offsets it cannot decode
-return None (reported as "undecodable", handled explicitly by the caller).
-Python stdlib only.
+SCOPE (stated plainly, REVIEW-05-build N1/N2). Covers the common legacy/REX
+64-bit integer and SSE encodings gcc -O2 emits. NOT covered -> returns None
+(reported as "undecodable", deferred to objdump by the caller):
+  * NO VEX/EVEX AT ALL: the 0xC4/0xC5/0x62 prefixes are absent from OP1, so
+    every AVX/AVX2/AVX-512 instruction is None (never mis-sized);
+  * `rep stos`/string ops (0xA4-0xAF), `int3` (0xCC), x87 (0xD8-0xDF), and
+    other opcodes absent from OP1/OP2.
+It is a LENGTH decoder, not a validator: on some misaligned byte runs that
+objdump rejects as `(bad)` it still returns a length (counted by the caller as
+"lendec-sized-a-(bad)"). `syscall`/`ud2` were mis-sized (ModRM wrongly assumed)
+before the BUILD-05 fix round; they are now 2 bytes. Python stdlib only.
 """
 
 LEGACY_PREFIXES = {0xF0, 0xF2, 0xF3, 0x2E, 0x36, 0x3E, 0x26, 0x64, 0x65, 0x66, 0x67}
@@ -76,8 +84,14 @@ def _fill_op2():
               0x5A, 0x5C, 0x5D, 0x5E, 0x5F, 0x6E, 0x6F, 0x7E, 0x7F, 0xD6,
               0xEF, 0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49,
               0x4A, 0x4B, 0x4C, 0x4D, 0x4E, 0x4F, 0xB6, 0xB7, 0xBE, 0xBF, 0xAF,
-              0xA3, 0xAB, 0xB0, 0xB1, 0xBC, 0xBD, 0x1E, 0x1F, 0x05, 0x0B):
+              0xA3, 0xAB, 0xB0, 0xB1, 0xBC, 0xBD, 0x1E, 0x1F):
         OP2[o] = (True, 0)
+    # no-ModRM two-byte opcodes (REVIEW-05-build N1: these were wrongly listed
+    # with a ModRM, so `syscall` sized as 4 and `ud2` as 3; both are 2 bytes)
+    OP2[0x05] = (False, 0)          # syscall
+    OP2[0x0B] = (False, 0)          # ud2
+    OP2[0xA2] = (False, 0)          # cpuid
+    OP2[0x31] = (False, 0)          # rdtsc
     for jcc in range(0x80, 0x90):  # jcc near rel32
         OP2[jcc] = (False, 'z')
     for setcc in range(0x90, 0xA0):
