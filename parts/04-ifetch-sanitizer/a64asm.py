@@ -130,15 +130,15 @@ X.update({f"w{i}": i for i in range(31)})
 
 def _as_encode(asm_line):
     """Assemble one instruction with the system assembler; return 4 bytes."""
-    d = tempfile.mkdtemp()
-    s = os.path.join(d, "t.s")
-    o = os.path.join(d, "t.o")
-    with open(s, "w") as f:
-        f.write(".text\n" + asm_line + "\n")
-    subprocess.run(["aarch64-linux-gnu-as", s, "-o", o], check=True,
-                   capture_output=True)
-    out = subprocess.run(["aarch64-linux-gnu-objdump", "-d", o],
-                         check=True, capture_output=True, text=True).stdout
+    with tempfile.TemporaryDirectory() as d:          # no per-call litter (N6)
+        s = os.path.join(d, "t.s")
+        o = os.path.join(d, "t.o")
+        with open(s, "w") as f:
+            f.write(".text\n" + asm_line + "\n")
+        subprocess.run(["aarch64-linux-gnu-as", s, "-o", o], check=True,
+                       capture_output=True)
+        out = subprocess.run(["aarch64-linux-gnu-objdump", "-d", o],
+                             check=True, capture_output=True, text=True).stdout
     for ln in out.splitlines():
         parts = ln.split("\t")
         if len(parts) >= 2 and parts[0].strip().endswith(":"):

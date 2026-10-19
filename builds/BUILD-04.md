@@ -100,3 +100,53 @@ All four blockers fixed; the sanitizer is now genuinely program-driven.
 
 Re-verified: 11/11 VERDICTs PASS, encoder 22/22, semantic oracle all kernels ==
 qemu; reproduced under `env -i`. RUN.md re-captured.
+
+## Fix round 2 (REVIEW-04-build round 2, CHANGES REQUESTED @3e1ca1e)
+
+Round 2 confirmed B1–B4 fixed and raised one blocker, B5, plus nits N3–N6.
+
+- **B5 (freshness ignored where the store happens) — FIXED.** Two changes in
+  `icache_model.py`, which together implement both of the reviewer's options:
+  - **Anchored after the latest store.** Each STR to a word resets that word's
+    progress through `required()`. The ops are then walked in program order,
+    and an op counts only when it is the next required one (DC/IC also only
+    when their address covers the word's line). Maintenance executed before
+    the store therefore counts for nothing.
+  - **The fetch reads model state.** `fetch_word` returns the instruction
+    side's guaranteed view (`iview`). It starts as the loaded image and is
+    advanced to the new bytes only when the anchored sequence completes.
+    Otherwise it returns the last guaranteed bytes: "not guaranteed" is
+    reported as STALE, never as a lucky fresh fetch.
+  - `explain()` names the cause from the trace.
+
+  New `ORDERING` kernels are VERDICTs (IDC=0,DIC=0):
+  - `flush-then-write` → `OLD!dc` ("dc executed only BEFORE the latest store")
+  - `re-patch` → fetch sees the maintained `NEW`, not `NEW2`; `!dc`
+  - `dc-before-str` → `OLD!dc`
+  - `control` → FRESH
+
+  The reviewer's `round2_tests.py`, run unchanged against this tree, gives
+  T1/T2/T3 STALE (missing `dc`), T4 `dsb`, and T0/T5 unchanged.
+- **N3 (omit-DSB1 named `ic`) — FIXED.** An IC issued before the DSB that
+  completes the clean is now named as the missing `dsb`, so omit-DSB1 is
+  `OLD!dsb` under IDC=0 and IDC=1,DIC=0. New VERDICT.
+- **N4 (line-size VERDICT was one wrong address) — FIXED.** `build_strided` is a
+  real (unrolled) JIT flush: DC then IC every `stride` bytes over 4 lines,
+  starting one line below the slot's line. Stride 64 → FRESH; stride 128 (a
+  line size read from another core's CTR_EL0) hits lines 0x0/0x80, skips the
+  slot's line 0x40 → `OLD!dc`. `flush_off` is removed.
+- **N5 (sequence citation secondary) — LABELLED** "(SECONDARY: … as quoted by
+  Rutland's LKML post and US11210222)" in `ARM_REF`, README and AGENTS.md.
+  AGENTS.md's stale round-1 "DDI 0487K.a B2.7.4" line is also corrected.
+- **N6 (`mkdtemp` litter) — FIXED** in `run_qemu`, and in `a64asm._as_encode`
+  (22 dirs per run, the same class). A run now leaves 0 new temp dirs.
+
+Also:
+- **64-byte-aligned code base.** The ELF headers are padded to 128 bytes, so
+  `CODEBASE` is line-aligned and the model's line partition is the real
+  address-aligned one. The reviewer's T5 results are unchanged by this.
+- The semantic oracle covers **all 13 kernels**: model(coherent) == qemu ==
+  latest stored word, so `re-patch` exits NEW2 = 0x33.
+
+Re-verified: 16/16 VERDICTs PASS, encoder 22/22, under `env -i`
+(`make_exit=0`). RUN.md re-captured.

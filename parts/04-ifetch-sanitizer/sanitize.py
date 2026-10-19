@@ -9,6 +9,9 @@ and which maintenance step is missing) therefore depends on the PROGRAM, not on
 any recipe (REVIEW-04 B1). The barrier rule matches the Arm requirement and the
 Linux implementation (B2); the architecture text is quoted below (B3); and the
 model's coherent mode is checked against qemu-aarch64 on every kernel (B4).
+ORDER MATTERS (round 2, B5): the required sequence is anchored after the latest
+store to the slot, so flush-then-write, a second unmaintained patch, and a DC
+issued before the STR are all diagnosed STALE with a named cause.
 
 All staleness is MODEL output (R10); the same kernels run FRESH under
 qemu-aarch64 (SMC-coherent). a64asm encoders are differential-tested vs
@@ -23,7 +26,8 @@ import a64asm as A
 from icache_model import Config, Machine
 
 BASE = 0x400000
-CODEBASE = BASE + 64 + 56     # code loads after ehdr+phdr; interp uses the same base
+HDR = 128                     # ehdr(64) + phdr(56) + 8 pad: the code base is 64-B aligned,
+CODEBASE = BASE + HDR         # so the model's line partition IS the address-aligned one
 SLOT_OLD = 0x11
 SLOT_NEW = 0x22
 EXIT_NR = 93
@@ -37,7 +41,8 @@ Arm CTR_EL0 (DDI 0487, AArch64-ctr_el0; Arm XML build 26/03/2024), verbatim:
   DIC=1: "Instruction cache invalidation to the Point of Unification is not
           required for data to instruction coherence."
   "If CTR_EL0.DIC is 1 then the value reported in [IDC] must also be 1."
-Canonical modify-execute sequence (DDI 0487G.a B2.2.5, per Rutland/US11210222):
+Canonical modify-execute sequence (SECONDARY: DDI 0487G.a B2.2.5 as quoted by
+  Rutland's LKML post and patent US11210222; not checked against the manual here):
   modifying PE: DC CVAU,Xn ; DSB ISH ; IC IVAU,Xn ; DSB ISH ; and each executing
   PE: ISB.
 Linux arch/arm64/mm/cache.S caches_clean_inval_pou_macro: on ARM64_HAS_CACHE_IDC
@@ -49,38 +54,62 @@ A.svc = lambda: struct.pack("<I", 0xD4000001)   # SVC #0 (a64asm has no svc)
 
 
 # ---- kernel construction ------------------------------------------------
-# A kernel is an A64 program: warm the slot (run it once -> caches OLD), patch
-# it (STR a new movz word), run the chosen maintenance instructions, then run
-# the slot again. `maint` selects which real instructions the kernel contains;
-# the verdict is read back from those EXECUTED instructions, not from `maint`.
-def build_kernel(maint, flush_off=0):
+# A kernel is an A64 program built from an ordered action list:
+#   ('warm',) / ('run',)  BLR to the slot (movz x0,#imm ; ret)
+#   ('store', imm)        STR the instruction word `movz x0,#imm` into the slot
+#   ('dc'|'ic', delta)    DC CVAU / IC IVAU at slot+delta
+#   ('dsb',) / ('isb',)
+# The verdict is read back from the EXECUTED instructions, never from the list.
+def _li(reg, val):                                     # fixed length: movz + movk
+    return A.movz(reg, val & 0xFFFF) + A.movk(reg, (val >> 16) & 0xFFFF, 16)
+
+
+def build_program(actions):
     slot = A.movz("x0", SLOT_OLD) + A.ret()            # movz x0,#OLD ; ret
 
     def entry(slot_vaddr):
-        c = A.movz("x9", slot_vaddr & 0xFFFF) + A.movk("x9", (slot_vaddr >> 16) & 0xFFFF, 16)
-        c += A.blr("x9")                               # warm: run slot once (caches OLD)
-        patch_word = int.from_bytes(A.movz("x0", SLOT_NEW), "little")
-        c += A.movz("x10", patch_word & 0xFFFF) + A.movk("x10", (patch_word >> 16) & 0xFFFF, 16)
-        c += A.strw_imm("w10", "x9", 0)                # STR new instruction word (SMC)
-        if flush_off:                                  # maintenance targets x11 = slot + wrong stride
-            fa = slot_vaddr + flush_off
-            c += A.movz("x11", fa & 0xFFFF) + A.movk("x11", (fa >> 16) & 0xFFFF, 16)
-            maddr = "x11"
-        else:
-            maddr = "x9"
-        for step in maint:
-            if step == "dc":    c += A.dc_cvau(maddr)
-            elif step == "dsb": c += A.dsb_ish()
-            elif step == "ic":  c += A.ic_ivau(maddr)
-            elif step == "isb": c += A.isb()
-        c += A.blr("x9")                               # re-run slot -> NEW or OLD
-        c += A.movz("x8", EXIT_NR) + A.svc()           # exit(x0)
-        return c
+        c = _li("x9", slot_vaddr)
+        for a in actions:
+            k = a[0]
+            if k in ("warm", "run"):
+                c += A.blr("x9")
+            elif k == "store":
+                c += _li("x10", int.from_bytes(A.movz("x0", a[1]), "little"))
+                c += A.strw_imm("w10", "x9", 0)        # STR new instruction word (SMC)
+            elif k in ("dc", "ic"):                    # always via x11: length is
+                c += _li("x11", slot_vaddr + a[1])     # independent of the delta
+                c += A.dc_cvau("x11") if k == "dc" else A.ic_ivau("x11")
+            elif k == "dsb":
+                c += A.dsb_ish()
+            elif k == "isb":
+                c += A.isb()
+        return c + A.movz("x8", EXIT_NR) + A.svc()     # exit(x0)
 
-    entry_len = len(entry(CODEBASE))
-    slot_vaddr = CODEBASE + entry_len
-    code = entry(slot_vaddr) + slot
-    return code, 0, slot_vaddr      # entry is at offset 0; slot follows at entry_len
+    slot_vaddr = CODEBASE + len(entry(CODEBASE))       # entry length is value-independent
+    return entry(slot_vaddr) + slot, 0, slot_vaddr
+
+
+def build_kernel(maint):
+    """warm; STR NEW; <maint steps on the slot's line>; run."""
+    return build_program([("warm",), ("store", SLOT_NEW)]
+                         + [(s, 0) if s in ("dc", "ic") else (s,) for s in maint]
+                         + [("run",)])
+
+
+def build_strided(stride, line=64, span=4):
+    """The line-size class as a real (unrolled) JIT flush loop: DC then IC every
+    `stride` bytes over `span` lines, starting one line below the slot's line.
+    stride == line covers the slot's line; stride 128 -- a line size read from
+    another core's CTR_EL0 -- skips it on a 64-B-line core."""
+    def acts(lo):
+        offs = list(range(lo, lo + span * line, stride))
+        return ([("warm",), ("store", SLOT_NEW)] + [("dc", o) for o in offs] + [("dsb",)]
+                + [("ic", o) for o in offs] + [("dsb",), ("isb",), ("run",)])
+    _, _, slot = build_program(acts(-line))            # length does not depend on lo
+    sl = slot - CODEBASE
+    code, e, s2 = build_program(acts(-line - sl % line))   # lo = one line below the slot's line
+    assert s2 == slot
+    return code, e, s2
 
 
 # ---- decoder for the subset ----
@@ -145,19 +174,20 @@ STEP_LABEL = {"dc": "DC CVAU (clean D-cache to PoU)", "dsb": "DSB (barrier)",
 # ---- qemu semantic oracle ----
 def elf_wrap(code, entry_off):
     EHDR, PHDR = 64, 56
-    total = EHDR + PHDR + len(code)
+    total = HDR + len(code)
     e = struct.pack("<4sBBBBB7xHHIQQQIHHHHHH", b"\x7fELF", 2, 1, 1, 0, 0,
                     2, 183, 1, CODEBASE + entry_off, EHDR, 0, 0, EHDR, PHDR, 1, 0, 0, 0)
     p = struct.pack("<IIQQQQQQ", 1, 7, 0, BASE, BASE, total, total, 0x10000)  # RWX (self-modifies)
-    return e + p + code
+    return e + p + b"\0" * (HDR - EHDR - PHDR) + code
 
 
 def run_qemu(code, entry_off):
-    d = tempfile.mkdtemp()
-    path = os.path.join(d, "k")
-    open(path, "wb").write(elf_wrap(code, entry_off))
-    os.chmod(path, 0o755)
-    return subprocess.run(["qemu-aarch64", path], capture_output=True).returncode
+    with tempfile.TemporaryDirectory() as d:          # N6: no per-call litter
+        path = os.path.join(d, "k")
+        with open(path, "wb") as fh:
+            fh.write(elf_wrap(code, entry_off))
+        os.chmod(path, 0o755)
+        return subprocess.run(["qemu-aarch64", path], capture_output=True).returncode
 
 
 KERNELS = {
@@ -169,6 +199,18 @@ KERNELS = {
     "omit-ISB":  ["dc", "dsb", "ic", "dsb"],
     "none":      [],
 }
+SLOT_NEW2 = 0x33
+FULL = [("dc", 0), ("dsb",), ("ic", 0), ("dsb",), ("isb",)]
+# B5: store ORDERING relative to the maintenance (each must be STALE with a cause)
+ORDERING = {
+    "control":          [("warm",), ("store", SLOT_NEW)] + FULL + [("run",)],
+    "flush-then-write": [("warm",)] + FULL + [("store", SLOT_NEW), ("run",)],
+    "re-patch":         [("warm",), ("store", SLOT_NEW)] + FULL
+                        + [("store", SLOT_NEW2), ("run",)],
+    "dc-before-str":    [("warm",), ("dc", 0), ("store", SLOT_NEW), ("dsb",),
+                         ("ic", 0), ("dsb",), ("isb",), ("run",)],
+}
+LATEST = {"re-patch": SLOT_NEW2}       # the last value each ordering kernel stores
 CONFIGS = {   # only architecturally-valid combinations ({IDC=0,DIC=1} is impossible)
     "IDC=0,DIC=0": Config(idc=0, dic=0),
     "IDC=1,DIC=0": Config(idc=1, dic=0),
@@ -195,15 +237,19 @@ def main():
 
     # ---- B4 semantic oracle: model COHERENT mode == qemu on EVERY kernel ----
     print("\n-- semantic oracle: model(coherent) end-state vs qemu exit, every kernel --")
+    every = [(k, build_kernel(m), SLOT_NEW) for k, m in KERNELS.items()]
+    every += [(k, build_program(a), LATEST.get(k, SLOT_NEW)) for k, a in ORDERING.items()]
+    every += [(f"stride-{s}", build_strided(s), SLOT_NEW) for s in (64, 128)]
     oracle_ok = True
-    for kname, maint in KERNELS.items():
-        code, eoff, slot = build_kernel(maint)
+    for kname, (code, eoff, slot), want in every:
         q = run_qemu(code, eoff)
         mc, _ = interp(code, eoff, slot, CONFIGS["IDC=0,DIC=0"], coherent=True)
-        same = (q == SLOT_NEW == mc)
+        same = (q == want == mc)
         oracle_ok = oracle_ok and same
-        print(f"  {kname:9} qemu={q:3}  model(coherent)={mc:3}  {'ok' if same else 'MISMATCH'}")
-    v("B4 semantic oracle: model coherent-mode == qemu == NEW for every kernel", oracle_ok)
+        print(f"  {kname:16} qemu={q:3}  model(coherent)={mc:3}  latest-stored={want:3}  "
+              f"{'ok' if same else 'MISMATCH'}")
+    v(f"B4 semantic oracle: model coherent-mode == qemu == latest stored word, all {len(every)} kernels",
+      oracle_ok)
 
     # ---- B1 program-dependence: verdict must follow the executed instructions ----
     code_a, eoff_a, slot_a = build_kernel(["dsb", "dsb", "dsb", "dsb", "dsb"])
@@ -242,20 +288,55 @@ def main():
       res[("omit-IC", "IDC=1,DIC=1")][0] == SLOT_NEW and
       res[("omit-IC", "IDC=0,DIC=0")][0] == SLOT_OLD and
       res[("omit-IC", "IDC=1,DIC=0")][0] == SLOT_OLD, "")
+    v("omit-DSB1 names the step that is ABSENT: the DSB between DC and IC (N3)",
+      all(res[("omit-DSB1", c)] == (SLOT_OLD, "dsb") for c in ("IDC=0,DIC=0", "IDC=1,DIC=0")),
+      f"IDC=0,DIC=0 -> {res[('omit-DSB1', 'IDC=0,DIC=0')][1]}; "
+      f"IDC=1,DIC=0 -> {res[('omit-DSB1', 'IDC=1,DIC=0')][1]} (the IC is present)")
 
-    # ---- B1 line-size class: a REAL wrong flush stride in the program ----
-    print("\n-- line-size mismatch: a kernel that flushes the WRONG line (stride bug) --")
+    # ---- B5 store ordering: the sequence must come AFTER the latest store ----
+    print("\n-- store ordering (B5): x0 / missing step, and the cause under IDC=0,DIC=0 --")
+    print(f"{'kernel':18}" + "".join(f"{c:>16}" for c in CONFIGS) + "   cause (IDC=0,DIC=0)")
+    ordr = {}
+    for kname, acts in ORDERING.items():
+        code, eoff, slot = build_program(acts)
+        row = f"{kname:18}"
+        for cname, cfg in CONFIGS.items():
+            x0, mach = interp(code, eoff, slot, cfg)
+            fresh, missing = mach.diagnose(slot - CODEBASE)
+            ordr[(kname, cname)] = (x0, fresh, missing, mach.explain(slot - CODEBASE))
+            tag = {SLOT_OLD: "OLD", SLOT_NEW: "NEW", SLOT_NEW2: "NEW2"}.get(x0, hex(x0))
+            row += f"{tag + ('' if fresh else '!' + missing):>16}"
+        print(row + "   " + ordr[(kname, "IDC=0,DIC=0")][3])
+    c00 = "IDC=0,DIC=0"
+    x0, fr, mi, why = ordr[("control", c00)]
+    v("B5 control: STR then the full sequence then run is FRESH", fr and x0 == SLOT_NEW, f"x0={x0}")
+    x0, fr, mi, why = ordr[("flush-then-write", c00)]
+    v("B5 flush-then-write: maintenance BEFORE the store is STALE, cause named",
+      not fr and x0 == SLOT_OLD and mi == "dc" and "BEFORE" in why, f"missing={mi}: {why}")
+    x0, fr, mi, why = ordr[("re-patch", c00)]
+    v("B5 re-patch: a second, unmaintained store is STALE (fetch sees the maintained NEW, not NEW2)",
+      not fr and x0 == SLOT_NEW and mi == "dc", f"x0={x0:#x} missing={mi}: {why}")
+    x0, fr, mi, why = ordr[("dc-before-str", c00)]
+    v("B5 dc-before-str: a DC issued before the STR never cleans the new bytes -> STALE",
+      not fr and x0 == SLOT_OLD and mi == "dc", f"missing={mi}: {why}")
+
+    # ---- line-size class: a REAL strided flush loop in the program (N4) ----
+    print("\n-- line-size mismatch: unrolled JIT flush loop, Iline=Dline=64, IDC=0,DIC=0 --")
     cfg = Config(idc=0, dic=0, iminline=64, dminline=64)
-    good, eg, sg = build_kernel(KERNELS["correct"], flush_off=0)   # flush the slot's line
-    bad, eb, sb = build_kernel(KERNELS["correct"], flush_off=64)   # flush one line too far
-    xg, _ = interp(good, eg, sg, cfg)
-    xb, mb = interp(bad, eb, sb, cfg)
-    fb, missb = mb.diagnose(sb - CODEBASE)
-    print(f"  correct stride  -> x0={xg} ({'NEW' if xg == SLOT_NEW else 'OLD'})")
-    print(f"  wrong stride    -> x0={xb} ({'NEW' if xb == SLOT_NEW else 'OLD'}); first missing: {missb}")
-    v("line-size: the program's flush misses the slot's line -> STALE, from the actual addresses",
-      xg == SLOT_NEW and xb == SLOT_OLD and missb in ("dc", "ic"),
-      "wrong stride detected from the executed flush addresses, not a flag")
+    stride = {}
+    for s in (64, 128):
+        code, e, slot = build_strided(s)
+        x0, m = interp(code, e, slot, cfg)
+        fresh, miss = m.diagnose(slot - CODEBASE)
+        sl = slot - CODEBASE
+        flushed = sorted({off - off % 64 for op, off in m.maint if op == "dc"})
+        stride[s] = (x0, fresh, miss)
+        print(f"  stride {s:3}: slot line +{sl - sl % 64:#x}; DC hit lines "
+              f"{[hex(f) for f in flushed]} -> x0={x0} "
+              f"({'NEW' if x0 == SLOT_NEW else 'OLD'}); missing: {miss}")
+    v("line-size: a stride-128 flush (another core's line size) skips the slot's 64-B line -> STALE; stride 64 FRESH",
+      stride[64] == (SLOT_NEW, True, None) and stride[128] == (SLOT_OLD, False, "dc"),
+      "decided from the executed flush addresses, not a flag")
 
     print("\n" + ("ALL VERDICTS PASS" if fail == 0 else "SOME VERDICTS FAILED"))
     return fail

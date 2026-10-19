@@ -13,14 +13,20 @@ whole-program sanitizer for missing AArch64 instruction-cache maintenance.
   No root, no installs.
 - **Novel observable (R4):** for any patch sequence and CTR_EL0/line-size config,
   the sanitizer names the exact missing maintenance step (DC CVAU / DSB / IC
-  IVAU / DSB / ISB) and catches the I/D line-size-mismatch (big.LITTLE) bug.
-  Proven by the `VERDICT PASS` lines in RUN.md.
+  IVAU / DSB / ISB), including maintenance in the wrong place relative to the
+  store (flush-then-write, re-patch, DC before STR), and catches the I/D
+  line-size-mismatch (big.LITTLE) bug from a strided flush. Proven by the
+  `VERDICT PASS` lines in RUN.md.
 - **Oracles (P4-2/R6):** encoder = aarch64-linux-gnu-as (22/22 byte-identical);
-  semantic = qemu-aarch64 (coherent-mode model end-state == qemu exit, every
-  kernel NEW). herdtools7 SM.udf litmus test cross-checked as data (P4-3).
-- **Labelling (R10/P4-4):** all staleness is MODEL output; qemu is SMC-coherent
-  and can't show the stale cases — stated throughout.
-- **Arch citation (P4-3):** DDI 0487K.a B2.7.4 + CTR_EL0.{IDC,DIC} (`ARM_REF`).
+  semantic = qemu-aarch64 (coherent-mode model end-state == qemu exit == latest
+  stored word, all 13 kernels). herdtools7 SM.udf litmus test cross-checked as
+  data (P4-3).
+- **Labelling (R10/P4-4):** all staleness is MODEL output, and conservative
+  ("not guaranteed" => stale); qemu is SMC-coherent and can't show the stale
+  cases — stated throughout.
+- **Arch citation (P4-3):** CTR_EL0.{IDC,DIC} quoted verbatim (Arm XML build
+  26/03/2024) + Linux `cache.S` barrier facts (`ARM_REF`); the sequence's
+  location (DDI 0487G.a B2.2.5) is secondary, labelled as such.
 - **Safety:** benign cache-maintenance diagnostic; tiny own-built qemu kernels;
   no network / no out-of-tree writes.
 - **Artifacts:** none committed beyond sources + the fetched herdtools7 test
