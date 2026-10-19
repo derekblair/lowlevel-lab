@@ -1,0 +1,5 @@
+# RUN.md §3 report vs reviewer runs (xcore medians excluded; declared untoleranced)
+## run 1:
+IDENTICAL
+## run 2:
+IDENTICAL

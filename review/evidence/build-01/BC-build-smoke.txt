@@ -1,0 +1,11 @@
+### B. RUN.md §1: make clean && make smcobs, 07:35:13
+rm -f smcobs data.csv
+cc -O2 -Wall -Wextra -pthread -o smcobs smcobs.c
+exit=0
+### C. RUN.md §2: make smoke
+sweep,0,P,cpu_core,0,8,smc,1.9999,660.3,0
+sweep,0,P,cpu_core,0,64,smc,0.0000,5.1,0
+sweep,5,E,cpu_atom,0,512,smc,1.0000,146.4,0
+sweep,5,E,cpu_atom,0,1024,smc,0.0000,5.0,0
+sweep,13,LP-E,cpu_atom,0,512,smc,0.9999,237.0,0
+exit=0
