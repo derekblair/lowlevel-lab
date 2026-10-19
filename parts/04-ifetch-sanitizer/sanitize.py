@@ -122,6 +122,9 @@ def decode(w):
     if w == 0xD4000001: return "svc", ()
     if (w & 0xFFFFFFE0) == 0xD50B7B20: return "dc", (w & 31,)     # DC CVAU, Xt
     if (w & 0xFFFFFFE0) == 0xD50B7520: return "ic", (w & 31,)     # IC IVAU, Xt
+    # DSB ISH and DSB ISHST both count as the required DSB (N8). Linux uses ISHST
+    # only on the IDC path; whether ISHST suffices after DC CVAU when IDC=0 is
+    # not established here (UNVERIFIED either way) -- disclosed in README.
     if w in (0xD5033B9F, 0xD5033A9F): return "dsb", ()
     if w == 0xD5033FDF: return "isb", ()
     return "?", (w,)

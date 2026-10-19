@@ -1,6 +1,6 @@
-# RUN.md — ifetch-sanitizer, verbatim build+run on nibbles (fix round 2)
+# RUN.md — ifetch-sanitizer, verbatim build+run on nibbles (fix round 2 + N7/N8)
 
-Captured 2026-10-19 09:59:04 PDT on nibbles, user derekblair, under `env -i` (HOME, PATH=/usr/local/bin:/usr/bin:/bin, LANG=C.UTF-8). Deterministic; verbatim.
+Captured 2026-10-19 10:11:33 PDT on nibbles, user derekblair, under `env -i` (HOME, PATH=/usr/local/bin:/usr/bin:/bin, LANG=C.UTF-8). Deterministic; verbatim.
 
 ## Environment
 ```

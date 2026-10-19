@@ -150,3 +150,14 @@ Also:
 
 Re-verified: 16/16 VERDICTs PASS, encoder 22/22, under `env -i`
 (`make_exit=0`). RUN.md re-captured.
+
+## Post-clearance nits (REVIEW-04 round 3: APPROVE @a980f38, N7/N8)
+
+- **N7 — FIXED.** Under IDC=1 there is no clean, so `explain()` now says "IC
+  IVAU issued before a DSB completed the **store**" (IDC=0 keeps "…the clean").
+- **N8 — DISCLOSED.** `DSB ISHST` is accepted wherever a DSB is required (a
+  comment in `decode`, and a README Limits bullet). Whether ISHST suffices after
+  `DC CVAU` when IDC=0 is UNVERIFIED either way; the kernels use `DSB ISH`.
+
+Re-verified: 16/16 VERDICTs PASS under `env -i`. The make output is identical
+to the cleared round-2 capture. RUN.md re-captured.

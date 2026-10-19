@@ -148,6 +148,10 @@ python3 sanitize.py   # just the sanitizer
   may *happen* to fetch the new bytes in some of those cases; the sanitizer's
   claim is about what the architecture guarantees. This is the architectural
   requirement, not a cycle-level cache simulation.
+- **`DSB ISHST` is accepted wherever a DSB is required** (REVIEW-04 N8). Linux
+  issues `dsb ishst` only on the IDC path. Whether ISHST (stores only) suffices
+  after `DC CVAU` when IDC=0 is not established here: **UNVERIFIED either way**.
+  The kernels themselves use `DSB ISH`.
 - **Lines are address-aligned:** the kernels load at a 64-byte-aligned code base
   (ELF headers padded to 128 bytes), so the model's line partition is the real
   one. The strided flush is **unrolled** (the interpreted subset has no

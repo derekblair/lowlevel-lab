@@ -96,7 +96,8 @@ class Machine:
                   and "ic" in req[i + 1:] and w not in self.cause):
                 # IC issued before the DSB that completes the clean / the store
                 self.cause[w] = "dsb"
-                self.note[w] = "IC IVAU issued before a DSB completed the clean"
+                self.note[w] = ("IC IVAU issued before a DSB completed the "
+                                + ("store" if self.cfg.idc else "clean"))   # N7
 
     # ---- effects of executed instructions ----
     def store(self, off, byte):
