@@ -1,0 +1,15 @@
+# pt-truth head-to-head  2026-10-19T10:23:26-0700  host=nibbles
+# pinned: each sweep runs under taskset -c <cpu>, cpus: 0 4 12
+# timing,delay,execs,median_interval_tsc,fenced_ok,fenced_wrong,fenced_nofence,tk_ok,tk_wrong,ovf,mtc_pkts,tsc_pkts,cpu
+coarse,100000,24,1744362,24,0,0,24,0,0,34488,36,0
+coarse,1000000,24,8727954,24,0,0,24,0,0,251410,256,0
+fine,10000,24,23848,24,0,0,24,0,0,10511,22,0
+coarse,100000,24,217982,24,0,0,6,18,0,77,1,4
+coarse,1000000,24,2200372,24,0,0,1,23,0,319,1,4
+fine,10000,24,22660,24,0,0,24,0,0,6288,13,4
+coarse,100000,24,161002,24,0,0,24,0,0,69,1,12
+coarse,1000000,24,1618408,24,0,0,1,23,0,248,1,12
+fine,10000,24,16474,24,0,0,24,0,0,4665,10,12
+grep: /home/derekblair/projects/lowlevel-lab/tasks/reviewer-repro/build-02-r3/.evidence/keep/cpu0-coarse-0/sideband.txt: No such file or directory
+# sideband coarse: 
+# workdir: /home/derekblair/projects/lowlevel-lab/tasks/reviewer-repro/build-02-r3/.evidence/keep

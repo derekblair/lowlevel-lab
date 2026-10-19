@@ -1,0 +1,16 @@
+cpu0-coarse-1000000/trace.pt: 522192 B framed complete; cbr=350 mtc=251410 pad=7347 psb=255 psbend=255 ptw=52 tma=256 tsc=256 vmcs=253
+   MTC payload deltas (mod 256), top: [(1, 251404), (2, 4), (114, 1)]
+cpu4-coarse-1000000/trace.pt: 1100 B framed complete; cbr=1 mtc=319 pad=1 psb=1 psbend=1 ptw=52 tma=1 tsc=1
+   MTC payload deltas (mod 256), top: [(0, 245), (3, 13), (2, 6), (4, 5), (175, 2), (79, 2)]
+cpu12-coarse-1000000/trace.pt: 960 B framed complete; cbr=1 mtc=248 pad=3 psb=1 psbend=1 ptw=52 tma=1 tsc=1
+   MTC payload deltas (mod 256), top: [(0, 174), (1, 8), (3, 7), (2, 6), (33, 2), (91, 2)]
+cpu0-coarse-100000/trace.pt: 72208 B framed complete; cbr=56 mtc=34488 pad=1151 psb=36 psbend=36 ptw=52 tma=36 tsc=36 vmcs=35
+   MTC payload deltas (mod 256), top: [(1, 34487)]
+cpu4-coarse-100000/trace.pt: 616 B framed complete; cbr=1 mtc=77 pad=1 psb=1 psbend=1 ptw=52 tma=1 tsc=1
+   MTC payload deltas (mod 256), top: [(2, 16), (1, 7), (0, 3), (3, 2), (196, 1), (92, 1)]
+cpu12-coarse-100000/trace.pt: 600 B framed complete; cbr=1 mtc=69 pad=1 psb=1 psbend=1 ptw=52 tma=1 tsc=1
+   MTC payload deltas (mod 256), top: [(1, 19), (2, 4), (36, 2), (88, 2), (166, 2), (208, 2)]
+cpu0-fine-10000/trace.pt: 44208 B framed complete; cbr=23 cyc=10586 mtc=10511 pad=742 psb=22 psbend=22 ptw=52 tma=22 tsc=22 vmcs=20
+   MTC payload deltas (mod 256), top: [(1, 10429), (3, 56), (2, 19), (4, 4), (21, 1), (10, 1)]
+cpu4-fine-10000/trace.pt: 26140 B framed complete; cbr=13 cyc=6364 mtc=6288 psb=13 psbend=13 ptw=52 tma=13 tsc=13 vmcs=11
+   MTC payload deltas (mod 256), top: [(1, 6287)]

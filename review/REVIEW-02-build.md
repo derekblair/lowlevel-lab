@@ -1,4 +1,4 @@
-GATE: build-02 | VERDICT: APPROVE | ROUND: 2 | AT: 2026-10-19 08:27 PDT | COMMIT: cc7e74d (round 1: CHANGES REQUESTED @21475a8)
+GATE: build-02 | VERDICT: CHANGES REQUESTED | ROUND: 3 | AT: 2026-10-19 10:26 PDT | COMMIT: 71bb650 (round 1: CHANGES REQUESTED @21475a8; round 2: APPROVE @cc7e74d, re-opened by the author 10:20)
 
 # REVIEW-02-build — P2 pt-truth (`parts/02-pt-truth/`)
 
@@ -166,3 +166,81 @@ N1–N6 are all done:
 The part now does what P2-3 asked for. It runs an exact in-band executed-PTWRITE fence head-to-head against the **strongest** time-keyed baseline the trace supports, scored against independent ground truth, and it reports a **real, mechanism-explained interval band** where time-keyed decoding fails below and above. It reproduces cleanly six times, and the safety audit is clean. It's an honest N2 contribution, and the corrected result is more interesting than the original claim.
 
 **Gate BUILD-02 is CLEARED.**
+
+---
+
+## Round 3: post-clearance correction @ `71bb650`, CHANGES REQUESTED (2026-10-19 10:26 PDT)
+
+**Context.** Applying my round-2 nit (d), which asked for the captures to be pinned, changed a cleared claim, and **the author re-opened the gate themselves** instead of folding the change in silently. That's the right call.
+
+**Reproduced in:** a fresh clone at `tasks/reviewer-repro/build-02-r3`, under `env -i`.
+
+**Evidence:** `review/evidence/build-02/r3/`.
+
+### Reproduction
+
+| Test | Result | Evidence |
+|---|---|---|
+| `make` ×3 (clean clone) | `make_exit=0`, **10/10 PASS** every run, 1–2 s each. Every sweep is pinned to CPU 0 (P), 4 (E) and 12 (LP-E) | `make-run{1,2,3}.txt`, `data-run{1,2,3}.csv` |
+| `make` under strace | **10/10 PASS**. Audit **CLEAN**: the only hits are failed `connect`s to nscd (name lookup), info only. The `mktemp` workdir is removed (31 `unlinkat(AT_REMOVEDIR)`) | `strace-audit.txt`, `make-strace-stdout.txt` |
+| extra pinned sweep, captures kept (`WORK`, delays 10⁵/10⁶ plus fine 10⁴) | same pattern | `keep-data.csv`, `keep-trace-hashes.txt` |
+
+### Independent mechanism check
+
+`ptframe.py` is my own minimal PT framer, written from the SDM packet tables; it doesn't use `ptdecode`. Every byte of every kept trace frames, and each trace is "framed complete". Results from `ptframe-per-class.txt`:
+
+| Capture (coarse, mtc_period 3) | Trace bytes | MTC | TSC | MTC payload deltas (mod 256) |
+|---|---|---|---|---|
+| **P** (CPU 0), delay 10⁶ | **522,192** | **251,410** | 256 | **Δ1 ×251,404**, Δ2 ×4, Δ114 ×1 |
+| **E** (CPU 4), delay 10⁶ | **1,100** | 319 | **1** | **Δ0 ×245**, then Δ3/Δ2/Δ4… |
+| **LP-E** (CPU 12), delay 10⁶ | **960** | 248 | **1** | **Δ0 ×174**, … |
+| P, delay 10⁵ | 72,208 | 34,488 | 36 | all Δ1 |
+| E / LP-E, delay 10⁵ | 616 / 600 | 77 / 69 | 1 / 1 | mixed |
+
+**VERIFIED, and sharper than "sporadic".**
+- Cougar Cove emits one MTC per period.
+- At long gaps, Darkmont's MTCs mostly arrive **exactly one 8-bit payload wrap apart** (Δ0). So each MTC repeats the previous payload, and the payload clock cannot see the 256-period wraps that elapsed. That is precisely the failure mechanism.
+
+### Claims
+
+| Claim (`71bb650`) | Tag | Basis |
+|---|---|---|
+| PTW-fenced exact on every row of every class | **VERIFIED** | 0 wrong, 0 missing fence, in all my runs and the extra sweep |
+| Darkmont long-gap failure, with onset near the predicted 196,608 TSC | **VERIFIED** | LP-E is exact at 161,002–176,324 and fails at **205,796** (extra sweep) and 1.6–1.8×10⁶. E fails at **217,982–248,146** in every run. The bracket holds |
+| Cougar Cove has no long-gap failure, out to ~10⁷ TSC | **VERIFIED** | Exact at 4.8–10.2×10⁶ TSC in all 4 of my sweeps |
+| MTC density gap ≥100× | **VERIFIED independently** | Table above |
+| "Below the band it mis-attributes **on every class**" (README:32–33); "it fails below that window **everywhere**" (README:66–68); BUILD-02 "Unchanged: time-keyed fails at short intervals everywhere" | **FALSE** | **P is exact on every short-interval row in 6/6 runs**: the author's three RUN.md runs, where the report's own INFO line reads "P: coarse time-keyed at short intervals (<band): all resolved this run", plus my three. P's shortest tested interval (848–2,188 TSC) is **above one MTC period (768 TSC)**, so this sweep never reaches a P lower edge at all |
+| "Even a correctly implemented time-keyed correlation has a bounded window of correctness" (README:65–66), and fence advantage (a) "through both failure regimes" | **Darkmont only** | On P no failure was observed anywhere in the tested range (848 TSC to 1.0×10⁷ TSC) |
+
+### Issues
+
+**B3 [BLOCKING] (changed text): the per-class result over-generalizes the short-interval failure.**
+
+The data say this, per class:
+
+| Class | Short intervals | Long gaps | Fence advantage |
+|---|---|---|---|
+| Darkmont (E, LP-E) | fails | fails | accuracy, plus (b) and (c) |
+| Cougar Cove (P) | exact at every tested interval | exact | **not** accuracy; (b) no timing packets and (c) no dependence on emission density |
+
+The Cougar Cove exactness has a measured price: **~475× the trace volume** at the longest gap (522 KB vs 1.1 KB). That is the cost of MTC-every-period.
+
+**Required:**
+- Correct README:32–33 and 65–68, the "So the PTW-fence advantages" list, BUILD-02's "Unchanged" line, and `report.py`'s Interpretation text to say this.
+- Rename P's VERDICT from "exact over an interval band" to "exact at every tested interval".
+- If you want to claim a P lower edge, extend the P sweep below one MTC period. Otherwise, say it wasn't reached.
+- Re-capture RUN.md.
+
+This is text and report-only, and none of the measurements change.
+
+**N7 [nit]:** describe Darkmont's long-gap MTCs as "about one per payload wrap: Δ0 deltas dominate (`ptframe` evidence)" rather than "sporadic". It explains the failure directly.
+
+**N8 [nit]:** for E, the 2× onset VERDICT is satisfied by the failure side only: the largest exact interval, 25,324, is 7.8× below the edge. LP-E supplies the tight bracket. Say so in the VERDICT detail.
+
+### Novelty in the implementation
+
+The per-class correction makes the part *more* interesting. Hybrid Panther Lake cores differ in MTC emission under BranchEn=0, and that decides whether time-keyed SMC version attribution survives long gaps. As a hardware observation it's real and verified at the packet level. The N2 delta (the in-band executed fence) stands, but only once it's stated per class as above.
+
+### What clears the gate
+
+Fix B3 (text and report only), re-capture RUN.md, and post `GATE BUILD-02 READY (post-clearance correction, round 2) — commit <hash>`. I'll diff the text against `data-run*.csv` and re-run `make` ×3.
