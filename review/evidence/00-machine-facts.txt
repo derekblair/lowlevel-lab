@@ -1,0 +1,82 @@
+# Machine facts — reviewer lane probe, 2026-10-18 22:17:58 PDT on nibbles
+# Timeline: 22:05:30 PDT first probe -> qemu-*/aarch64-* ABSENT; 22:13:12-22:13:19 'apt-get install -y qemu-user gcc-aarch64-linux-gnu'
+#   (/var/log/apt/history.log, Requested-By derekblair; Bossman via run-install.sh; Derek-approved per TOOLCHAIN.md / commit 625ad5d);
+#   this probe is post-install.
+## cpu / mem
+Linux 7.1.5-76070105-generic x86_64
+cores=16
+Intel(R) Core(TM) Ultra X7 358H
+flags(subset): avx2 bmi2 constant_tsc intel_pt rdtscp sha_ni  (avx512f absent)
+               total        used        free      shared  buff/cache   available
+Mem:              30          26           2           0           4           4
+## tools: status  path  version
+  PRESENT gcc                         /usr/bin/gcc                           gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+  PRESENT as                          /usr/bin/as                            GNU assembler (GNU Binutils for Ubuntu) 2.42
+  PRESENT ld                          /usr/bin/ld                            GNU ld (GNU Binutils for Ubuntu) 2.42
+  PRESENT objdump                     /usr/bin/objdump                       GNU objdump (GNU Binutils for Ubuntu) 2.42
+  PRESENT readelf                     /usr/bin/readelf                       GNU readelf (GNU Binutils for Ubuntu) 2.42
+  PRESENT gdb                         /usr/bin/gdb                           GNU gdb (Ubuntu 15.1-1ubuntu1~24.04.1) 15.1
+  PRESENT python3                     /usr/bin/python3                       Python 3.12.3
+  PRESENT gh                          /usr/bin/gh                            gh version 2.101.0 (2026-09-15)
+  PRESENT make                        /usr/bin/make                          GNU Make 4.3
+  PRESENT cmake                       /usr/bin/cmake                         cmake version 3.28.3
+  PRESENT node                        /usr/bin/node                          v24.21.0
+  PRESENT perl                        /usr/bin/perl                          This is perl 5, version 38, subversion 2 (v5.38.2) built for x86_64-li
+  PRESENT strace                      /usr/bin/strace                        strace -- version 6.8
+  PRESENT setarch                     /usr/bin/setarch                       setarch from util-linux 2.39.3
+  PRESENT taskset                     /usr/bin/taskset                       taskset from util-linux 2.39.3
+  PRESENT firefox                     /usr/bin/firefox                       Mozilla Firefox 155.0.1
+  PRESENT ffmpeg                      /usr/bin/ffmpeg                        ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg devel
+  PRESENT java                        /usr/lib/jvm/java-21-openjdk-amd64/bin/java openjdk 21.0.12 2026-07-21
+  PRESENT aarch64-linux-gnu-gcc       /usr/bin/aarch64-linux-gnu-gcc         aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+  PRESENT aarch64-linux-gnu-as        /usr/bin/aarch64-linux-gnu-as          GNU assembler (GNU Binutils for Ubuntu) 2.42
+  PRESENT aarch64-linux-gnu-ld        /usr/bin/aarch64-linux-gnu-ld          GNU ld (GNU Binutils for Ubuntu) 2.42
+  PRESENT aarch64-linux-gnu-objdump   /usr/bin/aarch64-linux-gnu-objdump     GNU objdump (GNU Binutils for Ubuntu) 2.42
+  PRESENT qemu-aarch64                /usr/bin/qemu-aarch64                  qemu-aarch64 version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)
+  PRESENT qemu-x86_64                 /usr/bin/qemu-x86_64                   qemu-x86_64 version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)
+  absent  clang
+  absent  llvm-mc
+  absent  llvm-objdump
+  absent  nasm
+  absent  yasm
+  absent  fasm
+  absent  qemu-aarch64-static
+  absent  qemu-system-aarch64
+  absent  arm-none-eabi-gcc
+  absent  riscv64-linux-gnu-gcc
+  absent  valgrind
+  absent  rr
+  absent  perf
+  absent  ltrace
+  absent  bpftrace
+  absent  docker
+  absent  podman
+  absent  wine
+  absent  ruby
+  absent  go
+  absent  rustc
+  absent  tcc
+  absent  zig
+## host binutils targets (x86 only)
+objdump: supported architectures: i386 i386:x86-64 i386:x64-32 i8086 i386:intel i386:x86-64:intel i386:x64-32:intel iamcu iamcu:intel
+## gcc -m32 / -static
+  gcc -m32: exit=1 (4 'cannot find' errors: Scrt1.o, crti.o, -lgcc) -> no 32-bit x86 builds
+  gcc -static: build+run exit=0
+## python3 third-party modules (stdlib only)
+  capstone=absent, unicorn=absent, keystone=absent, elftools=absent, lief=absent, iced_x86=absent, z3=absent, numpy=absent, PIL=absent, matplotlib=absent, pygame=absent, tkinter=absent, curses=PRESENT
+## gdb embedded python
+  gdb-python 3.12.3
+## kernel knobs
+  kernel/yama/ptrace_scope     1
+  kernel/perf_event_paranoid   2
+  kernel/randomize_va_space    2
+  vm/mmap_min_addr             65536
+## binfmt_misc (qemu-user-binfmt registered 29 qemu-* handlers -> foreign ELFs exec transparently)
+python3.12 qemu-aarch64 qemu-alpha qemu-arm qemu-armeb qemu-cris qemu-hexagon qemu-hppa qemu-loongarch64 qemu-m68k qemu-microblaze qemu-mips qemu-mips64 qemu-mips64el qemu-mipsel qemu-mipsn32 qemu-mipsn32el qemu-ppc qemu-ppc64 qemu-ppc64le qemu-riscv32 qemu-riscv64 qemu-s390x qemu-sh4 qemu-sh4eb qemu-sparc qemu-sparc32plus qemu-sparc64 qemu-xtensa qemu-xtensaeb 
+## /tmp
+  (no separate mount) /      ext4   rw,noatime,errors=remount-ro
+## gh
+  ✓ Logged in to github.com account derekblair (keyring)
+  - Token scopes: 'gist', 'read:org', 'repo', 'workflow'
+  limits: search 30/min, code_search 10/min — one token shared by author + reviewer lanes
+## qemu SMC fidelity: see review/evidence/qemu-fidelity/probe-output.txt

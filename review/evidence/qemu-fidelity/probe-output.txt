@@ -1,0 +1,17 @@
+# 2026-10-18 22:17:32 PDT — encoding oracle check (aarch64-linux-gnu-as/objdump 2.42)
+   0:	52800020 	mov	w0, #0x1                   	// #1
+   4:	52800040 	mov	w0, #0x2                   	// #2
+   8:	d65f03c0 	ret
+# build + run under qemu-aarch64 (via explicit qemu-aarch64, not binfmt)
+build exit=0
+smc_coherence: ELF 64-bit LSB executable
+flush=NO  first=1 second=2
+flush=NO  first=1 second=2
+flush=NO  first=1 second=2
+flush=yes first=1 second=2
+flush=yes first=1 second=2
+flush=yes first=1 second=2
+# same binary exec'd directly (binfmt_misc path)
+flush=NO  first=1 second=2
+exit=0
+qemu-aarch64 version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)

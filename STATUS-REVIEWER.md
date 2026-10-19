@@ -1,1 +1,5 @@
 # STATUS-REVIEWER
+- 2026-10-18 22:05 PDT — Reviewer lane started (claude-opus-5-5, max). Read BRIEF-REVIEWER.md + BRIEF-AUTHOR.md + README.md in full; probed the machine.
+- 2026-10-18 22:16 PDT — Environment changed mid-session: Derek-approved install of qemu-user + gcc-aarch64-linux-gnu at 22:13 (apt history, commit 625ad5d); layout change projects/ -> parts/, reviewer repro in tasks/reviewer-repro/ (9428c3d). Re-read all changed files.
+- 2026-10-18 22:17 PDT — Verified qemu-aarch64 8.2.2 is SMC-coherent (patched code runs new insn 3/3 without cache maintenance) -> qemu cannot show ARM64 I-cache hazards. Evidence: review/evidence/qemu-fidelity/.
+- 2026-10-18 22:21 PDT — REVIEW-00-plan.md written: gate-design attacks (19), binding evidence standard (novelty levels N0-N4, search minimums, clean-clone repro under env -i + strace, x86/ARM64 oracles, safety line, FINAL rubric), pre-registered prior-art map. Requests R1-R11 to be restated as conditions in REVIEW-01. Next: watch STATUS-AUTHOR.md for GATE 1; pre-search §3 themes meanwhile.

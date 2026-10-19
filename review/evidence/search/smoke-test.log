@@ -1,0 +1,28 @@
+### 2026-10-19T05:18:21Z repos q=topic:self-modifying-code
+exit=0
+total_count=70 incomplete=false
+  d35ha/xObf  *282  created=2019-11-01  pushed=2022-11-20  Simple x86/x86_64 instruction level obfuscator based on a basic SBI engine
+  dmaivel/covirt  *272  created=2024-12-02  pushed=2024-12-21  An x86-64 code virtualizer for VM based obfuscation
+  loreloc/mkpoly  *46  created=2018-06-18  pushed=2019-08-08  A simple polymorphic engine
+  ahmershahdev/obscuralang  *42  created=2025-07-16  pushed=2026-02-16  ObscuraLang — a machine-native, post-human programming language. Not meant to be read. Not meant for humans. Built as a 
+  telepath9000/elf-packer  *38  created=2018-01-31  pushed=2025-03-06  Encrypts 64-bit elf files that decrypt at runtime. 
+  ericyoc/obfuscation_techniques_poc  *22  created=2024-04-10  pushed=2024-09-04  Demonstrates of eight common code obfuscation techniques
+  lurak/Polymorphic_engine  *18  created=2020-03-30  pushed=2020-06-15  
+  x0reaxeax/Fetch-n-Exec  *17  created=2021-11-13  pushed=2023-02-28  An x64 binary executing code that's not inside of it.
+  pwnslinger/SMC  *17  created=2017-05-02  pushed=2017-05-17  Self-modifying Code de-obfuscation
+  hovewoof/My-Simple-Crackme  *16  created=2023-09-12  pushed=2023-10-09  This project demonstrating multiple protection and anti-analysis techniques, including self-modifying code.
+
+### 2026-10-19T05:18:22Z code q=IC IVAU language:Assembly
+exit=0
+total_count=2936 incomplete=false
+  littlekernel/lk  arch/arm64/cache-ops.S
+  unikraft/unikraft  plat/common/arm/cache64.S
+  OP-TEE/optee_os  core/arch/arm/kernel/thread_a64.S
+  HelenOS/helenos  boot/arch/arm64/src/asm.S
+  HelenOS/helenos  kernel/arch/arm64/src/asm.S
+  xvisor/xvisor  arch/arm/cpu/arm64/cpu_cache.S
+  jm33-m0/emp3r0r  core/lib/memmod/memmod_linux_cacheflush_arm64.s
+  zhovner/OneFileLinux  linux-4.14.22/arch/arm64/mm/cache.S
+  IntuitionAmiga/IntuitionEngine  jit_icache_arm64.s
+  OLIMEX/DIY-LAPTOP  SOFTWARE/A64-TERES/linux-a64/arch/arm64/mm/cache.S
+
